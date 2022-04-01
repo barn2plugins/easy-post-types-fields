@@ -65,4 +65,8 @@ class Plugin extends Simple_Plugin implements Registerable, Translatable {
 		load_plugin_textdomain( 'easy-post-types-fields', false, $this->get_slug() . '/languages' );
 	}
 
+	public function get_admin_path( $file ) {
+		return wp_normalize_path( $this->get_dir_path() . '/src/Admin/' . $file );
+	}
+
 }

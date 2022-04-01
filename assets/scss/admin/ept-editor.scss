@@ -17,7 +17,7 @@
     pointer-events: none;
 }
 
-body.toplevel_page_ept_post_types .wrap {
+body[class*="ept_post_types"] .wrap {
     flex: 1;
     width: 100%;
 }

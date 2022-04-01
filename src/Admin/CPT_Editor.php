@@ -29,8 +29,6 @@ class CPT_Editor implements Service, Registerable {
 	 */
 	private $plugin;
 
-	private $promo;
-
 	public function __construct( Simple_Plugin $plugin ) {
 		$this->plugin = $plugin;
 	}
@@ -94,8 +92,7 @@ class CPT_Editor implements Service, Registerable {
 		add_action( 'admin_menu', [ $this, 'admin_menu' ] );
 		add_filter( 'wp_insert_post_data', [ $this, 'save_post_type' ], 10, 3 );
 
-		$this->promo = new Plugin_Promo( $this->plugin );
-		$this->promo->register();
+		( new Plugin_Promo( $this->plugin ) )->register();
 	}
 
 	public function change_title_text( $title ) {
@@ -148,7 +145,7 @@ class CPT_Editor implements Service, Registerable {
 	public function load_scripts( $hook ) {
 		$screen = get_current_screen();
 
-		if ( in_array( $screen->id, [ 'toplevel_page_ept_post_types', 'ept_post_type' ], true ) ) {
+		if ( in_array( $screen->id, [ 'toplevel_page_ept_post_types', 'ept_post_type', 'post-types_page_ept_post_types-help' ], true ) ) {
 			wp_enqueue_script( 'ept-editor', plugin_dir_url( $this->plugin->get_file() ) . 'assets/js/admin/ept-editor.min.js', [ 'jquery' ], $this->plugin->get_version(), true );
 			wp_enqueue_style( 'ept-editor', plugin_dir_url( $this->plugin->get_file() ) . 'assets/css/admin/ept-editor.min.css', [], $this->plugin->get_version() );
 
@@ -203,40 +200,20 @@ class CPT_Editor implements Service, Registerable {
 	public function admin_menu() {
 		add_menu_page( 'Post Types', 'Post Types', 'manage_options', 'ept_post_types', [ $this, 'add_manage_page' ], 'dashicons-feedback', 30 );
 		add_submenu_page( 'ept_post_types', 'Manage', 'Manage', 'manage_options', 'ept_post_types', [ $this, 'add_manage_page' ] );
-		add_submenu_page( 'ept_post_types', 'Help', 'Help', 'manage_options', 'https://barn2.com/kb/documentation' );
+		add_submenu_page( 'ept_post_types', 'Help', 'Help', 'manage_options', 'ept_post_types-help', [ $this, 'add_help_page' ] );
 	}
 
 	public function add_manage_page() {
 		$post_type_list_table = new Post_Type_List_Table();
 		$new_link             = add_query_arg( 'post_type', 'ept_post_type', 'post-new.php' );
+		$plugin               = $this->plugin;
 
-		// phpcs:disable WordPress.Security.EscapeOutput.UnsafePrintingFunction
+		include $this->plugin->get_admin_path( 'views/html-manage-page.php' );
+	}
 
-		?>
-		<div class="barn2-plugins-settings">
-			<div class="wrap">
-				<h1 class="wp-heading-inline">Manage post types</h1>
-				<a href="<?php echo esc_url( $new_link ); ?>" class="page-title-action">Add New</a>
-				<hr class="wp-header-end">
-				<p><?php _e( 'Use this page to manage your custom post types. You can add and edit post types, custom fields and taxonomies.', 'easy-post-types-fields' ); ?></p>
-				<p>
-					<a href="https://barn2.com/kb-categories/product-sample-kb/" target="_blank"><?php _e( 'Documentation', 'easy-post-types-fields' ); ?></a> | 
-					<a href="https://barn2.com/support-center/" target="_blank"><?php _e( 'Support', 'easy-post-types-fields' );  ?></a> |
-					<a href="<?php echo esc_url( add_query_arg( 'page', 'easy-post-types-fields-setup-wizard', admin_url( 'admin.php' ) ) ); ?>"><?php _e( 'Setup Wizard', 'easy-post-types-fields' );  ?></a>
-				</p>
-				<?php $post_type_list_table->views(); ?>
-				<form id="posts-filter" method="get">
-					<h2 class="screen-reader-text">Posts list</h2>
-					<?php
-					$post_type_list_table->display();
-					?>
-				</form>
-			</div>
-			<?php
-			$this->promo->render_promo( $this->plugin->get_id() );
-			?>
-		</div>
-		<?php
-		// phpcs:enable WordPress.Security.EscapeOutput.UnsafePrintingFunction
+	public function add_help_page() {
+		$plugin = $this->plugin;
+
+		include $this->plugin->get_admin_path( 'views/html-help-page.php' );
 	}
 }
