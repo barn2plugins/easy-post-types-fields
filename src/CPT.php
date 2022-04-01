@@ -1,0 +1,209 @@
+<?php
+namespace Barn2\Plugin\Easy_Post_Types_Fields;
+
+use Barn2\EPT_Lib\Registerable,
+	Barn2\EPT_Lib\Service;
+
+use WP_Error;
+
+/**
+ * The class registering a new Custom Post Type.
+ *
+ * @package   Barn2\easy-post-types-fields
+ * @author    Barn2 Plugins <support@barn2.com>
+ * @license   GPL-3.0
+ * @copyright Barn2 Media Ltd
+ */
+class CPT {
+
+	/**
+	 * The ID of the EPT post containing the CPT definition
+	 *
+	 * @var int
+	 */
+	private $id;
+
+	/**
+	 * The name (generally plural) of the CPT as defined in $args['labels']['name']
+	 *
+	 * @var string
+	 */
+	private $name;
+
+	/**
+	 * The singular name of the CPT as defined in $args['labels']['singular_name']
+	 *
+	 * @var string
+	 */
+	private $singular_name;
+
+	/**
+	 * The post type of the CPT
+	 *
+	 * @var string
+	 */
+	private $post_type;
+
+	/**
+	 * The arguments for the post type registration
+	 *
+	 * @var array
+	 */
+	private $args;
+
+	/**
+	 * Whether the post type has been successfully registered or not
+	 *
+	 * @var bool
+	 */
+	private $is_registered;
+
+	public function __construct( $id ) {
+		$this->id = $id;
+
+		if ( 'ept_post_type' !== get_post_type( $this->id ) ) {
+			$this->is_registered = false;
+			return;
+		}
+
+		$args = get_post_meta( $id, '_ept_content_type_args', true );
+
+		if ( empty( $args ) ) {
+			$args = [];
+		}
+
+		$post_type_object    = get_post( $this->id );
+		$this->post_type     = "ept_$post_type_object->post_name";
+		$this->name          = get_post_meta( $post_type_object->ID, '_ept_plural_name', true );
+		$this->singular_name = $post_type_object->post_title;
+
+		if ( $this->prepare_arguments( $args ) ) {
+			$this->register_post_type();
+		}
+	}
+
+	public function prepare_arguments( $args ) {
+		$default_args = [
+			'public'               => true,
+			'exclude_from_search'  => false,
+			'publicly_queryable'   => true,
+			'show_in_menu'         => true,
+			'show_in_nav_menus'    => true,
+			'show_in_admin_bar'    => false,
+			'show_in_rest'         => true,
+			'menu_position'        => 20,
+			'menu_icon'            => 'dashicons-admin-post',
+			'supports'             => [],
+			'register_meta_box_cb' => [ $this, 'register_cpt_metabox' ],
+			'taxonomies'           => [],
+			'rewrite'              => false,
+			'query_var'            => false,
+			'can_export'           => false,
+			'delete_with_user'     => false,
+		];
+
+		if ( ! isset( $args['labels'] ) ) {
+			$args['labels'] = [];
+		}
+
+		$args['labels'] = apply_filters(
+			"ept_post_type_{$this->name}_labels",
+			wp_parse_args(
+				$args['labels'],
+				$this->default_labels()
+			)
+		);
+
+		$args = apply_filters(
+			"ept_post_type_{$this->name}_args",
+			wp_parse_args(
+				$args,
+				$default_args
+			)
+		);
+
+		$this->args = $args;
+
+		return $args;
+	}
+
+	public function default_labels() {
+		$default_labels = [
+			'name'                     => $this->name,
+			'singular_name'            => $this->singular_name,
+			// translators: the singular post type name
+			'add_new_item'             => $this->define_singular_label( __( 'Add New %s', 'easy-post-types-fields' ) ),
+			// translators: the singular post type name
+			'edit_item'                => $this->define_singular_label( __( 'Edit %s', 'easy-post-types-fields' ) ),
+			// translators: the singular post type name
+			'new_item'                 => $this->define_singular_label( __( 'New %s', 'easy-post-types-fields' ) ),
+			// translators: the singular post type name
+			'view_item'                => $this->define_singular_label( _x( 'View %s', 'singular', 'easy-post-types-fields' ) ),
+			// translators: the plural post type name
+			'view_items'               => $this->define_label( _x( 'View %s', 'plural', 'easy-post-types-fields' ) ),
+			// translators: the plural post type name
+			'search_items'             => $this->define_label( __( 'Search %s', 'easy-post-types-fields' ) ),
+			// translators: the plural post type name
+			'not_found'                => $this->define_label( __( 'No %s found.', 'easy-post-types-fields' ), true ),
+			// translators: the plural post type name
+			'not_found_in_trash'       => $this->define_label( __( 'No %s found in Trash.', 'easy-post-types-fields' ), true ),
+			// translators: the singular post type name
+			'parent_item_colon'        => $this->define_singular_label( __( 'Parent %s:', 'easy-post-types-fields' ) ),
+			// translators: the plural post type name
+			'all_items'                => $this->define_label( __( 'All %s', 'easy-post-types-fields' ), true ),
+			// translators: the singular post type name
+			'archives'                 => $this->define_singular_label( __( '%s Archives', 'easy-post-types-fields' ) ),
+			// translators: the singular post type name
+			'attributes'               => $this->define_singular_label( __( '%s Attributes', 'easy-post-types-fields' ) ),
+			// translators: the singular post type name
+			'insert_into_item'         => $this->define_singular_label( __( 'Insert into %s', 'easy-post-types-fields' ), true ),
+			// translators: the singular post type name
+			'uploaded_to_this_item'    => $this->define_singular_label( __( 'Uploaded to this %s', 'easy-post-types-fields' ), true ),
+			// translators: the plural post type name
+			'filter_items_list'        => $this->define_label( __( 'Filter %s list', 'easy-post-types-fields' ), true ),
+			// translators: the plural post type name
+			'items_list_navigation'    => $this->define_label( __( '%s list navigation', 'easy-post-types-fields' ), true ),
+			// translators: the plural post type name
+			'items_list'               => $this->define_label( __( '%s list', 'easy-post-types-fields' ), true ),
+			// translators: the singular post type name
+			'item_published'           => $this->define_singular_label( __( '%s published.', 'easy-post-types-fields' ), true ),
+			// translators: the singular post type name
+			'item_published_privately' => $this->define_singular_label( __( '%s published privately.', 'easy-post-types-fields' ), true ),
+			// translators: the singular post type name
+			'item_reverted_to_draft'   => $this->define_singular_label( __( '%s reverted to draft.', 'easy-post-types-fields' ), true ),
+			// translators: the singular post type name
+			'item_scheduled'           => $this->define_singular_label( __( '%s scheduled.', 'easy-post-types-fields' ), true ),
+			// translators: the singular post type name
+			'item_updated'             => $this->define_singular_label( __( '%s updated.', 'easy-post-types-fields' ), true ),
+			// translators: the singular post type name
+			'item_link'                => $this->define_singular_label( __( '%s Link', 'easy-post-types-fields' ) ),
+			// translators: the singular post type name
+			'item_link_description'    => $this->define_singular_label( __( 'A link to a %s.', 'easy-post-types-fields' ), true ),
+		];
+
+		return $default_labels;
+	}
+
+	public function define_label( $label, $to_lower = false ) {
+		$name = $to_lower ? strtolower( $this->name ) : $this->name;
+
+		return ucfirst( sprintf( $label, $name ) );
+	}
+
+	public function define_singular_label( $label, $to_lower = false ) {
+		$singular_name = $to_lower ? strtolower( $this->singular_name ) : $this->singular_name;
+
+		return ucfirst( sprintf( $label, $singular_name ) );
+	}
+
+	public function register_post_type() {
+		register_post_type(
+			$this->post_type,
+			$this->args
+		);
+	}
+
+	public function register_cpt_metabox() {
+
+	}
+}
