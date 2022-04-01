@@ -2,7 +2,10 @@
 
 namespace Barn2\EPT_Lib;
 
-use function Barn2\Plugin\WC_Fast_Cart\wfc;
+use Barn2\Plugin\WC_Quick_View_Pro\Quick_View_Plugin,
+	WC_Product_Table_Plugin,
+	WC_Protected_Categories_Plugin,
+	Barn2\EPT_Lib\Plugin\Plugin;
 use function Barn2\Plugin\WC_Product_Table\wpt;
 use function Barn2\Plugin\WC_Protected_Categories\wpc;
 use function Barn2\Plugin\WC_Quick_View_Pro\wqv;
@@ -33,7 +36,7 @@ class Util {
 	 */
 	public static function barn2_link( $relative_path, $link_text = '', $new_tab = false ) {
 		if ( empty( $link_text ) ) {
-			$link_text = __( 'Read more', 'easy-post-types-fields' );
+			$link_text = __( 'Read more', 'barn2' );
 		}
 		return self::format_link( self::barn2_url( $relative_path ), esc_html( $link_text ), $new_tab );
 	}
