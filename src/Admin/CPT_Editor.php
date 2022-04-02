@@ -205,8 +205,14 @@ class CPT_Editor implements Service, Registerable {
 
 	public function add_manage_page() {
 		$post_type_list_table = new Post_Type_List_Table();
-		$new_link             = add_query_arg( 'post_type', 'ept_post_type', 'post-new.php' );
 		$plugin               = $this->plugin;
+		$new_link             = add_query_arg(
+			[
+				'page'   => $plugin->get_slug() . '-setup-wizard',
+				'action' => 'add',
+			],
+			'admin.php'
+		);
 
 		include $this->plugin->get_admin_path( 'views/html-manage-page.php' );
 	}

@@ -28,7 +28,7 @@ defined( 'ABSPATH' ) || exit;
 			);
 			?>
 		</p>
-		<ul>
+		<ul class="ul-disc">
 			<li>
 				<?php
 				echo wp_kses_post(

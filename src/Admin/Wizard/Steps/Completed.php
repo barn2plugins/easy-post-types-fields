@@ -19,4 +19,21 @@ class Completed extends Ready {
 		$this->set_description( esc_html__( 'Congratulations, you have finished setting up the plugin!', 'easy-post-types-fields' ) );
 	}
 
+	public function setup_fields() {
+		return [
+			'post_type'     => [
+				'type'  => 'text',
+				'value' => 'ept_testimonial',
+			],
+			'name'          => [
+				'type'  => 'text',
+				'value' => 'Testimonials',
+			],
+			'singular_name' => [
+				'type'  => 'text',
+				'value' => 'Testimonial',
+			],
+		];
+	}
+
 }

@@ -33,7 +33,8 @@ class CPT_Factory implements Registerable, Service {
 	}
 
 	public function register() {
-		$ept_post_types          = new WP_Query( [ 'post_type' => 'ept_post_type' ] );
+		$ept_post_types = new WP_Query( [ 'post_type' => 'ept_post_type' ] );
+
 		foreach ( $ept_post_types->posts as $post_type ) {
 			$this->post_types[] = new CPT( $post_type->ID );
 		}

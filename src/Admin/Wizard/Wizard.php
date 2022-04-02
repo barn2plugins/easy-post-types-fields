@@ -28,16 +28,9 @@ class Wizard extends Setup_Wizard implements Restartable {
 			wp_send_json_error( [ 'error_message' => __( 'You are not authorized.', 'easy-post-types-fields' ) ], 403 );
 		}
 
-		$toggle   = [];
-		$complete = 'yes' === get_option( 'ept_wizard_complete' );
-
-		if ( $complete ) {
-			$toggle[] = 'complete';
-		}
-
 		wp_send_json_success(
 			[
-				'toggle' => $toggle
+				'step' => true
 			]
 		);
 
