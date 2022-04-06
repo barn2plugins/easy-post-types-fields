@@ -76,6 +76,7 @@ class CPT {
 		$this->post_type     = "ept_$post_type_object->post_name";
 		$this->name          = get_post_meta( $post_type_object->ID, '_ept_plural_name', true );
 		$this->singular_name = $post_type_object->post_title;
+		$this->supports      = get_post_meta( $post_type_object->ID, '_ept_supports', true );
 
 		if ( $this->prepare_arguments( $args ) ) {
 			$this->register_post_type();
@@ -91,12 +92,11 @@ class CPT {
 			'show_in_nav_menus'    => true,
 			'show_in_admin_bar'    => false,
 			'show_in_rest'         => true,
-			'menu_position'        => 20,
-			'menu_icon'            => 'dashicons-admin-post',
-			'supports'             => [],
+			'menu_position'        => 26,
+			'menu_icon'            => 'dashicons-list-view',
+			'supports'             => $this->supports,
 			'register_meta_box_cb' => [ $this, 'register_cpt_metabox' ],
 			'taxonomies'           => [],
-			'rewrite'              => false,
 			'query_var'            => false,
 			'can_export'           => false,
 			'delete_with_user'     => false,
@@ -107,15 +107,20 @@ class CPT {
 		}
 
 		$args['labels'] = apply_filters(
-			"ept_post_type_{$this->name}_labels",
+			"ept_post_type_{$this->singular_name}_labels",
 			wp_parse_args(
 				$args['labels'],
 				$this->default_labels()
 			)
 		);
 
+		$args['rewrite'] = [
+			'slug'       => '/' . sanitize_title( $this->name ),
+			'with_front' => false,
+		];
+
 		$args = apply_filters(
-			"ept_post_type_{$this->name}_args",
+			"ept_post_type_{$this->singular_name}_args",
 			wp_parse_args(
 				$args,
 				$default_args
@@ -204,6 +209,6 @@ class CPT {
 	}
 
 	public function register_cpt_metabox() {
-
+		do_action( "ept_post_type_{$this->singular_name}_metabox" );
 	}
 }
