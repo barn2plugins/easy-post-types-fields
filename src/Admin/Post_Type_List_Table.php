@@ -39,6 +39,8 @@ class Post_Type_List_Table extends WP_List_Table {
 	private $custom_post_types;
 
 	public function __construct( $args = [] ) {
+		global $wp_post_types;
+
 		parent::__construct(
 			array(
 				'screen' => isset( $args['screen'] ) ? $args['screen'] : null,
@@ -46,10 +48,10 @@ class Post_Type_List_Table extends WP_List_Table {
 		);
 
 		$this->post_type      = 'ept_post_type';
-		$this->all_post_types = get_post_types( [], 'objects' );
+		$this->all_post_types = $wp_post_types;
 		unset( $this->all_post_types['ept_post_type'] );
 
-		$ept_post_types          = new WP_Query( [ 'post_type' => 'ept_post_type' ] );
+		$ept_post_types          = new WP_Query( [ 'post_type' => 'ept_post_type', 'posts_per_page' => -1 ] );
 		$ept_post_types          = $ept_post_types->posts;
 		$this->custom_post_types = array_map(
 			function( $cpt ) {
@@ -224,6 +226,7 @@ class Post_Type_List_Table extends WP_List_Table {
 			'name'       => _x( 'Name', 'column name', 'easy-post-types-fields' ),
 			'fields'     => _x( 'Fields', 'column name', 'easy-post-types-fields' ),
 			'taxonomies' => _x( 'Taxonomies', 'column name', 'easy-post-types-fields' ),
+			'actions'    => _x( 'Actions', 'column name', 'easy-post-types-fields' ),
 			'count'      => _x( 'Post count', 'column name', 'easy-post-types-fields' ),
 		];
 
@@ -314,8 +317,10 @@ class Post_Type_List_Table extends WP_List_Table {
 	protected function _column_actions( $post_type, $classes, $data, $primary ) {
 		?>
 		<td class="<?php echo esc_attr( $classes ); ?> post_type-actions" <?php echo esc_attr( $data ); ?>>
-			<button class="button"><?php _e( 'Fields', 'easy-post-types-fields' ); ?></button>
-			<button class="button"><?php _e( 'Taxonomies', 'easy-post-types-fields' ); ?></button>
+			<button class="button"><?php esc_html_e( 'Fields', 'easy-post-types-fields' ); ?></button>
+			<button class="button"><?php esc_html_e( 'Taxonomies', 'easy-post-types-fields' ); ?></button>
+			<?php // translators: the plural name of a post type ?>
+			<button class="button"><?php echo esc_html( sprintf( __( 'Manage %s', 'easy-post-types-fields' ), $post_type->label ) ); ?></button>
 		</td>
 		<?php
 	}
@@ -409,6 +414,14 @@ class Post_Type_List_Table extends WP_List_Table {
 			/* translators: %s: Post title. */
 			esc_attr( __( 'Taxonomies', 'easy-post-types-fields' ) ),
 			__( 'Taxonomies', 'easy-post-types-fields' )
+		);
+
+		$actions['manage'] = sprintf(
+			'<a href="%s" aria-label="%s">%s</a>',
+			add_query_arg( 'post_type', $post_type->name, admin_url( 'edit.php' ) ),
+			/* translators: %s: Post title. */
+			sprintf( esc_attr__( 'Manage %s', 'easy-post-types-fields' ), $post_type->label ),
+			sprintf( esc_html__( 'Manage %s', 'easy-post-types-fields' ), $post_type->label )
 		);
 
 		return $this->row_actions( $actions );
