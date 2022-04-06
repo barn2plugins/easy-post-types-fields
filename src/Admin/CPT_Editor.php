@@ -106,8 +106,9 @@ class CPT_Editor implements Service, Registerable {
 	}
 
 	public function save_post_type( $data, $postdata, $rawpostdata ) {
-		$plural_name = $postdata['ept_plural_name'];
-		update_post_meta( $postdata['ID'], '_ept_plural_name', $plural_name );
+		if ( isset( $postdata['ept_plural_name'] ) ) {
+			update_post_meta( $postdata['ID'], '_ept_plural_name', $postdata['ept_plural_name'] );
+		}
 
 		return $data;
 	}
@@ -198,7 +199,7 @@ class CPT_Editor implements Service, Registerable {
 	}
 
 	public function admin_menu() {
-		add_menu_page( 'Post Types', 'Post Types', 'manage_options', 'ept_post_types', [ $this, 'add_manage_page' ], 'dashicons-feedback', 30 );
+		add_menu_page( 'Post Types', 'Post Types', 'manage_options', 'ept_post_types', [ $this, 'add_manage_page' ], 'dashicons-feedback', 21 );
 		add_submenu_page( 'ept_post_types', 'Manage', 'Manage', 'manage_options', 'ept_post_types', [ $this, 'add_manage_page' ] );
 		add_submenu_page( 'ept_post_types', 'Help', 'Help', 'manage_options', 'ept_post_types-help', [ $this, 'add_help_page' ] );
 	}
