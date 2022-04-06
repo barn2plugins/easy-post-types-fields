@@ -53,12 +53,12 @@ class Settings_Util {
 			[
 				'doc'     => [
 					'url'    => $plugin->get_documentation_url(),
-					'label'  => __( 'Documentation', 'barn2' ),
+					'label'  => __( 'Documentation', 'easy-post-types-fields' ),
 					'target' => '_blank',
 				],
 				'support' => [
 					'url'    => $plugin->get_support_url(),
-					'label'  => __( 'Support', 'barn2' ),
+					'label'  => __( 'Support', 'easy-post-types-fields' ),
 					'target' => '_blank',
 				],
 			],

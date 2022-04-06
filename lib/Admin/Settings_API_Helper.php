@@ -238,8 +238,21 @@ class Settings_API_Helper implements Registerable, Conditional {
 		if ( ! empty( $args['desc'] ) ) {
 			$allowed_html = [
 				'a'      => [
+					'class'  => [],
+					'style'  => [],
 					'target' => [],
 					'href'   => []
+				],
+				'span'   => [
+					'class' => [],
+					'style' => [],
+				],
+				'button' => [
+					'class' => [],
+					'style' => [],
+					'type'  => [],
+					'name'  => [],
+					'value' => [],
 				],
 				'strong' => []
 			];
@@ -439,7 +452,7 @@ class Settings_API_Helper implements Registerable, Conditional {
 
 		$size_id          = $args['id'] . '[size]';
 		$size_value       = isset( $current_value['size'] ) ? $current_value['size'] : '';
-		$size_placeholder = ! empty( $args['placeholder'] ) ? $args['placeholder'] : __( 'Size', 'barn2' );
+		$size_placeholder = ! empty( $args['placeholder'] ) ? $args['placeholder'] : __( 'Size', 'easy-post-types-fields' );
 
 		if ( empty( $args['custom_attributes'] ) ) {
 			$args['custom_attributes'] = [];
