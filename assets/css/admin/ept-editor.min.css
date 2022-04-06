@@ -1,5 +1,5 @@
 /*!
- * Easy Post Types and Fields 0.1
+ * Easy Post Types and Fields 0.2
  * Copyright 2022 Barn2 Plugins
  */
-#ept_plural_name_wrap #ept_plural_name{background-color:#fff;font-size:1.7em;height:1.7em;line-height:100%;margin:0 0 3px;outline:none;padding:3px 8px;width:100%}#ept_plural_name_wrap #plural-name-prompt-text{color:#646970;font-size:1.7em;padding:10px;pointer-events:none;position:absolute}body[class*=ept_post_types] .wrap{flex:1;width:100%}
+#ept_plural_name_wrap #ept_plural_name{background-color:#fff;font-size:1.7em;height:1.7em;line-height:100%;margin:0 0 3px;outline:none;padding:3px 8px;width:100%}#ept_plural_name_wrap #plural-name-prompt-text{color:#646970;font-size:1.7em;padding:10px;pointer-events:none;position:absolute}body[class*=ept_post_types] .wrap{flex:1;width:100%}.toplevel_page_ept_post_types .barn2-plugins-settings ul.subsubsub li:not(:last-child):after{content:unset}

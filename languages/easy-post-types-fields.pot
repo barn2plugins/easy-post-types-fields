@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-04-01T00:00:00+00:00\n"
+"POT-Creation-Date: 2022-04-06T00:00:00+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: easy-post-types-fields\n"
@@ -60,6 +60,7 @@ msgstr ""
 
 #: dependencies/src/Steps/Welcome.php:25
 #: dependencies/src/Steps/Welcome_Free.php:23
+#: src/Admin/Wizard/Steps/Welcome.php:17
 msgid "Welcome"
 msgstr ""
 
@@ -88,224 +89,353 @@ msgstr ""
 msgid "Please enter a license key."
 msgstr ""
 
-#: lib/Admin/Settings_API_Helper.php:298
+#: lib/Admin/Settings_API_Helper.php:455
 msgid "Size"
 msgstr ""
 
-#: lib/Util.php:36
-msgid "Read more"
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:43
-msgid "Post types"
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:44
-msgid "Post type"
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:45
-msgid "Add new"
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:46
-msgid "Add new post type"
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:47
-msgid "Edit post type"
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:48
-msgid "New post type"
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:49
-msgid "View post type"
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:50
-msgid "View post types"
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:51
-msgid "Search custom post types"
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:52
-msgid "No custom post types have been created yet."
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:54
-msgid "All post types"
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:55
-msgid "Post Type Attributes"
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:56
-msgid "Filter post types list"
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:57
-msgid "Filter by date"
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:58
-msgid "Post types list navigation"
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:59
-msgid "Post types list"
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:60
-msgid "Post type published."
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:61
-msgid "Post type published privately."
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:62
-msgid "Post type reverted to draft."
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:63
-msgid "Post scheduled."
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:64
-msgid "Post updated."
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:65
-msgid "A link to a post type."
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:67
-msgid "Define a custom post type"
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:105
-msgid "Singular name of the post type (e.g. `Project` or `Book`)"
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:119
-msgid "Definition"
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:134
-msgid "Plural name of the post type (e.g. `Projects` or `Books`)"
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:157
-msgid "Are you sure you want to delete this post type?"
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:158
-msgid "The database contains at least one post of this post type. By deleting this post type, WordPress will not be able to access those posts any longer. This operation cannot be undone. Are you sure you want to continue?"
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:177
-msgid "Name"
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:185
-msgid "Custom"
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:198
-#: src/Admin/CPT_Editor.php:219
-msgid "Use this page to manage your custom post types. You can add and edit post types, custom fields and taxonomies."
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:222
-#: src/Admin/CPT_Editor.php:225
+#: lib/Admin/Settings_Util.php:56
+#: src/Admin/views/html-manage-page.php:22
 msgid "Documentation"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:228
-msgid "Setup Wizard"
+#: lib/Admin/Settings_Util.php:61
+#: src/Admin/views/html-manage-page.php:23
+msgid "Support"
 msgstr ""
 
-#: src/Admin/Post_Type_List_Table.php:133
+#: lib/Util.php:39
+msgid "Read more"
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:41
+msgid "Post types"
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:42
+msgid "Post type"
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:43
+msgid "Add new"
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:44
+msgid "Add new post type"
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:45
+msgid "Edit post type"
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:46
+msgid "New post type"
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:47
+msgid "View post type"
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:48
+msgid "View post types"
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:49
+msgid "Search custom post types"
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:50
+msgid "No custom post types have been created yet."
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:52
+msgid "All post types"
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:53
+msgid "Post Type Attributes"
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:54
+msgid "Filter post types list"
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:55
+msgid "Filter by date"
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:56
+msgid "Post types list navigation"
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:57
+msgid "Post types list"
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:58
+msgid "Post type published."
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:59
+msgid "Post type published privately."
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:60
+msgid "Post type reverted to draft."
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:61
+msgid "Post scheduled."
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:62
+msgid "Post updated."
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:63
+msgid "A link to a post type."
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:65
+msgid "Define a custom post type"
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:102
+msgid "Singular name of the post type (e.g. `Project` or `Book`)"
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:117
+msgid "Definition"
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:132
+msgid "Plural name of the post type (e.g. `Projects` or `Books`)"
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:155
+msgid "Are you sure you want to delete this post type?"
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:156
+msgid "The database contains at least one post of this post type. By deleting this post type, WordPress will not be able to access those posts any longer. This operation cannot be undone. Are you sure you want to continue?"
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:175
+#: src/Admin/Wizard/Steps/EPT_Name.php:20
+msgid "Name"
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:183
+msgid "Custom"
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:196
+#: src/Admin/views/html-manage-page.php:20
+msgid "Use this page to manage your custom post types. You can add and edit post types, custom fields and taxonomies."
+msgstr ""
+
+#: src/Admin/Post_Type_List_Table.php:135
 msgid "No custom post types found"
 msgstr ""
 
 #. translators: %s: Number of posts.
-#: src/Admin/Post_Type_List_Table.php:184
+#: src/Admin/Post_Type_List_Table.php:186
 msgid "Easy Post Types <span class=\"count\">(%s)</span>"
 msgstr ""
 
 #. translators: %s: Number of posts.
-#: src/Admin/Post_Type_List_Table.php:186
+#: src/Admin/Post_Type_List_Table.php:188
 msgid "Other post types <span class=\"count\">(%s)</span>"
-msgstr ""
-
-#: src/Admin/Post_Type_List_Table.php:224
-msgctxt "column name"
-msgid "Name"
-msgstr ""
-
-#: src/Admin/Post_Type_List_Table.php:225
-msgctxt "column name"
-msgid "Fields"
 msgstr ""
 
 #: src/Admin/Post_Type_List_Table.php:226
 msgctxt "column name"
-msgid "Taxonomies"
+msgid "Name"
 msgstr ""
 
 #: src/Admin/Post_Type_List_Table.php:227
 msgctxt "column name"
+msgid "Fields"
+msgstr ""
+
+#: src/Admin/Post_Type_List_Table.php:228
+msgctxt "column name"
+msgid "Taxonomies"
+msgstr ""
+
+#: src/Admin/Post_Type_List_Table.php:229
+msgctxt "column name"
+msgid "Actions"
+msgstr ""
+
+#: src/Admin/Post_Type_List_Table.php:230
+msgctxt "column name"
 msgid "Post count"
 msgstr ""
 
-#: src/Admin/Post_Type_List_Table.php:282
+#: src/Admin/Post_Type_List_Table.php:285
 msgid "This post type is locked"
 msgstr ""
 
-#: src/Admin/Post_Type_List_Table.php:301
+#: src/Admin/Post_Type_List_Table.php:304
 msgid "%s (Edit)"
 msgstr ""
 
 #. translators: %s: Post title.
-#: src/Admin/Post_Type_List_Table.php:317
-#: src/Admin/Post_Type_List_Table.php:402
-#: src/Admin/Post_Type_List_Table.php:403
+#: src/Admin/Post_Type_List_Table.php:320
+#: src/Admin/Post_Type_List_Table.php:407
+#: src/Admin/Post_Type_List_Table.php:408
 msgid "Fields"
 msgstr ""
 
 #. translators: %s: Post title.
-#: src/Admin/Post_Type_List_Table.php:318
-#: src/Admin/Post_Type_List_Table.php:410
-#: src/Admin/Post_Type_List_Table.php:411
+#: src/Admin/Post_Type_List_Table.php:321
+#: src/Admin/Post_Type_List_Table.php:415
+#: src/Admin/Post_Type_List_Table.php:416
 msgid "Taxonomies"
 msgstr ""
 
-#: src/Admin/Post_Type_List_Table.php:385
-#: src/Admin/Post_Type_List_Table.php:386
+#. translators: the plural name of a post type
+#. translators: %s: Post title.
+#: src/Admin/Post_Type_List_Table.php:323
+#: src/Admin/Post_Type_List_Table.php:423
+#: src/Admin/Post_Type_List_Table.php:424
+msgid "Manage %s"
+msgstr ""
+
+#: src/Admin/Post_Type_List_Table.php:390
+#: src/Admin/Post_Type_List_Table.php:391
 msgid "Edit"
 msgstr ""
 
-#: src/Admin/Post_Type_List_Table.php:392
-#: src/Admin/Post_Type_List_Table.php:394
+#: src/Admin/Post_Type_List_Table.php:397
+#: src/Admin/Post_Type_List_Table.php:399
 msgid "Delete"
 msgstr ""
 
+#: src/Admin/views/html-help-page.php:17
+msgid "Get Help with Easy Post Types and Fields"
+msgstr ""
+
+#. translators: opening and closing tag of the anchor element
+#: src/Admin/views/html-help-page.php:24
+msgid "Easy Post Types and Fields is developed and supported by %1$sBarn2 Plugins%2$s."
+msgstr ""
+
+#. translators: opening and closing tag of the anchor element
+#: src/Admin/views/html-help-page.php:37
+msgid "The %1$splugin documentation%2$s is an excellent resource to help you learn how to use custom post types, fields and taxonomies."
+msgstr ""
+
+#. translators: opening and closing tag of the anchor element
+#: src/Admin/views/html-help-page.php:49
+msgid "If you need help displaying the custom post types and data on the front end of your website then we recommend the %1$sPosts Table Pro plugin%2$s."
+msgstr ""
+
+#. translators: opening and closing tag of the anchor element
+#: src/Admin/views/html-help-page.php:61
+msgid "To get help with a specific issue, you can ask in the %1$ssupport forum%2$s or %3$ssubmit a support request%4$s."
+msgstr ""
+
+#: src/Admin/views/html-manage-page.php:17
+msgid "Manage post types"
+msgstr ""
+
+#: src/Admin/views/html-manage-page.php:24
+msgid "Setup Wizard"
+msgstr ""
+
 #: src/Admin/Wizard/Steps/Completed.php:17
+#: src/Admin/Wizard/Steps/EPT_Ready.php:20
 msgid "Ready"
 msgstr ""
 
-#: src/Admin/Wizard/Steps/Completed.php:18
-msgid "Complete Setup"
+#. translators: the plural name of a post type
+#: src/Admin/Wizard/Steps/Completed.php:19
+#: src/Admin/Wizard/Steps/EPT_Ready.php:22
+msgid "Now, you can either add extra fields to your post type, or start adding new %s straight away."
 msgstr ""
 
-#: src/Admin/Wizard/Steps/Completed.php:19
-msgid "Congratulations, you have finished setting up the plugin!"
+#. translators: the singular name of a post type
+#: src/Admin/Wizard/Steps/Completed.php:21
+#: src/Admin/Wizard/Steps/EPT_Ready.php:24
+msgid "The %s post type is ready!"
+msgstr ""
+
+#: src/Admin/Wizard/Steps/EPT_Features.php:20
+msgid "Features"
+msgstr ""
+
+#. translators: the plural name of a post type
+#: src/Admin/Wizard/Steps/EPT_Features.php:22
+msgid "Choose which of the standard features you will use to store data about your %s. Later, you can also create custom fields and taxonomies for storing additional information."
+msgstr ""
+
+#: src/Admin/Wizard/Steps/EPT_Features.php:23
+msgid "What type of information do you need for your %s?"
+msgstr ""
+
+#: src/Admin/Wizard/Steps/EPT_Features.php:33
+msgid "Title"
+msgstr ""
+
+#: src/Admin/Wizard/Steps/EPT_Features.php:40
+msgid "Content"
+msgstr ""
+
+#: src/Admin/Wizard/Steps/EPT_Features.php:45
+msgid "Excerpt"
+msgstr ""
+
+#: src/Admin/Wizard/Steps/EPT_Features.php:50
+msgid "Author"
+msgstr ""
+
+#: src/Admin/Wizard/Steps/EPT_Features.php:55
+msgid "Featured image"
+msgstr ""
+
+#: src/Admin/Wizard/Steps/EPT_Features.php:64
+msgid "Comments"
+msgstr ""
+
+#: src/Admin/Wizard/Steps/EPT_Features.php:72
+msgid "Page attributes"
+msgstr ""
+
+#: src/Admin/Wizard/Steps/EPT_Features.php:76
+msgid "Revisions"
+msgstr ""
+
+#: src/Admin/Wizard/Steps/EPT_Features.php:109
+msgid "It is not possible to create the post type with the current configuration."
+msgstr ""
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:21
+msgid "First, let's choose the name for your custom post type. This will appear as a link on the left hand side of the WordPress admin."
+msgstr ""
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:22
+msgid "What sort of content do you want to create?"
+msgstr ""
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:32
+msgid "Singular name (e.g. Article)"
+msgstr ""
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:36
+msgid "Plural name (e.g. Articles)"
+msgstr ""
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:51
+msgid "Both fields must not be empty."
+msgstr ""
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:57
+msgid "The name of the post type cannot be longer than 17 characters."
+msgstr ""
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:68
+msgid "A post type with this name is already present. Please input a different name."
 msgstr ""
 
 #: src/Admin/Wizard/Steps/Upsell.php:24
@@ -321,128 +451,140 @@ msgstr ""
 msgid "Extra features"
 msgstr ""
 
+#: src/Admin/Wizard/Steps/Welcome.php:18
+msgid "Welcome to Easy Post Types and Fields"
+msgstr ""
+
+#: src/Admin/Wizard/Steps/Welcome.php:19
+msgid "Create custom content types and data in no time"
+msgstr ""
+
+#: src/Admin/Wizard/Steps/Welcome.php:20
+msgid "Use this setup wizard to quickly create a custom post type. Your post type will have its own section in the WordPress admin, and can be managed separately from the other content on your site. For example, you might create a custom post type for Events, Members, Articles, or something else."
+msgstr ""
+
 #: src/Admin/Wizard/Wizard.php:28
 msgid "You are not authorized."
 msgstr ""
 
 #. translators: the singular post type name
-#: src/CPT.php:135
+#: src/CPT.php:140
 msgid "Add New %s"
 msgstr ""
 
 #. translators: the singular post type name
-#: src/CPT.php:137
+#: src/CPT.php:142
 msgid "Edit %s"
 msgstr ""
 
 #. translators: the singular post type name
-#: src/CPT.php:139
+#: src/CPT.php:144
 msgid "New %s"
 msgstr ""
 
 #. translators: the singular post type name
-#: src/CPT.php:141
+#: src/CPT.php:146
 msgctxt "singular"
 msgid "View %s"
 msgstr ""
 
 #. translators: the plural post type name
-#: src/CPT.php:143
+#: src/CPT.php:148
 msgctxt "plural"
 msgid "View %s"
 msgstr ""
 
 #. translators: the plural post type name
-#: src/CPT.php:145
+#: src/CPT.php:150
 msgid "Search %s"
 msgstr ""
 
 #. translators: the plural post type name
-#: src/CPT.php:147
+#: src/CPT.php:152
 msgid "No %s found."
 msgstr ""
 
 #. translators: the plural post type name
-#: src/CPT.php:149
+#: src/CPT.php:154
 msgid "No %s found in Trash."
 msgstr ""
 
 #. translators: the singular post type name
-#: src/CPT.php:151
+#: src/CPT.php:156
 msgid "Parent %s:"
 msgstr ""
 
 #. translators: the plural post type name
-#: src/CPT.php:153
+#: src/CPT.php:158
 msgid "All %s"
 msgstr ""
 
 #. translators: the singular post type name
-#: src/CPT.php:155
+#: src/CPT.php:160
 msgid "%s Archives"
 msgstr ""
 
 #. translators: the singular post type name
-#: src/CPT.php:157
+#: src/CPT.php:162
 msgid "%s Attributes"
 msgstr ""
 
 #. translators: the singular post type name
-#: src/CPT.php:159
+#: src/CPT.php:164
 msgid "Insert into %s"
 msgstr ""
 
 #. translators: the singular post type name
-#: src/CPT.php:161
+#: src/CPT.php:166
 msgid "Uploaded to this %s"
 msgstr ""
 
 #. translators: the plural post type name
-#: src/CPT.php:163
+#: src/CPT.php:168
 msgid "Filter %s list"
 msgstr ""
 
 #. translators: the plural post type name
-#: src/CPT.php:165
+#: src/CPT.php:170
 msgid "%s list navigation"
 msgstr ""
 
 #. translators: the plural post type name
-#: src/CPT.php:167
+#: src/CPT.php:172
 msgid "%s list"
 msgstr ""
 
 #. translators: the singular post type name
-#: src/CPT.php:169
+#: src/CPT.php:174
 msgid "%s published."
 msgstr ""
 
 #. translators: the singular post type name
-#: src/CPT.php:171
+#: src/CPT.php:176
 msgid "%s published privately."
 msgstr ""
 
 #. translators: the singular post type name
-#: src/CPT.php:173
+#: src/CPT.php:178
 msgid "%s reverted to draft."
 msgstr ""
 
 #. translators: the singular post type name
-#: src/CPT.php:175
+#: src/CPT.php:180
 msgid "%s scheduled."
 msgstr ""
 
 #. translators: the singular post type name
-#: src/CPT.php:177
+#: src/CPT.php:182
 msgid "%s updated."
 msgstr ""
 
 #. translators: the singular post type name
-#: src/CPT.php:179
+#: src/CPT.php:184
 msgid "%s Link"
 msgstr ""
 
 #. translators: the singular post type name
-#: src/CPT.php:181
+#: src/CPT.php:186
 msgid "A link to a %s."
 msgstr ""

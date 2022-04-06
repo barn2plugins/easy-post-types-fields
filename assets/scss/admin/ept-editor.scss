@@ -21,3 +21,7 @@ body[class*="ept_post_types"] .wrap {
     flex: 1;
     width: 100%;
 }
+
+.toplevel_page_ept_post_types .barn2-plugins-settings ul.subsubsub li:not(:last-child)::after {
+    content: unset;
+}
