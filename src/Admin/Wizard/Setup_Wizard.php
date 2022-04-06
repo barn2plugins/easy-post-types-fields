@@ -22,39 +22,55 @@ class Setup_Wizard implements Registerable {
 
 		$this->plugin = $plugin;
 
-		$steps = [
-			new Steps\Welcome(),
-			new Steps\Upsell(),
-			new Steps\Completed(),
+		$action_steps = [
+			'setup' => [ 'Welcome', 'EPT_Name', 'EPT_Features', 'Upsell', 'Completed' ],
+			'add'   => [ 'EPT_Name', 'EPT_Features', 'Completed' ],
 		];
+		$action       = isset( $_REQUEST['action'] ) && isset( $action_steps[ $_REQUEST['action'] ] ) ? $_REQUEST['action'] : 'setup';
 
-		$wizard = new Wizard( $this->plugin, $steps );
+		$steps = array_map(
+			function( $s ) {
+				$step_class = __NAMESPACE__ . '\Steps\\' . $s;
+				return new $step_class();
+			},
+			$action_steps[ $action ]
+		);
 
+		$wizard = new Wizard( $this->plugin, $steps, false );
 
-		$args = [
-			'admin_url' => admin_url(),
-			'skip_url'  => admin_url( 'admin.php?page=ept_post_types' ),
-			'utm_id'    => 'ept',
-		];
+		$wizard->configure(
+			[
+				'admin_url' => admin_url(),
+				'skip_url'  => admin_url( 'admin.php?page=ept_post_types' ),
+				'utm_id'    => 'ept',
+			]
+		);
 
-		if ( isset( $_REQUEST['action'] ) ) {
-			$args['action'] = $_REQUEST['action'];
-		}
-
-		$wizard->configure( $args );
-
+		$script_dependencies = Lib_Util::get_script_dependencies( $this->plugin, 'admin/wizard-library.min.js' );
+		$wizard->set_non_wc_asset(
+			$plugin->get_dir_url() . 'assets/js/admin/wizard-library.min.js',
+			$script_dependencies['dependencies'],
+			$script_dependencies['version']
+		);
 		$wizard->add_custom_asset(
-			$plugin->get_dir_url() . 'assets/js/admin/wizard.min.js',
-			Lib_Util::get_script_dependencies( $this->plugin, 'admin/wizard.min.js' )
+			$plugin->get_dir_url() . 'assets/js/admin/wizard-custom.min.js',
+			$script_dependencies
 		);
 
 		$this->wizard = $wizard;
+
+		add_filter(
+			'admin_body_class',
+			function( $class ) use ( $action ) {
+				$class .= ' ' . $this->plugin->get_slug() . "-wizard-$action";
+
+				return $class;
+			}
+		);
 	}
 
 	public function register() {
 		$this->wizard->boot();
-
-		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_additional_scripts' ], 21 );
 	}
 
 	public function enqueue_additional_scripts( $hook_suffix ) {

@@ -10,10 +10,13 @@ namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin\Wizard\Steps;
 
 use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Barn2\Setup_Wizard\Steps\Ready;
 
-class Completed extends Ready {
+class EPT_Ready extends Ready {
 
+	/**
+	 * Constructor.
+	 */
 	public function __construct() {
-		parent::__construct();
+		$this->set_id( 'ept_ready' );
 		$this->set_name( esc_html__( 'Ready', 'easy-post-types-fields' ) );
 		// translators: the plural name of a post type
 		$this->set_description( __( 'Now, you can either add extra fields to your post type, or start adding new %s straight away.', 'easy-post-types-fields' ) );
@@ -21,21 +24,16 @@ class Completed extends Ready {
 		$this->set_title( esc_html__( 'The %s post type is ready!', 'easy-post-types-fields' ) );
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function setup_fields() {
-		return [
-			'post_type'     => [
-				'type'  => 'text',
-				'value' => 'ept_testimonial',
-			],
-			'name'          => [
-				'type'  => 'text',
-				'value' => 'Testimonials',
-			],
-			'singular_name' => [
-				'type'  => 'text',
-				'value' => 'Testimonial',
-			],
-		];
+		return [];
 	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function submit() {}
 
 }
