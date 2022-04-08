@@ -1,11 +1,6 @@
 <?php
 namespace Barn2\Plugin\Easy_Post_Types_Fields;
 
-use Barn2\EPT_Lib\Registerable,
-	Barn2\EPT_Lib\Service;
-
-use WP_Error;
-
 /**
  * The class registering a new Custom Post Type.
  *
@@ -49,14 +44,7 @@ class CPT {
 	 *
 	 * @var array
 	 */
-	private $args;
-
-	/**
-	 * Whether the post type has been successfully registered or not
-	 *
-	 * @var bool
-	 */
-	private $is_registered;
+	private $args = [];
 
 	public function __construct( $id ) {
 		$this->id = $id;
@@ -66,70 +54,60 @@ class CPT {
 			return;
 		}
 
-		$args = get_post_meta( $id, '_ept_content_type_args', true );
-
-		if ( empty( $args ) ) {
-			$args = [];
-		}
-
 		$post_type_object    = get_post( $this->id );
 		$this->post_type     = "ept_$post_type_object->post_name";
-		$this->name          = get_post_meta( $post_type_object->ID, '_ept_plural_name', true );
+		$this->name          = get_post_meta( $this->id, '_ept_plural_name', true );
 		$this->singular_name = $post_type_object->post_title;
-		$this->supports      = get_post_meta( $post_type_object->ID, '_ept_supports', true );
 
-		if ( $this->prepare_arguments( $args ) ) {
+		if ( $this->prepare_arguments() ) {
 			$this->register_post_type();
 		}
 	}
 
-	public function prepare_arguments( $args ) {
-		$default_args = [
-			'public'               => true,
-			'exclude_from_search'  => false,
-			'publicly_queryable'   => true,
-			'show_in_menu'         => true,
-			'show_in_nav_menus'    => true,
-			'show_in_admin_bar'    => false,
-			'show_in_rest'         => true,
-			'menu_position'        => 26,
-			'menu_icon'            => 'dashicons-list-view',
-			'supports'             => $this->supports,
-			'register_meta_box_cb' => [ $this, 'register_cpt_metabox' ],
-			'taxonomies'           => [],
-			'query_var'            => false,
-			'can_export'           => false,
-			'delete_with_user'     => false,
-		];
+	public function prepare_arguments() {
+		if ( empty( $this->args ) ) {
+			$args         = [];
+			$default_args = [
+				'public'               => true,
+				'exclude_from_search'  => false,
+				'publicly_queryable'   => true,
+				'show_in_menu'         => true,
+				'show_in_nav_menus'    => true,
+				'show_in_admin_bar'    => false,
+				'show_in_rest'         => true,
+				'menu_position'        => 26,
+				'menu_icon'            => 'dashicons-list-view',
+				'supports'             => false,
+				'register_meta_box_cb' => [ $this, 'register_cpt_metabox' ],
+				'query_var'            => false,
+				'can_export'           => false,
+				'delete_with_user'     => false,
+			];
 
-		if ( ! isset( $args['labels'] ) ) {
-			$args['labels'] = [];
+			$args['labels'] = apply_filters(
+				"ept_post_type_{$this->singular_name}_labels",
+				$this->default_labels()
+			);
+
+			$supports           = get_post_meta( $this->id, '_ept_supports', true );
+			$args['supports']   = $supports ?: [ 'title', 'editor' ];
+			$args['rewrite']    = [
+				'slug'       => '/' . sanitize_title( $this->name ),
+				'with_front' => false,
+			];
+			$taxonomies         = $this->register_taxonomies();
+			$args['taxonomies'] = $taxonomies ?: [];
+
+			$this->args = apply_filters(
+				"ept_post_type_{$this->singular_name}_args",
+				wp_parse_args(
+					$args,
+					$default_args
+				)
+			);
 		}
 
-		$args['labels'] = apply_filters(
-			"ept_post_type_{$this->singular_name}_labels",
-			wp_parse_args(
-				$args['labels'],
-				$this->default_labels()
-			)
-		);
-
-		$args['rewrite'] = [
-			'slug'       => '/' . sanitize_title( $this->name ),
-			'with_front' => false,
-		];
-
-		$args = apply_filters(
-			"ept_post_type_{$this->singular_name}_args",
-			wp_parse_args(
-				$args,
-				$default_args
-			)
-		);
-
-		$this->args = $args;
-
-		return $args;
+		return $this->args;
 	}
 
 	public function default_labels() {
@@ -210,5 +188,25 @@ class CPT {
 
 	public function register_cpt_metabox() {
 		do_action( "ept_post_type_{$this->singular_name}_metabox" );
+	}
+
+	public function register_taxonomies() {
+		$taxonomies = get_post_meta( $this->id, '_ept_taxonomies', true );
+
+		if ( is_array( $taxonomies ) ) {
+			foreach ( $taxonomies as $taxonomy ) {
+				list( $key, $post_type, $args ) = $taxonomy;
+				new Taxonomy( $key, $post_type, $args );
+			}
+
+			return array_map(
+				function( $t ) {
+					return $t['key'];
+				},
+				$taxonomies
+			);
+		}
+
+		return [];
 	}
 }
