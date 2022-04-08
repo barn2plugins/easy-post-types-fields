@@ -36,6 +36,7 @@ module.exports = {
 	pot: barn2build.buildTranslation,
 	library: barn2build.updateLibrary,
 	zip: barn2build.createZipFile,
+	archive: barn2build.archivePlugin,
 	release: barn2build.releaseFreePlugin,
 	pluginTesting: barn2build.updatePluginTesting,
 	playground: barn2build.updatePluginPlayground
