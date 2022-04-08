@@ -1,12 +1,11 @@
 <?php
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin;
 
-use Barn2\EPT_Lib\Plugin\Simple_Plugin,
+use Barn2\Plugin\Easy_Post_Types_Fields\Util,
+	Barn2\EPT_Lib\Plugin\Simple_Plugin,
 	Barn2\EPT_Lib\Registerable,
 	Barn2\EPT_Lib\Service,
 	Barn2\EPT_Lib\Admin\Plugin_Promo;
-
-
 /**
  * Define the CPT editor.
  *
@@ -63,7 +62,7 @@ class CPT_Editor implements Service, Registerable {
 					'item_link_description'    => __( 'A link to a post type.', 'easy-post-types-fields' ),
 				],
 				'description'          => __( 'Define a custom post type', 'easy-post-types-fields' ),
-				'public'               => true,
+				'public'               => false,
 				'exclude_from_search'  => true,
 				'publicly_queryable'   => false,
 				'show_in_menu'         => false,
@@ -193,7 +192,7 @@ class CPT_Editor implements Service, Registerable {
 	public function print_page_description() {
 		?>
 		<p>
-			<?php echo __( 'Use this page to manage your custom post types. You can add and edit post types, custom fields and taxonomies.', 'easy-post-types-fields' ); ?>
+			<?php esc_html_e( 'Use this page to manage your custom post types. You can add and edit post types, custom fields and taxonomies.', 'easy-post-types-fields' ); ?>
 		</p>
 		<?php
 	}
@@ -205,15 +204,21 @@ class CPT_Editor implements Service, Registerable {
 	}
 
 	public function add_manage_page() {
-		$post_type_list_table = new Post_Type_List_Table();
-		$plugin               = $this->plugin;
-		$new_link             = add_query_arg(
+		$plugin      = $this->plugin;
+		$new_link    = add_query_arg(
 			[
 				'page'   => $plugin->get_slug() . '-setup-wizard',
 				'action' => 'add',
 			],
 			'admin.php'
 		);
+		$breadcrumbs = Util::get_page_breadcrumbs();
+		$request     = Util::get_page_request();
+		$content     = isset( $request['section'] ) ? $request['section'] : 'post_types';
+
+		if ( 'post_types' === $content && isset( $request['post_type'] ) ) {
+			$content = 'post_type';
+		}
 
 		include $this->plugin->get_admin_path( 'views/html-manage-page.php' );
 	}

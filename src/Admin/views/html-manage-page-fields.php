@@ -8,23 +8,20 @@
  */
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin;
 
+use Barn2\Plugin\Easy_Post_Types_Fields\Util;
+
 defined( 'ABSPATH' ) || exit;
+
+$request_post_type   = Util::get_post_type_by_name( $request['post_type'] );
+$taxonomy_list_table = new List_Tables\Custom_Field_List_Table( $request_post_type );
 
 ?>
 
-<div class="barn2-plugins-settings">
-	<div class="wrap">
-
-		<?php
-		require 'html-manage-page-breadcrumb.php';
-		require "html-manage-page-$content.php";
-		?>
-
-	</div>
-
+<form id="posts-filter" method="get">
+	<h2 class="screen-reader-text">Posts list</h2>
 	<?php
-	do_action( 'barn2_after_plugin_settings', $plugin->get_id() );
+	$taxonomy_list_table->display();
 	?>
-</div>
+</form>
 
 <?php

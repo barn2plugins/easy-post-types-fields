@@ -12,19 +12,6 @@ defined( 'ABSPATH' ) || exit;
 
 ?>
 
-<div class="barn2-plugins-settings">
-	<div class="wrap">
-
-		<?php
-		require 'html-manage-page-breadcrumb.php';
-		require "html-manage-page-$content.php";
-		?>
-
-	</div>
-
-	<?php
-	do_action( 'barn2_after_plugin_settings', $plugin->get_id() );
-	?>
-</div>
+<h2>POST TYPE EDITOR</h2>
 
 <?php

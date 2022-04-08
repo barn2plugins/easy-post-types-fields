@@ -1,8 +1,8 @@
 <?php
-namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin;
+namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin\List_Tables;
 
+use Barn2\Plugin\Easy_Post_Types_Fields\Util;
 use WP_List_Table;
-use WP_Query;
 
 /**
  * List Table API: WP_Posts_List_Table class
@@ -15,105 +15,36 @@ use WP_Query;
 /**
  * Core class used to implement displaying posts in a list table.
  */
-class Post_Type_List_Table extends WP_List_Table {
+class Taxonomy_List_Table extends WP_List_Table {
 
 	/**
-	 * All the post types registered in WordPress
+	 * The post type the taxonomies are assigned to
+	 *
+	 * @var string
+	 */
+	private $post_type;
+
+	/**
+	 * The taxonomies of the current post type
 	 *
 	 * @var array
 	 */
-	protected $all_post_types;
+	protected $taxonomies;
 
-	/**
-	 * The post types being shown in the current view
-	 *
-	 * @var array
-	 */
-	protected $post_types;
-
-	/**
-	 * A list of post types created by this plugin
-	 *
-	 * @var array
-	 */
-	private $custom_post_types;
-
-	public function __construct( $args = [] ) {
-		global $wp_post_types;
-
+	public function __construct( $post_type ) {
 		parent::__construct(
-			array(
+			[
 				'screen' => isset( $args['screen'] ) ? $args['screen'] : null,
-			)
+			]
 		);
 
-		$this->post_type      = 'ept_post_type';
-		$this->all_post_types = $wp_post_types;
-		unset( $this->all_post_types['ept_post_type'] );
-
-		$ept_post_types          = new WP_Query( [ 'post_type' => 'ept_post_type', 'posts_per_page' => -1 ] );
-		$ept_post_types          = $ept_post_types->posts;
-		$this->custom_post_types = array_map(
-			function( $cpt ) {
-				return "ept_$cpt->post_name";
-			},
-			$ept_post_types
-		);
-
-		$this->post_types = $this->get_filtered_post_types( $this->get_current_view() );
-
-		usort(
-			$this->post_types,
-			function( $pt_1, $pt_2 ) {
-				return $pt_1->labels->singular_name > $pt_2->labels->singular_name ? 1 : -1;
-			}
-		);
-
-		usort(
-			$this->post_types,
-			function( $pt_1, $pt_2 ) {
-				return ! $this->is_custom( $pt_1 ) && $this->is_custom( $pt_2 ) ? 1 : -1;
-			}
-		);
-	}
-
-	public function get_filtered_post_types( $view = '' ) {
-		return array_filter(
-			$this->all_post_types,
-			function( $pt ) use ( $view ) {
-				switch ( $view ) {
-					case 'top':
-						return $pt->show_in_menu;
-
-					case 'public':
-						return $pt->public || $pt->show_in_menu;
-
-					case 'common':
-						return $pt->publicly_queryable;
-
-					case 'other':
-						return $pt->publicly_queryable && ! $this->is_custom( $pt );
-
-					case 'all':
-						return true;
-
-					case 'ept':
-					default:
-						return $this->is_custom( $pt );
-				}
-			}
-		);
-	}
-
-	public function get_current_view() {
-		// phpcs:disable WordPress.Security.NonceVerification.Recommended
-		return isset( $_REQUEST['view'] ) ? $_REQUEST['view'] : 'ept';
-		// phpcs:enable
+		$taxonomies       = get_post_meta( $this->id, '_ept_taxonomies', true );
+		$this->taxonomies = $taxonomies ?: [];
 	}
 
 	public function prepare_items() {
-		$per_page    = apply_filters( 'edit_ept_post_types_per_page', $this->get_items_per_page( 'edit_ept_post_types_per_page' ) );
-		$total_items = count( $this->post_types );
+		$per_page    = apply_filters( 'edit_ept_taxonomies_per_page', $this->get_items_per_page( 'edit_ept_taxonomies_per_page' ) );
+		$total_items = count( $this->taxonomies );
 
 		$this->set_pagination_args(
 			array(
@@ -123,79 +54,16 @@ class Post_Type_List_Table extends WP_List_Table {
 		);
 	}
 
-	public function is_custom( $post_type ) {
-		return in_array( $post_type->name, $this->custom_post_types, true );
-	}
-
 	public function has_items() {
-		return count( $this->post_types );
+		return count( $this->taxonomies );
 	}
 
 	public function no_items() {
-		_e( 'No custom post types found', 'easy-post-types-fields' ); //phpcs:ignore WordPress.Security.EscapeOutput.UnsafePrintingFunction
-	}
-
-	protected function get_page_link( $view, $label, $class = '' ) {
-		$view = 'ept' === $view ? '' : $view;
-		$args = [ 'page' => 'ept_post_types' ];
-
-		if ( $view ) {
-			$args['view'] = $view;
-		}
-
-		$url = add_query_arg( $args, admin_url( 'admin.php' ) );
-
-		$class_html   = '';
-		$aria_current = '';
-
-		if ( ! empty( $class ) ) {
-			$class_html = sprintf(
-				' class="%s"',
-				esc_attr( $class )
-			);
-
-			if ( 'current' === $class ) {
-				$aria_current = ' aria-current="page"';
-			}
-		}
-
-		return sprintf(
-			'<a href="%s"%s%s>%s</a>',
-			esc_url( $url ),
-			$class_html,
-			$aria_current,
-			$label
-		);
-	}
-
-	public function get_status_link( $view, $label ) {
-		$class           = $view === $this->get_current_view() ? 'current' : '';
-		$view_post_types = $this->get_filtered_post_types( $view );
-		$post_type_count = count( $view_post_types );
-		$innter_html     = sprintf(
-			$label,
-			number_format_i18n( $post_type_count )
-		);
-
-		return $this->get_page_link( $view, $innter_html, $class );
+		esc_html_e( 'No taxonomies for this post type yet', 'easy-post-types-fields' );
 	}
 
 	protected function get_views() {
-		$views = [
-			/* translators: %s: Number of posts. */
-			'ept'   => __( 'Easy Post Types <span class="count">(%s)</span>', 'easy-post-types-fields' ),
-			/* translators: %s: Number of posts. */
-			'other' => __( 'Other post types <span class="count">(%s)</span>', 'easy-post-types-fields' ),
-		];
-
-		foreach ( $views as $view => $label ) {
-			$status_links[ $view ] = $this->get_status_link(
-				$view,
-				$label
-			);
-		}
-
-		return $status_links;
+		return [];
 	}
 
 	protected function get_bulk_actions() {
@@ -223,14 +91,10 @@ class Post_Type_List_Table extends WP_List_Table {
 
 	public function get_columns() {
 		$columns = [
-			'name'       => _x( 'Name', 'column name', 'easy-post-types-fields' ),
-			'fields'     => _x( 'Fields', 'column name', 'easy-post-types-fields' ),
-			'taxonomies' => _x( 'Taxonomies', 'column name', 'easy-post-types-fields' ),
-			'actions'    => _x( 'Actions', 'column name', 'easy-post-types-fields' ),
-			'count'      => _x( 'Post count', 'column name', 'easy-post-types-fields' ),
+			'name' => _x( 'Name', 'column name', 'easy-post-types-fields' ),
 		];
 
-		return apply_filters( 'manage_ept_post_types_columns', $columns );
+		return apply_filters( 'manage_ept_taxonomies_columns', $columns );
 	}
 
 	protected function get_column_info() {
@@ -263,8 +127,8 @@ class Post_Type_List_Table extends WP_List_Table {
 	}
 
 	public function display_rows() {
-		if ( empty( $this->post_types ) ) {
-			$this->post_types = get_post_types( [ 'public' => true ] );
+		if ( empty( $this->taxonomies ) ) {
+			$this->taxonomies = get_post_types( [ 'public' => true ] );
 		}
 
 		foreach ( $this->post_types as $post_type ) {
@@ -315,12 +179,16 @@ class Post_Type_List_Table extends WP_List_Table {
 	}
 
 	protected function _column_actions( $post_type, $classes, $data, $primary ) {
+		$fields_link = Util::get_manage_page_url( [], $post_type, 'fields' );
+		$tax_link    = Util::get_manage_page_url( [], $post_type, 'taxonomies' );
+		$all_link    = add_query_arg( 'post_type', $post_type->name, admin_url( 'edit.php' ) );
+
 		?>
 		<td class="<?php echo esc_attr( $classes ); ?> post_type-actions" <?php echo esc_attr( $data ); ?>>
-			<button class="button"><?php esc_html_e( 'Fields', 'easy-post-types-fields' ); ?></button>
-			<button class="button"><?php esc_html_e( 'Taxonomies', 'easy-post-types-fields' ); ?></button>
+			<a href="<?php echo esc_attr( $fields_link ); ?>" class="button"><?php esc_html_e( 'Fields', 'easy-post-types-fields' ); ?></a>
+			<a href="<?php echo esc_attr( $tax_link ); ?>" class="button"><?php esc_html_e( 'Taxonomies', 'easy-post-types-fields' ); ?></a>
 			<?php // translators: the plural name of a post type ?>
-			<button class="button"><?php echo esc_html( sprintf( __( 'Manage %s', 'easy-post-types-fields' ), $post_type->label ) ); ?></button>
+			<a href="<?php echo esc_attr( $all_link ); ?>" class="button"><?php echo esc_html( sprintf( __( 'All %s', 'easy-post-types-fields' ), $post_type->label ) ); ?></a>
 		</td>
 		<?php
 	}
@@ -386,7 +254,7 @@ class Post_Type_List_Table extends WP_List_Table {
 		if ( $can_edit_post_type && $this->is_custom( $post_type ) ) {
 			$actions['edit'] = sprintf(
 				'<a href="%s" aria-label="%s">%s</a>',
-				$this->get_edit_post_link( $post_type ),
+				Util::get_manage_page_url( [], $post_type ),
 				esc_attr( __( 'Edit', 'easy-post-types-fields' ) ),
 				__( 'Edit', 'easy-post-types-fields' )
 			);
@@ -402,7 +270,7 @@ class Post_Type_List_Table extends WP_List_Table {
 
 		$actions['fields'] = sprintf(
 			'<a href="%s" aria-label="%s">%s</a>',
-			$this->get_edit_post_link( $post_type ),
+			Util::get_manage_page_url( [], $post_type, 'fields' ),
 			/* translators: %s: Post title. */
 			esc_attr( __( 'Fields', 'easy-post-types-fields' ) ),
 			__( 'Fields', 'easy-post-types-fields' )
@@ -410,7 +278,7 @@ class Post_Type_List_Table extends WP_List_Table {
 
 		$actions['taxonomies'] = sprintf(
 			'<a href="%s" aria-label="%s">%s</a>',
-			$this->get_edit_post_link( $post_type ),
+			Util::get_manage_page_url( [], $post_type, 'fields' ),
 			/* translators: %s: Post title. */
 			esc_attr( __( 'Taxonomies', 'easy-post-types-fields' ) ),
 			__( 'Taxonomies', 'easy-post-types-fields' )
