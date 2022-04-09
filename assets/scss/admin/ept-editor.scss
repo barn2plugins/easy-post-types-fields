@@ -22,6 +22,28 @@ body[class*="ept_post_types"] .wrap {
     width: 100%;
 }
 
-.toplevel_page_ept_post_types .barn2-plugins-settings ul.subsubsub li:not(:last-child)::after {
-    content: unset;
+.toplevel_page_ept_post_types .barn2-plugins-settings .wrap {
+    ul.subsubsub li:not(:last-child)::after {
+        content: unset;
+    }
+
+    h4.wp-heading-inline {
+        display: inline-block;
+        margin: 0;
+        margin-right: 5px;
+        padding: 9px 0;
+    }
+
+    .wp-list-table {
+        a.page-title-action.ept-post-table-action {
+            top: 0;
+            display: inline-block;
+            margin: 3px 0;
+        }
+
+        td.column-actions {
+            vertical-align: middle;
+        }
+    }
 }
+

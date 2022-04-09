@@ -11,15 +11,25 @@ use Barn2\Plugin\Easy_Post_Types_Fields\Util;
 
 defined( 'ABSPATH' ) || exit;
 
-$request_post_type   = Util::get_post_type_by_name( $request['post_type'] );
-$taxonomy_list_table = new List_Tables\Taxonomy_List_Table( $request_post_type );
+$request_post_type = Util::get_post_type_by_name( $request['post_type'] );
+$list_table        = new List_Tables\Taxonomy_List_Table( $request_post_type );
 
 ?>
 
 <form id="posts-filter" method="get">
-	<h2 class="screen-reader-text">Posts list</h2>
 	<?php
-	$taxonomy_list_table->display();
+	if ( isset( $request['action'] ) ) {
+		?>
+		<h2 class="screen-reader-text">Taxonomy editor</h2>
+		<?php
+
+		require 'html-manage-page-taxonomy.php';
+	} else {
+		?>
+		<h2 class="screen-reader-text">Taxonomies list</h2>
+		<?php
+		$list_table->display();
+	}
 	?>
 </form>
 

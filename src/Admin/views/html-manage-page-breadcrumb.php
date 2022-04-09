@@ -8,27 +8,27 @@
  */
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin;
 
-use Barn2\Plugin\Easy_Post_Types_Fields\Util;
-
 defined( 'ABSPATH' ) || exit;
 
 if ( $breadcrumbs ) {
 	?>
 
-	<h4 class="ept-page-breadcrumbs">
+	<h4 class="wp-heading-inline ept-page-breadcrumbs">
 		<?php echo $breadcrumbs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 	</h4>
-
 	<?php
 } else {
 	?>
 
-	<h1 class="wp-heading-inline"><?php echo esc_attr( __( 'Manage post types', 'easy-post-types-fields' ) ); ?></h1>
-	<a href="<?php echo esc_url( $new_link ); ?>" class="page-title-action">Add New</a>
+	<h1 class="wp-heading-inline">
+		<?php echo esc_attr( __( 'Manage post types', 'easy-post-types-fields' ) ); ?>
+	</h1>
+	<a href="<?php echo esc_url( $new_link ); ?>" class="page-title-action"><?php esc_html_e( 'Add New', 'easy-post-types-fields' ); ?></a>
 
 	<?php
 }
 
 ?>
 <hr class="wp-header-end">
+<p></p>
 <?php

@@ -254,7 +254,7 @@ class Post_Type_List_Table extends WP_List_Table {
 		$columns = $this->get_columns();
 
 		$primary               = $this->get_primary_column_name();
-		$this->_column_headers = array( $columns, [], [], $primary );
+		$this->_column_headers = [ $columns, [], [], $primary ];
 
 		return $this->_column_headers;
 	}
@@ -454,20 +454,13 @@ class Post_Type_List_Table extends WP_List_Table {
 
 	public function get_delete_post_link( $post_type ) {
 		if ( $this->is_custom( $post_type ) ) {
-			$posts = get_posts(
-				[
-					'post_type' => 'ept_post_type',
-					'name'      => str_replace( 'ept_', '', $post_type->name ),
-				]
-			);
+			$post_type_object = Util::get_post_type_object( $post_type );
 
-			if ( empty( $posts ) ) {
-				return false;
+			if ( $post_type_object ) {
+				return get_delete_post_link( $post_type_object->ID, '', true );
 			}
 
-			$post = reset( $posts );
-
-			return get_delete_post_link( $post->ID, '', true );
+			return false;
 		}
 
 		return false;

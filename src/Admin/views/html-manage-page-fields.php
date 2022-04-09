@@ -12,15 +12,29 @@ use Barn2\Plugin\Easy_Post_Types_Fields\Util;
 
 defined( 'ABSPATH' ) || exit;
 
-$request_post_type   = Util::get_post_type_by_name( $request['post_type'] );
-$taxonomy_list_table = new List_Tables\Custom_Field_List_Table( $request_post_type );
+$request_post_type = Util::get_post_type_by_name( $request['post_type'] );
+$field_list_table  = new List_Tables\Custom_Field_List_Table( $request_post_type );
 
 ?>
 
 <form id="posts-filter" method="get">
-	<h2 class="screen-reader-text">Posts list</h2>
 	<?php
-	$taxonomy_list_table->display();
+	if ( isset( $request['action'] ) ) {
+		?>
+		<h2 class="screen-reader-text">Field editor</h2>
+		<?php
+
+		require 'html-manage-page-field.php';
+
+	} else {
+		?>
+		<h2 class="screen-reader-text">Fields list</h2>
+		<?php
+		$field_list_table->display();
+		?>
+		<a href="<?php echo esc_url( $new_link ); ?>" class="page-title-action"><?php esc_html_e( 'Add New', 'easy-post-types-fields' ); ?></a>
+		<?php
+	}
 	?>
 </form>
 

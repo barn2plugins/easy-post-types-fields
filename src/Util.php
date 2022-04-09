@@ -35,7 +35,23 @@ class Util {
 			return $wp_post_types[ $name ];
 		}
 
-		return $false;
+		return false;
+	}
+
+	public static function get_post_type_object( $post_type ) {
+		$posts = get_posts(
+			[
+				'post_type'      => 'ept_post_type',
+				'name'           => str_replace( 'ept_', '', $post_type->name ),
+				'posts_per_page' => 1,
+			]
+		);
+
+		if ( count( $posts ) ) {
+			return reset( $posts );
+		}
+
+		return false;
 	}
 
 	public static function get_page_breadcrumbs() {

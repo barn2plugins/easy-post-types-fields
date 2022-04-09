@@ -357,6 +357,14 @@ class Custom_Field_List_Table extends WP_List_Table {
 				>
 				<?php $this->display_rows_or_placeholder(); ?>
 			</tbody>
+
+			<tfoot>
+				<tr>
+					<th scope="col" colspan="<?php echo esc_attr( count( $this->get_columns() ) ); ?>">
+						<a href="admin.php?page=ept_post_types&amp;action=add&amp;post_type=ept_testimonial&amp;section=taxonomies" class="page-title-action ept-post-table-action">Add New</a>
+					</th>
+				</tr>
+			</tfoot>
 		</table>
 		<?php
 	}

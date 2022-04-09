@@ -20,7 +20,7 @@ class Taxonomy_List_Table extends WP_List_Table {
 	/**
 	 * The post type the taxonomies are assigned to
 	 *
-	 * @var string
+	 * @var WP_Post_Type
 	 */
 	private $post_type;
 
@@ -38,7 +38,9 @@ class Taxonomy_List_Table extends WP_List_Table {
 			]
 		);
 
-		$taxonomies       = get_post_meta( $this->id, '_ept_taxonomies', true );
+		$this->post_type  = $post_type;
+		$post_type_object = Util::get_post_type_object( $post_type );
+		$taxonomies       = get_post_meta( $post_type_object->ID, '_ept_taxonomies', true );
 		$this->taxonomies = $taxonomies ?: [];
 	}
 
@@ -131,16 +133,16 @@ class Taxonomy_List_Table extends WP_List_Table {
 			$this->taxonomies = get_post_types( [ 'public' => true ] );
 		}
 
-		foreach ( $this->post_types as $post_type ) {
-			$this->single_row( $post_type );
+		foreach ( $this->taxonomies as $taxonomt ) {
+			$this->single_row( $taxonomy );
 		}
 	}
 
-	protected function _column_lock( $post_type ) {
+	protected function _column_lock( $taxonomy ) {
 		?>
 		<th scope="row" class="check-column">
 			<?php
-			if ( ! $this->is_custom( $post_type ) ) {
+			if ( ! $this->is_custom( $taxonomy ) ) {
 				?>
 				<div class="locked-indicator" style="margin-top:-5px;">
 					<span class="locked-indicator-icon" aria-hidden="true"></span>
@@ -157,66 +159,23 @@ class Taxonomy_List_Table extends WP_List_Table {
 		<?php
 	}
 
-	protected function _column_name( $post_type, $classes, $data, $primary ) {
+	protected function _column_name( $taxonomy, $classes, $data, $primary ) {
 		?>
 		<td class="<?php echo esc_attr( $classes ); ?> post_type-name" <?php echo esc_attr( $data ); ?>>
 			<?php
-			if ( $this->is_custom( $post_type ) ) {
+			if ( $this->is_custom( $$taxonomy ) ) {
 				printf(
 					'<a class="row-title" href="%s" aria-label="%s">%s</a>',
-					$this->get_edit_post_link( $post_type ),
-					esc_attr( sprintf( __( '%s (Edit)', 'easy-post-types-fields' ), $post_type->labels->singular_name ) ),
-					esc_attr( $post_type->labels->singular_name )
+					$this->get_edit_post_link( $taxonomy ),
+					esc_attr( sprintf( __( '%s (Edit)', 'easy-post-types-fields' ), $taxonomy->labels->singular_name ) ),
+					esc_attr( $taxonomy->labels->singular_name )
 				);
 			} else {
-				echo $post_type->labels->singular_name;
+				echo $taxonomy->labels->singular_name;
 			}
 
-			echo $this->handle_row_actions( $post_type, 'name', $primary );
+			echo $this->handle_row_actions( $taxonomy, 'name', $primary );
 			?>
-		</td>
-		<?php
-	}
-
-	protected function _column_actions( $post_type, $classes, $data, $primary ) {
-		$fields_link = Util::get_manage_page_url( [], $post_type, 'fields' );
-		$tax_link    = Util::get_manage_page_url( [], $post_type, 'taxonomies' );
-		$all_link    = add_query_arg( 'post_type', $post_type->name, admin_url( 'edit.php' ) );
-
-		?>
-		<td class="<?php echo esc_attr( $classes ); ?> post_type-actions" <?php echo esc_attr( $data ); ?>>
-			<a href="<?php echo esc_attr( $fields_link ); ?>" class="button"><?php esc_html_e( 'Fields', 'easy-post-types-fields' ); ?></a>
-			<a href="<?php echo esc_attr( $tax_link ); ?>" class="button"><?php esc_html_e( 'Taxonomies', 'easy-post-types-fields' ); ?></a>
-			<?php // translators: the plural name of a post type ?>
-			<a href="<?php echo esc_attr( $all_link ); ?>" class="button"><?php echo esc_html( sprintf( __( 'All %s', 'easy-post-types-fields' ), $post_type->label ) ); ?></a>
-		</td>
-		<?php
-	}
-
-	public function get_post_count( $post_type ) {
-		$post_count = (array) wp_count_posts( $post_type->name );
-		unset( $post_count['auto-draft'], $post_count['revision'] );
-
-		return array_reduce(
-			$post_count,
-			function( $r, $a ) {
-				return $r + $a;
-			},
-			0
-		);
-
-	}
-
-	protected function _column_count( $post_type, $classes, $data, $primary ) {
-		$count_link = sprintf(
-			'<a href="%s">%s</a>',
-			add_query_arg( 'post_type', $post_type->name, admin_url( 'edit.php' ) ),
-			$this->get_post_count( $post_type )
-		);
-
-		?>
-		<td class="<?php echo esc_attr( $classes ); ?> post_type-actions" <?php echo esc_attr( $data ); ?>>
-			<?php echo $count_link; ?>
 		</td>
 		<?php
 	}
@@ -224,16 +183,16 @@ class Taxonomy_List_Table extends WP_List_Table {
 	public function column_default( $item, $column_name ) {
 	}
 
-	public function single_row( $post_type ) {
+	public function single_row( $taxonomy ) {
 		$class = '';
 
-		if ( ! $this->is_custom( $post_type ) ) {
+		if ( ! $this->is_custom( $taxonomy ) ) {
 			$class = 'wp-locked';
 		}
 
 		?>
-		<tr id="post_type-<?php echo $post_type->name; ?>" class="<?php echo esc_attr( $class ); ?>">
-			<?php $this->single_row_columns( $post_type ); ?>
+		<tr id="post_type-<?php echo $taxonomy->name; ?>" class="<?php echo esc_attr( $class ); ?>">
+			<?php $this->single_row_columns( $taxonomy ); ?>
 		</tr>
 		<?php
 	}
@@ -242,7 +201,7 @@ class Taxonomy_List_Table extends WP_List_Table {
 		return 'name';
 	}
 
-	protected function handle_row_actions( $post_type, $column_name, $primary ) {
+	protected function handle_row_actions( $taxonomy, $column_name, $primary ) {
 		if ( $primary !== $column_name ) {
 			return '';
 		}
@@ -251,7 +210,7 @@ class Taxonomy_List_Table extends WP_List_Table {
 		$can_edit_post_type = current_user_can( 'manage_options' );
 		$actions            = [];
 
-		if ( $can_edit_post_type && $this->is_custom( $post_type ) ) {
+		if ( $can_edit_post_type && $this->is_custom( $taxonomy ) ) {
 			$actions['edit'] = sprintf(
 				'<a href="%s" aria-label="%s">%s</a>',
 				Util::get_manage_page_url( [], $post_type ),
@@ -295,12 +254,12 @@ class Taxonomy_List_Table extends WP_List_Table {
 		return $this->row_actions( $actions );
 	}
 
-	public function get_edit_post_link( $post_type ) {
-		if ( $this->is_custom( $post_type ) ) {
+	public function get_edit_post_link( $taxonomy ) {
+		if ( $this->is_custom( $taxonomy ) ) {
 			$posts = get_posts(
 				[
 					'post_type' => 'ept_post_type',
-					'name'      => str_replace( 'ept_', '', $post_type->name ),
+					'name'      => str_replace( 'ept_', '', $taxonomy->name ),
 				]
 			);
 
@@ -316,12 +275,12 @@ class Taxonomy_List_Table extends WP_List_Table {
 		return false;
 	}
 
-	public function get_delete_post_link( $post_type ) {
-		if ( $this->is_custom( $post_type ) ) {
+	public function get_delete_post_link( $taxonomy ) {
+		if ( $this->is_custom( $taxonomy ) ) {
 			$posts = get_posts(
 				[
 					'post_type' => 'ept_post_type',
-					'name'      => str_replace( 'ept_', '', $post_type->name ),
+					'name'      => str_replace( 'ept_', '', $taxonomy->name ),
 				]
 			);
 
@@ -339,6 +298,15 @@ class Taxonomy_List_Table extends WP_List_Table {
 
 	public function display() {
 		$singular = $this->_args['singular'];
+		$new_link = add_query_arg(
+			[
+				'page'      => 'ept_post_types',
+				'post_type' => $this->post_type->name,
+				'section'   => 'taxonomies',
+				'action'    => 'add',
+			],
+			admin_url( 'admin.php' )
+		);
 
 		$this->screen->render_screen_reader_content( 'heading_list' );
 
@@ -359,6 +327,16 @@ class Taxonomy_List_Table extends WP_List_Table {
 				>
 				<?php $this->display_rows_or_placeholder(); ?>
 			</tbody>
+
+			<tfoot>
+				<tr>
+					<th scope="col" colspan="<?php echo esc_attr( count( $this->get_columns() ) ); ?>">
+						<a href="<?php echo esc_url( $new_link ); ?>" class="page-title-action ept-post-table-action">
+							<?php esc_html_e( 'Add new taxonomy', 'easy-post-types-fields' ); ?>
+						</a>
+					</th>
+				</tr>
+			</tfoot>
 		</table>
 		<?php
 	}

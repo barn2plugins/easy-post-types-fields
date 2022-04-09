@@ -205,16 +205,26 @@ class CPT_Editor implements Service, Registerable {
 
 	public function add_manage_page() {
 		$plugin      = $this->plugin;
+		$breadcrumbs = Util::get_page_breadcrumbs();
+		$request     = Util::get_page_request();
+		$content     = isset( $request['section'] ) ? $request['section'] : 'post_types';
 		$new_link    = add_query_arg(
 			[
-				'page'   => $plugin->get_slug() . '-setup-wizard',
+				'page'   => isset( $request['section'] ) ? $request['page'] : $plugin->get_slug() . '-setup-wizard',
 				'action' => 'add',
 			],
 			'admin.php'
 		);
-		$breadcrumbs = Util::get_page_breadcrumbs();
-		$request     = Util::get_page_request();
-		$content     = isset( $request['section'] ) ? $request['section'] : 'post_types';
+
+		if ( isset( $request['section'] ) ) {
+			$new_link = add_query_arg(
+				[
+					'post_type' => $request['post_type'],
+					'section'   => $request['section'],
+				],
+				$new_link
+			);
+		}
 
 		if ( 'post_types' === $content && isset( $request['post_type'] ) ) {
 			$content = 'post_type';
