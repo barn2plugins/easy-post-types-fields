@@ -29,7 +29,7 @@ class Taxonomy_List_Table extends WP_List_Table {
 	 *
 	 * @var array
 	 */
-	protected $taxonomies;
+	protected $taxonomies = [];
 
 	public function __construct( $post_type ) {
 		parent::__construct(
@@ -40,8 +40,28 @@ class Taxonomy_List_Table extends WP_List_Table {
 
 		$this->post_type  = $post_type;
 		$post_type_object = Util::get_post_type_object( $post_type );
-		$taxonomies       = get_post_meta( $post_type_object->ID, '_ept_taxonomies', true );
-		$this->taxonomies = $taxonomies ?: [];
+
+		if ( $post_type_object ) {
+			$taxonomies = get_post_meta( $post_type_object->ID, '_ept_taxonomies', true );
+
+			$this->taxonomies = $taxonomies ?: [];
+			$this->taxonomies = [
+				[
+					'name'          => 'Industries',
+					'singular_name' => 'Industry',
+					'slug'          => 'industry',
+					'post_type'     => 'ept_testimonial',
+					'hierarchical'  => true,
+				],
+				[
+					'name'          => 'Keywords',
+					'singular_name' => 'Keyword',
+					'slug'          => 'keyword',
+					'post_type'     => 'ept_testimonial',
+					'hierarchical'  => false,
+				],
+			];
+		}
 	}
 
 	public function prepare_items() {
@@ -49,10 +69,23 @@ class Taxonomy_List_Table extends WP_List_Table {
 		$total_items = count( $this->taxonomies );
 
 		$this->set_pagination_args(
-			array(
+			[
 				'total_items' => $total_items,
 				'per_page'    => $per_page,
-			)
+			]
+		);
+	}
+
+	public function is_custom( $taxonomy ) {
+		return in_array(
+			$taxonomy['slug'],
+			array_map(
+				function( $t ) {
+					return $t['slug'];
+				},
+				$this->taxonomies
+			),
+			true
 		);
 	}
 
@@ -93,7 +126,9 @@ class Taxonomy_List_Table extends WP_List_Table {
 
 	public function get_columns() {
 		$columns = [
-			'name' => _x( 'Name', 'column name', 'easy-post-types-fields' ),
+			'name'         => _x( 'Name', 'column name', 'easy-post-types-fields' ),
+			'slug'         => _x( 'Slug', 'column name', 'easy-post-types-fields' ),
+			'hierarchical' => _x( 'Hierarchical', 'column name', 'easy-post-types-fields' ),
 		];
 
 		return apply_filters( 'manage_ept_taxonomies_columns', $columns );
@@ -133,48 +168,56 @@ class Taxonomy_List_Table extends WP_List_Table {
 			$this->taxonomies = get_post_types( [ 'public' => true ] );
 		}
 
-		foreach ( $this->taxonomies as $taxonomt ) {
+		foreach ( $this->taxonomies as $taxonomy ) {
 			$this->single_row( $taxonomy );
 		}
 	}
 
-	protected function _column_lock( $taxonomy ) {
+	protected function _column_name( $taxonomy, $classes, $data, $primary ) {
 		?>
-		<th scope="row" class="check-column">
+		<td class="<?php echo esc_attr( $classes ); ?> taxonomy-name" <?php echo esc_attr( $data ); ?>>
 			<?php
-			if ( ! $this->is_custom( $taxonomy ) ) {
-				?>
-				<div class="locked-indicator" style="margin-top:-5px;">
-					<span class="locked-indicator-icon" aria-hidden="true"></span>
-					<span class="screen-reader-text">
-						<?php
-						_e( 'This post type is locked', 'easy-post-types-fields' ); // phpcs:ignore WordPress.Security.EscapeOutput.UnsafePrintingFunction
-						?>
-					</span>
-				</div>
-				<?php
+
+			if ( $this->is_custom( $taxonomy ) ) {
+				printf(
+					'<a class="row-title editinline" aria-label="%s">%s</a>',
+					// translators: the name of the taxonomy
+					esc_attr( sprintf( __( '%s (Edit)', 'easy-post-types-fields' ), $taxonomy['singular_name'] ) ),
+					esc_attr( $taxonomy['singular_name'] )
+				);
+			} else {
+				echo esc_html( $taxonomy['singular_name'] );
 			}
+
+			echo $this->handle_row_actions( $taxonomy, 'name', $primary ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+
 			?>
-		</th>
+			<div class="hidden" id="inline_<?php echo esc_attr( "{$taxonomy['post_type']}_{$taxonomy['slug']}" ); ?>">
+				<div class="name"><?php echo esc_attr( $taxonomy['name'] ); ?></div>
+				<div class="singular_name"><?php echo esc_attr( $taxonomy['singular_name'] ); ?></div>
+				<div class="slug"><?php echo esc_attr( $taxonomy['slug'] ); ?></div>
+				<div class="hierarchical"><?php echo esc_attr( $taxonomy['hierarchical'] ? 'true' : 'false' ); ?></div>
+				<div class="post_type"><?php echo esc_attr( $taxonomy['post_type'] ); ?></div>
+			</div>
+		</td>
 		<?php
 	}
 
-	protected function _column_name( $taxonomy, $classes, $data, $primary ) {
+	protected function _column_slug( $taxonomy, $classes, $data, $primary ) {
 		?>
-		<td class="<?php echo esc_attr( $classes ); ?> post_type-name" <?php echo esc_attr( $data ); ?>>
+		<td class="<?php echo esc_attr( $classes ); ?> taxonomy-slug" <?php echo esc_attr( $data ); ?>>
 			<?php
-			if ( $this->is_custom( $$taxonomy ) ) {
-				printf(
-					'<a class="row-title" href="%s" aria-label="%s">%s</a>',
-					$this->get_edit_post_link( $taxonomy ),
-					esc_attr( sprintf( __( '%s (Edit)', 'easy-post-types-fields' ), $taxonomy->labels->singular_name ) ),
-					esc_attr( $taxonomy->labels->singular_name )
-				);
-			} else {
-				echo $taxonomy->labels->singular_name;
-			}
+			echo esc_html( $taxonomy['slug'] );
+			?>
+		</td>
+		<?php
+	}
 
-			echo $this->handle_row_actions( $taxonomy, 'name', $primary );
+	protected function _column_hierarchical( $taxonomy, $classes, $data, $primary ) {
+		?>
+		<td class="<?php echo esc_attr( $classes ); ?> taxonomy-slug" <?php echo esc_attr( $data ); ?>>
+			<?php
+			echo esc_html( true === $taxonomy['hierarchical'] ? __( 'Yes', 'easy-post-types-fields' ) : __( 'No', 'easy-post-types-fields' ) );
 			?>
 		</td>
 		<?php
@@ -191,7 +234,7 @@ class Taxonomy_List_Table extends WP_List_Table {
 		}
 
 		?>
-		<tr id="post_type-<?php echo $taxonomy->name; ?>" class="<?php echo esc_attr( $class ); ?>">
+		<tr id="taxonomy-<?php echo $taxonomy['slug']; ?>" class="<?php echo esc_attr( $class ); ?>">
 			<?php $this->single_row_columns( $taxonomy ); ?>
 		</tr>
 		<?php
@@ -212,7 +255,7 @@ class Taxonomy_List_Table extends WP_List_Table {
 
 		if ( $can_edit_post_type && $this->is_custom( $taxonomy ) ) {
 			$actions['edit'] = sprintf(
-				'<a href="%s" aria-label="%s">%s</a>',
+				'<a href="%s" aria-label="%s" class="editinline">%s</a>',
 				Util::get_manage_page_url( [], $post_type ),
 				esc_attr( __( 'Edit', 'easy-post-types-fields' ) ),
 				__( 'Edit', 'easy-post-types-fields' )
@@ -227,52 +270,7 @@ class Taxonomy_List_Table extends WP_List_Table {
 			);
 		}
 
-		$actions['fields'] = sprintf(
-			'<a href="%s" aria-label="%s">%s</a>',
-			Util::get_manage_page_url( [], $post_type, 'fields' ),
-			/* translators: %s: Post title. */
-			esc_attr( __( 'Fields', 'easy-post-types-fields' ) ),
-			__( 'Fields', 'easy-post-types-fields' )
-		);
-
-		$actions['taxonomies'] = sprintf(
-			'<a href="%s" aria-label="%s">%s</a>',
-			Util::get_manage_page_url( [], $post_type, 'fields' ),
-			/* translators: %s: Post title. */
-			esc_attr( __( 'Taxonomies', 'easy-post-types-fields' ) ),
-			__( 'Taxonomies', 'easy-post-types-fields' )
-		);
-
-		$actions['manage'] = sprintf(
-			'<a href="%s" aria-label="%s">%s</a>',
-			add_query_arg( 'post_type', $post_type->name, admin_url( 'edit.php' ) ),
-			/* translators: %s: Post title. */
-			sprintf( esc_attr__( 'Manage %s', 'easy-post-types-fields' ), $post_type->label ),
-			sprintf( esc_html__( 'Manage %s', 'easy-post-types-fields' ), $post_type->label )
-		);
-
 		return $this->row_actions( $actions );
-	}
-
-	public function get_edit_post_link( $taxonomy ) {
-		if ( $this->is_custom( $taxonomy ) ) {
-			$posts = get_posts(
-				[
-					'post_type' => 'ept_post_type',
-					'name'      => str_replace( 'ept_', '', $taxonomy->name ),
-				]
-			);
-
-			if ( empty( $posts ) ) {
-				return false;
-			}
-
-			$post = reset( $posts );
-
-			return get_edit_post_link( $post->ID );
-		}
-
-		return false;
 	}
 
 	public function get_delete_post_link( $taxonomy ) {
@@ -331,9 +329,9 @@ class Taxonomy_List_Table extends WP_List_Table {
 			<tfoot>
 				<tr>
 					<th scope="col" colspan="<?php echo esc_attr( count( $this->get_columns() ) ); ?>">
-						<a href="<?php echo esc_url( $new_link ); ?>" class="page-title-action ept-post-table-action">
+						<button type="button" class="editinline page-title-action ept-post-table-action">
 							<?php esc_html_e( 'Add new taxonomy', 'easy-post-types-fields' ); ?>
-						</a>
+						</button>
 					</th>
 				</tr>
 			</tfoot>
@@ -348,5 +346,67 @@ class Taxonomy_List_Table extends WP_List_Table {
 	 * @global string $mode List table view mode.
 	 */
 	public function inline_edit() {
+		$screen = get_current_screen();
+
+		?>
+		<form method="get">
+			<table style="display: none"><tbody id="inlineedit">
+				<?php
+
+				$classes = "inline-edit-row inline-edit-row-taxonomy quick-edit-row quick-edit-row-taxonomy inline-edit-{$screen->post_type}";
+
+				?>
+				<tr id="inline-edit" class="<?php echo $classes; ?>" style="display: none">
+					<td colspan="<?php echo $this->get_column_count(); ?>" class="colspanchange">
+						<div class="inline-edit-wrapper" role="region" aria-labelledby="inline-edit-legend">
+							<fieldset class="inline-edit-col-left">
+								<div class="inline-edit-col">
+									<label>
+										<span class="title"><?php _e( 'Name', 'easy-post-types-fields' ); ?></span>
+										<span class="input-text-wrap">
+											<input type="text" placeholder="Taxonomy plural name (e.g. Categories)" name="name" class="ptitle" value="" />
+										</span>
+									</label>
+									<label>
+										<span class="title"><?php _e( 'Singular name', 'easy-post-types-fields' ); ?></span>
+										<span class="input-text-wrap">
+											<input type="text" placeholder="Taxonomy singular name (e.g. Category)" name="singular_name" class="ptitle" value="" />
+										</span>
+									</label>
+									<label>
+										<span class="title"><?php _e( 'Slug', 'easy-post-types-fields' ); ?></span>
+										<span class="input-text-wrap">
+											<input type="text" placeholder="" name="slug" class="ptitle" value="" />
+										</span>
+									</label>
+									<label>
+										<span class="title"><?php _e( 'Hierarchical', 'easy-post-types-fields' ); ?></span>
+										<?php echo Util::get_tooltip( __( 'Hierarchical taxonomies have a nested parent/child structure like WordPress post categories, whereas non-hierarchical taxonomies are flat like tags.', 'easy-post-types-fields' ) ); ?>
+										<span class="input-text-wrap">
+											<input type="checkbox" name="hierarchical" class="ptitle" value="" />
+										</span>
+									</label>
+									<input type="hidden" name="post_type" class="ptitle" value="" />
+								</div>
+							</fieldset>
+							<div class="submit inline-edit-save">
+								<?php wp_nonce_field( 'inlineeditnonce', '_inline_edit', false ); ?>
+								<button type="button" class="button button-primary save"><?php _e( 'Update' ); ?></button>
+								<button type="button" class="button cancel"><?php _e( 'Cancel' ); ?></button>
+
+								<span class="spinner"></span>
+
+								<input type="hidden" name="post_view" value="<?php echo esc_attr( $m ); ?>" />
+								<input type="hidden" name="screen" value="<?php echo esc_attr( $screen->id ); ?>" />
+								<div class="notice notice-error notice-alt inline hidden">
+									<p class="error"></p>
+								</div>
+							</div>
+						</div> <!-- end of .inline-edit-wrapper -->
+					</td>
+				</tr>
+			</tbody></table>
+		</form>
+		<?php
 	}
 }
