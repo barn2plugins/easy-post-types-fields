@@ -189,25 +189,62 @@ class CPT_Editor implements Service, Registerable {
 		);
 	}
 
-	public function print_page_description() {
-		?>
-		<p>
-			<?php esc_html_e( 'Use this page to manage your custom post types. You can add and edit post types, custom fields and taxonomies.', 'easy-post-types-fields' ); ?>
-		</p>
-		<?php
-	}
-
 	public function admin_menu() {
 		add_menu_page( 'Post Types', 'Post Types', 'manage_options', 'ept_post_types', [ $this, 'add_manage_page' ], 'dashicons-feedback', 21 );
 		add_submenu_page( 'ept_post_types', 'Manage', 'Manage', 'manage_options', 'ept_post_types', [ $this, 'add_manage_page' ] );
 		add_submenu_page( 'ept_post_types', 'Help', 'Help', 'manage_options', 'ept_post_types-help', [ $this, 'add_help_page' ] );
 	}
 
+	public function get_page_data( $request ) {
+		$sections          = [
+			'fields'     => [
+				'list_table_class' => 'Custom_Field',
+				'plural'           => 'Custom fields',
+				'singular'         => 'Custom field',
+				// translators: 1: the plural name of the post type, 2: the opening tab of an anchor element, 3: the closing tag of an anchor element, 4: the singular name of the post type, 5: the plural name of the post type, 
+				'description'      => __( 'Use custom fields to store extra data about your %1$s, such as a reference number or link. Custom fields are for data that is unique to each %4$s. If you want to use the data to organize or group your %5$s then you should create a %2$staxonomy%3$s instead.', 'easy-post-types-fields' ),
+			],
+			'taxonomies' => [
+				'list_table_class' => 'Taxonomy',
+				'plural'           => 'Taxonomies',
+				'singular'         => 'Taxonomy',
+				// translators: the plural name of the post type
+				'description'      => __( 'Taxonomies let you organize and group your %1$s. For example, you might want to organize them by category, tag, year, author, or industry. If you need to add data that is unique to each %4$s then you should create a %2$scustom field%3$s instead.', 'easy-post-types-fields' ),
+			],
+		];
+		$section           = $request['section'];
+		$section_labels    = $sections[ $section ];
+		$list_table_class  = __NAMESPACE__ . '\List_Tables\\' . $sections[ $section ]['list_table_class'] . '_List_Table';
+		$request_post_type = Util::get_post_type_by_name( $request['post_type'] );
+		$list_table        = new $list_table_class( $request_post_type );
+		$singular_name     = $sections[ $section ]['singular'];
+
+		parse_str( $_SERVER['QUERY_STRING'], $query_args );
+
+		$query_args['section'] = 'fields' === $section ? 'taxonomies' : 'fields';
+		$cross_link            = add_query_arg( $query_args, admin_url( 'admin.php' ) );
+
+		$page_description = sprintf(
+			$section_labels['description'],
+			$request_post_type->labels->name,
+			"<a href=\"$cross_link\">",
+			'</a>',
+			$request_post_type->labels->singular_name,
+			strtolower( $request_post_type->labels->name )
+		);
+
+		return [
+			$page_description,
+			$singular_name,
+			$list_table
+		];
+	}
+
 	public function add_manage_page() {
 		$plugin      = $this->plugin;
 		$breadcrumbs = Util::get_page_breadcrumbs();
 		$request     = Util::get_page_request();
-		$content     = isset( $request['section'] ) ? $request['section'] : 'post_types';
+		$content     = isset( $request['section'] ) ? 'lists' : 'post_types';
 		$new_link    = add_query_arg(
 			[
 				'page'   => isset( $request['section'] ) ? $request['page'] : $plugin->get_slug() . '-setup-wizard',
@@ -228,6 +265,10 @@ class CPT_Editor implements Service, Registerable {
 
 		if ( 'post_types' === $content && isset( $request['post_type'] ) ) {
 			$content = 'post_type';
+		}
+
+		if ( isset( $request['section'] ) ) {
+			list( $page_description, $singular_name, $list_table ) = $this->get_page_data( $request );
 		}
 
 		include $this->plugin->get_admin_path( 'views/html-manage-page.php' );
