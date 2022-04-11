@@ -2,6 +2,7 @@
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin\List_Tables;
 
 use Barn2\Plugin\Easy_Post_Types_Fields\Util;
+use Barn2\EPT_Lib\Admin\Settings_API_Helper;
 use WP_List_Table;
 use WP_Query;
 
@@ -223,11 +224,13 @@ class Post_Type_List_Table extends WP_List_Table {
 	}
 
 	public function get_columns() {
+		$action_tooltip = Util::get_tooltip( __( 'Use custom fields for storing unique data about your custom posts, and use taxonomies for organizing and grouping the custom posts.', 'easy-post-types-fields' ) );
+
 		$columns = [
 			'name'       => _x( 'Name', 'column name', 'easy-post-types-fields' ),
-			'fields'     => _x( 'Fields', 'column name', 'easy-post-types-fields' ),
+			'fields'     => _x( 'Custom Fields', 'column name', 'easy-post-types-fields' ),
 			'taxonomies' => _x( 'Taxonomies', 'column name', 'easy-post-types-fields' ),
-			'actions'    => _x( 'Actions', 'column name', 'easy-post-types-fields' ),
+			'actions'    => _x( 'Actions', 'column name', 'easy-post-types-fields' ) . $action_tooltip,
 			'count'      => _x( 'Post count', 'column name', 'easy-post-types-fields' ),
 		];
 
@@ -322,7 +325,7 @@ class Post_Type_List_Table extends WP_List_Table {
 
 		?>
 		<td class="<?php echo esc_attr( $classes ); ?> post_type-actions" <?php echo esc_attr( $data ); ?>>
-			<a href="<?php echo esc_attr( $fields_link ); ?>" class="button"><?php esc_html_e( 'Fields', 'easy-post-types-fields' ); ?></a>
+			<a href="<?php echo esc_attr( $fields_link ); ?>" class="button"><?php esc_html_e( 'Custom Fields', 'easy-post-types-fields' ); ?></a>
 			<a href="<?php echo esc_attr( $tax_link ); ?>" class="button"><?php esc_html_e( 'Taxonomies', 'easy-post-types-fields' ); ?></a>
 			<?php // translators: the plural name of a post type ?>
 			<a href="<?php echo esc_attr( $all_link ); ?>" class="button"><?php echo esc_html( sprintf( __( 'All %s', 'easy-post-types-fields' ), $post_type->label ) ); ?></a>
@@ -408,8 +411,8 @@ class Post_Type_List_Table extends WP_List_Table {
 		$actions['fields'] = sprintf(
 			'<a href="%s" aria-label="%s">%s</a>',
 			Util::get_manage_page_url( [], $post_type, 'fields' ),
-			esc_attr( __( 'Fields', 'easy-post-types-fields' ) ),
-			__( 'Fields', 'easy-post-types-fields' )
+			esc_attr( __( 'Custom Fields', 'easy-post-types-fields' ) ),
+			__( 'Custom Fields', 'easy-post-types-fields' )
 		);
 
 		$actions['taxonomies'] = sprintf(

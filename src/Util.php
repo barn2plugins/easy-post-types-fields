@@ -123,4 +123,10 @@ class Util {
 
 		return implode( ' &gt; ', $breadcrumbs );
 	}
+
+	public static function get_tooltip( $tooltip_text ) {
+		wp_enqueue_script( 'barn2-tiptip' );
+
+		return '<span class="barn2-help-tip" data-tip="' . wp_kses_post( $tooltip_text ) . '"></span>';
+	}
 }
