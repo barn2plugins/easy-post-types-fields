@@ -33,6 +33,13 @@ class Taxonomy {
 	private $singular_name;
 
 	/**
+	 * Whether the taxonomy is hierarchical (e.g. categories) or not (e.g. tags)
+	 *
+	 * @var bool
+	 */
+	private $hierarchical;
+
+	/**
 	 * The post type of the CPT
 	 *
 	 * @var string
@@ -54,17 +61,22 @@ class Taxonomy {
 	private $is_registered;
 
 	public function __construct( $taxonomy, $post_type, $args = [] ) {
-		$this->post_type = $post_type->singular_name;
-		$this->taxonomy  = $taxonomy;
+		$this->post_type = $post_type->name;
+		$this->taxonomy  = "{$this->post_type}_$taxonomy";
 
-		if ( $this->prepare_arguments() ) {
+		$this->hierarchical  = isset( $args['hierarchical'] ) && $args['hierarchical'];
+		$name                = $this->hierarchical ? 'Categories' : 'Tags';
+		$singular_name       = $this->hierarchical ? 'Category' : 'Tag';
+		$this->name          = isset( $args['labels'] ) && isset( $args['labels']['name'] ) ? $args['labels']['name'] : $name;
+		$this->singular_name = isset( $args['labels'] ) && isset( $args['labels']['singular_name'] ) ? $args['labels']['singular_name'] : $singular_name;
+
+		if ( $this->prepare_arguments( $args ) ) {
 			$this->register_taxonomy();
 		}
 	}
 
-	public function prepare_arguments() {
+	public function prepare_arguments( $args ) {
 		if ( empty( $this->args ) ) {
-			$args         = [];
 			$default_args = [
 				'public' => true,
 			];
