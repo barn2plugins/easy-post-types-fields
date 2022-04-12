@@ -38,13 +38,18 @@ addAction( 'barn2_wizard_step_header_mounted', 'ept_post_types', onStepHeaderUpd
 addAction( 'barn2_wizard_step_header_updated', 'ept_post_types', onStepHeaderUpdated );
 
 const onFooterUpdated = ( footer ) => {
-	if ( -1 !== [ 'ept_name', 'ept_features' ].indexOf( footer.props.step.key ) ) {
-		footer.setState( { isSkipTooltipVisible: false, skipText: __( 'Cancel' ) } )
+	const query = new URLSearchParams(location.search)
+
+	if ( query.has('action') ) {
+		if ( -1 !== [ 'ept_name', 'ept_features' ].indexOf( footer.props.step.key ) ) {
+			footer.setState( { isSkipTooltipVisible: false, skipText: __( 'Cancel' ) } )
+		}
+	
+		if ( 'ept_ready' === footer.props.step.key ) {
+			footer.setState( { isSkipVisible: false } )
+		}
 	}
 
-	if ( 'ept_ready' === footer.props.step.key ) {
-		footer.setState( { isSkipVisible: false } )
-	}
 }
 addAction( 'barn2_wizard_footer_mounted', 'ept_post_types', onFooterUpdated );
 addAction( 'barn2_wizard_footer_updated', 'ept_post_types', onFooterUpdated );
@@ -63,15 +68,17 @@ addAction( 'barn2_wizard_ready_mounted', 'ept_post_types', onReadyUpdated )
 addAction( 'barn2_wizard_ready_updated', 'ept_post_types', onReadyUpdated )
 
 const onStepUpdated = ( withForm ) => {
-	console.log( 'this is the withForm component', withForm );
-	if ( 'ept_name' === withForm.props.step.key ) {
-		withForm.setState( { continueButtonText: __( 'Next' ) } )
-	}
+	const query = new URLSearchParams(location.search)
 
-	if ( 'ept_features' === withForm.props.step.key ) {
-		withForm.setState( { continueButtonText: __( 'Create' ) } )
-	}
+	if ( query.has('action') ) {
+		if ( 'ept_name' === withForm.props.step.key ) {
+			withForm.setState( { continueButtonText: __( 'Next' ) } )
+		}
 
+		if ( 'ept_features' === withForm.props.step.key ) {
+			withForm.setState( { continueButtonText: __( 'Create' ) } )
+		}
+	}
 }
 addAction( 'barn2_wizard_withform_mounted', 'ept_post_types', onStepUpdated );
 addAction( 'barn2_wizard_withform_updated', 'ept_post_types', onStepUpdated );

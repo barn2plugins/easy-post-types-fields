@@ -67,7 +67,6 @@
 			return new Promise( (resolve, reject) => {
 				const postData = {
 					action: 'ept_inline_edit',
-					nonce: $( '#_inline_edit', $source ).val()
 				};
 	
 				$( 'input', $source ).each( (index, item ) => {
@@ -90,7 +89,7 @@
 						$( '.spinner', $source ).removeClass( 'is-active' );
 	
 						if (response.success) {
-							resolve()
+							resolve(!postData.previous_slug)
 						} else {
 							reject( response.data.error_message )
 						}
@@ -98,6 +97,39 @@
 				);
 			})
 		}
+
+		$(document).on('click', '#the-list tr .delete a', (event) => {
+			event.preventDefault();
+
+			const $table = $(event.target).closest('table'),
+				  $row   = $(event.target).closest('tr'),
+				  name   = $( 'a.row-title', $row ).text(),
+				  slug   = $( 'td.column-slug', $row ).text(),
+				  type   = 'taxonomy';
+
+			if ( ! confirm( wp.i18n.sprintf( wp.i18n.__( 'Are you sure you want to delete the %1$s %2$s?', 'easy-post-types-fields' ), name, wp.i18n.__( 'taxonomy', 'easy-post-types-fields' ) ) ) ) {
+				return false;
+			}
+
+			const postData = {
+				action: 'ept_inline_delete',
+				_inline_delete: $( '#_inline_delete', $table ).val(),
+				slug,
+				type,
+				post_type: (new URLSearchParams(location.search) ).get('post_type')
+			};
+
+			$.post(
+				ajaxurl,
+				$.param(postData),
+				(response) => {
+					if (response.success) {
+						$row.remove();
+						location.reload();
+					}
+				}
+			);
+		})
 
 		$(document).on('click', '#the-list tr a.editinline, tfoot tr button.editinline', (event) => {
 			event.preventDefault();
@@ -150,7 +182,12 @@
 				  $inlineEdit = $('#the-list tr#inline-edit');
 
 			updateData( $targetRow, $inlineEdit )
-			.then( () => {
+			.then( (isNew) => {
+				if ( isNew ) {
+					location.reload();
+					return;
+				}
+
 				updateRow( $targetRow, $inlineEdit )
 				$inlineEdit.prev('.hidden').remove().end().remove();
 				$('tfoot', $table).show();

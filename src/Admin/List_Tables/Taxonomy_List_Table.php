@@ -177,7 +177,7 @@ class Taxonomy_List_Table extends WP_List_Table {
 
 	protected function _column_singular_name( $taxonomy, $classes, $data, $primary ) {
 		?>
-		<td class="<?php echo esc_attr( $classes ); ?> taxonomy-singular_name" <?php echo esc_attr( $data ); ?>>
+		<td class="<?php echo esc_attr( $classes ); ?> taxonomy-singular_name" <?php echo $data; ?>>
 			<?php
 
 			if ( $this->is_custom( $taxonomy ) ) {
@@ -207,21 +207,13 @@ class Taxonomy_List_Table extends WP_List_Table {
 
 	protected function _column_slug( $taxonomy, $classes, $data, $primary ) {
 		?>
-		<td class="<?php echo esc_attr( $classes ); ?> taxonomy-slug" <?php echo esc_attr( $data ); ?>>
-			<?php
-			echo esc_html( $taxonomy['slug'] );
-			?>
-		</td>
+		<td class="<?php echo esc_attr( $classes ); ?> taxonomy-slug" <?php echo $data; ?>><?php echo esc_html( $taxonomy['slug'] ); ?></td>
 		<?php
 	}
 
 	protected function _column_hierarchical( $taxonomy, $classes, $data, $primary ) {
 		?>
-		<td class="<?php echo esc_attr( $classes ); ?> taxonomy-slug" <?php echo esc_attr( $data ); ?>>
-			<?php
-			echo esc_html( true === $taxonomy['hierarchical'] ? __( 'Yes', 'easy-post-types-fields' ) : __( 'No', 'easy-post-types-fields' ) );
-			?>
-		</td>
+		<td class="<?php echo esc_attr( $classes ); ?> taxonomy-slug" <?php echo $data; ?>><?php echo esc_html( true === $taxonomy['hierarchical'] ? __( 'Yes', 'easy-post-types-fields' ) : __( 'No', 'easy-post-types-fields' ) ); ?></td>
 		<?php
 	}
 
@@ -263,7 +255,7 @@ class Taxonomy_List_Table extends WP_List_Table {
 			);
 
 			$actions['delete'] = sprintf(
-				'<a href="%s" aria-label="%s">%s</a>',
+				'<a href="" aria-label="%s" class="delete">%s</a>',
 				$this->get_delete_post_link( $taxonomy ),
 				esc_attr( __( 'Delete', 'easy-post-types-fields' ) ),
 				__( 'Delete', 'easy-post-types-fields' )
@@ -319,6 +311,7 @@ class Taxonomy_List_Table extends WP_List_Table {
 						<button type="button" class="editinline page-title-action ept-post-table-action">
 							<?php esc_html_e( 'Add new taxonomy', 'easy-post-types-fields' ); ?>
 						</button>
+						<?php wp_nonce_field( 'inlinedeletenonce', '_inline_delete', false ); ?>
 					</th>
 				</tr>
 			</tfoot>

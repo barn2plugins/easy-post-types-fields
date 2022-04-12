@@ -195,16 +195,15 @@ class CPT {
 
 		if ( is_array( $taxonomies ) ) {
 			foreach ( $taxonomies as $taxonomy ) {
-				$slug      = "{$post_type}_{$taxonomy['slug']}";
-				$args      = [
+				$args = [
 					'labels'       => [
 						'name'          => $taxonomy['name'],
 						'singular_name' => $taxonomy['singular_name'],
 					],
-					'hierarchical' => $taxonomy['hierarchical'],
+					'hierarchical' => isset( $taxonomy['hierarchical'] ) ? $taxonomy['hierarchical'] : true,
 				];
 
-				new Taxonomy( $slug, $this->post_type, $args );
+				new Taxonomy( $taxonomy['slug'], $this->post_type, $args );
 			}
 
 			return array_map(

@@ -299,7 +299,7 @@ class Post_Type_List_Table extends WP_List_Table {
 
 	protected function _column_name( $post_type, $classes, $data, $primary ) {
 		?>
-		<td class="<?php echo esc_attr( $classes ); ?> post_type-name" <?php echo esc_attr( $data ); ?>>
+		<td class="<?php echo esc_attr( $classes ); ?> post_type-name" <?php echo $data; ?>>
 			<?php
 			if ( $this->is_custom( $post_type ) ) {
 				printf(

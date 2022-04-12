@@ -92,6 +92,7 @@ class CPT_Editor implements Service, Registerable {
 		add_filter( 'wp_insert_post_data', [ $this, 'save_post_type' ], 10, 3 );
 
 		add_action( 'wp_ajax_ept_inline_edit', [ $this, 'inline_edit' ] );
+		add_action( 'wp_ajax_ept_inline_delete', [ $this, 'inline_delete' ] );
 
 		( new Plugin_Promo( $this->plugin ) )->register();
 	}
@@ -148,7 +149,7 @@ class CPT_Editor implements Service, Registerable {
 		$screen = get_current_screen();
 
 		if ( in_array( $screen->id, [ 'toplevel_page_ept_post_types', 'ept_post_type', 'post-types_page_ept_post_types-help' ], true ) ) {
-			wp_enqueue_script( 'ept-editor', plugin_dir_url( $this->plugin->get_file() ) . 'assets/js/admin/ept-editor.min.js', [ 'jquery' ], $this->plugin->get_version(), true );
+			wp_enqueue_script( 'ept-editor', plugin_dir_url( $this->plugin->get_file() ) . 'assets/js/admin/ept-editor.min.js', [ 'jquery', 'wp-i18n' ], $this->plugin->get_version(), true );
 			wp_enqueue_style( 'ept-editor', plugin_dir_url( $this->plugin->get_file() ) . 'assets/css/admin/ept-editor.min.css', [], $this->plugin->get_version() );
 
 			$ept_params = [
@@ -192,7 +193,7 @@ class CPT_Editor implements Service, Registerable {
 	}
 
 	public function admin_menu() {
-		add_menu_page( 'Post Types', 'Post Types', 'manage_options', 'ept_post_types', [ $this, 'add_manage_page' ], 'dashicons-feedback', 21 );
+		add_menu_page( 'Post Types', 'Post Types', 'manage_options', 'ept_post_types', [ $this, 'add_manage_page' ], 'dashicons-feedback', 26 );
 		add_submenu_page( 'ept_post_types', 'Manage', 'Manage', 'manage_options', 'ept_post_types', [ $this, 'add_manage_page' ] );
 		add_submenu_page( 'ept_post_types', 'Help', 'Help', 'manage_options', 'ept_post_types-help', [ $this, 'add_help_page' ] );
 	}
@@ -289,6 +290,13 @@ class CPT_Editor implements Service, Registerable {
 		$this->{"inline_edit_$type"}();
 	}
 
+	public function inline_delete() {
+		check_ajax_referer( 'inlinedeletenonce', '_inline_delete' );
+
+		$type = $_POST['type'];
+		$this->{"inline_delete_$type"}();
+	}
+
 	public function inline_edit_taxonomy() {
 		$post_data        = $_POST;
 		$post_type_object = Util::get_post_type_object( $post_data['post_type'] );
@@ -319,7 +327,7 @@ class CPT_Editor implements Service, Registerable {
 
 				if ( $post_data['previous_slug'] !== $post_data['slug'] ) {
 					$conflicting_taxonomies = array_filter(
-						$taxonomies,
+						$other_taxonomies,
 						function( $t ) use ( $post_data ) {
 							return $t['slug'] === $post_data['previous_slug'];
 						}
@@ -346,6 +354,31 @@ class CPT_Editor implements Service, Registerable {
 		}
 
 		wp_send_json_error( [ 'error_message' => __( 'The post type is missing or an error occurred when registering this taxonomy.', 'easy-post-types-fields' ) ] );
+	}
+
+	public function inline_delete_taxonomy() {
+		$post_data        = $_POST;
+		$post_type_object = Util::get_post_type_object( $post_data['post_type'] );
+
+		if ( $post_type_object ) {
+			$taxonomies = get_post_meta( $post_type_object->ID, '_ept_taxonomies', true );
+
+			if ( ! $taxonomies ) {
+				$taxonomies = [];
+			}
+
+			$new_taxonomies = array_filter(
+				$taxonomies,
+				function( $t ) use ( $post_data ) {
+					return $t['slug'] !== $post_data['slug'];
+				}
+			);
+
+			update_post_meta( $post_type_object->ID, '_ept_taxonomies', $new_taxonomies );
+			wp_send_json_success();
+		}
+
+		wp_send_json_error( [ 'error_message' => __( 'The post type is missing or an error occurred when completing this operation.', 'easy-post-types-fields' ) ] );
 	}
 
 	public function inline_edit_custom_field() {
