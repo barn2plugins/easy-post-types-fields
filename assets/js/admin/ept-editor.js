@@ -1,6 +1,6 @@
-(( $, wp, params, undefined ) => {
+(( $, wp, undefined ) => {
 	$(() => {
-		const __ = wp.i18n.__;
+		const { __, sprintf } = wp.i18n;
 
 		$( '#ept_plural_name_wrap label' ).removeClass( 'screen-reader-text' );
 
@@ -13,13 +13,16 @@
 			$( '#ept_plural_name_wrap label' ).addClass( 'screen-reader-text' );
 		} ).trigger('input');
 
-		$( '.post_type-name .row-actions .delete a' ).on( 'click', ( event ) => {
-			if ( ! confirm( wp.i18n.__( 'Are you sure you want to delete this post type?', 'easy-post-types-fields' ) ) ) {
+		$( '.post_type-name .row-actions a.post-type-delete' ).on( 'click', ( event ) => {
+			const $cell    = $(event.target).closest('td'),
+				  postType = $('a.row-title', $cell).text();
+
+			if ( ! confirm( sprintf( __( 'Are you sure you want to delete the %1$s post type?', 'easy-post-types-fields' ), postType ) ) ) {
 				event.preventDefault();
 				return false;
 			}
 
-			if ( Number( event.target.dataset.post_count ) > 0 && ! confirm( wp.i18n.__( 'The database contains at least one post of this post type. By deleting this post type, WordPress will not be able to access those posts any longer. This operation cannot be undone. Are you sure you want to continue?', 'easy-post-types-fields' ) ) ) {
+			if ( Number( event.target.dataset.post_count ) > 0 && ! confirm( __( 'The database contains at least one post of this post type. By deleting this post type, WordPress will not be able to access those posts any longer. Are you sure you want to continue?', 'easy-post-types-fields' ) ) ) {
 				event.preventDefault();
 			}
 		});
@@ -34,7 +37,7 @@
 				} else {
 					$dest.val( $this.text() );
 				}
-			})
+			});
 
 			$( `input[name="previous_slug"]`, $destination ).val( $( '.hidden>div.slug', $source ).text() );
 		}
@@ -98,7 +101,7 @@
 			})
 		}
 
-		$(document).on('click', '#the-list tr .delete a.taxonomy-delete, #the-list tr .delete a.custom-field-delete', (event) => {
+		$(document).on('click', '#the-list a.taxonomy-delete, #the-list a.custom-field-delete', (event) => {
 			event.preventDefault();
 
 			const $table = $(event.target).closest('table'),
@@ -107,7 +110,7 @@
 				  slug   = $( 'td.column-slug', $row ).text(),
 				  type   = 'taxonomy';
 
-			if ( ! confirm( wp.i18n.sprintf( wp.i18n.__( 'Are you sure you want to delete the %1$s %2$s?', 'easy-post-types-fields' ), name, wp.i18n.__( 'taxonomy', 'easy-post-types-fields' ) ) ) ) {
+			if ( ! confirm( sprintf( __( 'Are you sure you want to delete the %1$s %2$s?', 'easy-post-types-fields' ), name, __( 'taxonomy', 'easy-post-types-fields' ) ) ) ) {
 				return false;
 			}
 
@@ -216,4 +219,4 @@
 			});		
 		}
 	})
-})( jQuery, wp, ept_params )
+})( jQuery, wp )

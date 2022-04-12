@@ -400,7 +400,7 @@ class Post_Type_List_Table extends WP_List_Table {
 			);
 
 			$actions['delete'] = sprintf(
-				'<a href="%s" aria-label="%s" data-post_count="%d">%s</a>',
+				'<a href="%s" class="post-type-delete" aria-label="%s" data-post_count="%d">%s</a>',
 				$this->get_delete_post_link( $post_type ),
 				esc_attr( __( 'Delete', 'easy-post-types-fields' ) ),
 				$this->get_post_count( $post_type ),
