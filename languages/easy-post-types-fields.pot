@@ -204,43 +204,43 @@ msgstr ""
 msgid "Singular name of the post type (e.g. `Project` or `Book`)"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:119
+#: src/Admin/CPT_Editor.php:120
 msgid "Definition"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:134
+#: src/Admin/CPT_Editor.php:135
 msgid "Plural name of the post type (e.g. `Projects` or `Books`)"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:168
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:345
+#: src/Admin/CPT_Editor.php:169
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:329
 #: src/Admin/Wizard/Steps/EPT_Name.php:20
 msgid "Name"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:176
+#: src/Admin/CPT_Editor.php:177
 msgid "Custom"
 msgstr ""
 
 #. translators: 1: the plural name of the post type, 2: the opening tab of an anchor element, 3: the closing tag of an anchor element, 4: the singular name of the post type, 5: the plural name of the post type,
-#: src/Admin/CPT_Editor.php:199
+#: src/Admin/CPT_Editor.php:200
 msgid "Use custom fields to store extra data about your %1$s, such as a reference number or link. Custom fields are for data that is unique to each %4$s. If you want to use the data to organize or group your %5$s then you should create a %2$staxonomy%3$s instead."
 msgstr ""
 
 #. translators: the plural name of the post type
-#: src/Admin/CPT_Editor.php:206
+#: src/Admin/CPT_Editor.php:207
 msgid "Taxonomies let you organize and group your %1$s. For example, you might want to organize them by category, tag, year, author, or industry. If you need to add data that is unique to each %4$s then you should create a %2$scustom field%3$s instead."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:330
+#: src/Admin/CPT_Editor.php:331
 msgid "Another taxonomy with the same slug is already registered to this post type. Please choose a different slug."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:348
+#: src/Admin/CPT_Editor.php:349
 msgid "The post type is missing or an error occurred when registering this taxonomy."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:373
+#: src/Admin/CPT_Editor.php:374
 msgid "The post type is missing or an error occurred when completing this operation."
 msgstr ""
 
@@ -250,7 +250,7 @@ msgstr ""
 
 #: src/Admin/List_Tables/Custom_Field_List_Table.php:96
 #: src/Admin/List_Tables/Post_Type_List_Table.php:230
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:131
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:115
 msgctxt "column name"
 msgid "Name"
 msgstr ""
@@ -264,7 +264,7 @@ msgstr ""
 #. translators: the name of the taxonomy
 #: src/Admin/List_Tables/Custom_Field_List_Table.php:171
 #: src/Admin/List_Tables/Post_Type_List_Table.php:308
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:187
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:171
 msgid "%s (Edit)"
 msgstr ""
 
@@ -289,11 +289,13 @@ msgstr ""
 #. translators: the plural name of a post type
 #. translators: %s: Post type plural name.
 #. translators: the plural post type name
+#. translators: the plural name of a taxonomy
 #: src/Admin/List_Tables/Custom_Field_List_Table.php:191
 #: src/Admin/List_Tables/Post_Type_List_Table.php:331
 #: src/Admin/List_Tables/Post_Type_List_Table.php:429
 #: src/Admin/List_Tables/Post_Type_List_Table.php:431
 #: src/CPT.php:136
+#: src/Taxonomy.php:130
 msgid "All %s"
 msgstr ""
 
@@ -301,8 +303,8 @@ msgstr ""
 #: src/Admin/List_Tables/Custom_Field_List_Table.php:259
 #: src/Admin/List_Tables/Post_Type_List_Table.php:398
 #: src/Admin/List_Tables/Post_Type_List_Table.php:399
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:253
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:254
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:237
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:238
 #: src/Util.php:103
 msgid "Edit"
 msgstr ""
@@ -311,8 +313,8 @@ msgstr ""
 #: src/Admin/List_Tables/Custom_Field_List_Table.php:267
 #: src/Admin/List_Tables/Post_Type_List_Table.php:405
 #: src/Admin/List_Tables/Post_Type_List_Table.php:407
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:260
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:261
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:244
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:245
 msgid "Delete"
 msgstr ""
 
@@ -370,48 +372,58 @@ msgstr ""
 msgid "Custom Fields"
 msgstr ""
 
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:97
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:81
 msgid "No taxonomies for this post type yet"
 msgstr ""
 
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:128
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:112
 msgid "Hierarchical taxonomies have a nested parent/child structure like WordPress post categories, whereas non-hierarchical taxonomies are flat like tags."
 msgstr ""
 
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:132
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:116
 msgctxt "column name"
 msgid "Slug"
 msgstr ""
 
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:133
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:117
 msgctxt "column name"
 msgid "Hierarchical"
 msgstr ""
 
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:216
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:200
 #: assets/js/admin/ept-editor.js:54
 msgid "Yes"
 msgstr ""
 
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:216
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:200
 #: assets/js/admin/ept-editor.js:54
 msgid "No"
 msgstr ""
 
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:312
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:296
 msgid "Add new taxonomy"
 msgstr ""
 
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:351
-msgid "Singular name"
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:335
+msgid "Plural name"
 msgstr ""
 
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:357
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:341
 msgid "Slug"
 msgstr ""
 
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:363
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:347
 msgid "Hierarchical"
+msgstr ""
+
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:359
+#: src/Admin/views/html-manage-page-fields.php:20
+#: src/Admin/views/html-manage-page-taxonomies.php:20
+msgid "Update"
+msgstr ""
+
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:360
+msgid "Cancel"
 msgstr ""
 
 #: src/Admin/views/html-help-page.php:17
@@ -450,6 +462,12 @@ msgstr ""
 msgid "%s field"
 msgstr ""
 
+#: src/Admin/views/html-manage-page-fields.php:20
+#: src/Admin/views/html-manage-page-taxonomies.php:20
+#: src/Util.php:103
+msgid "Add"
+msgstr ""
+
 #. translators: either `Taxonomy` or `Custom field`
 #: src/Admin/views/html-manage-page-lists.php:24
 msgid "%s editor"
@@ -457,8 +475,10 @@ msgstr ""
 
 #. translators: either `Taxonomy` or `Custom field`
 #. translators: the plural post type name
+#. translators: the plural name of a taxonomy
 #: src/Admin/views/html-manage-page-lists.php:35
 #: src/CPT.php:150
+#: src/Taxonomy.php:168
 msgid "%s list"
 msgstr ""
 
@@ -598,12 +618,16 @@ msgid "You are not authorized."
 msgstr ""
 
 #. translators: the singular post type name
+#. translators: the singular name of a taxonomy
 #: src/CPT.php:118
+#: src/Taxonomy.php:150
 msgid "Add New %s"
 msgstr ""
 
 #. translators: the singular post type name
+#. translators: the singular name of a taxonomy
 #: src/CPT.php:120
+#: src/Taxonomy.php:144
 msgid "Edit %s"
 msgstr ""
 
@@ -625,12 +649,16 @@ msgid "View %s"
 msgstr ""
 
 #. translators: the plural post type name
+#. translators: the plural name of a taxonomy
 #: src/CPT.php:128
+#: src/Taxonomy.php:126
 msgid "Search %s"
 msgstr ""
 
 #. translators: the plural post type name
+#. translators: the plural name of a taxonomy
 #: src/CPT.php:130
+#: src/Taxonomy.php:160
 msgid "No %s found."
 msgstr ""
 
@@ -640,7 +668,9 @@ msgid "No %s found in Trash."
 msgstr ""
 
 #. translators: the singular post type name
+#. translators: the singular name of a taxonomy
 #: src/CPT.php:134
+#: src/Taxonomy.php:134
 msgid "Parent %s:"
 msgstr ""
 
@@ -670,7 +700,9 @@ msgid "Filter %s list"
 msgstr ""
 
 #. translators: the plural post type name
+#. translators: the plural name of a taxonomy
 #: src/CPT.php:148
+#: src/Taxonomy.php:166
 msgid "%s list navigation"
 msgstr ""
 
@@ -700,21 +732,97 @@ msgid "%s updated."
 msgstr ""
 
 #. translators: the singular post type name
+#. translators: the singular name of a taxonomy
 #: src/CPT.php:162
+#: src/Taxonomy.php:174
 msgid "%s Link"
 msgstr ""
 
 #. translators: the singular post type name
+#. translators: the singular name of a taxonomy
 #: src/CPT.php:164
+#: src/Taxonomy.php:176
 msgid "A link to a %s."
+msgstr ""
+
+#: src/Taxonomy.php:117
+msgid "The name is how it appears on your site."
+msgstr ""
+
+#: src/Taxonomy.php:118
+msgid "The &#8220;slug&#8221; is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens."
+msgstr ""
+
+#: src/Taxonomy.php:119
+msgid "Assign a parent term to create a hierarchy. The term Jazz, for example, would be the parent of Bebop and Big Band."
+msgstr ""
+
+#: src/Taxonomy.php:120
+msgid "The description is not prominent by default; however, some themes may show it."
+msgstr ""
+
+#. translators: the plural name of a taxonomy
+#: src/Taxonomy.php:128
+msgid "Popular %s"
+msgstr ""
+
+#. translators: the singular name of a taxonomy
+#: src/Taxonomy.php:132
+msgid "Parent %s"
+msgstr ""
+
+#. translators: the singular name of a taxonomy
+#: src/Taxonomy.php:146
+msgid "View %s"
+msgstr ""
+
+#. translators: the singular name of a taxonomy
+#: src/Taxonomy.php:148
+msgid "Update %s"
+msgstr ""
+
+#. translators: the singular name of a taxonomy
+#: src/Taxonomy.php:152
+msgid "New %s Name"
+msgstr ""
+
+#. translators: the plural name of a taxonomy
+#: src/Taxonomy.php:154
+msgid "Separate %s with commas"
+msgstr ""
+
+#. translators: the plural name of a taxonomy
+#: src/Taxonomy.php:156
+msgid "Add or remove %s"
+msgstr ""
+
+#. translators: the plural name of a taxonomy
+#: src/Taxonomy.php:158
+msgid "Choose from the most used %s"
+msgstr ""
+
+#. translators: the plural name of a taxonomy
+#: src/Taxonomy.php:162
+msgid "No %s"
+msgstr ""
+
+#. translators: the plural name of a taxonomy
+#: src/Taxonomy.php:164
+msgid "Filter by %s"
+msgstr ""
+
+#. translators: the plural name of a taxonomy
+#: src/Taxonomy.php:170
+msgid "Most Used"
+msgstr ""
+
+#. translators: the plural name of a taxonomy
+#: src/Taxonomy.php:172
+msgid "&larr; Go to %s"
 msgstr ""
 
 #: src/Util.php:90
 msgid "Custom fields"
-msgstr ""
-
-#: src/Util.php:103
-msgid "Add"
 msgstr ""
 
 #: assets/js/admin/ept-editor.js:20
@@ -725,10 +833,10 @@ msgstr ""
 msgid "The database contains at least one post of this post type. By deleting this post type, WordPress will not be able to access those posts any longer. Are you sure you want to continue?"
 msgstr ""
 
-#: assets/js/admin/ept-editor.js:113
+#: assets/js/admin/ept-editor.js:111
 msgid "Are you sure you want to delete the %1$s %2$s?"
 msgstr ""
 
-#: assets/js/admin/ept-editor.js:113
+#: assets/js/admin/ept-editor.js:111
 msgid "taxonomy"
 msgstr ""

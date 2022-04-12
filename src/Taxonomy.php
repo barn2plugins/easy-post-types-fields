@@ -114,24 +114,24 @@ class Taxonomy {
 	}
 
 	public function default_labels() {
-		$name_field_description   = __( 'The name is how it appears on your site.' );
-		$slug_field_description   = __( 'The &#8220;slug&#8221; is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.' );
-		$parent_field_description = __( 'Assign a parent term to create a hierarchy. The term Jazz, for example, would be the parent of Bebop and Big Band.' );
-		$desc_field_description   = __( 'The description is not prominent by default; however, some themes may show it.' );
+		$name_field_description   = __( 'The name is how it appears on your site.', 'easy-post-types-fields' );
+		$slug_field_description   = __( 'The &#8220;slug&#8221; is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.', 'easy-post-types-fields' );
+		$parent_field_description = __( 'Assign a parent term to create a hierarchy. The term Jazz, for example, would be the parent of Bebop and Big Band.', 'easy-post-types-fields' );
+		$desc_field_description   = __( 'The description is not prominent by default; however, some themes may show it.', 'easy-post-types-fields' );
 
 		$default_labels = [
 			'name'                       => $this->name,
 			'singular_name'              => $this->singular_name,
 			// translators: the plural name of a taxonomy
-			'search_items'               => $this->define_label( __( 'Search %s' ) ),
+			'search_items'               => $this->define_label( __( 'Search %s', 'easy-post-types-fields' ) ),
 			// translators: the plural name of a taxonomy
-			'popular_items'              => $this->define_label( __( 'Popular %s' ) ),
+			'popular_items'              => $this->define_label( __( 'Popular %s', 'easy-post-types-fields' ) ),
 			// translators: the plural name of a taxonomy
-			'all_items'                  => $this->define_label( __( 'All %s' ) ),
+			'all_items'                  => $this->define_label( __( 'All %s', 'easy-post-types-fields' ) ),
 			// translators: the singular name of a taxonomy
-			'parent_item'                => $this->define_singular_label( __( 'Parent %s' ) ),
+			'parent_item'                => $this->define_singular_label( __( 'Parent %s', 'easy-post-types-fields' ) ),
 			// translators: the singular name of a taxonomy
-			'parent_item_colon'          => $this->define_singular_label( __( 'Parent %s:' ) ),
+			'parent_item_colon'          => $this->define_singular_label( __( 'Parent %s:', 'easy-post-types-fields' ) ),
 			// translators: the plural name of a taxonomy
 			'name_field_description'     => $this->define_label( $name_field_description ),
 			// translators: the plural name of a taxonomy
@@ -141,39 +141,39 @@ class Taxonomy {
 			// translators: the plural name of a taxonomy
 			'desc_field_description'     => $this->define_label( $desc_field_description ),
 			// translators: the singular name of a taxonomy
-			'edit_item'                  => $this->define_singular_label( __( 'Edit %s' ) ),
+			'edit_item'                  => $this->define_singular_label( __( 'Edit %s', 'easy-post-types-fields' ) ),
 			// translators: the singular name of a taxonomy
-			'view_item'                  => $this->define_singular_label( __( 'View %s' ) ),
+			'view_item'                  => $this->define_singular_label( __( 'View %s', 'easy-post-types-fields' ) ),
 			// translators: the singular name of a taxonomy
-			'update_item'                => $this->define_singular_label( __( 'Update %s' ) ),
+			'update_item'                => $this->define_singular_label( __( 'Update %s', 'easy-post-types-fields' ) ),
 			// translators: the singular name of a taxonomy
-			'add_new_item'               => $this->define_singular_label( __( 'Add New %s' ) ),
+			'add_new_item'               => $this->define_singular_label( __( 'Add New %s', 'easy-post-types-fields' ) ),
 			// translators: the singular name of a taxonomy
-			'new_item_name'              => $this->define_singular_label( __( 'New %s Name' ) ),
+			'new_item_name'              => $this->define_singular_label( __( 'New %s Name', 'easy-post-types-fields' ) ),
 			// translators: the plural name of a taxonomy
-			'separate_items_with_commas' => $this->define_label( __( 'Separate %s with commas' ), true ),
+			'separate_items_with_commas' => $this->define_label( __( 'Separate %s with commas', 'easy-post-types-fields' ), true ),
 			// translators: the plural name of a taxonomy
-			'add_or_remove_items'        => $this->define_label( __( 'Add or remove %s' ), true ),
+			'add_or_remove_items'        => $this->define_label( __( 'Add or remove %s', 'easy-post-types-fields' ), true ),
 			// translators: the plural name of a taxonomy
-			'choose_from_most_used'      => $this->define_label( __( 'Choose from the most used %s' ), true ),
+			'choose_from_most_used'      => $this->define_label( __( 'Choose from the most used %s', 'easy-post-types-fields' ), true ),
 			// translators: the plural name of a taxonomy
-			'not_found'                  => $this->define_label( __( 'No %s found.' ), true ),
+			'not_found'                  => $this->define_label( __( 'No %s found.', 'easy-post-types-fields' ), true ),
 			// translators: the plural name of a taxonomy
-			'no_terms'                   => $this->define_label( __( 'No %s' ), true ),
+			'no_terms'                   => $this->define_label( __( 'No %s', 'easy-post-types-fields' ), true ),
 			// translators: the plural name of a taxonomy
-			'filter_by_item'             => $this->define_label( __( 'Filter by %s' ), true ),
+			'filter_by_item'             => $this->define_label( __( 'Filter by %s', 'easy-post-types-fields' ), true ),
 			// translators: the plural name of a taxonomy
-			'items_list_navigation'      => $this->define_label( __( '%s list navigation' ) ),
+			'items_list_navigation'      => $this->define_label( __( '%s list navigation', 'easy-post-types-fields' ) ),
 			// translators: the plural name of a taxonomy
-			'items_list'                 => $this->define_label( __( '%s list' ) ),
+			'items_list'                 => $this->define_label( __( '%s list', 'easy-post-types-fields' ) ),
 			// translators: the plural name of a taxonomy
-			'most_used'                  => $this->define_label( __( 'Most Used' ) ),
+			'most_used'                  => $this->define_label( __( 'Most Used', 'easy-post-types-fields' ) ),
 			// translators: the plural name of a taxonomy
-			'back_to_items'              => $this->define_label( __( '&larr; Go to %s' ) ),
+			'back_to_items'              => $this->define_label( __( '&larr; Go to %s', 'easy-post-types-fields' ) ),
 			// translators: the singular name of a taxonomy
-			'item_link'                  => $this->define_singular_label( __( '%s Link' ) ),
+			'item_link'                  => $this->define_singular_label( __( '%s Link', 'easy-post-types-fields' ) ),
 			// translators: the singular name of a taxonomy
-			'item_link_description'      => $this->define_singular_label( __( 'A link to a %s.' ), true ),
+			'item_link_description'      => $this->define_singular_label( __( 'A link to a %s.', 'easy-post-types-fields' ), true ),
 		];
 
 		return $default_labels;

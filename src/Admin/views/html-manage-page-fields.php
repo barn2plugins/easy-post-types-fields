@@ -17,7 +17,7 @@ $request_post_type = Util::get_post_type_by_name( $request['post_type'] );
 submit_button(
 	sprintf(
 		__( '%s field', 'easy-post-types-fields' ),
-		'add' === $request['action'] ? __( 'Add' ) : __( 'Update' )
+		'add' === $request['action'] ? __( 'Add', 'easy-post-types-fields' ) : __( 'Update', 'easy-post-types-fields' )
 	)
 );
 

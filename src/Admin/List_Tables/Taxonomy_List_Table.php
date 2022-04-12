@@ -356,8 +356,8 @@ class Taxonomy_List_Table extends WP_List_Table {
 							</fieldset>
 							<div class="submit inline-edit-save">
 								<?php wp_nonce_field( 'inlineeditnonce', '_inline_edit', false ); ?>
-								<button type="button" class="button button-primary save"><?php _e( 'Update' ); ?></button>
-								<button type="button" class="button cancel"><?php _e( 'Cancel' ); ?></button>
+								<button type="button" class="button button-primary save"><?php _e( 'Update', 'easy-post-types-fields' ); ?></button>
+								<button type="button" class="button cancel"><?php _e( 'Cancel', 'easy-post-types-fields' ); ?></button>
 
 								<span class="spinner"></span>
 
