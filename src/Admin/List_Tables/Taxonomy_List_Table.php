@@ -319,6 +319,10 @@ class Taxonomy_List_Table extends WP_List_Table {
 
 				$classes = "inline-edit-row inline-edit-row-taxonomy quick-edit-row quick-edit-row-taxonomy inline-edit-{$screen->post_type}";
 
+				// 32 is the maximum length for a taxonomy key
+				// (31 accounts for the underscore between the post type name and the taxonomy slug)
+				$max = 31 - strlen( $this->post_type->name );
+
 				?>
 				<tr id="inline-edit" class="<?php echo $classes; ?>" style="display: none">
 					<td colspan="<?php echo $this->get_column_count(); ?>" class="colspanchange">
@@ -340,7 +344,7 @@ class Taxonomy_List_Table extends WP_List_Table {
 									<label>
 										<span class="title"><?php _e( 'Slug', 'easy-post-types-fields' ); ?></span>
 										<span class="input-text-wrap">
-											<input type="text" placeholder="" name="slug" class="ptitle" value="" />
+											<input type="text" name="slug" class="ptitle" maxlength="<?php echo esc_attr( $max ); ?>" value="" />
 										</span>
 									</label>
 									<label>

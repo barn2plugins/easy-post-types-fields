@@ -3,6 +3,7 @@
 .gitattributes export-ignore
 .gitignore export-ignore
 .gitmodules export-ignore
+.scoper.inc.php export-ignore
 gulpfile.js export-ignore
 package.json export-ignore
 package-lock.json export-ignore
@@ -10,4 +11,3 @@ assets/scss/ export-ignore
 webpack.config.js export-ignore
 phpdoc.dist.xml export-ignore
 phpcs.xml export-ignore
-.scoper.inc.php export-ignore
