@@ -306,6 +306,7 @@ class CPT_Editor implements Service, Registerable {
 				'hierarchical'  => filter_var( $post_data['hierarchical'], FILTER_VALIDATE_BOOL ),
 				'post_type'     => $post_data['post_type'],
 			];
+			$slug             = $post_data['slug'];
 			$other_taxonomies = $taxonomies;
 
 			if ( $post_data['previous_slug'] ) {
@@ -315,18 +316,18 @@ class CPT_Editor implements Service, Registerable {
 						return $t['slug'] !== $post_data['previous_slug'];
 					}
 				);
+			}
 
-				if ( $post_data['previous_slug'] !== $post_data['slug'] ) {
-					$conflicting_taxonomies = array_filter(
-						$other_taxonomies,
-						function( $t ) use ( $post_data ) {
-							return $t['slug'] === $post_data['previous_slug'];
-						}
-					);
-
-					if ( ! empty( $conflicting_taxonomies ) ) {
-						wp_send_json_error( [ 'error_message' => __( 'Another taxonomy with the same slug is already registered to this post type. Please choose a different slug.', 'easy-post-types-fields' ) ] );
+			if ( $post_data['previous_slug'] !== $post_data['slug'] ) {
+				$conflicting_taxonomies = array_filter(
+					$other_taxonomies,
+					function( $t ) use ( $slug ) {
+						return $t['slug'] === $slug;
 					}
+				);
+
+				if ( ! empty( $conflicting_taxonomies ) ) {
+					wp_send_json_error( [ 'error_message' => __( 'Another taxonomy with the same slug is already registered to this post type. Please choose a different slug.', 'easy-post-types-fields' ) ] );
 				}
 			}
 
