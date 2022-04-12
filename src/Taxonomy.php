@@ -86,10 +86,8 @@ class Taxonomy {
 	public function prepare_arguments( $args ) {
 		if ( empty( $this->args ) ) {
 			$default_args = [
-				'public'            => true,
-				'show_ui'           => true,
-				'show_in_menu'      => true,
-				'show_admin_column' => true,
+				'public'       => true,
+				'show_in_rest' => true,
 			];
 
 			$args['rewrite'] = [

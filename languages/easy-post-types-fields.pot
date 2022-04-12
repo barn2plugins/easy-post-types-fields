@@ -295,7 +295,7 @@ msgstr ""
 #: src/Admin/List_Tables/Post_Type_List_Table.php:429
 #: src/Admin/List_Tables/Post_Type_List_Table.php:431
 #: src/CPT.php:136
-#: src/Taxonomy.php:130
+#: src/Taxonomy.php:128
 msgid "All %s"
 msgstr ""
 
@@ -478,7 +478,7 @@ msgstr ""
 #. translators: the plural name of a taxonomy
 #: src/Admin/views/html-manage-page-lists.php:35
 #: src/CPT.php:150
-#: src/Taxonomy.php:168
+#: src/Taxonomy.php:166
 msgid "%s list"
 msgstr ""
 
@@ -620,14 +620,14 @@ msgstr ""
 #. translators: the singular post type name
 #. translators: the singular name of a taxonomy
 #: src/CPT.php:118
-#: src/Taxonomy.php:150
+#: src/Taxonomy.php:148
 msgid "Add New %s"
 msgstr ""
 
 #. translators: the singular post type name
 #. translators: the singular name of a taxonomy
 #: src/CPT.php:120
-#: src/Taxonomy.php:144
+#: src/Taxonomy.php:142
 msgid "Edit %s"
 msgstr ""
 
@@ -651,14 +651,14 @@ msgstr ""
 #. translators: the plural post type name
 #. translators: the plural name of a taxonomy
 #: src/CPT.php:128
-#: src/Taxonomy.php:126
+#: src/Taxonomy.php:124
 msgid "Search %s"
 msgstr ""
 
 #. translators: the plural post type name
 #. translators: the plural name of a taxonomy
 #: src/CPT.php:130
-#: src/Taxonomy.php:160
+#: src/Taxonomy.php:158
 msgid "No %s found."
 msgstr ""
 
@@ -670,7 +670,7 @@ msgstr ""
 #. translators: the singular post type name
 #. translators: the singular name of a taxonomy
 #: src/CPT.php:134
-#: src/Taxonomy.php:134
+#: src/Taxonomy.php:132
 msgid "Parent %s:"
 msgstr ""
 
@@ -702,7 +702,7 @@ msgstr ""
 #. translators: the plural post type name
 #. translators: the plural name of a taxonomy
 #: src/CPT.php:148
-#: src/Taxonomy.php:166
+#: src/Taxonomy.php:164
 msgid "%s list navigation"
 msgstr ""
 
@@ -734,90 +734,90 @@ msgstr ""
 #. translators: the singular post type name
 #. translators: the singular name of a taxonomy
 #: src/CPT.php:162
-#: src/Taxonomy.php:174
+#: src/Taxonomy.php:172
 msgid "%s Link"
 msgstr ""
 
 #. translators: the singular post type name
 #. translators: the singular name of a taxonomy
 #: src/CPT.php:164
-#: src/Taxonomy.php:176
+#: src/Taxonomy.php:174
 msgid "A link to a %s."
 msgstr ""
 
-#: src/Taxonomy.php:117
+#: src/Taxonomy.php:115
 msgid "The name is how it appears on your site."
 msgstr ""
 
-#: src/Taxonomy.php:118
+#: src/Taxonomy.php:116
 msgid "The &#8220;slug&#8221; is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens."
 msgstr ""
 
-#: src/Taxonomy.php:119
+#: src/Taxonomy.php:117
 msgid "Assign a parent term to create a hierarchy. The term Jazz, for example, would be the parent of Bebop and Big Band."
 msgstr ""
 
-#: src/Taxonomy.php:120
+#: src/Taxonomy.php:118
 msgid "The description is not prominent by default; however, some themes may show it."
 msgstr ""
 
 #. translators: the plural name of a taxonomy
-#: src/Taxonomy.php:128
+#: src/Taxonomy.php:126
 msgid "Popular %s"
 msgstr ""
 
 #. translators: the singular name of a taxonomy
-#: src/Taxonomy.php:132
+#: src/Taxonomy.php:130
 msgid "Parent %s"
 msgstr ""
 
 #. translators: the singular name of a taxonomy
-#: src/Taxonomy.php:146
+#: src/Taxonomy.php:144
 msgid "View %s"
 msgstr ""
 
 #. translators: the singular name of a taxonomy
-#: src/Taxonomy.php:148
+#: src/Taxonomy.php:146
 msgid "Update %s"
 msgstr ""
 
 #. translators: the singular name of a taxonomy
-#: src/Taxonomy.php:152
+#: src/Taxonomy.php:150
 msgid "New %s Name"
 msgstr ""
 
 #. translators: the plural name of a taxonomy
-#: src/Taxonomy.php:154
+#: src/Taxonomy.php:152
 msgid "Separate %s with commas"
 msgstr ""
 
 #. translators: the plural name of a taxonomy
-#: src/Taxonomy.php:156
+#: src/Taxonomy.php:154
 msgid "Add or remove %s"
 msgstr ""
 
 #. translators: the plural name of a taxonomy
-#: src/Taxonomy.php:158
+#: src/Taxonomy.php:156
 msgid "Choose from the most used %s"
 msgstr ""
 
 #. translators: the plural name of a taxonomy
-#: src/Taxonomy.php:162
+#: src/Taxonomy.php:160
 msgid "No %s"
 msgstr ""
 
 #. translators: the plural name of a taxonomy
-#: src/Taxonomy.php:164
+#: src/Taxonomy.php:162
 msgid "Filter by %s"
 msgstr ""
 
 #. translators: the plural name of a taxonomy
-#: src/Taxonomy.php:170
+#: src/Taxonomy.php:168
 msgid "Most Used"
 msgstr ""
 
 #. translators: the plural name of a taxonomy
-#: src/Taxonomy.php:172
+#: src/Taxonomy.php:170
 msgid "&larr; Go to %s"
 msgstr ""
 
