@@ -190,7 +190,7 @@ class Taxonomy {
 	}
 
 	public function register_taxonomy() {
-		$taxonomy = register_taxonomy(
+		register_taxonomy(
 			$this->taxonomy,
 			$this->post_type,
 			$this->args
