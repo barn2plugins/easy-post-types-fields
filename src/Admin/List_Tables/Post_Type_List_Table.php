@@ -304,7 +304,7 @@ class Post_Type_List_Table extends WP_List_Table {
 			if ( $this->is_custom( $post_type ) ) {
 				printf(
 					'<a class="row-title" href="%s" aria-label="%s">%s</a>',
-					$this->get_edit_post_link( $post_type ),
+					Util::get_manage_page_url( [], $post_type ),
 					esc_attr( sprintf( __( '%s (Edit)', 'easy-post-types-fields' ), $post_type->labels->singular_name ) ),
 					esc_attr( $post_type->labels->singular_name )
 				);
@@ -460,7 +460,8 @@ class Post_Type_List_Table extends WP_List_Table {
 			$post_type_object = Util::get_post_type_object( $post_type );
 
 			if ( $post_type_object ) {
-				return get_delete_post_link( $post_type_object->ID, '', true );
+				$delete_link = add_query_arg( 'action', 'delete', admin_url( sprintf( 'post.php?post=%d', $post_type_object->ID ) ) );
+				return wp_nonce_url( $delete_link, "delete-post_{$post_type_object->ID}" );
 			}
 
 			return false;
