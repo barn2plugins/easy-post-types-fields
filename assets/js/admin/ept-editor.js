@@ -58,7 +58,7 @@
 
 				let cellSelector = `td.column-${$this.attr('name')}`;
 
-				if ( 'singular_name' === $this.attr('name') ) {
+				if ( 'name' === $this.attr('name') ) {
 					cellSelector += ' a.row-title';
 				}
 
@@ -89,8 +89,6 @@
 					ajaxurl,
 					$.param(postData),
 					(response) => {
-						$( '.spinner', $source ).removeClass( 'is-active' );
-	
 						if (response.success) {
 							resolve(!postData.previous_slug)
 						} else {
@@ -179,34 +177,50 @@
 		})
 
 		$(document).on('click', '#the-list .inline-edit-save button.save', (event) => {
+			$(event.target).prop('disabled', true);
+
 			const $table      = $(event.target).closest('table'),
 				  $noItems    = $('#the-list tr.no-items', $table),
 				  $targetRow  = $('#the-list tr.editing', $table),
 				  $inlineEdit = $('#the-list tr#inline-edit');
 
+			$( '.spinner', $inlineEdit ).removeClass( 'is-active' );
+			
 			updateData( $inlineEdit )
-			.then( (isNew) => {
-				if ( isNew ) {
-					location.reload();
-					return;
-				}
+				.then( (isNew) => {
+					if ( isNew ) {
+						location.reload();
+						return;
+					}
 
-				updateRow( $targetRow, $inlineEdit );
-				$inlineEdit.prev('.hidden').remove().end().remove();
-				$('tfoot', $table).show();
-				$targetRow.show().removeClass('editing');
-	
-				if ( 1 === $( 'tbody tr', $table ).length ) {
-					$noItems.show();
-				}
-			}, (error) => {
-				const $errorNotice = $( '#the-list .inline-edit-save .notice-error' ),
-					  $error       = $( '.error', $errorNotice );
+					updateRow( $targetRow, $inlineEdit );
+					$inlineEdit.prev('.hidden').remove().end().remove();
+					$('tfoot', $table).show();
+					$targetRow.show().removeClass('editing');
+					$(event.target).prop('disabled', false);
+		
+					if ( 1 === $( 'tbody tr', $table ).length ) {
+						$noItems.show();
+					}
+					$( '.spinner', $inlineEdit ).removeClass( 'is-active' );
+				}, (error) => {
+					const $errorNotice = $( '#the-list .inline-edit-save .notice-error' ),
+						$error       = $( '.error', $errorNotice );
 
-				$errorNotice.removeClass( 'hidden' );
-				$error.text( error );
-				wp.a11y.speak( error );
-			});
+					$errorNotice.removeClass( 'hidden' );
+					$error.text( error );
+					$( '.spinner', $inlineEdit ).removeClass( 'is-active' );
+				});
+		})
+
+		$(document).on('input', '#inline-edit input[name="name"]', (event) => {
+			const slug = wp.url.cleanForSlug($(event.target).val())
+			$(event.target).closest('fieldset').find('input[name="slug"]').val(slug);
+		})
+
+		$(document).on('change', '#inline-edit input[name="slug"]', (event) => {
+			const slug = wp.url.cleanForSlug($(event.target).val())
+			$(event.target).val(slug);
 		})
 
 		if ( $.fn.tipTip ) {

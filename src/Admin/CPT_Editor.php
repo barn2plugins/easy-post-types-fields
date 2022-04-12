@@ -150,7 +150,7 @@ class CPT_Editor implements Service, Registerable {
 		$screen = get_current_screen();
 
 		if ( in_array( $screen->id, [ 'toplevel_page_ept_post_types', 'ept_post_type', 'post-types_page_ept_post_types-help' ], true ) ) {
-			wp_enqueue_script( 'ept-editor', plugin_dir_url( $this->plugin->get_file() ) . 'assets/js/admin/ept-editor.min.js', [ 'jquery', 'wp-i18n' ], $this->plugin->get_version(), true );
+			wp_enqueue_script( 'ept-editor', plugin_dir_url( $this->plugin->get_file() ) . 'assets/js/admin/ept-editor.min.js', [ 'jquery', 'wp-i18n', 'wp-url' ], $this->plugin->get_version(), true );
 			wp_enqueue_style( 'ept-editor', plugin_dir_url( $this->plugin->get_file() ) . 'assets/css/admin/ept-editor.min.css', [], $this->plugin->get_version() );
 		}
 	}
@@ -301,11 +301,11 @@ class CPT_Editor implements Service, Registerable {
 			}
 
 			$new_taxonomy     = [
-				'name'          => $post_data['name'],
-				'singular_name' => $post_data['singular_name'],
-				'slug'          => $post_data['slug'],
-				'hierarchical'  => filter_var( $post_data['hierarchical'], FILTER_VALIDATE_BOOL ),
-				'post_type'     => $post_data['post_type'],
+				'name'         => $post_data['name'],
+				'plural_name'  => $post_data['plural_name'],
+				'slug'         => sanitize_title( $post_data['slug'] ),
+				'hierarchical' => filter_var( $post_data['hierarchical'], FILTER_VALIDATE_BOOLEAN ),
+				'post_type'    => $post_data['post_type'],
 			];
 			$slug             = $post_data['slug'];
 			$other_taxonomies = $taxonomies;
@@ -337,7 +337,7 @@ class CPT_Editor implements Service, Registerable {
 			usort(
 				$new_taxonomies,
 				function( $a, $b ) {
-					return $a['singular_name'] > $b['singular_name'] ? 1 : -1;
+					return $a['name'] > $b['name'] ? 1 : -1;
 				}
 			);
 

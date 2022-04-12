@@ -45,22 +45,6 @@ class Taxonomy_List_Table extends WP_List_Table {
 			$taxonomies = get_post_meta( $post_type_object->ID, '_ept_taxonomies', true );
 
 			$this->taxonomies = $taxonomies ?: [];
-			// $this->taxonomies = [
-			// 	[
-			// 		'name'          => 'Industries',
-			// 		'singular_name' => 'Industry',
-			// 		'slug'          => 'industry',
-			// 		'post_type'     => 'ept_testimonial',
-			// 		'hierarchical'  => true,
-			// 	],
-			// 	[
-			// 		'name'          => 'Keywords',
-			// 		'singular_name' => 'Keyword',
-			// 		'slug'          => 'keyword',
-			// 		'post_type'     => 'ept_testimonial',
-			// 		'hierarchical'  => false,
-			// 	],
-			// ];
 		}
 	}
 
@@ -128,9 +112,9 @@ class Taxonomy_List_Table extends WP_List_Table {
 		$hierarchical_tooltip = Util::get_tooltip( __( 'Hierarchical taxonomies have a nested parent/child structure like WordPress post categories, whereas non-hierarchical taxonomies are flat like tags.', 'easy-post-types-fields' ) );
 
 		$columns = [
-			'singular_name' => _x( 'Name', 'column name', 'easy-post-types-fields' ),
-			'slug'          => _x( 'Slug', 'column name', 'easy-post-types-fields' ),
-			'hierarchical'  => _x( 'Hierarchical', 'column name', 'easy-post-types-fields' ) . $hierarchical_tooltip,
+			'name'         => _x( 'Name', 'column name', 'easy-post-types-fields' ),
+			'slug'         => _x( 'Slug', 'column name', 'easy-post-types-fields' ),
+			'hierarchical' => _x( 'Hierarchical', 'column name', 'easy-post-types-fields' ) . $hierarchical_tooltip,
 		];
 
 		return apply_filters( 'manage_ept_taxonomies_columns', $columns );
@@ -175,28 +159,28 @@ class Taxonomy_List_Table extends WP_List_Table {
 		}
 	}
 
-	protected function _column_singular_name( $taxonomy, $classes, $data, $primary ) {
+	protected function _column_name( $taxonomy, $classes, $data, $primary ) {
 		?>
-		<td class="<?php echo esc_attr( $classes ); ?> taxonomy-singular_name" <?php echo $data; ?>>
+		<td class="<?php echo esc_attr( $classes ); ?> taxonomy-name" <?php echo $data; ?>>
 			<?php
 
 			if ( $this->is_custom( $taxonomy ) ) {
 				printf(
 					'<a href="" class="row-title editinline" aria-label="%s">%s</a>',
 					// translators: the name of the taxonomy
-					esc_attr( sprintf( __( '%s (Edit)', 'easy-post-types-fields' ), $taxonomy['singular_name'] ) ),
-					esc_attr( $taxonomy['singular_name'] )
+					esc_attr( sprintf( __( '%s (Edit)', 'easy-post-types-fields' ), $taxonomy['name'] ) ),
+					esc_attr( $taxonomy['name'] )
 				);
 			} else {
-				echo esc_html( $taxonomy['singular_name'] );
+				echo esc_html( $taxonomy['name'] );
 			}
 
-			echo $this->handle_row_actions( $taxonomy, 'singular_name', $primary ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+			echo $this->handle_row_actions( $taxonomy, 'name', $primary ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 			?>
 			<div class="hidden" id="inline_<?php echo esc_attr( "{$taxonomy['post_type']}_{$taxonomy['slug']}" ); ?>">
 				<div class="name"><?php echo esc_attr( $taxonomy['name'] ); ?></div>
-				<div class="singular_name"><?php echo esc_attr( $taxonomy['singular_name'] ); ?></div>
+				<div class="plural_name"><?php echo esc_attr( $taxonomy['plural_name'] ); ?></div>
 				<div class="slug"><?php echo esc_attr( $taxonomy['slug'] ); ?></div>
 				<div class="hierarchical"><?php echo esc_attr( $taxonomy['hierarchical'] ? 'true' : 'false' ); ?></div>
 				<div class="previous_slug"><?php echo esc_attr( $taxonomy['slug'] ); ?></div>
@@ -235,7 +219,7 @@ class Taxonomy_List_Table extends WP_List_Table {
 	}
 
 	protected function get_primary_column_name() {
-		return 'singular_name';
+		return 'name';
 	}
 
 	protected function handle_row_actions( $taxonomy, $column_name, $primary ) {
@@ -344,13 +328,13 @@ class Taxonomy_List_Table extends WP_List_Table {
 									<label>
 										<span class="title"><?php _e( 'Name', 'easy-post-types-fields' ); ?></span>
 										<span class="input-text-wrap">
-											<input type="text" placeholder="Taxonomy plural name (e.g. Categories)" name="name" class="ptitle" value="" />
+											<input type="text" placeholder="Taxonomy singular name (e.g. Category)" name="name" class="ptitle" value="" />
 										</span>
 									</label>
 									<label>
-										<span class="title"><?php _e( 'Singular name', 'easy-post-types-fields' ); ?></span>
+										<span class="title"><?php _e( 'Plural name', 'easy-post-types-fields' ); ?></span>
 										<span class="input-text-wrap">
-											<input type="text" placeholder="Taxonomy singular name (e.g. Category)" name="singular_name" class="ptitle" value="" />
+											<input type="text" placeholder="Taxonomy plural name (e.g. Categories)" name="plural_name" class="ptitle" value="" />
 										</span>
 									</label>
 									<label>
