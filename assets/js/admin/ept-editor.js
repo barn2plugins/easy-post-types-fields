@@ -14,12 +14,12 @@
 		} ).trigger('input');
 
 		$( '.post_type-name .row-actions .delete a' ).on( 'click', ( event ) => {
-			if ( ! confirm( params.i18n.confirm_delete ) ) {
+			if ( ! confirm( wp.i18n.__( 'Are you sure you want to delete this post type?', 'easy-post-types-fields' ) ) ) {
 				event.preventDefault();
 				return false;
 			}
 
-			if ( Number( event.target.dataset.post_count ) > 0 && ! confirm( params.i18n.last_confirm_delete ) ) {
+			if ( Number( event.target.dataset.post_count ) > 0 && ! confirm( wp.i18n.__( 'The database contains at least one post of this post type. By deleting this post type, WordPress will not be able to access those posts any longer. This operation cannot be undone. Are you sure you want to continue?', 'easy-post-types-fields' ) ) ) {
 				event.preventDefault();
 			}
 		});

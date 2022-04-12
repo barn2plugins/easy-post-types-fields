@@ -151,15 +151,6 @@ class CPT_Editor implements Service, Registerable {
 		if ( in_array( $screen->id, [ 'toplevel_page_ept_post_types', 'ept_post_type', 'post-types_page_ept_post_types-help' ], true ) ) {
 			wp_enqueue_script( 'ept-editor', plugin_dir_url( $this->plugin->get_file() ) . 'assets/js/admin/ept-editor.min.js', [ 'jquery', 'wp-i18n' ], $this->plugin->get_version(), true );
 			wp_enqueue_style( 'ept-editor', plugin_dir_url( $this->plugin->get_file() ) . 'assets/css/admin/ept-editor.min.css', [], $this->plugin->get_version() );
-
-			$ept_params = [
-				'i18n' => [
-					'confirm_delete'      => __( 'Are you sure you want to delete this post type?', 'easy-post-types-fields' ),
-					'last_confirm_delete' => __( 'The database contains at least one post of this post type. By deleting this post type, WordPress will not be able to access those posts any longer. This operation cannot be undone. Are you sure you want to continue?', 'easy-post-types-fields' ),
-				]
-			];
-
-			wp_add_inline_script( 'ept-editor', sprintf( 'var ept_params = %s;', wp_json_encode( $ept_params ) ), 'before' );
 		}
 	}
 
