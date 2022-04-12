@@ -255,7 +255,7 @@ class Taxonomy_List_Table extends WP_List_Table {
 			);
 
 			$actions['delete'] = sprintf(
-				'<a href="" aria-label="%s" class="delete">%s</a>',
+				'<a href="" aria-label="%s" class="taxonomy-delete">%s</a>',
 				$this->get_delete_post_link( $taxonomy ),
 				esc_attr( __( 'Delete', 'easy-post-types-fields' ) ),
 				__( 'Delete', 'easy-post-types-fields' )

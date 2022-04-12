@@ -98,7 +98,7 @@
 			})
 		}
 
-		$(document).on('click', '#the-list tr .delete a', (event) => {
+		$(document).on('click', '#the-list tr .delete a.taxonomy-delete, #the-list tr .delete a.custom-field-delete', (event) => {
 			event.preventDefault();
 
 			const $table = $(event.target).closest('table'),
