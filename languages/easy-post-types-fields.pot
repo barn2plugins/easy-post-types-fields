@@ -212,43 +212,35 @@ msgstr ""
 msgid "Plural name of the post type (e.g. `Projects` or `Books`)"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:157
-msgid "Are you sure you want to delete this post type?"
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:158
-msgid "The database contains at least one post of this post type. By deleting this post type, WordPress will not be able to access those posts any longer. This operation cannot be undone. Are you sure you want to continue?"
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:177
+#: src/Admin/CPT_Editor.php:168
 #: src/Admin/List_Tables/Taxonomy_List_Table.php:345
 #: src/Admin/Wizard/Steps/EPT_Name.php:20
 msgid "Name"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:185
+#: src/Admin/CPT_Editor.php:176
 msgid "Custom"
 msgstr ""
 
 #. translators: 1: the plural name of the post type, 2: the opening tab of an anchor element, 3: the closing tag of an anchor element, 4: the singular name of the post type, 5: the plural name of the post type,
-#: src/Admin/CPT_Editor.php:208
+#: src/Admin/CPT_Editor.php:199
 msgid "Use custom fields to store extra data about your %1$s, such as a reference number or link. Custom fields are for data that is unique to each %4$s. If you want to use the data to organize or group your %5$s then you should create a %2$staxonomy%3$s instead."
 msgstr ""
 
 #. translators: the plural name of the post type
-#: src/Admin/CPT_Editor.php:215
+#: src/Admin/CPT_Editor.php:206
 msgid "Taxonomies let you organize and group your %1$s. For example, you might want to organize them by category, tag, year, author, or industry. If you need to add data that is unique to each %4$s then you should create a %2$scustom field%3$s instead."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:337
+#: src/Admin/CPT_Editor.php:330
 msgid "Another taxonomy with the same slug is already registered to this post type. Please choose a different slug."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:356
+#: src/Admin/CPT_Editor.php:348
 msgid "The post type is missing or an error occurred when registering this taxonomy."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:381
+#: src/Admin/CPT_Editor.php:373
 msgid "The post type is missing or an error occurred when completing this operation."
 msgstr ""
 
@@ -397,12 +389,12 @@ msgid "Hierarchical"
 msgstr ""
 
 #: src/Admin/List_Tables/Taxonomy_List_Table.php:216
-#: assets/js/admin/ept-editor.js:51
+#: assets/js/admin/ept-editor.js:54
 msgid "Yes"
 msgstr ""
 
 #: src/Admin/List_Tables/Taxonomy_List_Table.php:216
-#: assets/js/admin/ept-editor.js:51
+#: assets/js/admin/ept-editor.js:54
 msgid "No"
 msgstr ""
 
@@ -725,10 +717,18 @@ msgstr ""
 msgid "Add"
 msgstr ""
 
-#: assets/js/admin/ept-editor.js:110
+#: assets/js/admin/ept-editor.js:20
+msgid "Are you sure you want to delete the %1$s post type?"
+msgstr ""
+
+#: assets/js/admin/ept-editor.js:25
+msgid "The database contains at least one post of this post type. By deleting this post type, WordPress will not be able to access those posts any longer. Are you sure you want to continue?"
+msgstr ""
+
+#: assets/js/admin/ept-editor.js:113
 msgid "Are you sure you want to delete the %1$s %2$s?"
 msgstr ""
 
-#: assets/js/admin/ept-editor.js:110
+#: assets/js/admin/ept-editor.js:113
 msgid "taxonomy"
 msgstr ""
