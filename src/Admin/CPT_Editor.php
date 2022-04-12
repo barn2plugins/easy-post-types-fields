@@ -110,6 +110,7 @@ class CPT_Editor implements Service, Registerable {
 	public function save_post_type( $data, $postdata, $rawpostdata ) {
 		if ( isset( $postdata['ept_plural_name'] ) ) {
 			update_post_meta( $postdata['ID'], '_ept_plural_name', $postdata['ept_plural_name'] );
+			flush_rewrite_rules( false );
 		}
 
 		return $data;

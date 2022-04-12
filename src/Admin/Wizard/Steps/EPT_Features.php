@@ -109,6 +109,7 @@ class EPT_Features extends Step {
 			$this->send_error( esc_html__( 'It is not possible to create the post type with the current configuration.', 'easy-post-types-fields' ) );
 		}
 
+		flush_rewrite_rules( false );
 		wp_send_json_success();
 	}
 
