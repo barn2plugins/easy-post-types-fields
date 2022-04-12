@@ -66,7 +66,7 @@
 			});
 		}
 
-		const updateData = ( $destination, $source ) => {
+		const updateData = ( $source ) => {
 			return new Promise( (resolve, reject) => {
 				const postData = {
 					action: 'ept_inline_edit',
@@ -184,14 +184,14 @@
 				  $targetRow  = $('#the-list tr.editing', $table),
 				  $inlineEdit = $('#the-list tr#inline-edit');
 
-			updateData( $targetRow, $inlineEdit )
+			updateData( $inlineEdit )
 			.then( (isNew) => {
 				if ( isNew ) {
 					location.reload();
 					return;
 				}
 
-				updateRow( $targetRow, $inlineEdit )
+				updateRow( $targetRow, $inlineEdit );
 				$inlineEdit.prev('.hidden').remove().end().remove();
 				$('tfoot', $table).show();
 				$targetRow.show().removeClass('editing');
