@@ -39,10 +39,14 @@ class Util {
 	}
 
 	public static function get_post_type_object( $post_type ) {
+		if ( is_a( $post_type, 'WP_Post_Type' ) ) {
+			$post_type = $post_type->name;
+		}
+
 		$posts = get_posts(
 			[
 				'post_type'      => 'ept_post_type',
-				'name'           => str_replace( 'ept_', '', $post_type->name ),
+				'name'           => str_replace( 'ept_', '', $post_type ),
 				'posts_per_page' => 1,
 			]
 		);

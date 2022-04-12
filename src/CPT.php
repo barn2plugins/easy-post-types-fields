@@ -195,7 +195,6 @@ class CPT {
 
 		if ( is_array( $taxonomies ) ) {
 			foreach ( $taxonomies as $taxonomy ) {
-				$post_type = $taxonomy['post_type'];
 				$slug      = "{$post_type}_{$taxonomy['slug']}";
 				$args      = [
 					'labels'       => [
@@ -205,12 +204,12 @@ class CPT {
 					'hierarchical' => $taxonomy['hierarchical'],
 				];
 
-				new Taxonomy( $slug, $post_type, $args );
+				new Taxonomy( $slug, $this->post_type, $args );
 			}
 
 			return array_map(
 				function( $t ) {
-					return $t['key'];
+					return "{$t['post_type']}_{$t['slug']}";
 				},
 				$taxonomies
 			);

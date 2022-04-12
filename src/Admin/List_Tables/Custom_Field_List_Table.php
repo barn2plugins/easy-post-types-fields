@@ -38,8 +38,10 @@ class Custom_Field_List_Table extends WP_List_Table {
 			]
 		);
 
-		$fields       = get_post_meta( $this->id, '_ept_fields', true );
-		$this->fields = $fields ?: [];
+		$this->post_type  = $post_type;
+		$post_type_object = Util::get_post_type_object( $post_type );
+		$fields           = get_post_meta( $post_type_object->ID, '_ept_fields', true );
+		$this->fields     = $fields ?: [];
 	}
 
 	public function prepare_items() {
@@ -337,6 +339,15 @@ class Custom_Field_List_Table extends WP_List_Table {
 
 	public function display() {
 		$singular = $this->_args['singular'];
+		$new_link = add_query_arg(
+			[
+				'page'      => 'ept_post_types',
+				'post_type' => $this->post_type->name,
+				'section'   => 'fields',
+				'action'    => 'add',
+			],
+			admin_url( 'admin.php' )
+		);
 
 		$this->screen->render_screen_reader_content( 'heading_list' );
 
@@ -361,7 +372,9 @@ class Custom_Field_List_Table extends WP_List_Table {
 			<tfoot>
 				<tr>
 					<th scope="col" colspan="<?php echo esc_attr( count( $this->get_columns() ) ); ?>">
-						<a href="admin.php?page=ept_post_types&amp;action=add&amp;post_type=ept_testimonial&amp;section=taxonomies" class="page-title-action ept-post-table-action">Add New</a>
+						<a href="<?php echo esc_url( $new_link ); ?>" class="page-title-action ept-post-table-action">
+							<?php esc_html_e( 'Add new custom field', 'easy-post-types-fields' ); ?>
+						</a>
 					</th>
 				</tr>
 			</tfoot>

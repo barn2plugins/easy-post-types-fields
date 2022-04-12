@@ -12,11 +12,18 @@ namespace Barn2\Plugin\Easy_Post_Types_Fields;
 class Taxonomy {
 
 	/**
-	 * The ID of the EPT post containing the CPT definition
+	 * The key of this taxonomy, including the post_type name
 	 *
 	 * @var string
 	 */
 	private $taxonomy;
+
+	/**
+	 * The slug of this taxonomy
+	 *
+	 * @var string
+	 */
+	private $slug;
 
 	/**
 	 * The name (generally plural) of the CPT as defined in $args['labels']['name']
@@ -61,7 +68,8 @@ class Taxonomy {
 	private $is_registered;
 
 	public function __construct( $taxonomy, $post_type, $args = [] ) {
-		$this->post_type = $post_type->name;
+		$this->post_type = $post_type;
+		$this->slug      = $taxonomy;
 		$this->taxonomy  = "{$this->post_type}_$taxonomy";
 
 		$this->hierarchical  = isset( $args['hierarchical'] ) && $args['hierarchical'];
@@ -78,7 +86,14 @@ class Taxonomy {
 	public function prepare_arguments( $args ) {
 		if ( empty( $this->args ) ) {
 			$default_args = [
-				'public' => true,
+				'public'            => true,
+				'show_ui'           => true,
+				'show_in_menu'      => true,
+				'show_admin_column' => true,
+			];
+
+			$args['rewrite'] = [
+				'slug' => $this->slug,
 			];
 
 			$args['labels'] = apply_filters(
@@ -177,7 +192,7 @@ class Taxonomy {
 	}
 
 	public function register_taxonomy() {
-		register_taxonomy(
+		$taxonomy = register_taxonomy(
 			$this->taxonomy,
 			$this->post_type,
 			$this->args

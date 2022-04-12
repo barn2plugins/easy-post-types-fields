@@ -1,5 +1,7 @@
-(( $, params, undefined ) => {
+(( $, wp, params, undefined ) => {
 	$(() => {
+		const __ = wp.i18n.__;
+
 		$( '#ept_plural_name_wrap label' ).removeClass( 'screen-reader-text' );
 
 		$( '#ept_plural_name_wrap input' ).on( 'input', ( event ) => {
@@ -25,13 +27,75 @@
 		const populateData = ( $destination, $source ) => {
 			$( '.hidden>div', $source ).each( (index, item ) => {
 				const $this = $(item),
-					  $dest = $( `[name="${$this.attr('class')}"]`, $destination );
+					  $dest = $( `input[name="${$this.attr('class')}"]`, $destination );
 
-				if ( 'checkbox' === $this.attr('type') ) {
+				if ( 'checkbox' === $dest.attr('type') ) {
 					$dest.prop( 'checked', 'true' === $this.text() );
 				} else {
 					$dest.val( $this.text() );
 				}
+			})
+
+			$( `input[name="previous_slug"]`, $destination ).val( $( '.hidden>div.slug', $source ).text() );
+		}
+
+		const updateRow = ( $destination, $source ) => {
+			$( 'input', $source ).each( (index, item) => {
+				const $this = $(item),
+					  $dest = $(`.hidden>div.${$this.attr('name')}`, $destination);
+
+				let value = $this.val();
+
+				if ( 'checkbox' === $this.attr('type') ) {
+					$dest.text( $this.prop( 'checked' ) ? 'true' : 'false' );
+					value = $this.prop( 'checked' ) ? __( 'Yes', 'easy-post-types-fields' ) : __( 'No', 'easy-post-types-fields' );
+				} else {
+					$dest.text( $this.val() );
+				}
+
+				let cellSelector = `td.column-${$this.attr('name')}`;
+
+				if ( 'singular_name' === $this.attr('name') ) {
+					cellSelector += ' a.row-title';
+				}
+
+				$( cellSelector, $destination ).text( value )
+			});
+		}
+
+		const updateData = ( $destination, $source ) => {
+			return new Promise( (resolve, reject) => {
+				const postData = {
+					action: 'ept_inline_edit',
+					nonce: $( '#_inline_edit', $source ).val()
+				};
+	
+				$( 'input', $source ).each( (index, item ) => {
+					const $this = $(item);
+					let value = $this.val();
+
+					if ( 'checkbox' === $this.attr('type') ) {
+						value = $this.prop( 'checked' );
+					}
+
+					postData[$(item).attr('name')] = value;
+				});
+	
+				$( '.spinner', $source ).addClass( 'is-active' );
+	
+				$.post(
+					ajaxurl,
+					$.param(postData),
+					(response) => {
+						$( '.spinner', $source ).removeClass( 'is-active' );
+	
+						if (response.success) {
+							resolve()
+						} else {
+							reject( response.data.error_message )
+						}
+					}
+				);
 			})
 		}
 
@@ -79,6 +143,32 @@
 			}
 		})
 
+		$(document).on('click', '#the-list .inline-edit-save button.save', (event) => {
+			const $table      = $(event.target).closest('table'),
+				  $noItems    = $('#the-list tr.no-items', $table),
+				  $targetRow  = $('#the-list tr.editing', $table),
+				  $inlineEdit = $('#the-list tr#inline-edit');
+
+			updateData( $targetRow, $inlineEdit )
+			.then( () => {
+				updateRow( $targetRow, $inlineEdit )
+				$inlineEdit.prev('.hidden').remove().end().remove();
+				$('tfoot', $table).show();
+				$targetRow.show().removeClass('editing');
+	
+				if ( 1 === $( 'tbody tr', $table ).length ) {
+					$noItems.show();
+				}
+			}, (error) => {
+				const $errorNotice = $( '#the-list .inline-edit-save .notice-error' ),
+					  $error       = $( '.error', $errorNotice );
+
+				$errorNotice.removeClass( 'hidden' );
+				$error.text( error );
+				wp.a11y.speak( error );
+			});
+		})
+
 		if ( $.fn.tipTip ) {
 			$( '.barn2-help-tip' ).tipTip({
 				'attribute': 'data-tip',
@@ -89,4 +179,4 @@
 			});		
 		}
 	})
-})( jQuery, ept_params )
+})( jQuery, wp, ept_params )
