@@ -246,6 +246,13 @@ class Taxonomy_List_Table extends WP_List_Table {
 			);
 		}
 
+		$actions['manage'] = sprintf(
+			'<a href="%s" aria-label="%s">%s</a>',
+			$this->get_manage_terms_link( $taxonomy ),
+			esc_attr( __( 'Manage terms', 'easy-post-types-fields' ) ),
+			__( 'Manage terms', 'easy-post-types-fields' )
+		);
+
 		return $this->row_actions( $actions );
 	}
 
@@ -255,6 +262,18 @@ class Taxonomy_List_Table extends WP_List_Table {
 		}
 
 		return false;
+	}
+
+	public function get_manage_terms_link( $taxonomy ) {
+		$post_type = $this->post_type->name;
+
+		return add_query_arg(
+			[
+				'taxonomy'  => "{$post_type}_{$taxonomy['slug']}",
+				'post_type' => $post_type,
+			],
+			admin_url( 'edit-tags.php' )
+		);
 	}
 
 	public function display() {
