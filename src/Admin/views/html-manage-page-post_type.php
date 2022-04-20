@@ -12,6 +12,44 @@ defined( 'ABSPATH' ) || exit;
 
 ?>
 
-<h2>POST TYPE EDITOR</h2>
+<form action="<?php echo esc_url( $form_action ); ?>" method="post" class="ept-list-item">
+	<fieldset>
+		<label>
+			<span class="label"><?php esc_html_e( 'Name', 'easy-post-types-fields' ); ?></span>
+			<span class="input">
+				<input type="text" placeholder="e.g. Articles" name="name" value="<?php echo esc_attr( $name ); ?>" />
+			</span>
+		</label>
+		<label>
+			<span class="label"><?php esc_html_e( 'Singular name', 'easy-post-types-fields' ); ?></span>
+			<span class="input">
+				<input type="text" placeholder="e.g. Article" name="singular_name" value="<?php echo esc_attr( $singular_name ); ?>" />
+			</span>
+		</label>
+		<label>
+			<span class="label"><?php esc_html_e( 'Slug', 'easy-post-types-fields' ); ?></span>
+			<span class="input">
+				<input type="text" name="slug" maxlength="<?php echo esc_attr( $max ); ?>" value="<?php echo esc_attr( $slug ); ?>" />
+			</span>
+		</label>
+		<input type="hidden" name="previous_slug" value="<?php echo esc_attr( $previous_slug ); ?>" />
+	</fieldset>
+	<?php
+
+	wp_nonce_field( 'save_list_item_postdata' );
+	submit_button(
+		sprintf(
+			__( '%s post type', 'easy-post-types-fields' ),
+			'add' === $request['action'] ? __( 'Add', 'easy-post-types-fields' ) : __( 'Update', 'easy-post-types-fields' )
+		),
+		'primary',
+		'submit',
+		false
+	);
+
+	?>
+
+	<a href="<?php echo esc_url( $form_action ); ?>" class="button"><?php esc_html_e( 'Cancel', 'easy-post-types-fields' ); ?></a>
+</form>
 
 <?php

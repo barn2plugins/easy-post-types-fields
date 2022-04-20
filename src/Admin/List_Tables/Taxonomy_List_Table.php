@@ -178,13 +178,6 @@ class Taxonomy_List_Table extends WP_List_Table {
 			echo $this->handle_row_actions( $taxonomy, 'name', $primary ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 			?>
-			<div class="hidden" id="inline_<?php echo esc_attr( "{$taxonomy['post_type']}_{$taxonomy['slug']}" ); ?>">
-				<div class="name"><?php echo esc_attr( $taxonomy['name'] ); ?></div>
-				<div class="plural_name"><?php echo esc_attr( $taxonomy['plural_name'] ); ?></div>
-				<div class="slug"><?php echo esc_attr( $taxonomy['slug'] ); ?></div>
-				<div class="hierarchical"><?php echo esc_attr( $taxonomy['hierarchical'] ? 'true' : 'false' ); ?></div>
-				<div class="previous_slug"><?php echo esc_attr( $taxonomy['slug'] ); ?></div>
-			</div>
 		</td>
 		<?php
 	}
@@ -233,14 +226,16 @@ class Taxonomy_List_Table extends WP_List_Table {
 
 		if ( $can_edit_post_type && $this->is_custom( $taxonomy ) ) {
 			$actions['edit'] = sprintf(
-				'<a href="" aria-label="%s" class="editinline">%s</a>',
+				'<a href="%s" aria-label="%s">%s</a>',
+				$this->get_edit_post_link( $taxonomy ),
 				esc_attr( __( 'Edit', 'easy-post-types-fields' ) ),
 				__( 'Edit', 'easy-post-types-fields' )
 			);
 
 			$actions['delete'] = sprintf(
-				'<a href="" aria-label="%s" class="taxonomy-delete">%s</a>',
+				'<a href="" aria-label="%s" class="taxonomy-delete" data-_wpnonce="%s">%s</a>',
 				$this->get_delete_post_link( $taxonomy ),
+				wp_create_nonce( 'inlinedeletenonce' ),
 				esc_attr( __( 'Delete', 'easy-post-types-fields' ) ),
 				__( 'Delete', 'easy-post-types-fields' )
 			);
@@ -254,6 +249,14 @@ class Taxonomy_List_Table extends WP_List_Table {
 		);
 
 		return $this->row_actions( $actions );
+	}
+
+	public function get_edit_post_link( $taxonomy ) {
+		parse_str( $_SERVER['QUERY_STRING'], $query_args );
+		$query_args['taxonomy'] = $taxonomy['slug'];
+		$query_args['action']   = 'edit';
+
+		return add_query_arg( $query_args, admin_url( 'admin.php' ) );
 	}
 
 	public function get_delete_post_link( $taxonomy ) {
@@ -307,93 +310,7 @@ class Taxonomy_List_Table extends WP_List_Table {
 				>
 				<?php $this->display_rows_or_placeholder(); ?>
 			</tbody>
-
-			<tfoot>
-				<tr>
-					<th scope="col" colspan="<?php echo esc_attr( count( $this->get_columns() ) ); ?>">
-						<button type="button" class="editinline page-title-action ept-post-table-action">
-							<?php esc_html_e( 'Add new taxonomy', 'easy-post-types-fields' ); ?>
-						</button>
-						<?php wp_nonce_field( 'inlinedeletenonce', '_inline_delete', false ); ?>
-					</th>
-				</tr>
-			</tfoot>
 		</table>
-		<?php
-	}
-	/**
-	 * Outputs the hidden row displayed when inline editing
-	 *
-	 * @since 3.1.0
-	 *
-	 * @global string $mode List table view mode.
-	 */
-	public function inline_edit() {
-		$screen = get_current_screen();
-
-		?>
-		<form method="get">
-			<table style="display: none"><tbody id="inlineedit">
-				<?php
-
-				$classes = "inline-edit-row inline-edit-row-taxonomy quick-edit-row quick-edit-row-taxonomy inline-edit-{$screen->post_type}";
-
-				// 32 is the maximum length for a taxonomy key
-				// (31 accounts for the underscore between the post type name and the taxonomy slug)
-				$max = 31 - strlen( $this->post_type->name );
-
-				?>
-				<tr id="inline-edit" class="<?php echo $classes; ?>" style="display: none">
-					<td colspan="<?php echo $this->get_column_count(); ?>" class="colspanchange">
-						<div class="inline-edit-wrapper" role="region" aria-labelledby="inline-edit-legend">
-							<fieldset class="inline-edit-col-left">
-								<div class="inline-edit-col">
-									<label>
-										<span class="title"><?php _e( 'Name', 'easy-post-types-fields' ); ?></span>
-										<span class="input-text-wrap">
-											<input type="text" placeholder="Taxonomy singular name (e.g. Category)" name="name" class="ptitle" value="" />
-										</span>
-									</label>
-									<label>
-										<span class="title"><?php _e( 'Plural name', 'easy-post-types-fields' ); ?></span>
-										<span class="input-text-wrap">
-											<input type="text" placeholder="Taxonomy plural name (e.g. Categories)" name="plural_name" class="ptitle" value="" />
-										</span>
-									</label>
-									<label>
-										<span class="title"><?php _e( 'Slug', 'easy-post-types-fields' ); ?></span>
-										<span class="input-text-wrap">
-											<input type="text" name="slug" class="ptitle" maxlength="<?php echo esc_attr( $max ); ?>" value="" />
-										</span>
-									</label>
-									<label>
-										<span class="title"><?php _e( 'Hierarchical', 'easy-post-types-fields' ); ?></span>
-										<span class="input-text-wrap">
-											<input type="checkbox" name="hierarchical" class="ptitle" value="" />
-										</span>
-									</label>
-									<input type="hidden" name="previous_slug" value="" />
-									<input type="hidden" name="post_type" value="<?php echo esc_attr( $this->post_type->name ); ?>" />
-									<input type="hidden" name="type" value="taxonomy" />
-								</div>
-							</fieldset>
-							<div class="submit inline-edit-save">
-								<?php wp_nonce_field( 'inlineeditnonce', '_inline_edit', false ); ?>
-								<button type="button" class="button button-primary save"><?php _e( 'Update', 'easy-post-types-fields' ); ?></button>
-								<button type="button" class="button cancel"><?php _e( 'Cancel', 'easy-post-types-fields' ); ?></button>
-
-								<span class="spinner"></span>
-
-								<input type="hidden" name="screen" value="<?php echo esc_attr( $screen->id ); ?>" />
-								<div class="notice notice-error notice-alt inline hidden">
-									<p class="error"></p>
-								</div>
-							</div>
-						</div> <!-- end of .inline-edit-wrapper -->
-					</td>
-				</tr>
-			</tbody></table>
-		</form>
 		<?php
 	}
 }

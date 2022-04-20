@@ -2,21 +2,65 @@
 /**
  * The HTML markup of the Manage page
  *
+ * @package Barn2/easy-post-types-fields
  * @param Post_Type_List_Table $post_type_list_table The list table instance (a subclass of WP_List_Table)
  * @param Barn2\EPT_Lib\Plugin\Plugin $plugin The main instance of the plugin
  * @param string $new_link The link to add a new post type
  */
+
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin;
 
 use Barn2\Plugin\Easy_Post_Types_Fields\Util;
 
 defined( 'ABSPATH' ) || exit;
 
-$request_post_type = Util::get_post_type_by_name( $request['post_type'] );
+$request_post_type    = Util::get_post_type_by_name( $request['post_type'] );
+$current_taxonomy     = get_taxonomy( "{$request['post_type']}_{$request['taxonomy']}" );
+$hierarchical_tooltip = Util::get_tooltip( __( 'Hierarchical taxonomies have a nested parent/child structure like WordPress post categories, whereas non-hierarchical taxonomies are flat like tags.', 'easy-post-types-fields' ) );
 
-submit_button(
-	sprintf(
-		__( '%s taxonomy', 'easy-post-types-fields' ),
-		'add' === $request['action'] ? __( 'Add', 'easy-post-types-fields' ) : __( 'Update', 'easy-post-types-fields' )
-	)
-);
+$data = [];
+
+if ( $current_taxonomy ) {
+	$data = [
+		'name'          => $current_taxonomy->labels->name,
+		'singular_name' => $current_taxonomy->labels->singular_name,
+		'slug'          => $request['taxonomy'],
+		'hierarchical'  => $current_taxonomy->hierarchical,
+		'previous_slug' => $request['taxonomy'],
+	];
+}
+
+if ( wp_verify_nonce( $_POST['_wpnonce'], 'save_list_item_postdata' ) ) {
+	$data = array_merge( $data, $_POST );
+}
+
+?>
+
+<fieldset>
+	<label>
+		<span class="label"><?php esc_html_e( 'Name', 'easy-post-types-fields' ); ?></span>
+		<span class="input">
+			<input type="text" placeholder="Taxonomy plural name (e.g. Categories)" name="name" value="<?php echo esc_attr( $data['name'] ); ?>" />
+		</span>
+	</label>
+	<label>
+		<span class="label"><?php esc_html_e( 'Singular name', 'easy-post-types-fields' ); ?></span>
+		<span class="input">
+			<input type="text" placeholder="Taxonomy singular name (e.g. Category)" name="singular_name" value="<?php echo esc_attr( $data['singular_name'] ); ?>" />
+		</span>
+	</label>
+	<label>
+		<span class="label"><?php esc_html_e( 'Slug', 'easy-post-types-fields' ); ?></span>
+		<span class="input">
+			<input type="text" name="slug" maxlength="<?php echo esc_attr( $max ); ?>" value="<?php echo esc_attr( $data['slug'] ); ?>" />
+		</span>
+	</label>
+	<label>
+		<span class="label"><?php esc_html_e( 'Hierarchical', 'easy-post-types-fields' ); ?></span>
+		<?php echo wp_kses_post( $hierarchical_tooltip ); ?>
+		<span class="input">
+			<input type="checkbox" name="hierarchical" <?php checked( $data['hierarchical'] ); ?> />
+		</span>
+	</label>
+	<input type="hidden" name="previous_slug" value="<?php echo esc_attr( $data['previous_slug'] ); ?>" />
+</fieldset>

@@ -23,9 +23,15 @@ $post_type_list_table = new List_Tables\Post_Type_List_Table();
 <?php $post_type_list_table->views(); ?>
 <form id="posts-filter" method="get">
 	<h2 class="screen-reader-text">Posts list</h2>
+
 	<?php
+
 	$post_type_list_table->display();
+
 	?>
+
+	<a href="<?php echo esc_url( $new_link ); ?>" class="button"><?php esc_html_e( 'Add new post type', 'easy-post-types-fields' ); ?></a>
+
 </form>
 
 

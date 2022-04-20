@@ -4,7 +4,20 @@ namespace Barn2\Plugin\Easy_Post_Types_Fields;
 class Util {
 
 	public static function get_page_request() {
-		return $_REQUEST; //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$request = array_intersect_key(
+			$_GET, //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			array_flip(
+				[
+					'page',
+					'post_type',
+					'section',
+					'taxonomy',
+					'field',
+					'action'
+				]
+			)
+		);
+		return $request;
 	}
 
 	public static function get_manage_page_url( $args = [], $post_type = null, $section = '' ) {

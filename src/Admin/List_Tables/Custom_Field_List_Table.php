@@ -369,15 +369,6 @@ class Custom_Field_List_Table extends WP_List_Table {
 				<?php $this->display_rows_or_placeholder(); ?>
 			</tbody>
 
-			<tfoot>
-				<tr>
-					<th scope="col" colspan="<?php echo esc_attr( count( $this->get_columns() ) ); ?>">
-						<a href="<?php echo esc_url( $new_link ); ?>" class="page-title-action ept-post-table-action">
-							<?php esc_html_e( 'Add new custom field', 'easy-post-types-fields' ); ?>
-						</a>
-					</th>
-				</tr>
-			</tfoot>
 		</table>
 		<?php
 	}

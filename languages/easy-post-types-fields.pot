@@ -9,12 +9,13 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-04-12T00:00:00+00:00\n"
+"POT-Creation-Date: 2022-04-20T00:00:00+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: easy-post-types-fields\n"
 
 #. Plugin Name of the plugin
+#: src/Admin/views/html-manage-page-breadcrumb.php:24
 msgid "Easy Post Types and Fields"
 msgstr ""
 
@@ -107,141 +108,139 @@ msgstr ""
 msgid "Read more"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:40
-#: src/Util.php:66
+#: src/Admin/CPT_Editor.php:51
+#: src/Util.php:79
 msgid "Post types"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:41
+#: src/Admin/CPT_Editor.php:52
 msgid "Post type"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:42
+#: src/Admin/CPT_Editor.php:53
 msgid "Add new"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:43
+#: src/Admin/CPT_Editor.php:54
+#: src/Admin/views/html-manage-page-post_types.php:33
 msgid "Add new post type"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:44
+#: src/Admin/CPT_Editor.php:55
 msgid "Edit post type"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:45
+#: src/Admin/CPT_Editor.php:56
 msgid "New post type"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:46
+#: src/Admin/CPT_Editor.php:57
 msgid "View post type"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:47
+#: src/Admin/CPT_Editor.php:58
 msgid "View post types"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:48
+#: src/Admin/CPT_Editor.php:59
 msgid "Search custom post types"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:49
+#: src/Admin/CPT_Editor.php:60
 msgid "No custom post types have been created yet."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:51
+#: src/Admin/CPT_Editor.php:62
 msgid "All post types"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:52
+#: src/Admin/CPT_Editor.php:63
 msgid "Post Type Attributes"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:53
+#: src/Admin/CPT_Editor.php:64
 msgid "Filter post types list"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:54
+#: src/Admin/CPT_Editor.php:65
 msgid "Filter by date"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:55
+#: src/Admin/CPT_Editor.php:66
 msgid "Post types list navigation"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:56
+#: src/Admin/CPT_Editor.php:67
 msgid "Post types list"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:57
+#: src/Admin/CPT_Editor.php:68
 msgid "Post type published."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:58
+#: src/Admin/CPT_Editor.php:69
 msgid "Post type published privately."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:59
+#: src/Admin/CPT_Editor.php:70
 msgid "Post type reverted to draft."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:60
+#: src/Admin/CPT_Editor.php:71
 msgid "Post scheduled."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:61
+#: src/Admin/CPT_Editor.php:72
 msgid "Post updated."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:62
+#: src/Admin/CPT_Editor.php:73
 msgid "A link to a post type."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:64
+#: src/Admin/CPT_Editor.php:75
 msgid "Define a custom post type"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:104
+#: src/Admin/CPT_Editor.php:117
 msgid "Singular name of the post type (e.g. `Project` or `Book`)"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:120
+#: src/Admin/CPT_Editor.php:133
 msgid "Definition"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:135
+#: src/Admin/CPT_Editor.php:148
 msgid "Plural name of the post type (e.g. `Projects` or `Books`)"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:169
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:329
+#: src/Admin/CPT_Editor.php:182
+#: src/Admin/views/html-manage-page-post_type.php:18
+#: src/Admin/views/html-manage-page-taxonomies.php:41
 #: src/Admin/Wizard/Steps/EPT_Name.php:20
 msgid "Name"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:177
+#: src/Admin/CPT_Editor.php:190
 msgid "Custom"
 msgstr ""
 
 #. translators: 1: the plural name of the post type, 2: the opening tab of an anchor element, 3: the closing tag of an anchor element, 4: the singular name of the post type, 5: the plural name of the post type,
-#: src/Admin/CPT_Editor.php:200
+#: src/Admin/CPT_Editor.php:213
 msgid "Use custom fields to store extra data about your %1$s, such as a reference number or link. Custom fields are for data that is unique to each %4$s. If you want to use the data to organize or group your %5$s then you should create a %2$staxonomy%3$s instead."
 msgstr ""
 
 #. translators: the plural name of the post type
-#: src/Admin/CPT_Editor.php:207
+#: src/Admin/CPT_Editor.php:220
 msgid "Taxonomies let you organize and group your %1$s. For example, you might want to organize them by category, tag, year, author, or industry. If you need to add data that is unique to each %4$s then you should create a %2$scustom field%3$s instead."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:331
-msgid "Another taxonomy with the same slug is already registered to this post type. Please choose a different slug."
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:349
-msgid "The post type is missing or an error occurred when registering this taxonomy."
-msgstr ""
-
-#: src/Admin/CPT_Editor.php:374
+#: src/Admin/CPT_Editor.php:339
 msgid "The post type is missing or an error occurred when completing this operation."
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:394
+msgid "A taxonomy with the same slug is already registered to this post type. Please choose a different slug."
 msgstr ""
 
 #: src/Admin/List_Tables/Custom_Field_List_Table.php:64
@@ -282,7 +281,7 @@ msgstr ""
 #: src/Admin/List_Tables/Post_Type_List_Table.php:329
 #: src/Admin/List_Tables/Post_Type_List_Table.php:421
 #: src/Admin/List_Tables/Post_Type_List_Table.php:422
-#: src/Util.php:90
+#: src/Util.php:103
 msgid "Taxonomies"
 msgstr ""
 
@@ -303,9 +302,9 @@ msgstr ""
 #: src/Admin/List_Tables/Custom_Field_List_Table.php:259
 #: src/Admin/List_Tables/Post_Type_List_Table.php:398
 #: src/Admin/List_Tables/Post_Type_List_Table.php:399
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:237
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:238
-#: src/Util.php:103
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:231
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:232
+#: src/Util.php:116
 msgid "Edit"
 msgstr ""
 
@@ -313,8 +312,8 @@ msgstr ""
 #: src/Admin/List_Tables/Custom_Field_List_Table.php:267
 #: src/Admin/List_Tables/Post_Type_List_Table.php:405
 #: src/Admin/List_Tables/Post_Type_List_Table.php:407
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:244
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:245
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:239
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:240
 msgid "Delete"
 msgstr ""
 
@@ -322,10 +321,6 @@ msgstr ""
 #: src/Admin/List_Tables/Custom_Field_List_Table.php:291
 #: src/Admin/List_Tables/Custom_Field_List_Table.php:292
 msgid "Manage %s"
-msgstr ""
-
-#: src/Admin/List_Tables/Custom_Field_List_Table.php:376
-msgid "Add new custom field"
 msgstr ""
 
 #: src/Admin/List_Tables/Post_Type_List_Table.php:137
@@ -377,6 +372,7 @@ msgid "No taxonomies for this post type yet"
 msgstr ""
 
 #: src/Admin/List_Tables/Taxonomy_List_Table.php:112
+#: src/Admin/views/html-manage-page-taxonomies.php:19
 msgid "Hierarchical taxonomies have a nested parent/child structure like WordPress post categories, whereas non-hierarchical taxonomies are flat like tags."
 msgstr ""
 
@@ -390,40 +386,17 @@ msgctxt "column name"
 msgid "Hierarchical"
 msgstr ""
 
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:200
-#: assets/js/admin/ept-editor.js:54
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:193
 msgid "Yes"
 msgstr ""
 
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:200
-#: assets/js/admin/ept-editor.js:54
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:193
 msgid "No"
 msgstr ""
 
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:296
-msgid "Add new taxonomy"
-msgstr ""
-
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:335
-msgid "Plural name"
-msgstr ""
-
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:341
-msgid "Slug"
-msgstr ""
-
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:347
-msgid "Hierarchical"
-msgstr ""
-
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:359
-#: src/Admin/views/html-manage-page-fields.php:20
-#: src/Admin/views/html-manage-page-taxonomies.php:20
-msgid "Update"
-msgstr ""
-
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:360
-msgid "Cancel"
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:247
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:248
+msgid "Manage terms"
 msgstr ""
 
 #: src/Admin/views/html-help-page.php:17
@@ -450,36 +423,56 @@ msgstr ""
 msgid "To get help with a specific issue, you can ask in the %1$ssupport forum%2$s or %3$ssubmit a support request%4$s."
 msgstr ""
 
-#: src/Admin/views/html-manage-page-breadcrumb.php:24
-msgid "Manage post types"
+#. translators: either `Taxonomy` or `Custom field`
+#: src/Admin/views/html-manage-page-lists.php:17
+msgid "%s editor"
 msgstr ""
 
-#: src/Admin/views/html-manage-page-breadcrumb.php:26
-msgid "Add New"
+#: src/Admin/views/html-manage-page-lists.php:29
+msgid "%s taxonomy"
 msgstr ""
 
-#: src/Admin/views/html-manage-page-fields.php:19
-msgid "%s field"
-msgstr ""
-
-#: src/Admin/views/html-manage-page-fields.php:20
-#: src/Admin/views/html-manage-page-taxonomies.php:20
-#: src/Util.php:103
+#: src/Admin/views/html-manage-page-lists.php:30
+#: src/Admin/views/html-manage-page-post_type.php:43
+#: src/Util.php:116
 msgid "Add"
 msgstr ""
 
-#. translators: either `Taxonomy` or `Custom field`
-#: src/Admin/views/html-manage-page-lists.php:24
-msgid "%s editor"
+#: src/Admin/views/html-manage-page-lists.php:30
+#: src/Admin/views/html-manage-page-post_type.php:43
+msgid "Update"
+msgstr ""
+
+#: src/Admin/views/html-manage-page-lists.php:38
+#: src/Admin/views/html-manage-page-post_type.php:52
+msgid "Cancel"
 msgstr ""
 
 #. translators: either `Taxonomy` or `Custom field`
 #. translators: the plural post type name
 #. translators: the plural name of a taxonomy
-#: src/Admin/views/html-manage-page-lists.php:35
+#: src/Admin/views/html-manage-page-lists.php:53
 #: src/CPT.php:150
 #: src/Taxonomy.php:166
 msgid "%s list"
+msgstr ""
+
+#: src/Admin/views/html-manage-page-lists.php:61
+msgid "Add new %s"
+msgstr ""
+
+#: src/Admin/views/html-manage-page-post_type.php:24
+#: src/Admin/views/html-manage-page-taxonomies.php:47
+msgid "Singular name"
+msgstr ""
+
+#: src/Admin/views/html-manage-page-post_type.php:30
+#: src/Admin/views/html-manage-page-taxonomies.php:53
+msgid "Slug"
+msgstr ""
+
+#: src/Admin/views/html-manage-page-post_type.php:42
+msgid "%s post type"
 msgstr ""
 
 #: src/Admin/views/html-manage-page-post_types.php:17
@@ -490,8 +483,8 @@ msgstr ""
 msgid "Setup Wizard"
 msgstr ""
 
-#: src/Admin/views/html-manage-page-taxonomies.php:19
-msgid "%s taxonomy"
+#: src/Admin/views/html-manage-page-taxonomies.php:59
+msgid "Hierarchical"
 msgstr ""
 
 #: src/Admin/Wizard/Steps/Completed.php:17
@@ -520,6 +513,7 @@ msgstr ""
 msgid "Choose which of the standard features you will use to store data about your %s. Later, you can also create custom fields and taxonomies for storing additional information."
 msgstr ""
 
+#. translators: the plural name of a post type
 #: src/Admin/Wizard/Steps/EPT_Features.php:23
 msgid "What type of information do you need for your %s?"
 msgstr ""
@@ -821,7 +815,7 @@ msgstr ""
 msgid "&larr; Go to %s"
 msgstr ""
 
-#: src/Util.php:90
+#: src/Util.php:103
 msgid "Custom fields"
 msgstr ""
 
@@ -833,10 +827,10 @@ msgstr ""
 msgid "The database contains at least one post of this post type. By deleting this post type, WordPress will not be able to access those posts any longer. Are you sure you want to continue?"
 msgstr ""
 
-#: assets/js/admin/ept-editor.js:111
+#: assets/js/admin/ept-editor.js:54
 msgid "Are you sure you want to delete the %1$s %2$s?"
 msgstr ""
 
-#: assets/js/admin/ept-editor.js:111
+#: assets/js/admin/ept-editor.js:54
 msgid "taxonomy"
 msgstr ""

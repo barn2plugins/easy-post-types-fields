@@ -6,6 +6,9 @@ use Barn2\Plugin\Easy_Post_Types_Fields\Util,
 	Barn2\EPT_Lib\Registerable,
 	Barn2\EPT_Lib\Service,
 	Barn2\EPT_Lib\Admin\Plugin_Promo;
+
+use WP_Error;
+
 /**
  * Define the CPT editor.
  *
@@ -28,8 +31,16 @@ class CPT_Editor implements Service, Registerable {
 	 */
 	private $plugin;
 
+	/**
+	 * A list of errors triggered during validation
+	 *
+	 * @var WP_Error
+	 */
+	private $errors;
+
 	public function __construct( Simple_Plugin $plugin ) {
 		$this->plugin = $plugin;
+		$this->errors = new WP_Error();
 	}
 
 	public function register() {
@@ -91,8 +102,10 @@ class CPT_Editor implements Service, Registerable {
 		add_action( 'admin_menu', [ $this, 'admin_menu' ] );
 		add_filter( 'wp_insert_post_data', [ $this, 'save_post_type' ], 10, 3 );
 
-		add_action( 'wp_ajax_ept_inline_edit', [ $this, 'inline_edit' ] );
 		add_action( 'wp_ajax_ept_inline_delete', [ $this, 'inline_delete' ] );
+
+		add_action( 'admin_init', [ $this, 'save_post_data' ] );
+		add_action( 'admin_notices', [ $this, 'admin_notices' ] );
 
 		( new Plugin_Promo( $this->plugin ) )->register();
 	}
@@ -240,6 +253,7 @@ class CPT_Editor implements Service, Registerable {
 		$breadcrumbs = Util::get_page_breadcrumbs();
 		$request     = Util::get_page_request();
 		$content     = isset( $request['section'] ) ? 'lists' : 'post_types';
+		$section     = isset( $request['section'] ) ? $request['section'] : 'add';
 		$new_link    = add_query_arg(
 			[
 				'page'   => isset( $request['section'] ) ? $request['page'] : $plugin->get_slug() . '-setup-wizard',
@@ -275,82 +289,33 @@ class CPT_Editor implements Service, Registerable {
 		include $this->plugin->get_admin_path( 'views/html-help-page.php' );
 	}
 
-	public function inline_edit() {
-		check_ajax_referer( 'inlineeditnonce', '_inline_edit' );
+	public function admin_notices() {
+		if ( ! $this->errors->has_errors() ) {
+			return;
+		}
 
-		$type = $_POST['type'];
-		$this->{"inline_edit_$type"}();
+		?>
+		<div class="error notice">
+			<?php
+			foreach ( $this->errors->get_error_messages() as $error ) {
+				?>
+				<p><?php echo $error; ?></p>
+				<?php
+			}
+			?>
+		</div>
+		<?php
 	}
+
 
 	public function inline_delete() {
 		check_ajax_referer( 'inlinedeletenonce', '_inline_delete' );
 
 		$type = $_POST['type'];
-		$this->{"inline_delete_$type"}();
+		$this->{"inline_delete_$type"}( $_POST );
 	}
 
-	public function inline_edit_taxonomy() {
-		$post_data        = $_POST;
-		$post_type_object = Util::get_post_type_object( $post_data['post_type'] );
-
-		if ( $post_type_object ) {
-			$taxonomies = get_post_meta( $post_type_object->ID, '_ept_taxonomies', true );
-
-			if ( ! $taxonomies ) {
-				$taxonomies = [];
-			}
-
-			$new_taxonomy     = [
-				'name'         => $post_data['name'],
-				'plural_name'  => $post_data['plural_name'],
-				'slug'         => sanitize_title( $post_data['slug'] ),
-				'hierarchical' => filter_var( $post_data['hierarchical'], FILTER_VALIDATE_BOOLEAN ),
-				'post_type'    => $post_data['post_type'],
-			];
-			$slug             = $post_data['slug'];
-			$other_taxonomies = $taxonomies;
-
-			if ( $post_data['previous_slug'] ) {
-				$other_taxonomies = array_filter(
-					$taxonomies,
-					function( $t ) use ( $post_data ) {
-						return $t['slug'] !== $post_data['previous_slug'];
-					}
-				);
-			}
-
-			if ( $post_data['previous_slug'] !== $post_data['slug'] ) {
-				$conflicting_taxonomies = array_filter(
-					$other_taxonomies,
-					function( $t ) use ( $slug ) {
-						return $t['slug'] === $slug;
-					}
-				);
-
-				if ( ! empty( $conflicting_taxonomies ) ) {
-					wp_send_json_error( [ 'error_message' => __( 'Another taxonomy with the same slug is already registered to this post type. Please choose a different slug.', 'easy-post-types-fields' ) ] );
-				}
-			}
-
-			$new_taxonomies = array_merge( $other_taxonomies, [ $new_taxonomy ] );
-
-			usort(
-				$new_taxonomies,
-				function( $a, $b ) {
-					return $a['name'] > $b['name'] ? 1 : -1;
-				}
-			);
-
-			update_post_meta( $post_type_object->ID, '_ept_taxonomies', $new_taxonomies );
-
-			wp_send_json_success();
-		}
-
-		wp_send_json_error( [ 'error_message' => __( 'The post type is missing or an error occurred when registering this taxonomy.', 'easy-post-types-fields' ) ] );
-	}
-
-	public function inline_delete_taxonomy() {
-		$post_data        = $_POST;
+	public function inline_delete_taxonomy( $post_data ) {
 		$post_type_object = Util::get_post_type_object( $post_data['post_type'] );
 
 		if ( $post_type_object ) {
@@ -374,7 +339,80 @@ class CPT_Editor implements Service, Registerable {
 		wp_send_json_error( [ 'error_message' => __( 'The post type is missing or an error occurred when completing this operation.', 'easy-post-types-fields' ) ] );
 	}
 
-	public function inline_edit_custom_field() {
+	public function save_post_data() {
+		if ( ! isset( $_POST['_wpnonce'] ) || ! wp_verify_nonce( $_POST['_wpnonce'], 'save_list_item_postdata' ) ) {
+			return;
+		}
 
+		$this->errors = new WP_Error();
+
+		$postdata  = $_POST;
+		$request   = Util::get_page_request();
+		$data_type = isset( $request['section'] ) && 'taxonomies' === $request['section'] ? 'taxonomy' : 'field';
+
+		$this->{"save_$data_type"}( $postdata, $request );
+	}
+
+	public function save_taxonomy( $data, $request ) {
+		$post_type_object = Util::get_post_type_object( $request['post_type'] );
+
+		if ( $post_type_object ) {
+			$taxonomies = get_post_meta( $post_type_object->ID, '_ept_taxonomies', true );
+
+			if ( ! $taxonomies ) {
+				$taxonomies = [];
+			}
+
+			$new_taxonomy     = [
+				'name'          => $data['name'],
+				'singular_name' => $data['singular_name'],
+				'slug'          => sanitize_title( $data['slug'] ),
+				'hierarchical'  => filter_var( $data['hierarchical'], FILTER_VALIDATE_BOOLEAN ),
+				'post_type'     => $request['post_type'],
+			];
+			$slug             = $data['slug'];
+			$other_taxonomies = $taxonomies;
+
+			if ( $data['previous_slug'] ) {
+				$other_taxonomies = array_filter(
+					$taxonomies,
+					function( $t ) use ( $data ) {
+						return $t['slug'] !== $data['previous_slug'];
+					}
+				);
+			}
+
+			if ( $data['previous_slug'] !== $data['slug'] ) {
+				$conflicting_taxonomies = array_filter(
+					$other_taxonomies,
+					function( $t ) use ( $slug ) {
+						return $t['slug'] === $slug;
+					}
+				);
+
+				if ( ! empty( $conflicting_taxonomies ) ) {
+					$this->errors->add( 'conflicting_taxonomy', __( 'A taxonomy with the same slug is already registered to this post type. Please choose a different slug.', 'easy-post-types-fields' ) );
+				}
+			}
+
+			if ( $this->errors->has_errors() ) {
+				return;
+			}
+
+			$new_taxonomies = array_merge( $other_taxonomies, [ $new_taxonomy ] );
+
+			usort(
+				$new_taxonomies,
+				function( $a, $b ) {
+					return $a['name'] > $b['name'] ? 1 : -1;
+				}
+			);
+
+			update_post_meta( $post_type_object->ID, '_ept_taxonomies', $new_taxonomies );
+
+			unset( $request['action'] );
+			$redirected = add_query_arg( $request, admin_url( 'admin.php' ) );
+			wp_safe_redirect( $redirected );
+		}
 	}
 }

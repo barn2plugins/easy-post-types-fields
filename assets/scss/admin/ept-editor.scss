@@ -27,7 +27,9 @@ body[class*="ept_post_types"] .wrap {
         content: unset;
     }
 
-    h4.wp-heading-inline {
+    h2.ept-page-breadcrumbs {
+		font-size: 1.3em;
+		font-weight: 600;
         display: inline-block;
         margin: 0;
         margin-right: 5px;
@@ -35,6 +37,8 @@ body[class*="ept_post_types"] .wrap {
     }
 
     .wp-list-table {
+		margin: 1rem 0;
+
         button.page-title-action.ept-post-table-action {
             top: 0;
             display: inline-block;
@@ -46,19 +50,36 @@ body[class*="ept_post_types"] .wrap {
         }
     }
 
-    .inline-edit-row fieldset label span {
-        &.title {
-            width: 10em;
-        }
+	form.ept-list-item fieldset {
+		margin-bottom: 1rem;
 
-        &.input-text-wrap {
-            margin-left: 10em;
-        }
+		label {
+			display: block;
+			margin: 1rem 0;
 
-        &.barn2-help-tip+span.input-text-wrap {
-            margin-left: 0;
-        }
-    }
+			span.label {
+				width: 10em;
+				display: inline-block;
+				font-weight: bold
+			}
+
+			span.input {
+				input[type="text"] {
+					width: 400px;
+				}
+			}
+
+			span.barn2-help-tip {
+				width: 2em;
+				margin-left: -2em;
+				margin-right: -.25em;
+			}
+		}
+	}
+
+	
+
+	
 }
 
 .barn2-help-tip {

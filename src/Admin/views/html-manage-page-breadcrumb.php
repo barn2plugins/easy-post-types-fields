@@ -13,17 +13,16 @@ defined( 'ABSPATH' ) || exit;
 if ( $breadcrumbs ) {
 	?>
 
-	<h4 class="wp-heading-inline ept-page-breadcrumbs">
+	<h2 class="wp-heading-inline ept-page-breadcrumbs">
 		<?php echo $breadcrumbs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-	</h4>
+	</h2>
 	<?php
 } else {
 	?>
 
 	<h1 class="wp-heading-inline">
-		<?php echo esc_attr( __( 'Manage post types', 'easy-post-types-fields' ) ); ?>
+		<?php echo esc_attr( __( 'Easy Post Types and Fields', 'easy-post-types-fields' ) ); ?>
 	</h1>
-	<a href="<?php echo esc_url( $new_link ); ?>" class="page-title-action"><?php esc_html_e( 'Add New', 'easy-post-types-fields' ); ?></a>
 
 	<?php
 }

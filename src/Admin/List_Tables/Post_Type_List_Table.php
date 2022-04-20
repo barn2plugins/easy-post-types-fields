@@ -493,6 +493,7 @@ class Post_Type_List_Table extends WP_List_Table {
 				<?php $this->display_rows_or_placeholder(); ?>
 			</tbody>
 		</table>
+
 		<?php
 	}
 	/**

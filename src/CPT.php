@@ -197,8 +197,8 @@ class CPT {
 			foreach ( $taxonomies as $taxonomy ) {
 				$args = [
 					'labels'       => [
-						'name'          => $taxonomy['plural_name'],
-						'singular_name' => $taxonomy['name'],
+						'name'          => $taxonomy['name'],
+						'singular_name' => $taxonomy['singular_name'],
 					],
 					'hierarchical' => isset( $taxonomy['hierarchical'] ) ? $taxonomy['hierarchical'] : true,
 				];
