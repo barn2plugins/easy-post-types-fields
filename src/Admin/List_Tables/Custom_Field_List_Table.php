@@ -84,6 +84,8 @@ class Custom_Field_List_Table extends WP_List_Table {
 	public function get_columns() {
 		$columns = [
 			'name' => _x( 'Name', 'column name', 'easy-post-types-fields' ),
+			'slug' => _x( 'Slug', 'column name', 'easy-post-types-fields' ),
+			'type' => _x( 'Type', 'column name', 'easy-post-types-fields' ),
 		];
 
 		return apply_filters( 'manage_ept_taxonomies_columns', $columns );
@@ -146,6 +148,20 @@ class Custom_Field_List_Table extends WP_List_Table {
 			?>
 		</td>
 		<?php
+	}
+
+	protected function column_slug( $field ) {
+		echo esc_html( $field['slug'] );
+	}
+
+	protected function column_type( $field ) {
+		$types = [
+			'text'   => __( 'Text', 'easy-post-types-fields' ),
+			'editor' => __( 'Richtext editor', 'easy-post-types-fields' ),
+		];
+		$type  = isset( $types[ $field['type'] ] ) ? $types[ $field['type'] ] : '';
+
+		echo esc_html( $type );
 	}
 
 	public function column_default( $item, $column_name ) {
