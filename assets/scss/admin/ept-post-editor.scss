@@ -1,0 +1,22 @@
+table.ept-fields {
+    max-width: unset;
+    width: 100%;
+
+	tr {
+		th {
+			vertical-align: top;
+			width: 8em;
+			text-align: left;
+		}
+
+		th, td {
+			padding-bottom: 1em;
+		}
+
+		td {
+			input[type="text"] {
+				width: 100%;
+			}
+		}
+	}
+}

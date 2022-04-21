@@ -157,4 +157,21 @@ class Util {
 
 		return '<span class="barn2-help-tip" data-tip="' . wp_kses_post( $tooltip_text ) . '"></span>';
 	}
+
+	public static function get_default_post_type_support() {
+		return [ 'title', 'editor', 'excerpt', 'author', 'thumbnail' ];
+	}
+
+	public static function get_post_type_support() {
+		return [
+			'title'           => __( 'Title', 'easy-post-types-fields' ),
+			'editor'          => __( 'Content', 'easy-post-types-fields' ),
+			'excerpt'         => __( 'Excerpt', 'easy-post-types-fields' ),
+			'author'          => __( 'Author', 'easy-post-types-fields' ),
+			'thumbnail'       => __( 'Featured image', 'easy-post-types-fields' ),
+			'comments'        => __( 'Comments', 'easy-post-types-fields' ),
+			'page-attributes' => __( 'Page attributes', 'easy-post-types-fields' ),
+			'revisions'       => __( 'Revisions', 'easy-post-types-fields' ),
+		];
+	}
 }

@@ -239,14 +239,17 @@ class CPT {
 	}
 
 	public function register_cpt_metabox() {
-		add_meta_box( "ept_post_type_{$this->singular_name}_metabox", 'EPT Custom Fields', [ $this, 'output_meta_box' ] );
+		// translators: A post type name
+		$title = sprintf( __( '%s metadata' ), $this->singular_name );
+		add_meta_box( "ept_post_type_{$this->singular_name}_metabox", $title, [ $this, 'output_meta_box' ] );
 	}
 
 	public function output_meta_box( $post ) {
 		do_action( "ept_post_type_{$this->singular_name}_metabox" );
 
 		// get the fields registered with the post type
-		$fields = get_post_meta( $this->id, '_ept_fields', true );
+		$fields    = get_post_meta( $this->id, '_ept_fields', true );
+		$post_type = $this->post_type;
 
 		if ( empty( $fields ) ) {
 			return;

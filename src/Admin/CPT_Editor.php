@@ -8,6 +8,7 @@ use Barn2\Plugin\Easy_Post_Types_Fields\Util,
 	Barn2\EPT_Lib\Admin\Plugin_Promo;
 
 use WP_Error;
+use WP_Query;
 
 /**
  * Define the CPT editor.
@@ -100,7 +101,7 @@ class CPT_Editor implements Service, Registerable {
 		add_filter( 'disable_months_dropdown', [ $this, 'disable_months_dropdown' ], 10, 2 );
 		add_filter( 'manage_edit-ept_content_type_columns', [ $this, 'manage_columns' ] );
 		add_action( 'admin_menu', [ $this, 'admin_menu' ] );
-		add_filter( 'wp_insert_post_data', [ $this, 'save_post_type' ], 10, 3 );
+		add_filter( 'wp_insert_post_data', [ $this, 'save_post_type_data' ], 10, 3 );
 
 		add_action( 'wp_ajax_ept_inline_delete', [ $this, 'inline_delete' ] );
 
@@ -120,7 +121,7 @@ class CPT_Editor implements Service, Registerable {
 		return $title;
 	}
 
-	public function save_post_type( $data, $postdata, $rawpostdata ) {
+	public function save_post_type_data( $data, $postdata, $rawpostdata ) {
 		if ( isset( $postdata['ept_plural_name'] ) ) {
 			update_post_meta( $postdata['ID'], '_ept_plural_name', $postdata['ept_plural_name'] );
 			flush_rewrite_rules();
@@ -349,9 +350,60 @@ class CPT_Editor implements Service, Registerable {
 
 		$postdata  = $_POST;
 		$request   = Util::get_page_request();
-		$data_type = isset( $request['section'] ) && 'taxonomies' === $request['section'] ? 'taxonomy' : 'field';
+		$data_type = 'post_type';
+
+		if ( isset( $request['section'] ) ) {
+			$data_type = 'taxonomies' === $request['section'] ? 'taxonomy' : 'field';
+		}
 
 		$this->{"save_$data_type"}( $postdata, $request );
+	}
+
+	public function save_post_type( $data, $request ) {
+		$post_type_id     = 0;
+		$post_type_object = Util::get_post_type_object( $request['post_type'] );
+
+		if ( $post_type_object ) {
+			$post_type_id = $post_type_object->ID;
+		}
+
+		$conflicts_query = new WP_Query(
+			[
+				'posts_per_page' => 1,
+				'post_type'      => 'ept_post_type',
+				'post__not_in'   => [ $post_type_id ],
+				'name'           => $data['slug'],
+			]
+		);
+
+		if ( $conflicts_query->post ) {
+			$this->errors->add( 'conflicting_post_type', __( 'A post type with the same slug is already registered. Please choose a different slug.', 'easy-post-types-fields' ) );
+			return;
+		}
+
+		$args = [
+			'ID'             => $post_type_id,
+			'post_title'     => $data['singular_name'],
+			'post_name'      => $data['slug'],
+			'post_type'      => 'ept_post_type',
+			'post_status'    => 'publish',
+			'comment_status' => 'closed',
+			'meta_input'     => [
+				'_ept_plural_name' => filter_var( $data['name'], FILTER_DEFAULT ),
+				'_ept_supports'    => array_keys( $data['supports'] ),
+			],
+		];
+
+		$post_type_id = wp_insert_post( $args, false, false );
+
+		if ( is_wp_error( $post_type_id ) ) {
+			$this->errors->add( $post_type_id->get_code(), $post_type_id->get_message() );
+			return;
+		}
+
+		unset( $request['post_type'] );
+		$redirected = add_query_arg( $request, admin_url( 'admin.php' ) );
+		wp_safe_redirect( $redirected );
 	}
 
 	public function save_taxonomy( $data, $request ) {

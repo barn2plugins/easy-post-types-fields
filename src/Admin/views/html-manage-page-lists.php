@@ -7,11 +7,7 @@ namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin;
 defined( 'ABSPATH' ) || exit;
 
 if ( isset( $request['action'] ) ) {
-	$form_request_args = $request;
-	unset( $form_request_args['action'] );
-
-	$form_action = add_query_arg( $form_request_args, admin_url( 'admin.php' ) );
-	$data_type   = 'taxonomies' === $section ? 'taxonomy' : 'field';
+	$data_type = 'taxonomies' === $section ? 'taxonomy' : 'field';
 
 	?>
 
@@ -21,7 +17,7 @@ if ( isset( $request['action'] ) ) {
 		echo esc_html( sprintf( __( '%s editor', 'easy-post-types-fields' ), $singular_name ) );
 		?>
 	</h2>
-	<form action="<?php echo esc_url( $form_action ); ?>" method="post" class="ept-list-item">
+	<form action="" method="post" class="ept-list-item">
 
 		<?php
 
@@ -41,7 +37,7 @@ if ( isset( $request['action'] ) ) {
 		);
 		?>
 
-		<a href="<?php echo esc_url( $form_action ); ?>" class="button"><?php esc_html_e( 'Cancel', 'easy-post-types-fields' ); ?></a>
+		<a href="<?php echo esc_url( $_SERVER['HTTP_REFERER'] ); ?>" class="button"><?php esc_html_e( 'Cancel', 'easy-post-types-fields' ); ?></a>
 	</form>
 
 	<?php

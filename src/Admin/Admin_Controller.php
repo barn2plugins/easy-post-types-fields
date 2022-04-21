@@ -41,6 +41,15 @@ class Admin_Controller implements Registerable, Service {
 
 	public function register() {
 		$this->register_services();
+
+		add_action( 'admin_enqueue_scripts', [ $this, 'load_scripts' ] );
 	}
 
+	public function load_scripts( $hook ) {
+		$screen = get_current_screen();
+
+		if ( 'post' === $screen->base && 0 === strpos( $screen->post_type, 'ept_' ) ) {
+			wp_enqueue_style( 'ept-post-editor', plugin_dir_url( $this->plugin->get_file() ) . 'assets/css/admin/ept-post-editor.min.css', [], $this->plugin->get_version() );
+		}
+	}
 }

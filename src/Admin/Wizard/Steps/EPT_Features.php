@@ -9,6 +9,7 @@
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin\Wizard\Steps;
 
 use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Barn2\Setup_Wizard\Step;
+use Barn2\Plugin\Easy_Post_Types_Fields\Util;
 
 class EPT_Features extends Step {
 
@@ -27,59 +28,20 @@ class EPT_Features extends Step {
 	 * {@inheritdoc}
 	 */
 	public function setup_fields() {
-		return [
-			'title'           => [
-				'type'     => 'checkbox',
-				'label'    => __( 'Title', 'easy-post-types-fields' ),
-				'value'    => true,
-				'disabled' => true,
-				// 'premium'  => true,
-			],
-			'editor'          => [
+		$fields           = [];
+		$enabled_features = Util::get_default_post_type_support();
+
+		foreach ( Util::get_post_type_support() as $feature => $feature_label ) {
+			$fields[ $feature ] = [
 				'type'  => 'checkbox',
-				'label' => __( 'Content', 'easy-post-types-fields' ),
-				'value' => true,
-			],
-			'excerpt'         => [
-				'type'  => 'checkbox',
-				'label' => __( 'Excerpt', 'easy-post-types-fields' ),
-				'value' => true,
-			],
-			'author'          => [
-				'type'  => 'checkbox',
-				'label' => __( 'Author', 'easy-post-types-fields' ),
-				'value' => true,
-			],
-			'thumbnail'       => [
-				'type'  => 'checkbox',
-				'label' => __( 'Featured image', 'easy-post-types-fields' ),
-				'value' => true,
-			],
-			// 'custom-fields'   => [
-			// 	'type'  => 'checkbox',
-			// 	'label' => __( 'Custom fields', 'easy-post-types-fields' ),
-			// ],
-			'comments'        => [
-				'type'  => 'checkbox',
-				'label' => __( 'Comments', 'easy-post-types-fields' ),
-			],
-			// 'post-formats'    => [
-			// 	'type'  => 'checkbox',
-			// 	'label' => __( 'Post formats', 'easy-post-types-fields' ),
-			// ],
-			'page-attributes' => [
-				'type'  => 'checkbox',
-				'label' => __( 'Page attributes', 'easy-post-types-fields' ),
-			],
-			'revisions'       => [
-				'type'  => 'checkbox',
-				'label' => __( 'Revisions', 'easy-post-types-fields' ),
-			],
-			// 'trackbacks'      => [
-			// 	'type'  => 'checkbox',
-			// 	'label' => __( 'Trackbacks', 'easy-post-types-fields' ),
-			// ],
-		];
+				'label' => $feature_label,
+				'value' => in_array( $feature, $enabled_features, true ),
+			];
+		}
+
+		$fields['title']['disabled'] = true;
+
+		return $fields;
 	}
 
 	/**
@@ -87,7 +49,14 @@ class EPT_Features extends Step {
 	 */
 	public function submit() {
 		$values       = $this->get_submitted_values();
-		$supports     = array_keys( array_filter( $values ) );
+		$supports     = array_keys(
+			array_filter(
+				$values,
+				function( $v ) {
+					return filter_var( $v, FILTER_VALIDATE_BOOLEAN );
+				}
+			)
+		);
 		$post_type_id = wp_insert_post(
 			[
 				'post_type'      => 'ept_post_type',
