@@ -28,8 +28,8 @@ class Posts_Table_Pro implements Registerable, Service {
 		if ( ! isset( $wp_post_types[ $out['post_type'] ] ) && isset( $wp_post_types[ $ept_post_type ] ) ) {
 			$out['post_type'] = $ept_post_type;
 
-			$columns = explode( ',', $out['columns'] );
-			$columns = array_map(
+			$columns        = explode( ',', $out['columns'] );
+			$columns        = array_map(
 				function( $column ) use ( $ept_post_type ) {
 					if ( 0 === strpos( $column, 'tax:' ) ) {
 						$column = 'tax:' . $ept_post_type . '_' . substr( $column, 4 );
@@ -39,8 +39,28 @@ class Posts_Table_Pro implements Registerable, Service {
 				},
 				$columns
 			);
-
 			$out['columns'] = $columns;
+
+			if ( is_null( filter_var( $out['filters'], FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE ) ) ) {
+				$filters = $out['filters'];
+
+				if ( 'custom' === $filters ) {
+					$filters = isset( $out['filters_custom'] ) ? $out['filters_custom'] : '';
+				}
+
+				$filters        = explode( ',', $filters );
+				$filters        = array_map(
+					function( $filter ) use ( $ept_post_type ) {
+						if ( 0 === strpos( $filter, 'tax:' ) ) {
+							$filter = 'tax:' . $ept_post_type . '_' . substr( $filter, 4 );
+						}
+
+						return $filter;
+					},
+					$filters
+				);
+				$out['filters'] = $filters;
+			}
 		}
 
 		return $out;
