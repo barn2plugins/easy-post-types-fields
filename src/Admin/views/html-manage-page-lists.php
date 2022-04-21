@@ -7,7 +7,6 @@ namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin;
 defined( 'ABSPATH' ) || exit;
 
 if ( isset( $request['action'] ) ) {
-	$data_type = 'taxonomies' === $section ? 'taxonomy' : 'field';
 
 	?>
 
@@ -21,15 +20,15 @@ if ( isset( $request['action'] ) ) {
 
 		<?php
 
-		require "html-manage-page-$data_type.php";
+		require "html-manage-page-$section.php";
 
 		wp_nonce_field( 'save_list_item_postdata' );
 		submit_button(
 			sprintf(
-				// translators: 'Add' or 'Update' followed by 'custom field' or 'taxonomy'
-				__( '%s %s', 'easy-post-types-fields' ),
+				// translators: 1: 'Add' or 'Update', 2: 'custom field' or 'taxonomy'
+				__( '%1$s %2$s', 'easy-post-types-fields' ),
 				'add' === $request['action'] ? __( 'Add', 'easy-post-types-fields' ) : __( 'Update', 'easy-post-types-fields' ),
-				'taxonomy' === $data_type ? __( 'taxonomy', 'easy-post-types-fields' ) : __( 'custom field', 'easy-post-types-fields' )
+				'taxonomies' === $section ? __( 'taxonomy', 'easy-post-types-fields' ) : __( 'custom field', 'easy-post-types-fields' )
 			),
 			'primary',
 			'submit',
@@ -44,11 +43,6 @@ if ( isset( $request['action'] ) ) {
 
 } else {
 	?>
-	<p>
-		<?php
-		echo wp_kses_post( $page_description );
-		?>
-	</p>
 	<h2 class="screen-reader-text">
 		<?php
 		// translators: either `Taxonomy` or `Custom field`

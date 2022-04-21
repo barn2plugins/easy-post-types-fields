@@ -82,6 +82,7 @@ class CPT {
 				'query_var'            => false,
 				'can_export'           => false,
 				'delete_with_user'     => false,
+				'has_archive'          => true,
 			];
 
 			$args['labels'] = apply_filters(
@@ -133,7 +134,7 @@ class CPT {
 			// translators: the singular post type name
 			'parent_item_colon'        => $this->define_singular_label( __( 'Parent %s:', 'easy-post-types-fields' ) ),
 			// translators: the plural post type name
-			'all_items'                => $this->define_label( __( 'All %s', 'easy-post-types-fields' ), true ),
+			'all_items'                => $this->define_label( __( 'All %s', 'easy-post-types-fields' ) ),
 			// translators: the singular post type name
 			'archives'                 => $this->define_singular_label( __( '%s Archives', 'easy-post-types-fields' ) ),
 			// translators: the singular post type name
@@ -189,6 +190,7 @@ class CPT {
 			return;
 		}
 
+		Util::maybe_flush_rewrite_rules( $this->post_type );
 		$this->register_meta();
 	}
 
@@ -240,7 +242,7 @@ class CPT {
 
 	public function register_cpt_metabox() {
 		// translators: A post type name
-		$title = sprintf( __( '%s metadata' ), $this->singular_name );
+		$title = sprintf( __( '%s metadata', 'easy-post-types-fields' ), $this->singular_name );
 		add_meta_box( "ept_post_type_{$this->singular_name}_metabox", $title, [ $this, 'output_meta_box' ] );
 	}
 

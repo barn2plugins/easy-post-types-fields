@@ -27,7 +27,7 @@ if ( $post_type_obj ) {
 	];
 }
 
-if ( wp_verify_nonce( $_POST['_wpnonce'], 'save_list_item_postdata' ) ) {
+if ( isset( $_POST['_wpnonce'] ) && wp_verify_nonce( $_POST['_wpnonce'], 'save_list_item_postdata' ) ) {
 	$postdata = array_intersect_key( $_POST, $data );
 	$data     = array_merge( $data, $postdata );
 }

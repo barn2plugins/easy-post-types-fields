@@ -20,7 +20,7 @@ $data = array_fill_keys( [ 'name', 'slug', 'type', 'previous_slug' ], '' );
 $field = array_filter(
 	$fields,
 	function( $f ) use ( $request ) {
-		return $request['field'] === $f['slug'];
+		return $request['slug'] === $f['slug'];
 	}
 );
 
@@ -30,7 +30,7 @@ if ( $field ) {
 	$data['previous_slug'] = $field['slug'];
 }
 
-if ( wp_verify_nonce( $_POST['_wpnonce'], 'save_list_item_postdata' ) ) {
+if ( isset( $_POST['_wpnonce'] ) && wp_verify_nonce( $_POST['_wpnonce'], 'save_list_item_postdata' ) ) {
 	$postdata = array_intersect_key( $data, $_POST );
 	$data     = array_merge( $data, $_POST );
 }

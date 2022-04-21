@@ -67,7 +67,7 @@ class Post_Type_List_Table extends WP_List_Table {
 		usort(
 			$this->post_types,
 			function( $pt_1, $pt_2 ) {
-				return $pt_1->labels->singular_name > $pt_2->labels->singular_name ? 1 : -1;
+				return $pt_1->labels->name > $pt_2->labels->name ? 1 : -1;
 			}
 		);
 
@@ -139,13 +139,7 @@ class Post_Type_List_Table extends WP_List_Table {
 
 	protected function get_view_page_link( $view, $label, $class = '' ) {
 		$view = 'ept' === $view ? '' : $view;
-		$args = [];
-
-		if ( $view ) {
-			$args['view'] = $view;
-		}
-
-		$url = Util::get_manage_page_url( $args );
+		$url  = Util::get_manage_page_url( '', '', '', '', $view );
 
 		$class_html   = '';
 		$aria_current = '';
@@ -225,13 +219,15 @@ class Post_Type_List_Table extends WP_List_Table {
 
 	public function get_columns() {
 		$action_tooltip = Util::get_tooltip( __( 'Use custom fields for storing unique data about your custom posts, and use taxonomies for organizing and grouping the custom posts.', 'easy-post-types-fields' ) );
+		$count_tooltip  = Util::get_tooltip( __( 'The number of posts stored in the database for each post type.', 'easy-post-types-fields' ) );
 
 		$columns = [
 			'name'       => _x( 'Name', 'column name', 'easy-post-types-fields' ),
+			'slug'       => _x( 'Slug', 'column name', 'easy-post-types-fields' ),
 			'fields'     => _x( 'Custom Fields', 'column name', 'easy-post-types-fields' ),
 			'taxonomies' => _x( 'Taxonomies', 'column name', 'easy-post-types-fields' ),
 			'actions'    => _x( 'Actions', 'column name', 'easy-post-types-fields' ) . $action_tooltip,
-			'count'      => _x( 'Post count', 'column name', 'easy-post-types-fields' ),
+			'count'      => _x( 'Count', 'column name', 'easy-post-types-fields' ) . $count_tooltip,
 		];
 
 		return apply_filters( 'manage_ept_post_types_columns', $columns );
@@ -276,27 +272,6 @@ class Post_Type_List_Table extends WP_List_Table {
 		}
 	}
 
-	protected function _column_lock( $post_type ) {
-		?>
-		<th scope="row" class="check-column">
-			<?php
-			if ( ! $this->is_custom( $post_type ) ) {
-				?>
-				<div class="locked-indicator" style="margin-top:-5px;">
-					<span class="locked-indicator-icon" aria-hidden="true"></span>
-					<span class="screen-reader-text">
-						<?php
-						_e( 'This post type is locked', 'easy-post-types-fields' ); // phpcs:ignore WordPress.Security.EscapeOutput.UnsafePrintingFunction
-						?>
-					</span>
-				</div>
-				<?php
-			}
-			?>
-		</th>
-		<?php
-	}
-
 	protected function _column_name( $post_type, $classes, $data, $primary ) {
 		?>
 		<td class="<?php echo esc_attr( $classes ); ?> post_type-name" <?php echo $data; ?>>
@@ -304,12 +279,12 @@ class Post_Type_List_Table extends WP_List_Table {
 			if ( $this->is_custom( $post_type ) ) {
 				printf(
 					'<a class="row-title" href="%s" aria-label="%s">%s</a>',
-					Util::get_manage_page_url( [], $post_type ),
-					esc_attr( sprintf( __( '%s (Edit)', 'easy-post-types-fields' ), $post_type->labels->singular_name ) ),
-					esc_attr( $post_type->labels->singular_name )
+					Util::get_manage_page_url( $post_type ),
+					esc_attr( sprintf( __( '%s (Edit)', 'easy-post-types-fields' ), $post_type->labels->name ) ),
+					esc_attr( $post_type->labels->name )
 				);
 			} else {
-				echo $post_type->labels->singular_name;
+				echo $post_type->labels->name;
 			}
 
 			echo $this->handle_row_actions( $post_type, 'name', $primary );
@@ -319,8 +294,8 @@ class Post_Type_List_Table extends WP_List_Table {
 	}
 
 	protected function _column_actions( $post_type, $classes, $data, $primary ) {
-		$fields_link = Util::get_manage_page_url( [], $post_type, 'fields' );
-		$tax_link    = Util::get_manage_page_url( [], $post_type, 'taxonomies' );
+		$fields_link = Util::get_manage_page_url( $post_type, 'fields' );
+		$tax_link    = Util::get_manage_page_url( $post_type, 'taxonomies' );
 		$all_link    = add_query_arg( 'post_type', $post_type->name, admin_url( 'edit.php' ) );
 
 		?>
@@ -347,6 +322,66 @@ class Post_Type_List_Table extends WP_List_Table {
 
 	}
 
+	protected function column_slug( $post_type ) {
+		echo esc_html( str_replace( 'ept_', '', $post_type->name ) );
+	}
+
+	protected function column_taxonomies( $post_type ) {
+		$post_type_object = Util::get_post_type_object( $post_type );
+
+		if ( ! $post_type_object ) {
+			return;
+		}
+
+		$taxonomies = get_post_meta( $post_type_object->ID, '_ept_taxonomies', true );
+
+		if ( empty( $taxonomies ) ) {
+			$taxonomies = '—';
+		} else {
+			$taxonomies = array_map(
+				function( $t ) use ( $post_type ) {
+					return sprintf(
+						'<a href="%1$s">%2$s</a>',
+						Util::get_manage_page_url( $post_type->name, 'taxonomies', $t['slug'], 'edit' ),
+						$t['name']
+					);
+				},
+				$taxonomies
+			);
+			$taxonomies = implode( ', ', $taxonomies );
+		}
+
+		echo wp_kses_post( $taxonomies );
+	}
+
+	protected function column_fields( $post_type ) {
+		$post_type_object = Util::get_post_type_object( $post_type );
+
+		if ( ! $post_type_object ) {
+			return;
+		}
+
+		$fields = get_post_meta( $post_type_object->ID, '_ept_fields', true );
+
+		if ( empty( $fields ) ) {
+			$fields = '—';
+		} else {
+			$fields = array_map(
+				function( $f ) use ( $post_type ) {
+					return sprintf(
+						'<a href="%1$s">%2$s</a>',
+						Util::get_manage_page_url( $post_type->name, 'fields', $f['slug'], 'edit' ),
+						$f['name']
+					);
+				},
+				$fields
+			);
+			$fields = implode( ', ', $fields );
+		}
+
+		echo wp_kses_post( $fields );
+	}
+
 	protected function _column_count( $post_type, $classes, $data, $primary ) {
 		$count_link = sprintf(
 			'<a href="%s">%s</a>',
@@ -366,10 +401,6 @@ class Post_Type_List_Table extends WP_List_Table {
 
 	public function single_row( $post_type ) {
 		$class = '';
-
-		if ( ! $this->is_custom( $post_type ) ) {
-			$class = 'wp-locked';
-		}
 
 		?>
 		<tr id="post_type-<?php echo $post_type->name; ?>" class="<?php echo esc_attr( $class ); ?>">
@@ -394,7 +425,7 @@ class Post_Type_List_Table extends WP_List_Table {
 		if ( $can_edit_post_type && $this->is_custom( $post_type ) ) {
 			$actions['edit'] = sprintf(
 				'<a href="%s" aria-label="%s">%s</a>',
-				Util::get_manage_page_url( [], $post_type ),
+				Util::get_manage_page_url( $post_type ),
 				esc_attr( __( 'Edit', 'easy-post-types-fields' ) ),
 				__( 'Edit', 'easy-post-types-fields' )
 			);
@@ -410,14 +441,14 @@ class Post_Type_List_Table extends WP_List_Table {
 
 		$actions['fields'] = sprintf(
 			'<a href="%s" aria-label="%s">%s</a>',
-			Util::get_manage_page_url( [], $post_type, 'fields' ),
+			Util::get_manage_page_url( $post_type, 'fields' ),
 			esc_attr( __( 'Custom Fields', 'easy-post-types-fields' ) ),
 			__( 'Custom Fields', 'easy-post-types-fields' )
 		);
 
 		$actions['taxonomies'] = sprintf(
 			'<a href="%s" aria-label="%s">%s</a>',
-			Util::get_manage_page_url( [], $post_type, 'taxonomies' ),
+			Util::get_manage_page_url( $post_type, 'taxonomies' ),
 			esc_attr( __( 'Taxonomies', 'easy-post-types-fields' ) ),
 			__( 'Taxonomies', 'easy-post-types-fields' )
 		);

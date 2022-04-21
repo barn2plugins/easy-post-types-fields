@@ -35,7 +35,6 @@
 				  name      = $( 'a.row-title', $row ).text(),
 				  slug      = $( 'td.column-name', $row ).data('slug'),
 				  section   = (new URLSearchParams(location.href)).get('section'),
-				  type      = 'taxonomies' === section ? 'taxonomy' : 'field',
 				  typeLabel = 'taxonomies' === section ? __( 'taxonomy', 'easy-post-types-fields' ) : __( 'custom field', 'easy-post-types-fields' )
 
 			if ( ! confirm( sprintf( __( 'Are you sure you want to delete the “%1$s” %2$s?', 'easy-post-types-fields' ), name, typeLabel ) ) ) {
@@ -46,7 +45,7 @@
 				action: 'ept_inline_delete',
 				_inline_delete: $(event.target).data('_wpnonce'),
 				slug,
-				type,
+				type: section,
 				post_type: (new URLSearchParams(location.search) ).get('post_type')
 			};
 

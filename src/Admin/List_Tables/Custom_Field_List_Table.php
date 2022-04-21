@@ -196,10 +196,10 @@ class Custom_Field_List_Table extends WP_List_Table {
 
 	public function get_edit_post_link( $field ) {
 		parse_str( $_SERVER['QUERY_STRING'], $query_args );
-		$query_args['field']  = $field['slug'];
+		$query_args['slug']   = $field['slug'];
 		$query_args['action'] = 'edit';
 
-		return add_query_arg( $query_args, admin_url( 'admin.php' ) );
+		return Util::get_manage_page_url( $query_args['post_type'], $query_args['section'], $query_args['slug'], $query_args['action'] );
 	}
 
 	public function get_delete_post_link( $post_type ) {
@@ -208,15 +208,7 @@ class Custom_Field_List_Table extends WP_List_Table {
 
 	public function display() {
 		$singular = $this->_args['singular'];
-		$new_link = add_query_arg(
-			[
-				'page'      => 'ept_post_types',
-				'post_type' => $this->post_type->name,
-				'section'   => 'fields',
-				'action'    => 'add',
-			],
-			admin_url( 'admin.php' )
-		);
+		$new_link = Util::get_manage_page_url( $this->post_type->name, 'fields', '', 'add' );
 
 		$this->screen->render_screen_reader_content( 'heading_list' );
 

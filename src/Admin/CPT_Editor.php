@@ -208,15 +208,15 @@ class CPT_Editor implements Service, Registerable {
 		$sections          = [
 			'fields'     => [
 				'list_table_class' => 'Custom_Field',
-				'plural'           => 'Custom fields',
-				'singular'         => 'Custom field',
+				'plural'           => __( 'Custom fields', 'easy-post-types-fields' ),
+				'singular'         => __( 'Custom field', 'easy-post-types-fields' ),
 				// translators: 1: the plural name of the post type, 2: the opening tab of an anchor element, 3: the closing tag of an anchor element, 4: the singular name of the post type, 5: the plural name of the post type, 
 				'description'      => __( 'Use custom fields to store extra data about your %1$s, such as a reference number or link. Custom fields are for data that is unique to each %4$s. If you want to use the data to organize or group your %5$s then you should create a %2$staxonomy%3$s instead.', 'easy-post-types-fields' ),
 			],
 			'taxonomies' => [
 				'list_table_class' => 'Taxonomy',
-				'plural'           => 'Taxonomies',
-				'singular'         => 'Taxonomy',
+				'plural'           => __( 'Taxonomies', 'easy-post-types-fields' ),
+				'singular'         => __( 'Taxonomy', 'easy-post-types-fields' ),
 				// translators: the plural name of the post type
 				'description'      => __( 'Taxonomies let you organize and group your %1$s. For example, you might want to organize them by category, tag, year, author, or industry. If you need to add data that is unique to each %4$s then you should create a %2$scustom field%3$s instead.', 'easy-post-types-fields' ),
 			],
@@ -231,7 +231,7 @@ class CPT_Editor implements Service, Registerable {
 		parse_str( $_SERVER['QUERY_STRING'], $query_args );
 
 		$query_args['section'] = 'fields' === $section ? 'taxonomies' : 'fields';
-		$cross_link            = add_query_arg( $query_args, admin_url( 'admin.php' ) );
+		$cross_link            = Util::get_manage_page_url( $query_args['post_type'], $query_args['section'] );
 
 		$page_description = sprintf(
 			$section_labels['description'],
@@ -250,6 +250,7 @@ class CPT_Editor implements Service, Registerable {
 	}
 
 	public function add_manage_page() {
+		$page_title  = __( 'Easy Post Types and Fields', 'easy-post-types-fields' );
 		$plugin      = $this->plugin;
 		$breadcrumbs = Util::get_page_breadcrumbs();
 		$request     = Util::get_page_request();
@@ -263,7 +264,13 @@ class CPT_Editor implements Service, Registerable {
 			'admin.php'
 		);
 
+		if ( 'post_types' === $content && isset( $request['post_type'] ) ) {
+			$content = 'post_type';
+		}
+
 		if ( isset( $request['section'] ) ) {
+			list( $page_description, $singular_name, $list_table ) = $this->get_page_data( $request );
+
 			$new_link = add_query_arg(
 				[
 					'post_type' => $request['post_type'],
@@ -271,14 +278,26 @@ class CPT_Editor implements Service, Registerable {
 				],
 				$new_link
 			);
+
+			$page_title = 'taxonomies' === $request['section'] ?
+				__( 'Manage Taxonomies', 'easy-post-types-fields' ) :
+				__( 'Manage Custom Fields', 'easy-post-types-fields' );
+
 		}
 
-		if ( 'post_types' === $content && isset( $request['post_type'] ) ) {
-			$content = 'post_type';
-		}
+		if ( isset( $request['action'] ) ) {
+			$current_action = 'add' === $request['action'] ?
+				__( 'Add', 'easy-post-types-fields' ) :
+				__( 'Edit', 'easy-post-types-fields' );
 
-		if ( isset( $request['section'] ) ) {
-			list( $page_description, $singular_name, $list_table ) = $this->get_page_data( $request );
+			$page_title = 'taxonomies' === $request['section'] ?
+				// translators: either 'Add' or 'Edit'
+				__( '%s taxonomy', 'easy-post-types-fields' ) :
+				// translators: either 'Add' or 'Edit'
+				__( '%s custom field', 'easy-post-types-fields' );
+
+			$page_title       = sprintf( $page_title, $current_action );
+			$page_description = '';
 		}
 
 		include $this->plugin->get_admin_path( 'views/html-manage-page.php' );
@@ -353,7 +372,7 @@ class CPT_Editor implements Service, Registerable {
 		$data_type = 'post_type';
 
 		if ( isset( $request['section'] ) ) {
-			$data_type = 'taxonomies' === $request['section'] ? 'taxonomy' : 'field';
+			$data_type = $request['section'];
 		}
 
 		$this->{"save_$data_type"}( $postdata, $request );
@@ -401,12 +420,11 @@ class CPT_Editor implements Service, Registerable {
 			return;
 		}
 
-		unset( $request['post_type'] );
-		$redirected = add_query_arg( $request, admin_url( 'admin.php' ) );
-		wp_safe_redirect( $redirected );
+		Util::set_update_transient( $request['post_type'] );
+		wp_safe_redirect( Util::get_manage_page_url() );
 	}
 
-	public function save_taxonomy( $data, $request ) {
+	public function save_taxonomies( $data, $request ) {
 		$post_type_object = Util::get_post_type_object( $request['post_type'] );
 
 		if ( $post_type_object ) {
@@ -463,13 +481,12 @@ class CPT_Editor implements Service, Registerable {
 
 			update_post_meta( $post_type_object->ID, '_ept_taxonomies', $new_taxonomies );
 
-			unset( $request['action'] );
-			$redirected = add_query_arg( $request, admin_url( 'admin.php' ) );
-			wp_safe_redirect( $redirected );
+			Util::set_update_transient( $request['post_type'] );
+			wp_safe_redirect( Util::get_manage_page_url( $request['post_type'], $request['section'] ) );
 		}
 	}
 
-	public function save_field( $data, $request ) {
+	public function save_fields( $data, $request ) {
 		$post_type_object = Util::get_post_type_object( $request['post_type'] );
 
 		if ( $post_type_object ) {
@@ -525,9 +542,7 @@ class CPT_Editor implements Service, Registerable {
 
 			update_post_meta( $post_type_object->ID, '_ept_fields', $new_fields );
 
-			unset( $request['action'] );
-			$redirected = add_query_arg( $request, admin_url( 'admin.php' ) );
-			wp_safe_redirect( $redirected );
+			wp_safe_redirect( Util::get_manage_page_url( $request['post_type'], $request['section'] ) );
 		}
 	}
 }

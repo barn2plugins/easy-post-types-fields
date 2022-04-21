@@ -6,36 +6,26 @@ class Util {
 	public static function get_page_request() {
 		$request = array_intersect_key(
 			$_GET, //phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			array_flip(
-				[
-					'page',
-					'post_type',
-					'section',
-					'taxonomy',
-					'field',
-					'action'
-				]
-			)
+			array_flip( [ 'page', 'post_type', 'section', 'slug', 'action', 'view' ] )
 		);
+
 		return $request;
 	}
 
-	public static function get_manage_page_url( $args = [], $post_type = null, $section = '' ) {
-		$default_args = [
-			'page' => 'ept_post_types',
-		];
-
-		if ( $post_type ) {
-			$default_args['post_type'] = $post_type->name;
+	public static function get_manage_page_url( $post_type = '', $section = '', $slug = '', $action = '', $view = '' ) {
+		if ( is_a( $post_type, 'WP_Post_Type' ) ) {
+			$post_type = $post_type->name;
 		}
 
-		if ( $section ) {
-			$default_args['section'] = $section;
-		}
-
-		$args = wp_parse_args(
-			$args,
-			$default_args
+		$args = array_filter(
+			[
+				'page'      => 'ept_post_types',
+				'post_type' => $post_type,
+				'section'   => $section,
+				'slug'      => $slug,
+				'action'    => $action,
+				'view'      => $view,
+			]
 		);
 
 		return add_query_arg( $args, admin_url( 'admin.php' ) );
@@ -98,7 +88,7 @@ class Util {
 				return '';
 			}
 
-			$href  = isset( $request['section'] ) ? self::get_manage_page_url( [], $post_type ) : '';
+			$href  = isset( $request['section'] ) ? self::get_manage_page_url( $post_type ) : '';
 			$crumb = [
 				'label' => $post_type->label,
 			];
@@ -110,7 +100,7 @@ class Util {
 			$breadcrumbs[] = $crumb;
 
 			if ( isset( $request['section'] ) ) {
-				$href  = isset( $request['action'] ) ? self::get_manage_page_url( [], $post_type, $request['section'] ) : '';
+				$href  = isset( $request['action'] ) ? self::get_manage_page_url( $post_type, $request['section'] ) : '';
 				$label = 'fields' === $request['section'] ? __( 'Custom fields', 'easy-post-types-fields' ) : __( 'Taxonomies', 'easy-post-types-fields' );
 				$crumb = [
 					'label' => $label,
@@ -173,5 +163,16 @@ class Util {
 			'page-attributes' => __( 'Page attributes', 'easy-post-types-fields' ),
 			'revisions'       => __( 'Revisions', 'easy-post-types-fields' ),
 		];
+	}
+
+	public static function set_update_transient( $name, $entity = 'post_type' ) {
+		set_transient( "ept_{$entity}_{$name}_updated", true );
+	}
+
+	public static function maybe_flush_rewrite_rules( $name, $entity = 'post_type' ) {
+		if ( get_transient( "ept_{$entity}_{$name}_updated" ) ) {
+			flush_rewrite_rules();
+			delete_transient( "ept_{$entity}_{$name}_updated" );
+		}
 	}
 }
