@@ -241,6 +241,12 @@ class CPT {
 	}
 
 	public function register_cpt_metabox() {
+		$fields = get_post_meta( $this->id, '_ept_fields', true );
+
+		if ( empty( $fields ) ) {
+			return;
+		}
+
 		// translators: A post type name
 		$title = sprintf( __( '%s metadata', 'easy-post-types-fields' ), $this->singular_name );
 		add_meta_box( "ept_post_type_{$this->singular_name}_metabox", $title, [ $this, 'output_meta_box' ] );
