@@ -7,7 +7,11 @@ namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin;
 defined( 'ABSPATH' ) || exit;
 
 if ( isset( $request['action'] ) ) {
-	$form_action = add_query_arg( $request, admin_url( 'admin.php' ) );
+	$form_request_args = $request;
+	unset( $form_request_args['action'] );
+
+	$form_action = add_query_arg( $form_request_args, admin_url( 'admin.php' ) );
+	$data_type   = 'taxonomies' === $section ? 'taxonomy' : 'field';
 
 	?>
 
@@ -21,13 +25,15 @@ if ( isset( $request['action'] ) ) {
 
 		<?php
 
-		require "html-manage-page-$section.php";
+		require "html-manage-page-$data_type.php";
 
 		wp_nonce_field( 'save_list_item_postdata' );
 		submit_button(
 			sprintf(
-				__( '%s taxonomy', 'easy-post-types-fields' ),
-				'add' === $request['action'] ? __( 'Add', 'easy-post-types-fields' ) : __( 'Update', 'easy-post-types-fields' )
+				// translators: 'Add' or 'Update' followed by 'custom field' or 'taxonomy'
+				__( '%s %s', 'easy-post-types-fields' ),
+				'add' === $request['action'] ? __( 'Add', 'easy-post-types-fields' ) : __( 'Update', 'easy-post-types-fields' ),
+				'taxonomy' === $data_type ? __( 'taxonomy', 'easy-post-types-fields' ) : __( 'custom field', 'easy-post-types-fields' )
 			),
 			'primary',
 			'submit',

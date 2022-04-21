@@ -23,13 +23,13 @@ defined( 'ABSPATH' ) || exit;
 		<label>
 			<span class="label"><?php esc_html_e( 'Singular name', 'easy-post-types-fields' ); ?></span>
 			<span class="input">
-				<input type="text" placeholder="e.g. Article" name="singular_name" value="<?php echo esc_attr( $singular_name ); ?>" />
+				<input class="sluggable" type="text" placeholder="e.g. Article" name="singular_name" value="<?php echo esc_attr( $singular_name ); ?>" />
 			</span>
 		</label>
 		<label>
 			<span class="label"><?php esc_html_e( 'Slug', 'easy-post-types-fields' ); ?></span>
 			<span class="input">
-				<input type="text" name="slug" maxlength="<?php echo esc_attr( $max ); ?>" value="<?php echo esc_attr( $slug ); ?>" />
+				<input class="slug" type="text" name="slug" maxlength="<?php echo esc_attr( $max ); ?>" value="<?php echo esc_attr( $slug ); ?>" />
 			</span>
 		</label>
 		<input type="hidden" name="previous_slug" value="<?php echo esc_attr( $previous_slug ); ?>" />

@@ -71,6 +71,17 @@ class Util {
 		return false;
 	}
 
+	public static function get_post_type_custom_fields( $post_type ) {
+		$post_type_object = self::get_post_type_object( $post_type );
+		$fields           = [];
+
+		if ( $post_type_object ) {
+			$fields = get_post_meta( $post_type_object->ID, '_ept_fields', true );
+		}
+
+		return $fields;
+	}
+
 	public static function get_page_breadcrumbs() {
 		$request     = self::get_page_request();
 		$breadcrumbs = [

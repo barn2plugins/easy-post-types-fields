@@ -160,6 +160,7 @@ class Taxonomy_List_Table extends WP_List_Table {
 	}
 
 	protected function _column_name( $taxonomy, $classes, $data, $primary ) {
+		$data .= " data-slug=\"{$taxonomy['slug']}\"";
 		?>
 		<td class="<?php echo esc_attr( $classes ); ?> taxonomy-name" <?php echo $data; ?>>
 			<?php
@@ -260,11 +261,7 @@ class Taxonomy_List_Table extends WP_List_Table {
 	}
 
 	public function get_delete_post_link( $taxonomy ) {
-		if ( $this->is_custom( $taxonomy ) ) {
-			return '';
-		}
-
-		return false;
+		return '';
 	}
 
 	public function get_manage_terms_link( $taxonomy ) {

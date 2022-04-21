@@ -180,14 +180,16 @@ class CPT {
 	}
 
 	public function register_post_type() {
-		register_post_type(
+		$post_type = register_post_type(
 			$this->post_type,
 			$this->args
 		);
-	}
 
-	public function register_cpt_metabox() {
-		do_action( "ept_post_type_{$this->singular_name}_metabox" );
+		if ( is_wp_error( $post_type ) ) {
+			return;
+		}
+
+		$this->register_meta();
 	}
 
 	public function register_taxonomies() {
@@ -216,4 +218,41 @@ class CPT {
 
 		return [];
 	}
+
+	public function register_meta() {
+		$fields = get_post_meta( $this->id, '_ept_fields', true );
+
+		if ( is_array( $fields ) ) {
+			foreach ( $fields as $field ) {
+				new Field( $field, $this->post_type );
+			}
+
+			return array_map(
+				function( $t ) {
+					return "{$t['post_type']}_{$t['slug']}";
+				},
+				$fields
+			);
+		}
+
+		return [];
+	}
+
+	public function register_cpt_metabox() {
+		add_meta_box( "ept_post_type_{$this->singular_name}_metabox", 'EPT Custom Fields', [ $this, 'output_meta_box' ] );
+	}
+
+	public function output_meta_box( $post ) {
+		do_action( "ept_post_type_{$this->singular_name}_metabox" );
+
+		// get the fields registered with the post type
+		$fields = get_post_meta( $this->id, '_ept_fields', true );
+
+		if ( empty( $fields ) ) {
+			return;
+		}
+
+		include 'Admin/views/html-meta-box.php';
+	}
+
 }

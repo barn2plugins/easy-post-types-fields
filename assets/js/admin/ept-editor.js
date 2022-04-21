@@ -27,31 +27,18 @@
 			}
 		});
 
-		const populateData = ( $destination, $source ) => {
-			$( '.hidden>div', $source ).each( (index, item ) => {
-				const $this = $(item),
-					  $dest = $( `input[name="${$this.attr('class')}"]`, $destination );
-
-				if ( 'checkbox' === $dest.attr('type') ) {
-					$dest.prop( 'checked', 'true' === $this.text() );
-				} else {
-					$dest.val( $this.text() );
-				}
-			});
-
-			$( `input[name="previous_slug"]`, $destination ).val( $( '.hidden>div.slug', $source ).text() );
-		}
-
-		$(document).on('click', '#the-list a.taxonomy-delete, #the-list a.custom-field-delete', (event) => {
+		$(document).on('click', '#the-list a.taxonomy-delete, #the-list a.field-delete', (event) => {
 			event.preventDefault();
 
-			const $table = $(event.target).closest('table'),
-				  $row   = $(event.target).closest('tr'),
-				  name   = $( 'a.row-title', $row ).text(),
-				  slug   = $( 'td.column-slug', $row ).text(),
-				  type   = 'taxonomy';
 
-			if ( ! confirm( sprintf( __( 'Are you sure you want to delete the %1$s %2$s?', 'easy-post-types-fields' ), name, __( 'taxonomy', 'easy-post-types-fields' ) ) ) ) {
+			const $row      = $(event.target).closest('tr'),
+				  name      = $( 'a.row-title', $row ).text(),
+				  slug      = $( 'td.column-name', $row ).data('slug'),
+				  section   = (new URLSearchParams(location.href)).get('section'),
+				  type      = 'taxonomies' === section ? 'taxonomy' : 'field',
+				  typeLabel = 'taxonomies' === section ? __( 'taxonomy', 'easy-post-types-fields' ) : __( 'custom field', 'easy-post-types-fields' )
+
+			if ( ! confirm( sprintf( __( 'Are you sure you want to delete the “%1$s” %2$s?', 'easy-post-types-fields' ), name, typeLabel ) ) ) {
 				return false;
 			}
 
@@ -75,12 +62,12 @@
 			);
 		})
 
-		$(document).on('input', 'form.ept-list-item input[name="singular_name"]', (event) => {
+		$(document).on('input', 'form.ept-list-item input.sluggable', (event) => {
 			const slug = wp.url.cleanForSlug($(event.target).val())
 			$(event.target).closest('fieldset').find('input[name="slug"]').val(slug);
 		})
 
-		$(document).on('change', 'form.ept-list-item input[name="slug"]', (event) => {
+		$(document).on('change', 'form.ept-list-item input.slug', (event) => {
 			const slug = wp.url.cleanForSlug($(event.target).val())
 			$(event.target).val(slug);
 		})

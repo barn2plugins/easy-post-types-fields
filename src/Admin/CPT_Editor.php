@@ -311,32 +311,33 @@ class CPT_Editor implements Service, Registerable {
 	public function inline_delete() {
 		check_ajax_referer( 'inlinedeletenonce', '_inline_delete' );
 
-		$type = $_POST['type'];
-		$this->{"inline_delete_$type"}( $_POST );
-	}
-
-	public function inline_delete_taxonomy( $post_data ) {
+		$post_data        = $_POST;
+		$type             = $post_data['type'];
+		$meta_key         = 'taxonomy' === $type ? '_ept_taxonomies' : '_ept_fields';
 		$post_type_object = Util::get_post_type_object( $post_data['post_type'] );
 
 		if ( $post_type_object ) {
-			$taxonomies = get_post_meta( $post_type_object->ID, '_ept_taxonomies', true );
+			$items = get_post_meta( $post_type_object->ID, $meta_key, true );
 
-			if ( ! $taxonomies ) {
-				$taxonomies = [];
+			if ( ! $items ) {
+				$items = [];
 			}
 
-			$new_taxonomies = array_filter(
-				$taxonomies,
-				function( $t ) use ( $post_data ) {
-					return $t['slug'] !== $post_data['slug'];
+			$new_items = array_filter(
+				$items,
+				function( $item ) use ( $post_data ) {
+					return $item['slug'] !== $post_data['slug'];
 				}
 			);
 
-			update_post_meta( $post_type_object->ID, '_ept_taxonomies', $new_taxonomies );
+			update_post_meta( $post_type_object->ID, $meta_key, $new_items );
 			wp_send_json_success();
 		}
 
 		wp_send_json_error( [ 'error_message' => __( 'The post type is missing or an error occurred when completing this operation.', 'easy-post-types-fields' ) ] );
+	}
+
+	public function inline_delete_taxonomy( $post_data ) {
 	}
 
 	public function save_post_data() {
@@ -409,6 +410,68 @@ class CPT_Editor implements Service, Registerable {
 			);
 
 			update_post_meta( $post_type_object->ID, '_ept_taxonomies', $new_taxonomies );
+
+			unset( $request['action'] );
+			$redirected = add_query_arg( $request, admin_url( 'admin.php' ) );
+			wp_safe_redirect( $redirected );
+		}
+	}
+
+	public function save_field( $data, $request ) {
+		$post_type_object = Util::get_post_type_object( $request['post_type'] );
+
+		if ( $post_type_object ) {
+			$fields = get_post_meta( $post_type_object->ID, '_ept_fields', true );
+
+			if ( ! $fields ) {
+				$fields = [];
+			}
+
+			$new_field    = [
+				'name'      => $data['name'],
+				'slug'      => sanitize_title( $data['slug'] ),
+				'type'      => $data['type'],
+				'post_type' => $request['post_type'],
+			];
+			$slug         = $data['slug'];
+			$other_fields = $fields;
+
+			if ( $data['previous_slug'] ) {
+				$other_fields = array_filter(
+					$fields,
+					function( $t ) use ( $data ) {
+						return $t['slug'] !== $data['previous_slug'];
+					}
+				);
+			}
+
+			if ( $data['previous_slug'] !== $data['slug'] ) {
+				$conflicting_fields = array_filter(
+					$other_fields,
+					function( $t ) use ( $slug ) {
+						return $t['slug'] === $slug;
+					}
+				);
+
+				if ( ! empty( $conflicting_fields ) ) {
+					$this->errors->add( 'conflicting_field', __( 'A field with the same slug is already registered to this post type. Please choose a different slug.', 'easy-post-types-fields' ) );
+				}
+			}
+
+			if ( $this->errors->has_errors() ) {
+				return;
+			}
+
+			$new_fields = array_merge( $other_fields, [ $new_field ] );
+
+			usort(
+				$new_fields,
+				function( $a, $b ) {
+					return $a['name'] > $b['name'] ? 1 : -1;
+				}
+			);
+
+			update_post_meta( $post_type_object->ID, '_ept_fields', $new_fields );
 
 			unset( $request['action'] );
 			$redirected = add_query_arg( $request, admin_url( 'admin.php' ) );

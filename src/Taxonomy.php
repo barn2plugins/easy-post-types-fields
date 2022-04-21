@@ -54,14 +54,14 @@ class Taxonomy {
 	private $post_type;
 
 	/**
-	 * The arguments for the post type registration
+	 * The arguments for the taxonomy registration
 	 *
 	 * @var array
 	 */
 	private $args = [];
 
 	/**
-	 * Whether the post type has been successfully registered or not
+	 * Whether the taxonomy has been successfully registered or not
 	 *
 	 * @var bool
 	 */
@@ -101,7 +101,7 @@ class Taxonomy {
 			);
 
 			$this->args = apply_filters(
-				"ept_taxonomy_{$this->taxonomy}_args",
+				"{$this->taxonomy}_taxonomy_args",
 				wp_parse_args(
 					$args,
 					$default_args

@@ -18,7 +18,7 @@ $request_post_type    = Util::get_post_type_by_name( $request['post_type'] );
 $current_taxonomy     = get_taxonomy( "{$request['post_type']}_{$request['taxonomy']}" );
 $hierarchical_tooltip = Util::get_tooltip( __( 'Hierarchical taxonomies have a nested parent/child structure like WordPress post categories, whereas non-hierarchical taxonomies are flat like tags.', 'easy-post-types-fields' ) );
 
-$data = [];
+$data = array_fill_keys( [ 'name', 'singular_name', 'slug', 'hierarchical', 'previous_slug' ], '' );
 
 if ( $current_taxonomy ) {
 	$data = [
@@ -31,7 +31,8 @@ if ( $current_taxonomy ) {
 }
 
 if ( wp_verify_nonce( $_POST['_wpnonce'], 'save_list_item_postdata' ) ) {
-	$data = array_merge( $data, $_POST );
+	$postdata = array_intersect_key( $data, $_POST );
+	$data     = array_merge( $data, $postdata );
 }
 
 ?>
@@ -46,13 +47,13 @@ if ( wp_verify_nonce( $_POST['_wpnonce'], 'save_list_item_postdata' ) ) {
 	<label>
 		<span class="label"><?php esc_html_e( 'Singular name', 'easy-post-types-fields' ); ?></span>
 		<span class="input">
-			<input type="text" placeholder="Taxonomy singular name (e.g. Category)" name="singular_name" value="<?php echo esc_attr( $data['singular_name'] ); ?>" />
+			<input class="sluggable" type="text" placeholder="Taxonomy singular name (e.g. Category)" name="singular_name" value="<?php echo esc_attr( $data['singular_name'] ); ?>" />
 		</span>
 	</label>
 	<label>
 		<span class="label"><?php esc_html_e( 'Slug', 'easy-post-types-fields' ); ?></span>
 		<span class="input">
-			<input type="text" name="slug" maxlength="<?php echo esc_attr( $max ); ?>" value="<?php echo esc_attr( $data['slug'] ); ?>" />
+			<input class="slug" type="text" name="slug" maxlength="<?php echo esc_attr( $max ); ?>" value="<?php echo esc_attr( $data['slug'] ); ?>" />
 		</span>
 	</label>
 	<label>

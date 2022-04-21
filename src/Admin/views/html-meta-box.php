@@ -1,6 +1,6 @@
 <?php
 /**
- * The HTML markup of the Manage page
+ * The HTML markup of the EPT Custom Fields meta box
  *
  * @param Post_Type_List_Table $post_type_list_table The list table instance (a subclass of WP_List_Table)
  * @param Barn2\EPT_Lib\Plugin\Plugin $plugin The main instance of the plugin
@@ -8,9 +8,10 @@
  */
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin;
 
-use Barn2\Plugin\Easy_Post_Types_Fields\Util;
-
 defined( 'ABSPATH' ) || exit;
 
-$request_post_type = Util::get_post_type_by_name( $request['post_type'] );
-
+foreach ( $fields as $field ) {
+?>
+	<h3><?php echo $field['name']; ?></h3>
+<?php
+}
