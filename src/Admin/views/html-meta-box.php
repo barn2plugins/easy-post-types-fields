@@ -16,7 +16,7 @@ defined( 'ABSPATH' ) || exit;
 		<?php
 
 		foreach ( $fields as $field ) {
-			$meta_key   = "{$field['post_type']}_{$field['slug']}";
+			$meta_key   = "{$post_type}_{$field['slug']}";
 			$meta_value = get_post_meta( $post->ID, $meta_key, true );
 
 			?>
@@ -37,7 +37,7 @@ defined( 'ABSPATH' ) || exit;
 
 							?>
 
-							<input type="text" name="<?php echo esc_attr( $meta_key ); ?>" <?php echo $attributes; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> />
+							<input type="text" name="<?php echo esc_attr( $meta_key ); ?>" <?php echo $attributes; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> value="<?php echo esc_attr( $meta_value ); ?>"/>
 
 							<?php
 							break;

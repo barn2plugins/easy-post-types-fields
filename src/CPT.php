@@ -192,6 +192,9 @@ class CPT {
 
 		Util::maybe_flush_rewrite_rules( $this->post_type );
 		$this->register_meta();
+
+		add_action( "save_post_{$this->post_type}", [ $this, 'save_post_fields' ] );
+		add_action( 'pre_post_update', [ $this, 'save_post_fields' ] );
 	}
 
 	public function register_taxonomies() {
@@ -264,6 +267,31 @@ class CPT {
 		}
 
 		include 'Admin/views/html-meta-box.php';
+	}
+
+	public function save_post_fields( $post_id ) {
+		$postdata = sanitize_post( $_POST, 'db' ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
+
+		if ( ! isset( $postdata['post_type'] ) ) {
+			return;
+		}
+
+		$post_type_object = Util::get_post_type_object( $postdata['post_type'] );
+
+		if ( $post_type_object ) {
+			$fields = get_post_meta( $post_type_object->ID, '_ept_fields', true );
+
+			if ( empty( $fields ) ) {
+				return;
+			}
+
+			foreach ( $fields as $field ) {
+				$meta_key = "ept_{$post_type_object->post_name}_{$field['slug']}";
+				if ( isset( $postdata[ $meta_key ] ) && '' !== $postdata[ $meta_key ] ) {
+					update_post_meta( $post_id, $meta_key, $postdata[ $meta_key ] );
+				}
+			}
+		}
 	}
 
 }

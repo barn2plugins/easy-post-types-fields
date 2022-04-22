@@ -101,7 +101,7 @@ class CPT_Editor implements Service, Registerable {
 		add_filter( 'disable_months_dropdown', [ $this, 'disable_months_dropdown' ], 10, 2 );
 		add_filter( 'manage_edit-ept_content_type_columns', [ $this, 'manage_columns' ] );
 		add_action( 'admin_menu', [ $this, 'admin_menu' ] );
-		add_filter( 'wp_insert_post_data', [ $this, 'save_post_type_data' ], 10, 3 );
+		// add_filter( 'wp_insert_post_data', [ $this, 'save_post_fields' ], 10, 3 );
 
 		add_action( 'wp_ajax_ept_inline_delete', [ $this, 'inline_delete' ] );
 
@@ -119,15 +119,6 @@ class CPT_Editor implements Service, Registerable {
 		}
 
 		return $title;
-	}
-
-	public function save_post_type_data( $data, $postdata, $rawpostdata ) {
-		if ( isset( $postdata['ept_plural_name'] ) ) {
-			update_post_meta( $postdata['ID'], '_ept_plural_name', $postdata['ept_plural_name'] );
-			flush_rewrite_rules();
-		}
-
-		return $data;
 	}
 
 	public function register_cpt_metabox() {
@@ -400,6 +391,9 @@ class CPT_Editor implements Service, Registerable {
 			return;
 		}
 
+		$supports = isset( $data['supports'] ) ? array_keys( $data['supports'] ) : [];
+		$supports = array_merge( [ 'title' ], $supports );
+
 		$args = [
 			'ID'             => $post_type_id,
 			'post_title'     => $data['singular_name'],
@@ -409,7 +403,7 @@ class CPT_Editor implements Service, Registerable {
 			'comment_status' => 'closed',
 			'meta_input'     => [
 				'_ept_plural_name' => filter_var( $data['name'], FILTER_DEFAULT ),
-				'_ept_supports'    => array_keys( $data['supports'] ),
+				'_ept_supports'    => $supports,
 			],
 		];
 
