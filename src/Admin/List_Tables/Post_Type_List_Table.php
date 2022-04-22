@@ -138,7 +138,7 @@ class Post_Type_List_Table extends WP_List_Table {
 	}
 
 	protected function get_view_page_link( $view, $label, $class = '' ) {
-		$view = 'ept' === $view ? '' : $view;
+		$view = 'ept' === $view ? false : $view;
 		$url  = Util::get_manage_page_url( '', '', '', '', $view );
 
 		$class_html   = '';

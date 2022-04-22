@@ -28,6 +28,12 @@ class Util {
 			]
 		);
 
+		$request = self::get_page_request();
+
+		if ( isset( $request['view'] ) && false !== $view ) {
+			$args['view'] = $request['view'];
+		}
+
 		return add_query_arg( $args, admin_url( 'admin.php' ) );
 	}
 
