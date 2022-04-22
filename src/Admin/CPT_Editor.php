@@ -329,7 +329,7 @@ class CPT_Editor implements Service, Registerable {
 
 		$post_data        = $_POST;
 		$type             = $post_data['type'];
-		$meta_key         = 'taxonomy' === $type ? '_ept_taxonomies' : '_ept_fields';
+		$meta_key         = 'taxonomies' === $type ? '_ept_taxonomies' : '_ept_fields';
 		$post_type_object = Util::get_post_type_object( $post_data['post_type'] );
 
 		if ( $post_type_object ) {
@@ -351,9 +351,6 @@ class CPT_Editor implements Service, Registerable {
 		}
 
 		wp_send_json_error( [ 'error_message' => __( 'The post type is missing or an error occurred when completing this operation.', 'easy-post-types-fields' ) ] );
-	}
-
-	public function inline_delete_taxonomy( $post_data ) {
 	}
 
 	public function save_post_data() {
@@ -438,7 +435,6 @@ class CPT_Editor implements Service, Registerable {
 				'singular_name' => $data['singular_name'],
 				'slug'          => sanitize_title( $data['slug'] ),
 				'hierarchical'  => filter_var( $data['hierarchical'], FILTER_VALIDATE_BOOLEAN ),
-				'post_type'     => $request['post_type'],
 			];
 			$slug             = $data['slug'];
 			$other_taxonomies = $taxonomies;
@@ -499,7 +495,6 @@ class CPT_Editor implements Service, Registerable {
 				'name'      => $data['name'],
 				'slug'      => sanitize_title( $data['slug'] ),
 				'type'      => $data['type'],
-				'post_type' => $request['post_type'],
 			];
 			$slug         = $data['slug'];
 			$other_fields = $fields;

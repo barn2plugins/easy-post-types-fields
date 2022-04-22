@@ -37,6 +37,14 @@ class Util {
 		return add_query_arg( $args, admin_url( 'admin.php' ) );
 	}
 
+	public static function is_ept_post_type( $post_type ) {
+		if ( is_a( $post_type, 'WP_Post_Type' ) ) {
+			$post_type = $post_type->name;
+		}
+
+		return 0 === strpos( 'ept_', $post_type );
+	}
+
 	public static function get_post_type_by_name( $name ) {
 		global $wp_post_types;
 
@@ -94,7 +102,7 @@ class Util {
 				return '';
 			}
 
-			$href  = isset( $request['section'] ) ? self::get_manage_page_url( $post_type ) : '';
+			$href  = isset( $request['section'] ) && self::is_ept_post_type( $request['post_type'] ) ? self::get_manage_page_url( $post_type ) : '';
 			$crumb = [
 				'label' => $post_type->label,
 			];
