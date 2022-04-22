@@ -37,7 +37,7 @@ if ( isset( $_POST['_wpnonce'] ) && wp_verify_nonce( $_POST['_wpnonce'], 'save_l
 <form action="" method="post" class="ept-list-item">
 	<fieldset>
 		<label>
-			<span class="label"><?php esc_html_e( 'Name', 'easy-post-types-fields' ); ?></span>
+			<span class="label"><?php esc_html_e( 'Plural name', 'easy-post-types-fields' ); ?></span>
 			<span class="input">
 				<input type="text" placeholder="e.g. Articles" name="name" value="<?php echo esc_attr( $data['name'] ); ?>" />
 			</span>
@@ -55,8 +55,8 @@ if ( isset( $_POST['_wpnonce'] ) && wp_verify_nonce( $_POST['_wpnonce'], 'save_l
 			</span>
 		</label>
 		<span>
-			<span class="label"><?php esc_html_e( 'Supported features', 'easy-post-types-fields' ); ?></span>
-			<span class="input">
+			<span class="label"><?php esc_html_e( 'Features', 'easy-post-types-fields' ); ?></span>
+			<span class="input cb-container">
 				<?php
 				foreach ( Util::get_post_type_support() as $feature => $feature_label ) {
 					?>
@@ -75,11 +75,7 @@ if ( isset( $_POST['_wpnonce'] ) && wp_verify_nonce( $_POST['_wpnonce'], 'save_l
 
 	wp_nonce_field( 'save_list_item_postdata' );
 	submit_button(
-		sprintf(
-			// translators: either 'Add' or 'Update'
-			__( '%s post type', 'easy-post-types-fields' ),
-			'add' === $request['action'] ? __( 'Add', 'easy-post-types-fields' ) : __( 'Update', 'easy-post-types-fields' )
-		),
+		__( 'Update post type', 'easy-post-types-fields' ),
 		'primary',
 		'submit',
 		false

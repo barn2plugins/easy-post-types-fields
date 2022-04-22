@@ -14,7 +14,7 @@ defined( 'ABSPATH' ) || exit;
 
 <div class="barn2-plugins-settings">
 	<div class="wrap">
-		<h1 class="wp-heading-inline"><?php echo esc_attr( __( 'Get Help with Easy Post Types and Fields', 'easy-post-types-fields' ) ); ?></h1>
+		<h1 class="wp-heading-inline"><?php esc_attr_e( 'Get Help with Easy Post Types and Fields', 'easy-post-types-fields' ); ?></h1>
 		<hr class="wp-header-end">
 		<p>
 			<?php

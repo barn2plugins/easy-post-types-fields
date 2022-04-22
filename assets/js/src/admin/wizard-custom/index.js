@@ -96,7 +96,7 @@ const readyPageContent = () => {
 			},
 			{
 				after: <GridiconChevronRight />,
-				title: sprintf( __('Add New %s'), values.singular ),
+				title: sprintf( __('Add new %s'), values.singular ),
 				href: `${barn2_setup_wizard.admin_url}post-new.php?post_type=ept_${values.slug}`,
 			},
 			{

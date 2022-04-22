@@ -181,7 +181,7 @@ class Post_Type_List_Table extends WP_List_Table {
 			/* translators: %s: Number of posts. */
 			'ept'   => __( 'Easy Post Types <span class="count">(%s)</span>', 'easy-post-types-fields' ),
 			/* translators: %s: Number of posts. */
-			'other' => __( 'Other post types <span class="count">(%s)</span>', 'easy-post-types-fields' ),
+			'other' => __( 'Other Post Types <span class="count">(%s)</span>', 'easy-post-types-fields' ),
 		];
 
 		foreach ( $views as $view => $label ) {
@@ -219,7 +219,7 @@ class Post_Type_List_Table extends WP_List_Table {
 
 	public function get_columns() {
 		$action_tooltip = Util::get_tooltip( __( 'Use custom fields for storing unique data about your custom posts, and use taxonomies for organizing and grouping the custom posts.', 'easy-post-types-fields' ) );
-		$count_tooltip  = Util::get_tooltip( __( 'The number of posts stored in the database for each post type.', 'easy-post-types-fields' ) );
+		$count_tooltip  = Util::get_tooltip( __( 'The current number of posts for the custom post type.', 'easy-post-types-fields' ) );
 
 		$columns = [
 			'name'       => _x( 'Name', 'column name', 'easy-post-types-fields' ),
@@ -302,8 +302,6 @@ class Post_Type_List_Table extends WP_List_Table {
 		<td class="<?php echo esc_attr( $classes ); ?> post_type-actions" <?php echo esc_attr( $data ); ?>>
 			<a href="<?php echo esc_attr( $fields_link ); ?>" class="button"><?php esc_html_e( 'Custom Fields', 'easy-post-types-fields' ); ?></a>
 			<a href="<?php echo esc_attr( $tax_link ); ?>" class="button"><?php esc_html_e( 'Taxonomies', 'easy-post-types-fields' ); ?></a>
-			<?php // translators: the plural name of a post type ?>
-			<a href="<?php echo esc_attr( $all_link ); ?>" class="button"><?php echo esc_html( sprintf( __( 'All %s', 'easy-post-types-fields' ), $post_type->label ) ); ?></a>
 		</td>
 		<?php
 	}

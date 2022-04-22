@@ -2,7 +2,7 @@
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Post Types and Fields 0.3\n"
+"Project-Id-Version: Easy Post Types and Fields 0.3.1\n"
 "Report-Msgid-Bugs-To: https://barn2.com/support-center/\n"
 "Last-Translator: Barn2 Plugins <support@barn2.com>\n"
 "Language-Team: Barn2 Plugins <support@barn2.com>\n"
@@ -95,12 +95,12 @@ msgid "Size"
 msgstr ""
 
 #: lib/Admin/Settings_Util.php:56
-#: src/Admin/views/html-manage-page-post_types.php:19
+#: src/Admin/views/html-manage-page-post_types.php:18
 msgid "Documentation"
 msgstr ""
 
 #: lib/Admin/Settings_Util.php:61
-#: src/Admin/views/html-manage-page-post_types.php:20
+#: src/Admin/views/html-manage-page-post_types.php:19
 msgid "Support"
 msgstr ""
 
@@ -131,6 +131,7 @@ msgid "Add new post type"
 msgstr ""
 
 #: src/Admin/CPT_Editor.php:56
+#: src/Admin/CPT_Editor.php:279
 msgid "Edit post type"
 msgstr ""
 
@@ -220,8 +221,6 @@ msgstr ""
 
 #: src/Admin/CPT_Editor.php:174
 #: src/Admin/views/html-manage-page-fields.php:42
-#: src/Admin/views/html-manage-page-post_type.php:40
-#: src/Admin/views/html-manage-page-taxonomies.php:42
 #: src/Admin/Wizard/Steps/EPT_Name.php:20
 msgid "Name"
 msgstr ""
@@ -246,8 +245,8 @@ msgstr ""
 
 #: src/Admin/CPT_Editor.php:209
 #: src/Admin/List_Tables/Post_Type_List_Table.php:304
-#: src/Admin/List_Tables/Post_Type_List_Table.php:452
-#: src/Admin/List_Tables/Post_Type_List_Table.php:453
+#: src/Admin/List_Tables/Post_Type_List_Table.php:450
+#: src/Admin/List_Tables/Post_Type_List_Table.php:451
 #: src/Util.php:104
 msgid "Taxonomies"
 msgstr ""
@@ -261,28 +260,30 @@ msgstr ""
 msgid "Taxonomies let you organize and group your %1$s. For example, you might want to organize them by category, tag, year, author, or industry. If you need to add data that is unique to each %4$s then you should create a %2$scustom field%3$s instead."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:274
-msgid "Manage Taxonomies"
+#: src/Admin/CPT_Editor.php:245
+msgid "Use this page to manage your custom post types. You can add and edit post types, custom fields and taxonomies."
 msgstr ""
 
 #: src/Admin/CPT_Editor.php:275
+msgid "Manage Taxonomies"
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:276
 msgid "Manage Custom Fields"
 msgstr ""
 
 #. translators: 1: 'Add' or 'Update', 2: 'custom field' or 'taxonomy'
-#. translators: either 'Add' or 'Update'
-#: src/Admin/CPT_Editor.php:281
+#: src/Admin/CPT_Editor.php:286
 #: src/Admin/views/html-manage-page-lists.php:30
-#: src/Admin/views/html-manage-page-post_type.php:81
 #: src/Util.php:117
 msgid "Add"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:282
+#: src/Admin/CPT_Editor.php:287
 #: src/Admin/List_Tables/Custom_Field_List_Table.php:197
 #: src/Admin/List_Tables/Custom_Field_List_Table.php:198
-#: src/Admin/List_Tables/Post_Type_List_Table.php:429
-#: src/Admin/List_Tables/Post_Type_List_Table.php:430
+#: src/Admin/List_Tables/Post_Type_List_Table.php:427
+#: src/Admin/List_Tables/Post_Type_List_Table.php:428
 #: src/Admin/List_Tables/Taxonomy_List_Table.php:232
 #: src/Admin/List_Tables/Taxonomy_List_Table.php:233
 #: src/Util.php:117
@@ -290,28 +291,28 @@ msgid "Edit"
 msgstr ""
 
 #. translators: either 'Add' or 'Edit'
-#: src/Admin/CPT_Editor.php:286
+#: src/Admin/CPT_Editor.php:291
 msgid "%s taxonomy"
 msgstr ""
 
 #. translators: either 'Add' or 'Edit'
-#: src/Admin/CPT_Editor.php:288
+#: src/Admin/CPT_Editor.php:293
 msgid "%s custom field"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:348
+#: src/Admin/CPT_Editor.php:353
 msgid "The post type is missing or an error occurred when completing this operation."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:390
+#: src/Admin/CPT_Editor.php:395
 msgid "A post type with the same slug is already registered. Please choose a different slug."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:459
+#: src/Admin/CPT_Editor.php:464
 msgid "A taxonomy with the same slug is already registered to this post type. Please choose a different slug."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:520
+#: src/Admin/CPT_Editor.php:525
 msgid "A field with the same slug is already registered to this post type. Please choose a different slug."
 msgstr ""
 
@@ -358,8 +359,8 @@ msgstr ""
 
 #: src/Admin/List_Tables/Custom_Field_List_Table.php:205
 #: src/Admin/List_Tables/Custom_Field_List_Table.php:206
+#: src/Admin/List_Tables/Post_Type_List_Table.php:434
 #: src/Admin/List_Tables/Post_Type_List_Table.php:436
-#: src/Admin/List_Tables/Post_Type_List_Table.php:438
 #: src/Admin/List_Tables/Taxonomy_List_Table.php:240
 #: src/Admin/List_Tables/Taxonomy_List_Table.php:241
 msgid "Delete"
@@ -376,7 +377,7 @@ msgstr ""
 
 #. translators: %s: Number of posts.
 #: src/Admin/List_Tables/Post_Type_List_Table.php:184
-msgid "Other post types <span class=\"count\">(%s)</span>"
+msgid "Other Post Types <span class=\"count\">(%s)</span>"
 msgstr ""
 
 #: src/Admin/List_Tables/Post_Type_List_Table.php:221
@@ -384,7 +385,7 @@ msgid "Use custom fields for storing unique data about your custom posts, and us
 msgstr ""
 
 #: src/Admin/List_Tables/Post_Type_List_Table.php:222
-msgid "The number of posts stored in the database for each post type."
+msgid "The current number of posts for the custom post type."
 msgstr ""
 
 #: src/Admin/List_Tables/Post_Type_List_Table.php:227
@@ -408,18 +409,16 @@ msgid "Count"
 msgstr ""
 
 #: src/Admin/List_Tables/Post_Type_List_Table.php:303
-#: src/Admin/List_Tables/Post_Type_List_Table.php:445
-#: src/Admin/List_Tables/Post_Type_List_Table.php:446
+#: src/Admin/List_Tables/Post_Type_List_Table.php:443
+#: src/Admin/List_Tables/Post_Type_List_Table.php:444
 msgid "Custom Fields"
 msgstr ""
 
-#. translators: the plural name of a post type
 #. translators: %s: Post type plural name.
 #. translators: the plural post type name
 #. translators: the plural name of a taxonomy
-#: src/Admin/List_Tables/Post_Type_List_Table.php:306
+#: src/Admin/List_Tables/Post_Type_List_Table.php:458
 #: src/Admin/List_Tables/Post_Type_List_Table.php:460
-#: src/Admin/List_Tables/Post_Type_List_Table.php:462
 #: src/CPT.php:137
 #: src/Taxonomy.php:129
 msgid "All %s"
@@ -497,9 +496,7 @@ msgid "%1$s %2$s"
 msgstr ""
 
 #. translators: 1: 'Add' or 'Update', 2: 'custom field' or 'taxonomy'
-#. translators: either 'Add' or 'Update'
 #: src/Admin/views/html-manage-page-lists.php:30
-#: src/Admin/views/html-manage-page-post_type.php:81
 msgid "Update"
 msgstr ""
 
@@ -514,7 +511,7 @@ msgid "custom field"
 msgstr ""
 
 #: src/Admin/views/html-manage-page-lists.php:39
-#: src/Admin/views/html-manage-page-post_type.php:90
+#: src/Admin/views/html-manage-page-post_type.php:86
 msgid "Cancel"
 msgstr ""
 
@@ -531,26 +528,31 @@ msgstr ""
 msgid "Add new %s"
 msgstr ""
 
+#: src/Admin/views/html-manage-page-post_type.php:40
+#: src/Admin/views/html-manage-page-taxonomies.php:42
+msgid "Plural name"
+msgstr ""
+
 #: src/Admin/views/html-manage-page-post_type.php:46
 #: src/Admin/views/html-manage-page-taxonomies.php:48
 msgid "Singular name"
 msgstr ""
 
 #: src/Admin/views/html-manage-page-post_type.php:58
-msgid "Supported features"
+#: src/Admin/Wizard/Steps/EPT_Features.php:21
+msgid "Features"
 msgstr ""
 
-#. translators: either 'Add' or 'Update'
-#: src/Admin/views/html-manage-page-post_type.php:80
-msgid "%s post type"
+#: src/Admin/views/html-manage-page-post_type.php:78
+msgid "Update post type"
 msgstr ""
 
-#: src/Admin/views/html-manage-page-post_types.php:17
-msgid "Use this page to manage your custom post types. You can add and edit post types, custom fields and taxonomies."
+#: src/Admin/views/html-manage-page-taxonomies.php:44
+msgid "e.g. Categories"
 msgstr ""
 
-#: src/Admin/views/html-manage-page-post_types.php:21
-msgid "Setup Wizard"
+#: src/Admin/views/html-manage-page-taxonomies.php:50
+msgid "e.g. Category"
 msgstr ""
 
 #: src/Admin/views/html-manage-page-taxonomies.php:60
@@ -572,10 +574,6 @@ msgstr ""
 #: src/Admin/Wizard/Steps/Completed.php:21
 #: src/Admin/Wizard/Steps/EPT_Ready.php:24
 msgid "The %s post type is ready!"
-msgstr ""
-
-#: src/Admin/Wizard/Steps/EPT_Features.php:21
-msgid "Features"
 msgstr ""
 
 #. translators: the plural name of a post type

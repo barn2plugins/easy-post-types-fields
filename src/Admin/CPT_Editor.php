@@ -241,13 +241,14 @@ class CPT_Editor implements Service, Registerable {
 	}
 
 	public function add_manage_page() {
-		$page_title  = __( 'Easy Post Types and Fields', 'easy-post-types-fields' );
-		$plugin      = $this->plugin;
-		$breadcrumbs = Util::get_page_breadcrumbs();
-		$request     = Util::get_page_request();
-		$content     = isset( $request['section'] ) ? 'lists' : 'post_types';
-		$section     = isset( $request['section'] ) ? $request['section'] : 'add';
-		$new_link    = add_query_arg(
+		$page_title       = __( 'Easy Post Types and Fields', 'easy-post-types-fields' );
+		$page_description = __( 'Use this page to manage your custom post types. You can add and edit post types, custom fields and taxonomies.', 'easy-post-types-fields' );
+		$plugin           = $this->plugin;
+		$breadcrumbs      = Util::get_page_breadcrumbs();
+		$request          = Util::get_page_request();
+		$content          = isset( $request['section'] ) ? 'lists' : 'post_types';
+		$section          = isset( $request['section'] ) ? $request['section'] : 'add';
+		$new_link         = add_query_arg(
 			[
 				'page'   => isset( $request['section'] ) ? $request['page'] : $plugin->get_slug() . '-setup-wizard',
 				'action' => 'add',
@@ -273,7 +274,11 @@ class CPT_Editor implements Service, Registerable {
 			$page_title = 'taxonomies' === $request['section'] ?
 				__( 'Manage Taxonomies', 'easy-post-types-fields' ) :
 				__( 'Manage Custom Fields', 'easy-post-types-fields' );
-
+		} else {
+			if ( isset( $request['post_type'] ) ) {
+				$page_title       = __( 'Edit post type', 'easy-post-types-fields' );
+				$page_description = '';
+			}
 		}
 
 		if ( isset( $request['action'] ) ) {
