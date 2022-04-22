@@ -2,7 +2,7 @@
 
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Integration;
 
-use Barn2\EPT_Lib\Plugin\Simple_Plugin,
+use Barn2\Plugin\Easy_Post_Types_Fields\Util,
 	Barn2\EPT_Lib\Registerable,
 	Barn2\EPT_Lib\Service;
 
@@ -27,18 +27,38 @@ class Posts_Table_Pro implements Registerable, Service {
 
 		if ( ! isset( $wp_post_types[ $out['post_type'] ] ) && isset( $wp_post_types[ $ept_post_type ] ) ) {
 			$out['post_type'] = $ept_post_type;
+			$post_type_object = Util::get_post_type_object( $ept_post_type );
 
-			$columns        = explode( ',', $out['columns'] );
-			$columns        = array_map(
-				function( $column ) use ( $ept_post_type ) {
-					if ( 0 === strpos( $column, 'tax:' ) ) {
+			if ( ! $post_type_object ) {
+				return $out;
+			}
+
+			$fields = get_post_meta( $post_type_object->ID, '_ept_fields', true );
+			$fields = $fields ? array_column( $fields, 'slug' ) : [];
+
+			$columns = explode( ',', $out['columns'] );
+			$columns = array_map(
+				function( $column ) use ( $ept_post_type, $fields ) {
+					$prefix = strtok( $column, ':' );
+
+					if ( 'tax' === $prefix ) {
 						$column = 'tax:' . $ept_post_type . '_' . substr( $column, 4 );
+					} elseif ( 'cf' === $prefix ) {
+						$field = strtok( ':' );
+						$label = strtok( ':' );
+
+						if ( in_array( $field, $fields, true ) ) {
+							$label  = $label ? $label : ucfirst( $field );
+							$column = implode( ':', [ $prefix, "{$ept_post_type}_{$field}", $label ] );
+							$column = rtrim( $column, ':' );
+						}
 					}
 
 					return $column;
 				},
 				$columns
 			);
+
 			$out['columns'] = $columns;
 
 			if ( is_null( filter_var( $out['filters'], FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE ) ) ) {
