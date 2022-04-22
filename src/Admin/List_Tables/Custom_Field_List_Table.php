@@ -157,7 +157,7 @@ class Custom_Field_List_Table extends WP_List_Table {
 	protected function column_type( $field ) {
 		$types = [
 			'text'   => __( 'Text', 'easy-post-types-fields' ),
-			'editor' => __( 'Richtext editor', 'easy-post-types-fields' ),
+			'editor' => __( 'Visual Editor', 'easy-post-types-fields' ),
 		];
 		$type  = isset( $types[ $field['type'] ] ) ? $types[ $field['type'] ] : '';
 

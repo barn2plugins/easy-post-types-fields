@@ -55,7 +55,7 @@ if ( isset( $_POST['_wpnonce'] ) && wp_verify_nonce( $_POST['_wpnonce'], 'save_l
 		<span class="input">
 			<select name="type">
 				<option name="type-text" value="text" <?php selected( $data['type'], 'text' ); ?>><?php esc_html_e( 'Text', 'easy-post-types-fields' ); ?></option>
-				<option name="type-editor" value="editor" <?php selected( $data['type'], 'editor' ); ?>><?php esc_html_e( 'Richtext editor', 'easy-post-types-fields' ); ?></option>
+				<option name="type-editor" value="editor" <?php selected( $data['type'], 'editor' ); ?>><?php esc_html_e( 'Visual Editor', 'easy-post-types-fields' ); ?></option>
 			</select>
 		</span>
 	</label>
