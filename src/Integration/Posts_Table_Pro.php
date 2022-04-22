@@ -34,23 +34,28 @@ class Posts_Table_Pro implements Registerable, Service {
 			}
 
 			$fields = get_post_meta( $post_type_object->ID, '_ept_fields', true );
-			$fields = $fields ? array_column( $fields, 'slug' ) : [];
+			$slugs  = $fields ? array_column( $fields, 'slug' ) : [];
+
+			$fields = array_combine(
+				$slugs,
+				$fields
+			);
 
 			$columns = explode( ',', $out['columns'] );
 			$columns = array_map(
-				function( $column ) use ( $ept_post_type, $fields ) {
+				function( $column ) use ( $ept_post_type, $fields, $slugs ) {
 					$prefix = strtok( $column, ':' );
 
 					if ( 'tax' === $prefix ) {
 						$column = 'tax:' . $ept_post_type . '_' . substr( $column, 4 );
 					} elseif ( 'cf' === $prefix ) {
-						$field = strtok( ':' );
+						$slug = strtok( ':' );
 						$label = strtok( ':' );
 
-						if ( in_array( $field, $fields, true ) ) {
-							$label  = $label ? $label : ucfirst( $field );
-							$column = implode( ':', [ $prefix, "{$ept_post_type}_{$field}", $label ] );
-							$column = rtrim( $column, ':' );
+						if ( in_array( $slug, $slugs, true ) ) {
+							$field  = $fields[ $slug ];
+							$label  = $label ? $label : $field['name'];
+							$column = rtrim( implode( ':', [ $prefix, "{$ept_post_type}_{$slug}", $label ] ), ':' );
 						}
 					}
 
