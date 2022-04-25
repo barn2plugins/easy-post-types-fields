@@ -46,6 +46,31 @@ class Taxonomy_List_Table extends WP_List_Table {
 
 			$this->taxonomies = $taxonomies ?: [];
 		}
+
+		$internal_slugs = array_column( $this->taxonomies, 'slug' );
+
+		if ( 'private' === $post_type_object->post_status ) {
+			$locked_taxonomies = array_map(
+				function ( $t ) {
+					return [
+						'name'          => $t->labels->name,
+						'singular_name' => $t->labels->singular_name,
+						'slug'          => $t->name,
+						'hierarchical'  => $t->hierarchical,
+						'is_custom'     => false,
+					];
+				},
+				array_filter(
+					get_object_taxonomies( $post_type->name, 'objects' ),
+					function( $t ) use ( $internal_slugs ) {
+						return $t->publicly_queryable && ! in_array( str_replace( 'product_', '', $t->name ), $internal_slugs, true );
+					}
+				)
+			);
+
+			$this->taxonomies = array_merge( $this->taxonomies, $locked_taxonomies );
+		}
+
 	}
 
 	public function prepare_items() {
@@ -61,16 +86,7 @@ class Taxonomy_List_Table extends WP_List_Table {
 	}
 
 	public function is_custom( $taxonomy ) {
-		return in_array(
-			$taxonomy['slug'],
-			array_map(
-				function( $t ) {
-					return $t['slug'];
-				},
-				$this->taxonomies
-			),
-			true
-		);
+		return $taxonomy['is_custom'];
 	}
 
 	public function has_items() {
@@ -184,8 +200,10 @@ class Taxonomy_List_Table extends WP_List_Table {
 	}
 
 	protected function _column_slug( $taxonomy, $classes, $data, $primary ) {
+		$slug = $taxonomy['is_custom'] ? "{$this->post_type->name}_{$taxonomy['slug']}" : $taxonomy['slug'];
+
 		?>
-		<td class="<?php echo esc_attr( $classes ); ?> taxonomy-slug" <?php echo $data; ?>><?php echo esc_html( $taxonomy['slug'] ); ?></td>
+		<td class="<?php echo esc_attr( $classes ); ?> taxonomy-slug" <?php echo $data; ?>><?php echo esc_html( $slug ); ?></td>
 		<?php
 	}
 
@@ -267,7 +285,7 @@ class Taxonomy_List_Table extends WP_List_Table {
 
 		return add_query_arg(
 			[
-				'taxonomy'  => "{$post_type}_{$taxonomy['slug']}",
+				'taxonomy'  => $taxonomy['is_custom'] ? "{$post_type}_{$taxonomy['slug']}" : $taxonomy['slug'],
 				'post_type' => $post_type,
 			],
 			admin_url( 'edit-tags.php' )

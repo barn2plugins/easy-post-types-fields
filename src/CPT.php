@@ -55,7 +55,9 @@ class CPT {
 		}
 
 		$post_type_object    = get_post( $this->id );
-		$this->post_type     = "ept_$post_type_object->post_name";
+		$this->custom        = 'publish' === $post_type_object->post_status;
+		$this->slug          = $post_type_object->post_name;
+		$this->post_type     = $this->custom ? "ept_{$this->slug}" : $this->slug;
 		$this->name          = get_post_meta( $this->id, '_ept_plural_name', true );
 		$this->singular_name = $post_type_object->post_title;
 
@@ -181,13 +183,15 @@ class CPT {
 	}
 
 	public function register_post_type() {
-		$post_type = register_post_type(
-			$this->post_type,
-			$this->args
-		);
+		if ( $this->custom ) {
+			$post_type = register_post_type(
+				$this->post_type,
+				$this->args
+			);
 
-		if ( is_wp_error( $post_type ) ) {
-			return;
+			if ( is_wp_error( $post_type ) ) {
+				return;
+			}
 		}
 
 		Util::maybe_flush_rewrite_rules( $this->post_type );
@@ -199,6 +203,7 @@ class CPT {
 
 	public function register_taxonomies() {
 		$taxonomies = get_post_meta( $this->id, '_ept_taxonomies', true );
+		$post_type  = $this->post_type;
 
 		if ( is_array( $taxonomies ) ) {
 			foreach ( $taxonomies as $taxonomy ) {
@@ -210,12 +215,12 @@ class CPT {
 					'hierarchical' => isset( $taxonomy['hierarchical'] ) ? $taxonomy['hierarchical'] : true,
 				];
 
-				new Taxonomy( $taxonomy['slug'], $this->post_type, $args );
+				new Taxonomy( $taxonomy['slug'], $post_type, $args );
 			}
 
 			return array_map(
-				function( $t ) {
-					return "{$t['post_type']}_{$t['slug']}";
+				function( $t ) use ( $post_type ) {
+					return "{$post_type}_{$t['slug']}";
 				},
 				$taxonomies
 			);
@@ -226,6 +231,7 @@ class CPT {
 
 	public function register_meta() {
 		$fields = get_post_meta( $this->id, '_ept_fields', true );
+		$post_type  = $this->post_type;
 
 		if ( is_array( $fields ) ) {
 			foreach ( $fields as $field ) {
@@ -233,8 +239,8 @@ class CPT {
 			}
 
 			return array_map(
-				function( $t ) {
-					return "{$t['post_type']}_{$t['slug']}";
+				function( $f ) use ( $post_type ) {
+					return "{$post_type}_{$f['slug']}";
 				},
 				$fields
 			);
@@ -250,9 +256,7 @@ class CPT {
 			return;
 		}
 
-		// translators: A post type name
-		$title = sprintf( __( '%s metadata', 'easy-post-types-fields' ), $this->singular_name );
-		add_meta_box( "ept_post_type_{$this->singular_name}_metabox", $title, [ $this, 'output_meta_box' ] );
+		add_meta_box( "ept_post_type_{$this->singular_name}_metabox", __( 'Custom fields', 'easy-post-types-fields' ), [ $this, 'output_meta_box' ] );
 	}
 
 	public function output_meta_box( $post ) {
@@ -276,20 +280,16 @@ class CPT {
 			return;
 		}
 
-		$post_type_object = Util::get_post_type_object( $postdata['post_type'] );
+		$fields = get_post_meta( $this->id, '_ept_fields', true );
 
-		if ( $post_type_object ) {
-			$fields = get_post_meta( $post_type_object->ID, '_ept_fields', true );
+		if ( empty( $fields ) ) {
+			return;
+		}
 
-			if ( empty( $fields ) ) {
-				return;
-			}
-
-			foreach ( $fields as $field ) {
-				$meta_key = "ept_{$post_type_object->post_name}_{$field['slug']}";
-				if ( isset( $postdata[ $meta_key ] ) && '' !== $postdata[ $meta_key ] ) {
-					update_post_meta( $post_id, $meta_key, $postdata[ $meta_key ] );
-				}
+		foreach ( $fields as $field ) {
+			$meta_key = "{$this->post_type}_{$field['slug']}";
+			if ( isset( $postdata[ $meta_key ] ) && '' !== $postdata[ $meta_key ] ) {
+				update_post_meta( $post_id, $meta_key, $postdata[ $meta_key ] );
 			}
 		}
 	}

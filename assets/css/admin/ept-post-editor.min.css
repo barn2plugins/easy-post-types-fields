@@ -1,5 +1,5 @@
 /*!
- * Easy Post Types and Fields 0.3.1
+ * Easy Post Types and Fields 0.4
  * Copyright 2022 Barn2 Plugins
  */
-table.ept-fields{max-width:unset;width:100%}table.ept-fields tr th{text-align:left;vertical-align:top;width:8em}table.ept-fields tr td,table.ept-fields tr th{padding-bottom:1em}table.ept-fields tr td input[type=text]{width:100%}
+table.ept-fields{max-width:unset;width:100%}table.ept-fields tr th{text-align:left;vertical-align:top;width:8em}table.ept-fields tr td,table.ept-fields tr th{padding-bottom:1em}table.ept-fields tr td input[type=text]{width:100%}table.ept-fields tr td .wp-editor-tools:after{display:initial}

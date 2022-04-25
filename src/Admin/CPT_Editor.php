@@ -435,6 +435,7 @@ class CPT_Editor implements Service, Registerable {
 				'singular_name' => $data['singular_name'],
 				'slug'          => sanitize_title( $data['slug'] ),
 				'hierarchical'  => filter_var( $data['hierarchical'], FILTER_VALIDATE_BOOLEAN ),
+				'is_custom'     => true,
 			];
 			$slug             = $data['slug'];
 			$other_taxonomies = $taxonomies;
@@ -495,6 +496,7 @@ class CPT_Editor implements Service, Registerable {
 				'name'      => $data['name'],
 				'slug'      => sanitize_title( $data['slug'] ),
 				'type'      => $data['type'],
+				'is_custom' => true,
 			];
 			$slug         = $data['slug'];
 			$other_fields = $fields;

@@ -17,6 +17,10 @@ table.ept-fields {
 			input[type="text"] {
 				width: 100%;
 			}
+
+			.wp-editor-tools::after {
+				display: initial;
+			}
 		}
 	}
 }

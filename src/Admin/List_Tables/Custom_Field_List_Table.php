@@ -29,7 +29,14 @@ class Custom_Field_List_Table extends WP_List_Table {
 	 *
 	 * @var array
 	 */
-	protected $fields;
+	protected $fields = [];
+
+	/**
+	 * Whether the post type was registered by EPT 
+	 *
+	 * @var bool
+	 */
+	private $is_custom;
 
 	public function __construct( $post_type ) {
 		parent::__construct(
@@ -40,8 +47,11 @@ class Custom_Field_List_Table extends WP_List_Table {
 
 		$this->post_type  = $post_type;
 		$post_type_object = Util::get_post_type_object( $post_type );
-		$fields           = get_post_meta( $post_type_object->ID, '_ept_fields', true );
-		$this->fields     = $fields ?: [];
+
+		if ( $post_type_object ) {
+			$fields       = get_post_meta( $post_type_object->ID, '_ept_fields', true );
+			$this->fields = $fields ?: [];
+		}
 	}
 
 	public function prepare_items() {
@@ -155,10 +165,7 @@ class Custom_Field_List_Table extends WP_List_Table {
 	}
 
 	protected function column_type( $field ) {
-		$types = [
-			'text'   => __( 'Text', 'easy-post-types-fields' ),
-			'editor' => __( 'Visual Editor', 'easy-post-types-fields' ),
-		];
+		$types = Util::get_custom_field_types();
 		$type  = isset( $types[ $field['type'] ] ) ? $types[ $field['type'] ] : '';
 
 		echo esc_html( $type );

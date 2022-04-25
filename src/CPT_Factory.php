@@ -38,6 +38,7 @@ class CPT_Factory implements Registerable, Service {
 				'post_type'      => 'ept_post_type',
 				'posts_per_page' => -1,
 				'orderby'        => 'post_title',
+				'post_status'    => [ 'publish', 'private' ],
 				'order'          => 'ASC',
 			]
 		);

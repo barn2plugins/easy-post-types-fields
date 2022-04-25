@@ -74,10 +74,9 @@ class Field {
 	public function prepare_arguments( $args ) {
 		if ( empty( $this->args ) ) {
 			$default_args = [
-				'object_subtype' => $this->post_type,
-				'type'           => 'string',
-				'single'         => true,
-				'show_in_rest'   => true,
+				'type'         => 'string',
+				'single'       => true,
+				'show_in_rest' => true,
 			];
 
 			$this->args = apply_filters(
@@ -93,8 +92,8 @@ class Field {
 	}
 
 	public function register_field() {
-		register_meta(
-			'post',
+		register_post_meta(
+			$this->post_type,
 			$this->key,
 			$this->args
 		);
