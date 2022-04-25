@@ -1,6 +1,8 @@
 <?php
 namespace Barn2\Plugin\Easy_Post_Types_Fields;
 
+use WP_Query;
+
 class Util {
 
 	public static function get_page_request() {
@@ -37,12 +39,12 @@ class Util {
 		return add_query_arg( $args, admin_url( 'admin.php' ) );
 	}
 
-	public static function is_ept_post_type( $post_type ) {
+	public static function is_custom_post_type( $post_type ) {
 		if ( is_a( $post_type, 'WP_Post_Type' ) ) {
 			$post_type = $post_type->name;
 		}
 
-		return 0 === strpos( 'ept_', $post_type );
+		return 0 === strpos( $post_type, 'ept_' );
 	}
 
 	public static function get_post_type_by_name( $name ) {
@@ -56,20 +58,45 @@ class Util {
 	}
 
 	public static function get_post_type_object( $post_type ) {
+		$post_type_name = $post_type;
+
 		if ( is_a( $post_type, 'WP_Post_Type' ) ) {
-			$post_type = $post_type->name;
+			$post_type_name = $post_type->name;
 		}
 
-		$posts = get_posts(
-			[
-				'post_type'      => 'ept_post_type',
-				'name'           => str_replace( 'ept_', '', $post_type ),
-				'posts_per_page' => 1,
-			]
-		);
+		$custom = self::is_custom_post_type( $post_type_name );
+		$args   = [
+			'posts_per_page' => 1,
+			'post_type'      => 'ept_post_type',
+			'name'           => str_replace( 'ept_', '', $post_type_name ),
+			'post_status'    => $custom ? 'publish' : 'private',
+		];
+		$query  = new WP_Query( $args );
 
-		if ( count( $posts ) ) {
-			return reset( $posts );
+		if ( $query->have_posts() ) {
+			return $query->post;
+		} else {
+			return self::maybe_store_utility_post_type( $post_type );
+		}
+
+		return false;
+	}
+
+	public static function maybe_store_utility_post_type( $post_type ) {
+		if ( ! self::is_custom_post_type( $post_type ) ) {
+			$post_type_id = wp_insert_post(
+				[
+					'post_type'      => 'ept_post_type',
+					'post_title'     => $post_type->labels->singular_name,
+					'post_name'      => $post_type->name,
+					'post_status'    => 'private',
+					'comment_status' => 'closed',
+				]
+			);
+
+			if ( $post_type_id ) {
+				return get_post( $post_type_id );
+			}
 		}
 
 		return false;
@@ -102,7 +129,7 @@ class Util {
 				return '';
 			}
 
-			$href  = isset( $request['section'] ) && self::is_ept_post_type( $request['post_type'] ) ? self::get_manage_page_url( $post_type ) : '';
+			$href  = isset( $request['section'] ) && self::is_custom_post_type( $request['post_type'] ) ? self::get_manage_page_url( $post_type ) : '';
 			$crumb = [
 				'label' => $post_type->label,
 			];
@@ -188,5 +215,13 @@ class Util {
 			flush_rewrite_rules();
 			delete_transient( "ept_{$entity}_{$name}_updated" );
 		}
+	}
+
+	public static function get_custom_field_types() {
+		return [
+			'text'   => __( 'Text', 'easy-post-types-fields' ),
+			'editor' => __( 'Visual Editor', 'easy-post-types-fields' ),
+			'image'  => __( 'Image', 'easy-post-types-fields' ),
+		];
 	}
 }

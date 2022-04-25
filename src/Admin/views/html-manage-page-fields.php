@@ -54,11 +54,17 @@ if ( isset( $_POST['_wpnonce'] ) && wp_verify_nonce( $_POST['_wpnonce'], 'save_l
 		<span class="label"><?php esc_html_e( 'Type', 'easy-post-types-fields' ); ?></span>
 		<span class="input">
 			<select name="type">
-				<option name="type-text" value="text" <?php selected( $data['type'], 'text' ); ?>><?php esc_html_e( 'Text', 'easy-post-types-fields' ); ?></option>
-				<option name="type-editor" value="editor" <?php selected( $data['type'], 'editor' ); ?>><?php esc_html_e( 'Visual Editor', 'easy-post-types-fields' ); ?></option>
+				<?php
+				foreach ( Util::get_custom_field_types() as $field_type => $field_label ) {
+					?>
+
+					<option name="type-<?php echo esc_attr( $field_type ); ?>" value="<?php echo esc_attr( $field_type ); ?>" <?php selected( $data['type'], $field_type ); ?>><?php echo esc_html( $field_label ); ?></option>
+
+					<?php
+				}
+				?>
 			</select>
 		</span>
 	</label>
 	<input type="hidden" name="previous_slug" value="<?php echo esc_attr( $data['previous_slug'] ); ?>" />
 </fieldset>
-

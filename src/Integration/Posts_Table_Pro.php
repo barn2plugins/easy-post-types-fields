@@ -18,6 +18,8 @@ class Posts_Table_Pro implements Registerable, Service {
 
 	public function register() {
 		add_filter( 'shortcode_atts_posts_table', [ $this, 'posts_table_shortcode_atts' ], 10, 4 );
+		add_filter( 'posts_table_data_custom_field', [ $this, 'get_custom_field' ], 10, 3 );
+
 	}
 
 	public function posts_table_shortcode_atts( $out, $pairs, $atts, $shortcode ) {
@@ -90,4 +92,55 @@ class Posts_Table_Pro implements Registerable, Service {
 
 		return $out;
 	}
+
+	public function get_custom_field( $meta_value, $meta_key, $post ) {
+		if ( 0 === strpos( $meta_key, $post->post_type ) ) {
+			$post_type_object = Util::get_post_type_object( $post->post_type );
+
+			if ( $post_type_object ) {
+				$field_key        = str_replace( "{$post->post_type}_", '', $meta_key );
+				$post_type_fields = get_post_meta( $post_type_object->ID, '_ept_fields', true );
+				$field            = array_filter(
+					$post_type_fields,
+					function( $f ) use ( $field_key ) {
+						return $field_key === $f['slug'];
+					}
+				);
+
+				if ( $field ) {
+					$field      = reset( $field );
+					$meta_value = $this->format_field( $meta_value, $field );
+				}
+			}
+		}
+
+		return $meta_value;
+	}
+
+	public function format_field( $value, $field ) {
+		switch ( $field['type'] ) {
+			case 'gallery':
+			case 'image':
+				$attachment_ids = array_filter( explode( ',', $value ) );
+
+				if ( ! empty( $attachment_ids ) ) {
+					if ( count( array_filter( $attachment_ids, 'is_numeric' ) ) === count( $attachment_ids ) ) {
+						$value = 1 === count( $attachment_ids ) ? wp_get_attachment_image( $value ) : do_shortcode( sprintf( '[gallery include="%s" link="file"]', $value ) );
+					} elseif ( $attachment_id = attachment_url_to_postid( $value ) ) { // phpcs:ignore Squiz.PHP.DisallowMultipleAssignments.FoundInControlStructure
+						$value = wp_get_attachment_image( $attachment_id );
+					} else {
+						$value = sprintf( '<img src="%s" />', $value );
+					}
+				}
+				break;
+
+			case 'text':
+			case 'editor':
+			default:
+				break;
+		}
+
+		return $value;
+	}
+
 }

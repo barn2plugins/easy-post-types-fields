@@ -25,6 +25,7 @@ defined( 'ABSPATH' ) || exit;
 				<td>
 					<?php
 					switch ( $field['type'] ) {
+						case 'image':
 						case 'text':
 							$attributes = apply_filters( "ept_text_input_attributes_{$post_type}", [], $field, $post_type );
 							array_walk(
@@ -43,7 +44,7 @@ defined( 'ABSPATH' ) || exit;
 							break;
 
 						case 'editor':
-							wp_editor( htmlspecialchars_decode( $meta_value ), $meta_key, apply_filters( "ept_editor_{$post_type}", [], $field, $post_type ) );
+							wp_editor( htmlspecialchars_decode( $meta_value ), $meta_key, apply_filters( "ept_editor_{$post_type}", [ 'textarea_rows' => 5 ], $field, $post_type ) );
 							break;
 
 					}
