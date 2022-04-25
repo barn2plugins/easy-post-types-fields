@@ -221,7 +221,7 @@ class Util {
 		return [
 			'text'   => __( 'Text', 'easy-post-types-fields' ),
 			'editor' => __( 'Visual Editor', 'easy-post-types-fields' ),
-			'image'  => __( 'Image', 'easy-post-types-fields' ),
+			// 'image'  => __( 'Image', 'easy-post-types-fields' ),
 		];
 	}
 }
