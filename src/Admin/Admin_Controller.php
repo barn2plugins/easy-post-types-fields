@@ -50,7 +50,7 @@ class Admin_Controller implements Registerable, Service {
 	public function load_scripts( $hook ) {
 		$screen = get_current_screen();
 
-		if ( 'post' === $screen->base && 0 === strpos( $screen->post_type, 'ept_' ) ) {
+		if ( 'post' === $screen->base ) {
 			wp_enqueue_style( 'ept-post-editor', plugin_dir_url( $this->plugin->get_file() ) . 'assets/css/admin/ept-post-editor.min.css', [], $this->plugin->get_version() );
 		}
 	}

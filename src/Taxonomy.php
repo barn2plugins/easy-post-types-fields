@@ -92,7 +92,7 @@ class Taxonomy {
 			];
 
 			$args['rewrite'] = [
-				'slug' => $this->slug,
+				'slug' => "{$this->post_type}_{$this->slug}",
 			];
 
 			$args['labels'] = apply_filters(

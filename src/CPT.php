@@ -55,9 +55,8 @@ class CPT {
 		}
 
 		$post_type_object    = get_post( $this->id );
-		$this->custom        = 'publish' === $post_type_object->post_status;
 		$this->slug          = $post_type_object->post_name;
-		$this->post_type     = $this->custom ? "ept_{$this->slug}" : $this->slug;
+		$this->post_type     = "ept_{$this->slug}";
 		$this->name          = get_post_meta( $this->id, '_ept_plural_name', true );
 		$this->singular_name = $post_type_object->post_title;
 
@@ -88,7 +87,7 @@ class CPT {
 			];
 
 			$args['labels'] = apply_filters(
-				"ept_post_type_{$this->singular_name}_labels",
+				"ept_post_type_{$this->slug}_labels",
 				$this->default_labels()
 			);
 
@@ -102,7 +101,7 @@ class CPT {
 			$args['taxonomies'] = $taxonomies ?: [];
 
 			$this->args = apply_filters(
-				"ept_post_type_{$this->singular_name}_args",
+				"ept_post_type_{$this->slug}_args",
 				wp_parse_args(
 					$args,
 					$default_args
@@ -183,15 +182,13 @@ class CPT {
 	}
 
 	public function register_post_type() {
-		if ( $this->custom ) {
-			$post_type = register_post_type(
-				$this->post_type,
-				$this->args
-			);
+		$post_type = register_post_type(
+			$this->post_type,
+			$this->args
+		);
 
-			if ( is_wp_error( $post_type ) ) {
-				return;
-			}
+		if ( is_wp_error( $post_type ) ) {
+			return;
 		}
 
 		Util::maybe_flush_rewrite_rules( $this->post_type );
@@ -230,8 +227,8 @@ class CPT {
 	}
 
 	public function register_meta() {
-		$fields = get_post_meta( $this->id, '_ept_fields', true );
-		$post_type  = $this->post_type;
+		$fields    = get_post_meta( $this->id, '_ept_fields', true );
+		$post_type = $this->post_type;
 
 		if ( is_array( $fields ) ) {
 			foreach ( $fields as $field ) {
@@ -249,18 +246,18 @@ class CPT {
 		return [];
 	}
 
-	public function register_cpt_metabox() {
+	public function register_cpt_metabox( $post = null ) {
 		$fields = get_post_meta( $this->id, '_ept_fields', true );
 
 		if ( empty( $fields ) ) {
 			return;
 		}
 
-		add_meta_box( "ept_post_type_{$this->singular_name}_metabox", __( 'Custom fields', 'easy-post-types-fields' ), [ $this, 'output_meta_box' ] );
+		add_meta_box( "ept_post_type_{$this->slug}_metabox", __( 'Custom fields', 'easy-post-types-fields' ), [ $this, 'output_meta_box' ], $this->post_type );
 	}
 
 	public function output_meta_box( $post ) {
-		do_action( "ept_post_type_{$this->singular_name}_metabox" );
+		do_action( "ept_post_type_{$this->slug}_metabox" );
 
 		// get the fields registered with the post type
 		$fields    = get_post_meta( $this->id, '_ept_fields', true );

@@ -25,9 +25,13 @@ class Posts_Table_Pro implements Registerable, Service {
 	public function posts_table_shortcode_atts( $out, $pairs, $atts, $shortcode ) {
 		global $wp_post_types;
 
-		$ept_post_type = "ept_{$out['post_type']}";
+		$ept_post_type = $out['post_type'];
 
-		if ( ! isset( $wp_post_types[ $out['post_type'] ] ) && isset( $wp_post_types[ $ept_post_type ] ) ) {
+		if ( ! isset( $wp_post_types[ $out['post_type'] ] ) && isset( $wp_post_types[ "ept_{$out['post_type']}" ] ) ) {
+			$ept_post_type = "ept_{$out['post_type']}";
+		}
+
+		if ( isset( $wp_post_types[ $ept_post_type ] ) ) {
 			$out['post_type'] = $ept_post_type;
 			$post_type_object = Util::get_post_type_object( $ept_post_type );
 
