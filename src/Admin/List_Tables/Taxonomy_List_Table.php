@@ -200,10 +200,8 @@ class Taxonomy_List_Table extends WP_List_Table {
 	}
 
 	protected function _column_slug( $taxonomy, $classes, $data, $primary ) {
-		$slug = $taxonomy['is_custom'] ? "{$this->post_type->name}_{$taxonomy['slug']}" : $taxonomy['slug'];
-
 		?>
-		<td class="<?php echo esc_attr( $classes ); ?> taxonomy-slug" <?php echo $data; ?>><?php echo esc_html( $slug ); ?></td>
+		<td class="<?php echo esc_attr( $classes ); ?> taxonomy-slug" <?php echo $data; ?>><?php echo esc_html( $taxonomy['slug'] ); ?></td>
 		<?php
 	}
 

@@ -91,8 +91,9 @@ class Taxonomy {
 				'show_admin_column' => true,
 			];
 
+			$post_type_slug  = str_replace( 'ept_', '', $this->post_type );
 			$args['rewrite'] = [
-				'slug' => "{$this->post_type}-{$this->slug}",
+				'slug' => "{$post_type_slug}-{$this->slug}",
 			];
 
 			$args['labels'] = apply_filters(
