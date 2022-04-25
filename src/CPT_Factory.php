@@ -44,7 +44,7 @@ class CPT_Factory implements Registerable, Service {
 		);
 
 		foreach ( $ept_post_types->posts as $post_type ) {
-			if ( 'public' === $post_type->post_status ) {
+			if ( 'publish' === $post_type->post_status ) {
 				$this->post_types[] = new CPT( $post_type->ID );
 			} else {
 				if ( 'attachment' === $post_type->post_name ) {
