@@ -1,5 +1,5 @@
 <?php
-namespace Barn2\Plugin\Easy_Post_Types_Fields;
+namespace Barn2\Plugin\Easy_Post_Types_Fields\Post_Types;
 
 /**
  * The class handling custom fields and taxonomies for the Media post type (attachment).
@@ -9,64 +9,11 @@ namespace Barn2\Plugin\Easy_Post_Types_Fields;
  * @license   GPL-3.0
  * @copyright Barn2 Media Ltd
  */
-class CPT_Media extends CPT_Default {
+class Attachment_Post_Type extends Abstract_Post_Type {
 
-	public function register_post_type() {
-		$this->register_taxonomies();
-
-		Util::maybe_flush_rewrite_rules( $this->post_type );
-		$this->register_meta();
-
+	public function register() {
 		add_filter( 'attachment_fields_to_edit', [ $this, 'attachment_fields_to_edit' ], 10, 2 );
 		add_filter( 'attachment_fields_to_save', [ $this, 'attachment_fields_to_save' ], 10, 2 );
-	}
-
-	public function register_taxonomies() {
-		$taxonomies = get_post_meta( $this->id, '_ept_taxonomies', true );
-		$post_type  = $this->post_type;
-
-		if ( is_array( $taxonomies ) ) {
-			foreach ( $taxonomies as $taxonomy ) {
-				$args = [
-					'labels'       => [
-						'name'          => $taxonomy['name'],
-						'singular_name' => $taxonomy['singular_name'],
-					],
-					'hierarchical' => isset( $taxonomy['hierarchical'] ) ? $taxonomy['hierarchical'] : true,
-				];
-
-				new Taxonomy( $taxonomy['slug'], $post_type, $args );
-			}
-
-			return array_map(
-				function( $t ) use ( $post_type ) {
-					return "{$post_type}_{$t['slug']}";
-				},
-				$taxonomies
-			);
-		}
-
-		return [];
-	}
-
-	public function register_meta() {
-		$fields    = get_post_meta( $this->id, '_ept_fields', true );
-		$post_type = $this->post_type;
-
-		if ( is_array( $fields ) ) {
-			foreach ( $fields as $field ) {
-				new Field( $field, $this->post_type );
-			}
-
-			return array_map(
-				function( $f ) use ( $post_type ) {
-					return "{$post_type}_{$f['slug']}";
-				},
-				$fields
-			);
-		}
-
-		return [];
 	}
 
 	public function attachment_fields_to_edit( $form_fields, $post ) {

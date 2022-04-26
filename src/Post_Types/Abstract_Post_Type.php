@@ -1,15 +1,54 @@
 <?php
-namespace Barn2\Plugin\Easy_Post_Types_Fields;
+namespace Barn2\Plugin\Easy_Post_Types_Fields\Post_Types;
+
+use Barn2\Plugin\Easy_Post_Types_Fields\Util;
+use Barn2\Plugin\Easy_Post_Types_Fields\Taxonomy;
+use Barn2\Plugin\Easy_Post_Types_Fields\Field;
 
 /**
- * The class handling custom fields and taxonomies for a built-in or third party post type.
+ * The class registering a new Custom Post Type.
  *
  * @package   Barn2\easy-post-types-fields
  * @author    Barn2 Plugins <support@barn2.com>
  * @license   GPL-3.0
  * @copyright Barn2 Media Ltd
  */
-class CPT_Default extends CPT {
+abstract class Abstract_Post_Type implements Post_Type_Interface {
+
+	/**
+	 * The ID of the EPT post containing the CPT definition
+	 *
+	 * @var int
+	 */
+	protected $id;
+
+	/**
+	 * The name (generally plural) of the CPT as defined in $args['labels']['name']
+	 *
+	 * @var string
+	 */
+	protected $name;
+
+	/**
+	 * The singular name of the CPT as defined in $args['labels']['singular_name']
+	 *
+	 * @var string
+	 */
+	protected $singular_name;
+
+	/**
+	 * The post type of the CPT
+	 *
+	 * @var string
+	 */
+	protected $post_type;
+
+	/**
+	 * The taxonomies registered for this post types
+	 *
+	 * @var array
+	 */
+	protected $taxonomies = [];
 
 	public function __construct( $id ) {
 		$this->id = $id;
@@ -19,27 +58,44 @@ class CPT_Default extends CPT {
 			return;
 		}
 
-		$post_type_object    = get_post( $this->id );
-		$this->slug          = $post_type_object->post_name;
-		$this->post_type     = $this->slug;
-		$this->name          = $post_type_object->post_title;
-		$this->singular_name = $post_type_object->post_title;
+		$post_type_object = get_post( $this->id );
 
-		$this->register_post_type();
+		if ( $post_type_object ) {
+			$this->slug          = $post_type_object->post_name;
+			$this->post_type     = 'publish' === $post_type_object->post_status ? 'ept_' : '';
+			$this->post_type    .= $post_type_object->post_name;
+			$this->singular_name = $post_type_object->post_title;
+			$this->name          = get_post_meta( $this->id, '_ept_plural_name', true );
+
+			if ( '' === $this->name ) {
+				$this->name = $this->singular_name;
+			}
+
+			$this->init();
+		}
 	}
 
-	public function register_post_type() {
-		$this->register_taxonomies();
+	public function init() {
+		$this->activate_post_type();
+	}
+
+	protected function activate_post_type() {
+		if ( empty( $this->taxonomies ) ) {
+			$this->register_taxonomies();
+		}
 
 		Util::maybe_flush_rewrite_rules( $this->post_type );
 		$this->register_meta();
 
-		add_action( "add_meta_boxes_{$this->post_type}", [ $this, 'register_cpt_metabox' ] );
+		$this->register();
+	}
+
+	protected function register() {
 		add_action( "save_post_{$this->post_type}", [ $this, 'save_post_fields' ] );
 		add_action( 'pre_post_update', [ $this, 'save_post_fields' ] );
 	}
 
-	public function register_taxonomies() {
+	protected function register_taxonomies() {
 		$taxonomies = get_post_meta( $this->id, '_ept_taxonomies', true );
 		$post_type  = $this->post_type;
 
@@ -56,7 +112,7 @@ class CPT_Default extends CPT {
 				new Taxonomy( $taxonomy['slug'], $post_type, $args );
 			}
 
-			return array_map(
+			$this->taxonomies = array_map(
 				function( $t ) use ( $post_type ) {
 					return "{$post_type}_{$t['slug']}";
 				},
@@ -64,10 +120,10 @@ class CPT_Default extends CPT {
 			);
 		}
 
-		return [];
+		$this->taxonomies = [];
 	}
 
-	public function register_meta() {
+	protected function register_meta() {
 		$fields    = get_post_meta( $this->id, '_ept_fields', true );
 		$post_type = $this->post_type;
 
@@ -111,51 +167,7 @@ class CPT_Default extends CPT {
 		include 'Admin/views/html-meta-box.php';
 	}
 
-	public function attachment_fields_to_edit( $form_fields, $post ) {
-		$fields = get_post_meta( $this->id, '_ept_fields', true );
-
-		if ( is_array( $fields ) ) {
-			foreach ( $fields as $field ) {
-				$field['value'] = get_post_meta( $post->ID, "ept_{$field['slug']}", true );
-				$field['label'] = $field['name'];
-				unset( $field['name'] );
-				$form_fields[ $field['slug'] ] = $field;
-			}
-		}
-
-		return $form_fields;
-	}
-
-	public function attachment_fields_to_save( $post, $attachment ) {
-		$fields = get_post_meta( $this->id, '_ept_fields', true );
-
-		foreach ( $fields as $field ) {
-			$key = "ept_{$field['slug']}";
-
-			if ( isset( $attachment[ $field['slug'] ] ) ) {
-				update_post_meta( $post['ID'], $key, $attachment[ $field['slug'] ] );
-			} else {
-				delete_post_meta( $post['ID'], $key );
-			}
-		}
-
-		if ( ! isset( $_REQUEST['tax_input'] ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			return $post;
-		}
-
-		foreach ( $_REQUEST['tax_input'] as $tax_name => $tax ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-			$term_ids = array_map(
-				'intval',
-				array_keys( $tax, '1', true )
-			);
-			wp_set_object_terms( $post['ID'], $term_ids, $tax_name, false );
-			_update_generic_term_count( $term_ids, $tax_name );
-		}
-
-		return $post;
-	}
-
-	public function save_post_fields( $post_id ) {
+	public function save_post_data( $post_id ) {
 		$postdata = sanitize_post( $_POST, 'db' ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
 		if ( ! isset( $postdata['post_type'] ) ) {

@@ -16,7 +16,7 @@ use WP_Query;
  * @license   GPL-3.0
  * @copyright Barn2 Media Ltd
  */
-class CPT_Factory implements Registerable, Service {
+class Post_Type_Factory implements Registerable, Service {
 
 	/**
 	 * The main plugin instance
@@ -45,12 +45,12 @@ class CPT_Factory implements Registerable, Service {
 
 		foreach ( $ept_post_types->posts as $post_type ) {
 			if ( 'publish' === $post_type->post_status ) {
-				$this->post_types[] = new CPT( $post_type->ID );
+				$this->post_types[] = new Post_Types\Custom_Post_Type( $post_type->ID );
 			} else {
 				if ( 'attachment' === $post_type->post_name ) {
-					$this->post_types[] = new CPT_Media( $post_type->ID );
+					$this->post_types[] = new Post_Types\Attachment_Post_Type( $post_type->ID );
 				} else {
-					$this->post_types[] = new CPT_Default( $post_type->ID );
+					$this->post_types[] = new Post_Types\Default_Post_Type( $post_type->ID );
 				}
 			}
 		}

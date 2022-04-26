@@ -1,5 +1,5 @@
 <?php
-namespace Barn2\Plugin\Easy_Post_Types_Fields;
+namespace Barn2\Plugin\Easy_Post_Types_Fields\Post_Types;
 
 /**
  * The class registering a new Custom Post Type.
@@ -9,35 +9,7 @@ namespace Barn2\Plugin\Easy_Post_Types_Fields;
  * @license   GPL-3.0
  * @copyright Barn2 Media Ltd
  */
-class CPT {
-
-	/**
-	 * The ID of the EPT post containing the CPT definition
-	 *
-	 * @var int
-	 */
-	private $id;
-
-	/**
-	 * The name (generally plural) of the CPT as defined in $args['labels']['name']
-	 *
-	 * @var string
-	 */
-	private $name;
-
-	/**
-	 * The singular name of the CPT as defined in $args['labels']['singular_name']
-	 *
-	 * @var string
-	 */
-	private $singular_name;
-
-	/**
-	 * The post type of the CPT
-	 *
-	 * @var string
-	 */
-	private $post_type;
+class Custom_Post_Type extends Abstract_Post_Type {
 
 	/**
 	 * The arguments for the post type registration
@@ -46,23 +18,28 @@ class CPT {
 	 */
 	private $args = [];
 
-	public function __construct( $id ) {
-		$this->id = $id;
+	public function init() {
+		if ( $this->prepare_arguments() ) {
+			$this->activate_post_type();
+		}
+	}
 
-		if ( 'ept_post_type' !== get_post_type( $this->id ) ) {
-			$this->is_registered = false;
+	public function activate_post_type() {
+		$post_type = register_post_type(
+			$this->post_type,
+			$this->args
+		);
+
+		if ( is_wp_error( $post_type ) ) {
 			return;
 		}
 
-		$post_type_object    = get_post( $this->id );
-		$this->slug          = $post_type_object->post_name;
-		$this->post_type     = "ept_{$this->slug}";
-		$this->name          = get_post_meta( $this->id, '_ept_plural_name', true );
-		$this->singular_name = $post_type_object->post_title;
+		parent::activate_post_type();
+	}
 
-		if ( $this->prepare_arguments() ) {
-			$this->register_post_type();
-		}
+	public function register_hooks() {
+		add_action( "save_post_{$this->post_type}", [ $this, 'save_post_fields' ] );
+		add_action( 'pre_post_update', [ $this, 'save_post_fields' ] );
 	}
 
 	public function prepare_arguments() {
@@ -97,8 +74,9 @@ class CPT {
 				'slug'       => '/' . sanitize_title( $this->name ),
 				'with_front' => false,
 			];
-			$taxonomies         = $this->register_taxonomies();
-			$args['taxonomies'] = $taxonomies ?: [];
+
+			$this->register_taxonomies();
+			$args['taxonomies'] = $this->taxonomies;
 
 			$this->args = apply_filters(
 				"ept_post_type_{$this->slug}_args",
@@ -179,116 +157,6 @@ class CPT {
 		$singular_name = $to_lower ? strtolower( $this->singular_name ) : $this->singular_name;
 
 		return ucfirst( sprintf( $label, $singular_name ) );
-	}
-
-	public function register_post_type() {
-		$post_type = register_post_type(
-			$this->post_type,
-			$this->args
-		);
-
-		if ( is_wp_error( $post_type ) ) {
-			return;
-		}
-
-		Util::maybe_flush_rewrite_rules( $this->post_type );
-		$this->register_meta();
-
-		add_action( "save_post_{$this->post_type}", [ $this, 'save_post_fields' ] );
-		add_action( 'pre_post_update', [ $this, 'save_post_fields' ] );
-	}
-
-	public function register_taxonomies() {
-		$taxonomies = get_post_meta( $this->id, '_ept_taxonomies', true );
-		$post_type  = $this->post_type;
-
-		if ( is_array( $taxonomies ) ) {
-			foreach ( $taxonomies as $taxonomy ) {
-				$args = [
-					'labels'       => [
-						'name'          => $taxonomy['name'],
-						'singular_name' => $taxonomy['singular_name'],
-					],
-					'hierarchical' => isset( $taxonomy['hierarchical'] ) ? $taxonomy['hierarchical'] : true,
-				];
-
-				new Taxonomy( $taxonomy['slug'], $post_type, $args );
-			}
-
-			return array_map(
-				function( $t ) use ( $post_type ) {
-					return "{$post_type}_{$t['slug']}";
-				},
-				$taxonomies
-			);
-		}
-
-		return [];
-	}
-
-	public function register_meta() {
-		$fields    = get_post_meta( $this->id, '_ept_fields', true );
-		$post_type = $this->post_type;
-
-		if ( is_array( $fields ) ) {
-			foreach ( $fields as $field ) {
-				new Field( $field, $this->post_type );
-			}
-
-			return array_map(
-				function( $f ) use ( $post_type ) {
-					return "{$post_type}_{$f['slug']}";
-				},
-				$fields
-			);
-		}
-
-		return [];
-	}
-
-	public function register_cpt_metabox( $post = null ) {
-		$fields = get_post_meta( $this->id, '_ept_fields', true );
-
-		if ( empty( $fields ) ) {
-			return;
-		}
-
-		add_meta_box( "ept_post_type_{$this->slug}_metabox", __( 'Custom fields', 'easy-post-types-fields' ), [ $this, 'output_meta_box' ], $this->post_type );
-	}
-
-	public function output_meta_box( $post ) {
-		do_action( "ept_post_type_{$this->slug}_metabox" );
-
-		// get the fields registered with the post type
-		$fields    = get_post_meta( $this->id, '_ept_fields', true );
-		$post_type = $this->post_type;
-
-		if ( empty( $fields ) ) {
-			return;
-		}
-
-		include 'Admin/views/html-meta-box.php';
-	}
-
-	public function save_post_fields( $post_id ) {
-		$postdata = sanitize_post( $_POST, 'db' ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
-
-		if ( ! isset( $postdata['post_type'] ) ) {
-			return;
-		}
-
-		$fields = get_post_meta( $this->id, '_ept_fields', true );
-
-		if ( empty( $fields ) ) {
-			return;
-		}
-
-		foreach ( $fields as $field ) {
-			$meta_key = "{$this->post_type}_{$field['slug']}";
-			if ( isset( $postdata[ $meta_key ] ) && '' !== $postdata[ $meta_key ] ) {
-				update_post_meta( $post_id, $meta_key, $postdata[ $meta_key ] );
-			}
-		}
 	}
 
 }
