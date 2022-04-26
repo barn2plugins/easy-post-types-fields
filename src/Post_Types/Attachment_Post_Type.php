@@ -17,44 +17,77 @@ class Attachment_Post_Type extends Abstract_Post_Type {
 	}
 
 	public function attachment_fields_to_edit( $form_fields, $post ) {
-		$fields = get_post_meta( $this->id, '_ept_fields', true );
+		$screen = get_current_screen();
 
-		if ( is_array( $fields ) ) {
-			foreach ( $fields as $field ) {
-				$field['value'] = get_post_meta( $post->ID, "{$this->post_type}_{$field['slug']}", true );
-				$field['label'] = $field['name'];
-				unset( $field['name'] );
-				$form_fields[ $field['slug'] ] = $field;
+		if ( is_null( $screen ) ) {
+			foreach ( $this->fields as $field ) {
+				unset( $form_fields[ $field ] );
 			}
+
+			foreach ( $this->taxonomies as $taxonomy ) {
+				unset( $form_fields[ $taxonomy ] );
+			}
+
+			return $form_fields;
+		}
+
+		ob_start();
+		?>
+
+		<div id="ept_post_type_post_metabox" class="postbox">
+			<style>table.compat-attachment-fields{width: 100%;}tr.compat-field-ept_fields>th{display:none;}</style>
+			<div class="postbox-header">
+				<h2 class="hndle ui-sortable-handle">Custom Fields</h2>
+			</div>
+			<div class="inside">
+
+				<?php
+				$this->output_meta_box( $post );
+				?>
+			</div>
+		</div>
+
+		<?php
+		$meta_box = ob_get_clean();
+
+		if ( $meta_box ) {
+			$form_fields['ept_fields'] = [
+				'label' => '',
+				'input' => 'html',
+				'html'  => $meta_box,
+			];
 		}
 
 		return $form_fields;
 	}
 
 	public function attachment_fields_to_save( $post, $attachment ) {
+		//phpcs:disable WordPress.Security.NonceVerification.Recommended
+
 		$fields = get_post_meta( $this->id, '_ept_fields', true );
 
 		foreach ( $fields as $field ) {
 			$key = "{$this->post_type}_{$field['slug']}";
 
-			if ( isset( $attachment[ $field['slug'] ] ) ) {
-				update_post_meta( $post['ID'], $key, $attachment[ $field['slug'] ] );
+			if ( isset( $_REQUEST[ $key ] ) ) {
+				update_post_meta( $post['ID'], $key, $_REQUEST[ $key ] );
 			} else {
 				delete_post_meta( $post['ID'], $key );
 			}
 		}
 
-		if ( ! isset( $_REQUEST['tax_input'] ) ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( ! isset( $_REQUEST['tax_input'] ) ) {
 			return $post;
 		}
 
-		foreach ( $_REQUEST['tax_input'] as $tax_name => $tax ) { //phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.ValidatedSanitizedInput.MissingUnslash, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-			$term_ids = array_map(
-				'intval',
-				array_keys( $tax, '1', true )
-			);
-			wp_set_object_terms( $post['ID'], $term_ids, $tax_name, false );
-			_update_generic_term_count( $term_ids, $tax_name );
+		foreach ( $_REQUEST['tax_input'] as $tax_name => $terms ) {
+			if ( is_array( $terms ) ) {
+				$terms = array_values( array_filter( array_map( 'intval', $terms ) ) );
+				$ids   = wp_set_object_terms( $post['ID'], $terms, $tax_name, false );
+
+				$taxonomy = get_taxonomy( $tax_name );
+				_update_generic_term_count( $terms, $taxonomy );
+			}
 		}
 
 		return $post;
