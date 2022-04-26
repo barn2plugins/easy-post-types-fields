@@ -5,6 +5,8 @@ use Barn2\Plugin\Easy_Post_Types_Fields\Util;
 use Barn2\Plugin\Easy_Post_Types_Fields\Taxonomy;
 use Barn2\Plugin\Easy_Post_Types_Fields\Field;
 
+use function Barn2\Plugin\Easy_Post_Types_Fields\ept;
+
 /**
  * The class registering a new Custom Post Type.
  *
@@ -46,9 +48,16 @@ abstract class Abstract_Post_Type implements Post_Type_Interface {
 	/**
 	 * The taxonomies registered for this post types
 	 *
-	 * @var array
+	 * @var array[]
 	 */
 	protected $taxonomies = [];
+
+	/**
+	 * The fields registered for this post types
+	 *
+	 * @var array[]
+	 */
+	protected $fields = [];
 
 	public function __construct( $id ) {
 		$this->id = $id;
@@ -87,7 +96,9 @@ abstract class Abstract_Post_Type implements Post_Type_Interface {
 		Util::maybe_flush_rewrite_rules( $this->post_type );
 		$this->register_meta();
 
-		$this->register();
+		if ( $this->fields || $this->taxonomies ) {
+			$this->register();
+		}
 	}
 
 	protected function register() {
@@ -119,8 +130,6 @@ abstract class Abstract_Post_Type implements Post_Type_Interface {
 				$taxonomies
 			);
 		}
-
-		$this->taxonomies = [];
 	}
 
 	protected function register_meta() {
@@ -132,25 +141,21 @@ abstract class Abstract_Post_Type implements Post_Type_Interface {
 				new Field( $field, $this->post_type );
 			}
 
-			return array_map(
+			$this->fields = array_map(
 				function( $f ) use ( $post_type ) {
 					return "{$post_type}_{$f['slug']}";
 				},
 				$fields
 			);
 		}
-
-		return [];
 	}
 
 	public function register_cpt_metabox( $post = null ) {
-		$fields = get_post_meta( $this->id, '_ept_fields', true );
-
-		if ( empty( $fields ) ) {
+		if ( empty( $this->fields ) ) {
 			return;
 		}
 
-		add_meta_box( "ept_post_type_{$this->slug}_metabox", __( 'Custom fields', 'easy-post-types-fields' ), [ $this, 'output_meta_box' ], $this->post_type );
+		add_meta_box( "ept_post_type_{$this->slug}_metabox", __( 'Custom Fields', 'easy-post-types-fields' ), [ $this, 'output_meta_box' ], $this->post_type );
 	}
 
 	public function output_meta_box( $post ) {
@@ -164,7 +169,7 @@ abstract class Abstract_Post_Type implements Post_Type_Interface {
 			return;
 		}
 
-		include 'Admin/views/html-meta-box.php';
+		include ept()->get_admin_path( 'views/html-meta-box.php' );
 	}
 
 	public function save_post_data( $post_id ) {
