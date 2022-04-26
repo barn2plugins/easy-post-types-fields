@@ -22,10 +22,6 @@ defined( 'ABSPATH' ) || exit;
 		?>
 
 	</div>
-
-	<?php
-	do_action( 'barn2_after_plugin_settings', $plugin->get_id() );
-	?>
 </div>
 
 <?php
