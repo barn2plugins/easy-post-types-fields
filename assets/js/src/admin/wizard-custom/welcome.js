@@ -183,7 +183,7 @@ class Welcome extends Component {
 							disabled={ loading }
 							onClick={ () => this.props.goToNextStep() }
 						>
-							{ __( 'Get started' ) }
+							{ __( 'Create a custom post type' ) }
 						</Button>
 					</CardFooter>
 				</Card>
