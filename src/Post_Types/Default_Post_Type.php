@@ -11,9 +11,8 @@ namespace Barn2\Plugin\Easy_Post_Types_Fields\Post_Types;
  */
 class Default_Post_Type extends Abstract_Post_Type {
 
-	public function register() {
+	protected function register() {
 		add_action( "add_meta_boxes_{$this->post_type}", [ $this, 'register_cpt_metabox' ] );
-		add_action( "save_post_{$this->post_type}", [ $this, 'save_post_fields' ] );
-		add_action( 'pre_post_update', [ $this, 'save_post_fields' ] );
+		parent::register();
 	}
 }

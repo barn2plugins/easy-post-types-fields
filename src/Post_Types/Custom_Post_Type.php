@@ -37,11 +37,6 @@ class Custom_Post_Type extends Abstract_Post_Type {
 		parent::activate_post_type();
 	}
 
-	public function register_hooks() {
-		add_action( "save_post_{$this->post_type}", [ $this, 'save_post_fields' ] );
-		add_action( 'pre_post_update', [ $this, 'save_post_fields' ] );
-	}
-
 	public function prepare_arguments() {
 		if ( empty( $this->args ) ) {
 			$args         = [];

@@ -91,8 +91,8 @@ abstract class Abstract_Post_Type implements Post_Type_Interface {
 	}
 
 	protected function register() {
-		add_action( "save_post_{$this->post_type}", [ $this, 'save_post_fields' ] );
-		add_action( 'pre_post_update', [ $this, 'save_post_fields' ] );
+		add_action( "save_post_{$this->post_type}", [ $this, 'save_post_data' ] );
+		add_action( 'pre_post_update', [ $this, 'save_post_data' ] );
 	}
 
 	protected function register_taxonomies() {
