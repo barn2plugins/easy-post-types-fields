@@ -7,6 +7,7 @@ table.ept-fields {
 			vertical-align: top;
 			width: 8em;
 			text-align: left;
+			line-height: 2em;
 		}
 
 		th, td {
@@ -23,4 +24,13 @@ table.ept-fields {
 			}
 		}
 	}
+}
+
+.compat-attachment-fields {
+    tr {
+        margin-bottom: 10px;
+    }
+    .postbox {
+        margin-bottom: 0;
+    }
 }

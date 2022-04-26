@@ -2,7 +2,7 @@
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Post Types and Fields 0.4\n"
+"Project-Id-Version: Easy Post Types and Fields 0.5\n"
 "Report-Msgid-Bugs-To: https://barn2.com/support-center/\n"
 "Last-Translator: Barn2 Plugins <support@barn2.com>\n"
 "Language-Team: Barn2 Plugins <support@barn2.com>\n"
@@ -230,7 +230,6 @@ msgid "Custom"
 msgstr ""
 
 #: src/Admin/CPT_Editor.php:202
-#: src/Post_Types/Abstract_Post_Type.php:153
 #: src/Util.php:145
 msgid "Custom fields"
 msgstr ""
@@ -285,8 +284,8 @@ msgstr ""
 #: src/Admin/List_Tables/Custom_Field_List_Table.php:205
 #: src/Admin/List_Tables/Post_Type_List_Table.php:427
 #: src/Admin/List_Tables/Post_Type_List_Table.php:428
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:248
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:249
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:256
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:257
 #: src/Util.php:158
 msgid "Edit"
 msgstr ""
@@ -323,14 +322,14 @@ msgstr ""
 
 #: src/Admin/List_Tables/Custom_Field_List_Table.php:96
 #: src/Admin/List_Tables/Post_Type_List_Table.php:225
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:131
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:139
 msgctxt "column name"
 msgid "Name"
 msgstr ""
 
 #: src/Admin/List_Tables/Custom_Field_List_Table.php:97
 #: src/Admin/List_Tables/Post_Type_List_Table.php:226
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:132
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:140
 msgctxt "column name"
 msgid "Slug"
 msgstr ""
@@ -344,7 +343,7 @@ msgstr ""
 #. translators: the name of the taxonomy
 #: src/Admin/List_Tables/Custom_Field_List_Table.php:153
 #: src/Admin/List_Tables/Post_Type_List_Table.php:283
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:188
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:196
 msgid "%s (Edit)"
 msgstr ""
 
@@ -352,8 +351,8 @@ msgstr ""
 #: src/Admin/List_Tables/Custom_Field_List_Table.php:213
 #: src/Admin/List_Tables/Post_Type_List_Table.php:434
 #: src/Admin/List_Tables/Post_Type_List_Table.php:436
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:256
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:257
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:264
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:265
 msgid "Delete"
 msgstr ""
 
@@ -402,6 +401,7 @@ msgstr ""
 #: src/Admin/List_Tables/Post_Type_List_Table.php:303
 #: src/Admin/List_Tables/Post_Type_List_Table.php:443
 #: src/Admin/List_Tables/Post_Type_List_Table.php:444
+#: src/Post_Types/Abstract_Post_Type.php:158
 msgid "Custom Fields"
 msgstr ""
 
@@ -410,35 +410,35 @@ msgstr ""
 #. translators: the plural name of a taxonomy
 #: src/Admin/List_Tables/Post_Type_List_Table.php:458
 #: src/Admin/List_Tables/Post_Type_List_Table.php:460
-#: src/Post_Types/Custom_Post_Type.php:116
+#: src/Post_Types/Custom_Post_Type.php:111
 #: src/Taxonomy.php:130
 msgid "All %s"
 msgstr ""
 
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:97
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:105
 msgid "No taxonomies for this post type yet"
 msgstr ""
 
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:128
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:136
 #: src/Admin/views/html-manage-page-taxonomies.php:19
 msgid "Hierarchical taxonomies have a nested parent/child structure like WordPress post categories, whereas non-hierarchical taxonomies are flat like tags."
 msgstr ""
 
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:133
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:141
 msgctxt "column name"
 msgid "Hierarchical"
 msgstr ""
 
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:210
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:218
 msgid "Yes"
 msgstr ""
 
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:210
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:218
 msgid "No"
 msgstr ""
 
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:264
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:265
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:272
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:273
 msgid "Manage terms"
 msgstr ""
 
@@ -510,7 +510,7 @@ msgstr ""
 #. translators: the plural post type name
 #. translators: the plural name of a taxonomy
 #: src/Admin/views/html-manage-page-lists.php:49
-#: src/Post_Types/Custom_Post_Type.php:130
+#: src/Post_Types/Custom_Post_Type.php:125
 #: src/Taxonomy.php:168
 msgid "%s list"
 msgstr ""
@@ -636,128 +636,128 @@ msgstr ""
 
 #. translators: the singular post type name
 #. translators: the singular name of a taxonomy
-#: src/Post_Types/Custom_Post_Type.php:98
+#: src/Post_Types/Custom_Post_Type.php:93
 #: src/Taxonomy.php:150
 msgid "Add New %s"
 msgstr ""
 
 #. translators: the singular post type name
 #. translators: the singular name of a taxonomy
-#: src/Post_Types/Custom_Post_Type.php:100
+#: src/Post_Types/Custom_Post_Type.php:95
 #: src/Taxonomy.php:144
 msgid "Edit %s"
 msgstr ""
 
 #. translators: the singular post type name
-#: src/Post_Types/Custom_Post_Type.php:102
+#: src/Post_Types/Custom_Post_Type.php:97
 msgid "New %s"
 msgstr ""
 
 #. translators: the singular post type name
-#: src/Post_Types/Custom_Post_Type.php:104
+#: src/Post_Types/Custom_Post_Type.php:99
 msgctxt "singular"
 msgid "View %s"
 msgstr ""
 
 #. translators: the plural post type name
-#: src/Post_Types/Custom_Post_Type.php:106
+#: src/Post_Types/Custom_Post_Type.php:101
 msgctxt "plural"
 msgid "View %s"
 msgstr ""
 
 #. translators: the plural post type name
 #. translators: the plural name of a taxonomy
-#: src/Post_Types/Custom_Post_Type.php:108
+#: src/Post_Types/Custom_Post_Type.php:103
 #: src/Taxonomy.php:126
 msgid "Search %s"
 msgstr ""
 
 #. translators: the plural post type name
 #. translators: the plural name of a taxonomy
-#: src/Post_Types/Custom_Post_Type.php:110
+#: src/Post_Types/Custom_Post_Type.php:105
 #: src/Taxonomy.php:160
 msgid "No %s found."
 msgstr ""
 
 #. translators: the plural post type name
-#: src/Post_Types/Custom_Post_Type.php:112
+#: src/Post_Types/Custom_Post_Type.php:107
 msgid "No %s found in Trash."
 msgstr ""
 
 #. translators: the singular post type name
 #. translators: the singular name of a taxonomy
-#: src/Post_Types/Custom_Post_Type.php:114
+#: src/Post_Types/Custom_Post_Type.php:109
 #: src/Taxonomy.php:134
 msgid "Parent %s:"
 msgstr ""
 
 #. translators: the singular post type name
-#: src/Post_Types/Custom_Post_Type.php:118
+#: src/Post_Types/Custom_Post_Type.php:113
 msgid "%s Archives"
 msgstr ""
 
 #. translators: the singular post type name
-#: src/Post_Types/Custom_Post_Type.php:120
+#: src/Post_Types/Custom_Post_Type.php:115
 msgid "%s Attributes"
 msgstr ""
 
 #. translators: the singular post type name
-#: src/Post_Types/Custom_Post_Type.php:122
+#: src/Post_Types/Custom_Post_Type.php:117
 msgid "Insert into %s"
 msgstr ""
 
 #. translators: the singular post type name
-#: src/Post_Types/Custom_Post_Type.php:124
+#: src/Post_Types/Custom_Post_Type.php:119
 msgid "Uploaded to this %s"
 msgstr ""
 
 #. translators: the plural post type name
-#: src/Post_Types/Custom_Post_Type.php:126
+#: src/Post_Types/Custom_Post_Type.php:121
 msgid "Filter %s list"
 msgstr ""
 
 #. translators: the plural post type name
 #. translators: the plural name of a taxonomy
-#: src/Post_Types/Custom_Post_Type.php:128
+#: src/Post_Types/Custom_Post_Type.php:123
 #: src/Taxonomy.php:166
 msgid "%s list navigation"
 msgstr ""
 
 #. translators: the singular post type name
-#: src/Post_Types/Custom_Post_Type.php:132
+#: src/Post_Types/Custom_Post_Type.php:127
 msgid "%s published."
 msgstr ""
 
 #. translators: the singular post type name
-#: src/Post_Types/Custom_Post_Type.php:134
+#: src/Post_Types/Custom_Post_Type.php:129
 msgid "%s published privately."
 msgstr ""
 
 #. translators: the singular post type name
-#: src/Post_Types/Custom_Post_Type.php:136
+#: src/Post_Types/Custom_Post_Type.php:131
 msgid "%s reverted to draft."
 msgstr ""
 
 #. translators: the singular post type name
-#: src/Post_Types/Custom_Post_Type.php:138
+#: src/Post_Types/Custom_Post_Type.php:133
 msgid "%s scheduled."
 msgstr ""
 
 #. translators: the singular post type name
-#: src/Post_Types/Custom_Post_Type.php:140
+#: src/Post_Types/Custom_Post_Type.php:135
 msgid "%s updated."
 msgstr ""
 
 #. translators: the singular post type name
 #. translators: the singular name of a taxonomy
-#: src/Post_Types/Custom_Post_Type.php:142
+#: src/Post_Types/Custom_Post_Type.php:137
 #: src/Taxonomy.php:174
 msgid "%s Link"
 msgstr ""
 
 #. translators: the singular post type name
 #. translators: the singular name of a taxonomy
-#: src/Post_Types/Custom_Post_Type.php:144
+#: src/Post_Types/Custom_Post_Type.php:139
 #: src/Taxonomy.php:176
 msgid "A link to a %s."
 msgstr ""

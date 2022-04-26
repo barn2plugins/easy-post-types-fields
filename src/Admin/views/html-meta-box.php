@@ -54,6 +54,5 @@ defined( 'ABSPATH' ) || exit;
 			<?php
 		}
 		?>
-
 	</tbody>
 </table>

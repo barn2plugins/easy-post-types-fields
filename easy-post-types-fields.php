@@ -44,5 +44,15 @@ function ept() {
 	return Plugin_Factory::create( PLUGIN_FILE, PLUGIN_VERSION );
 }
 
+/**
+ * Return the absolute path of the plugin
+ *
+ * @param  string $path A subpath the plugin dir
+ * @return string
+ */
+function get_dir_path( $path = '' ) {
+	return wp_normalize_path( ept()->get_dir_path() . "/$path" );
+}
+
 // Load the plugin.
 ept()->register();
