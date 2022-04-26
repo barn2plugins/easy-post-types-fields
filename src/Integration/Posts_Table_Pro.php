@@ -39,7 +39,7 @@ class Posts_Table_Pro implements Registerable, Service {
 				return $out;
 			}
 
-			$fields = get_post_meta( $post_type_object->ID, '_ept_fields', true );
+			$fields = array_filter( (array) get_post_meta( $post_type_object->ID, '_ept_fields', true ) );
 			$slugs  = $fields ? array_column( $fields, 'slug' ) : [];
 
 			$fields = array_combine(
