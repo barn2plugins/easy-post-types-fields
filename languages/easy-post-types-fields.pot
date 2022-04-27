@@ -284,8 +284,8 @@ msgstr ""
 #: src/Admin/List_Tables/Custom_Field_List_Table.php:205
 #: src/Admin/List_Tables/Post_Type_List_Table.php:427
 #: src/Admin/List_Tables/Post_Type_List_Table.php:428
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:256
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:257
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:250
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:251
 #: src/Util.php:158
 msgid "Edit"
 msgstr ""
@@ -322,14 +322,14 @@ msgstr ""
 
 #: src/Admin/List_Tables/Custom_Field_List_Table.php:96
 #: src/Admin/List_Tables/Post_Type_List_Table.php:225
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:139
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:132
 msgctxt "column name"
 msgid "Name"
 msgstr ""
 
 #: src/Admin/List_Tables/Custom_Field_List_Table.php:97
 #: src/Admin/List_Tables/Post_Type_List_Table.php:226
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:140
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:133
 msgctxt "column name"
 msgid "Slug"
 msgstr ""
@@ -343,7 +343,7 @@ msgstr ""
 #. translators: the name of the taxonomy
 #: src/Admin/List_Tables/Custom_Field_List_Table.php:153
 #: src/Admin/List_Tables/Post_Type_List_Table.php:283
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:196
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:189
 msgid "%s (Edit)"
 msgstr ""
 
@@ -351,8 +351,8 @@ msgstr ""
 #: src/Admin/List_Tables/Custom_Field_List_Table.php:213
 #: src/Admin/List_Tables/Post_Type_List_Table.php:434
 #: src/Admin/List_Tables/Post_Type_List_Table.php:436
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:264
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:265
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:258
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:259
 msgid "Delete"
 msgstr ""
 
@@ -415,30 +415,30 @@ msgstr ""
 msgid "All %s"
 msgstr ""
 
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:105
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:98
 msgid "No taxonomies for this post type yet"
 msgstr ""
 
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:136
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:129
 #: src/Admin/views/html-manage-page-taxonomies.php:19
 msgid "Hierarchical taxonomies have a nested parent/child structure like WordPress post categories, whereas non-hierarchical taxonomies are flat like tags."
 msgstr ""
 
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:141
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:134
 msgctxt "column name"
 msgid "Hierarchical"
 msgstr ""
 
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:218
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:212
 msgid "Yes"
 msgstr ""
 
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:218
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:212
 msgid "No"
 msgstr ""
 
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:272
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:273
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:266
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:267
 msgid "Manage terms"
 msgstr ""
 
