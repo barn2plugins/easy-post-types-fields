@@ -1,6 +1,8 @@
 <?php
 namespace Barn2\Plugin\Easy_Post_Types_Fields;
 
+use Barn2\EPT_Lib\Util as Lib_Util;
+
 use WP_Query;
 
 class Util {
@@ -223,5 +225,15 @@ class Util {
 			'editor' => __( 'Visual Editor', 'easy-post-types-fields' ),
 			// 'image'  => __( 'Image', 'easy-post-types-fields' ),
 		];
+	}
+
+	public static function support_links() {
+		printf(
+			'<p>%s | %s</p>',
+			// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
+			Lib_Util::format_link( ept()->get_documentation_url(), __( 'Documentation', 'easy-post-types-fields' ), true ),
+			Lib_Util::format_link( ept()->get_support_url(), __( 'Support', 'easy-post-types-fields' ), true ),
+			// phpcs:enable
+		);
 	}
 }

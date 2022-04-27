@@ -15,7 +15,7 @@ msgstr ""
 "X-Domain: easy-post-types-fields\n"
 
 #. Plugin Name of the plugin
-#: src/Admin/CPT_Editor.php:244
+#: src/Admin/views/html-manage-page-header.php:20
 msgid "Easy Post Types and Fields"
 msgstr ""
 
@@ -95,12 +95,12 @@ msgid "Size"
 msgstr ""
 
 #: lib/Admin/Settings_Util.php:56
-#: src/Admin/views/html-manage-page-post_types.php:18
+#: src/Util.php:234
 msgid "Documentation"
 msgstr ""
 
 #: lib/Admin/Settings_Util.php:61
-#: src/Admin/views/html-manage-page-post_types.php:19
+#: src/Util.php:235
 msgid "Support"
 msgstr ""
 
@@ -113,7 +113,7 @@ msgid "Settings"
 msgstr ""
 
 #: src/Admin/CPT_Editor.php:52
-#: src/Util.php:121
+#: src/Util.php:123
 msgid "Post types"
 msgstr ""
 
@@ -122,11 +122,11 @@ msgid "Post type"
 msgstr ""
 
 #: src/Admin/CPT_Editor.php:54
+#: src/Admin/views/html-manage-page-header.php:36
 msgid "Add new"
 msgstr ""
 
 #: src/Admin/CPT_Editor.php:55
-#: src/Admin/views/html-manage-page-post_types.php:33
 msgid "Add new post type"
 msgstr ""
 
@@ -230,7 +230,7 @@ msgid "Custom"
 msgstr ""
 
 #: src/Admin/CPT_Editor.php:202
-#: src/Util.php:145
+#: src/Util.php:147
 msgid "Custom fields"
 msgstr ""
 
@@ -247,7 +247,7 @@ msgstr ""
 #: src/Admin/List_Tables/Post_Type_List_Table.php:304
 #: src/Admin/List_Tables/Post_Type_List_Table.php:450
 #: src/Admin/List_Tables/Post_Type_List_Table.php:451
-#: src/Util.php:145
+#: src/Util.php:147
 msgid "Taxonomies"
 msgstr ""
 
@@ -258,6 +258,10 @@ msgstr ""
 #. translators: the plural name of the post type
 #: src/Admin/CPT_Editor.php:212
 msgid "Taxonomies let you organize and group your %1$s. For example, you might want to organize them by category, tag, year, author, or industry. If you need to add data that is unique to each %4$s then you should create a %2$scustom field%3$s instead."
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:244
+msgid "Post Types"
 msgstr ""
 
 #: src/Admin/CPT_Editor.php:245
@@ -275,7 +279,7 @@ msgstr ""
 #. translators: 1: 'Add' or 'Update', 2: 'custom field' or 'taxonomy'
 #: src/Admin/CPT_Editor.php:286
 #: src/Admin/views/html-manage-page-lists.php:30
-#: src/Util.php:158
+#: src/Util.php:160
 msgid "Add"
 msgstr ""
 
@@ -286,7 +290,7 @@ msgstr ""
 #: src/Admin/List_Tables/Post_Type_List_Table.php:428
 #: src/Admin/List_Tables/Taxonomy_List_Table.php:250
 #: src/Admin/List_Tables/Taxonomy_List_Table.php:251
-#: src/Util.php:158
+#: src/Util.php:160
 msgid "Edit"
 msgstr ""
 
@@ -300,19 +304,19 @@ msgstr ""
 msgid "%s custom field"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:353
+#: src/Admin/CPT_Editor.php:354
 msgid "The post type is missing or an error occurred when completing this operation."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:392
+#: src/Admin/CPT_Editor.php:400
 msgid "A post type with the same slug is already registered. Please choose a different slug."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:461
+#: src/Admin/CPT_Editor.php:469
 msgid "A taxonomy with the same slug is already registered to this post type. Please choose a different slug."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:522
+#: src/Admin/CPT_Editor.php:530
 msgid "A field with the same slug is already registered to this post type. Please choose a different slug."
 msgstr ""
 
@@ -513,10 +517,6 @@ msgstr ""
 #: src/Post_Types/Custom_Post_Type.php:125
 #: src/Taxonomy.php:168
 msgid "%s list"
-msgstr ""
-
-#: src/Admin/views/html-manage-page-lists.php:57
-msgid "Add new %s"
 msgstr ""
 
 #: src/Admin/views/html-manage-page-post_type.php:40
@@ -838,43 +838,43 @@ msgstr ""
 msgid "&larr; Go to %s"
 msgstr ""
 
-#: src/Util.php:198
+#: src/Util.php:200
 msgid "Title"
 msgstr ""
 
-#: src/Util.php:199
+#: src/Util.php:201
 msgid "Content"
 msgstr ""
 
-#: src/Util.php:200
+#: src/Util.php:202
 msgid "Excerpt"
 msgstr ""
 
-#: src/Util.php:201
+#: src/Util.php:203
 msgid "Author"
 msgstr ""
 
-#: src/Util.php:202
+#: src/Util.php:204
 msgid "Featured image"
 msgstr ""
 
-#: src/Util.php:203
+#: src/Util.php:205
 msgid "Comments"
 msgstr ""
 
-#: src/Util.php:204
+#: src/Util.php:206
 msgid "Page attributes"
 msgstr ""
 
-#: src/Util.php:205
+#: src/Util.php:207
 msgid "Revisions"
 msgstr ""
 
-#: src/Util.php:222
+#: src/Util.php:224
 msgid "Text"
 msgstr ""
 
-#: src/Util.php:223
+#: src/Util.php:225
 msgid "Visual Editor"
 msgstr ""
 

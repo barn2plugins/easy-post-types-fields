@@ -22,7 +22,7 @@ body[class*="ept_post_types"] .wrap {
     width: 100%;
 }
 
-.toplevel_page_ept_post_types .barn2-plugins-settings .wrap {
+.toplevel_page_ept_post_types .barn2-plugins-settings.wrap {
     ul.subsubsub li:not(:last-child)::after {
         content: unset;
     }
@@ -84,6 +84,71 @@ body[class*="ept_post_types"] .wrap {
 				margin-left: -2em;
 				margin-right: -.25em;
 			}
+		}
+	}
+
+	.barn2-settings-inner{
+		margin-top: 60px;
+	}
+
+	.barn2-plugins-header {
+		background: #fff;
+		box-sizing: border-box;
+		padding: 0;
+		position: fixed;
+		width: calc(100% - 160px);
+		top: 32px;
+		z-index: 1001;
+		margin-left: -20px;
+    	padding-left: 20px;
+
+		&.is-scrolled {
+			box-shadow: 0 8px 8px 0 rgba(85, 93, 102, 0.3);
+		}
+	
+		.barn2-plugins-header-wrapper {
+			display: flex;
+			align-items: center;
+			min-height: 60px;
+			padding-right: 20px;
+		}
+		@media (max-width: 782px) {
+			flex-flow: row wrap;
+			top: 46px;
+			width: 100%;
+		}
+		@media (min-width: 783px) and (max-width: 960px) {
+			width: calc(100% - 36px);
+		}
+		.barn2-plugins-header-breadcrumbs-wrapper {
+			display: flex;
+			justify-content: space-between;
+			flex-direction: row;
+		}
+		.barn2-plugins-header-heading {
+			display: flex !important;
+			align-items: center;
+			padding: 0 0 0 40px;
+			padding: 0 0 0 var(--large-gap);
+			flex: 1 auto;
+			height: 60px;
+			background: #fff;
+			font-weight: 600;
+			font-size: 14px;
+		}
+		@at-root .folded & {
+			width: calc(100% - 36px);
+			@media (max-width: 782px) {
+				width: 100%;
+			}
+		}
+
+		@at-root .is-wp-toolbar-disabled & {
+			top: 0;
+		}
+
+		@at-root .wp-responsive-open & {
+			margin-left: 2px;
 		}
 	}
 

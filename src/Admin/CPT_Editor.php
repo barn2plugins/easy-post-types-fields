@@ -241,7 +241,7 @@ class CPT_Editor implements Service, Registerable {
 	}
 
 	public function add_manage_page() {
-		$page_title       = __( 'Easy Post Types and Fields', 'easy-post-types-fields' );
+		$page_title       = __( 'Post Types', 'easy-post-types-fields' );
 		$page_description = __( 'Use this page to manage your custom post types. You can add and edit post types, custom fields and taxonomies.', 'easy-post-types-fields' );
 		$plugin           = $this->plugin;
 		$breadcrumbs      = Util::get_page_breadcrumbs();
@@ -294,6 +294,7 @@ class CPT_Editor implements Service, Registerable {
 
 			$page_title       = sprintf( $page_title, $current_action );
 			$page_description = '';
+			$new_link         = '';
 		}
 
 		include $this->plugin->get_admin_path( 'views/html-manage-page.php' );
@@ -371,6 +372,13 @@ class CPT_Editor implements Service, Registerable {
 		$this->{"save_$data_type"}( $postdata, $request );
 	}
 
+	/**
+	 * Save a custom post type in the database
+	 *
+	 * @param  array $data The post type data being submitted
+	 * @param  array $request The current page request
+	 * @return void
+	 */
 	public function save_post_type( $data, $request ) {
 		$post_type_id     = 0;
 		$post_type_object = Util::get_post_type_object( $request['post_type'] );

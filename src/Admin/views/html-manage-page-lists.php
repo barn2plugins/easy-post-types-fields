@@ -53,9 +53,6 @@ if ( isset( $request['action'] ) ) {
 		<?php
 		$list_table->display();
 		?>
-
-		<a href="<?php echo esc_url( $new_link ); ?>" class="button"><?php echo esc_html( sprintf( __( 'Add new %s', 'easy-post-types-fields' ), strtolower( $singular_name ) ) ); ?></a>
-
 	</form>
 	<?php
 }

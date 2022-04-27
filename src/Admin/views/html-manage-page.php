@@ -12,15 +12,13 @@ defined( 'ABSPATH' ) || exit;
 
 ?>
 
-<div class="barn2-plugins-settings">
-	<div class="wrap">
-
+<div class="wrap barn2-plugins-settings">
+	<div class="barn2-settings-inner">
 		<?php
 		require 'html-manage-page-header.php';
 		require 'html-manage-page-breadcrumb.php';
 		require "html-manage-page-$content.php";
 		?>
-
 	</div>
 </div>
 
