@@ -59,6 +59,16 @@ abstract class Abstract_Post_Type implements Post_Type_Interface {
 	 */
 	protected $fields = [];
 
+	/**
+	 * The main post type class constructor
+	 *
+	 * Custom post types registered by this plugin
+	 * and publicly queryable post types added by other plugins
+	 * are stored in the post table with the 'ept_post_type' post type.
+	 *
+	 * @param  int|string $id The ID of the post holding the post type properties
+	 * @return void
+	 */
 	public function __construct( $id ) {
 		$this->id = $id;
 
@@ -71,8 +81,7 @@ abstract class Abstract_Post_Type implements Post_Type_Interface {
 
 		if ( $post_type_object ) {
 			$this->slug          = $post_type_object->post_name;
-			$this->post_type     = 'publish' === $post_type_object->post_status ? 'ept_' : '';
-			$this->post_type    .= $post_type_object->post_name;
+			$this->post_type     = sprintf( '%s%s', ( 'publish' === $post_type_object->post_status ? 'ept_' : '' ), $post_type_object->post_name );
 			$this->singular_name = $post_type_object->post_title;
 			$this->name          = get_post_meta( $this->id, '_ept_plural_name', true );
 
@@ -84,16 +93,30 @@ abstract class Abstract_Post_Type implements Post_Type_Interface {
 		}
 	}
 
+	/**
+	 * Initialize the post type with all its custom fields and taxonomies
+	 *
+	 * This method simply call the `activate_post_type` method
+	 * but can be redefined in a subclass to make the activation
+	 * conditional to other processes
+	 *
+	 * @return void
+	 */
 	public function init() {
 		$this->activate_post_type();
 	}
 
+	/**
+	 * Activate
+	 *
+	 * @return void
+	 */
 	protected function activate_post_type() {
 		if ( empty( $this->taxonomies ) ) {
 			$this->register_taxonomies();
 		}
 
-		Util::maybe_flush_rewrite_rules( $this->post_type );
+		$this->maybe_flush_rewrite_rules();
 		$this->register_meta();
 
 		if ( $this->fields || $this->taxonomies ) {
@@ -101,6 +124,11 @@ abstract class Abstract_Post_Type implements Post_Type_Interface {
 		}
 	}
 
+	/**
+	 * Register the hooks activating the post type and its custom fields and taxonomies
+	 *
+	 * @return void
+	 */
 	protected function register() {
 		add_action( "save_post_{$this->post_type}", [ $this, 'save_post_data' ] );
 		add_action( 'pre_post_update', [ $this, 'save_post_data' ] );
@@ -192,5 +220,15 @@ abstract class Abstract_Post_Type implements Post_Type_Interface {
 			}
 		}
 	}
+
+	public function maybe_flush_rewrite_rules() {
+		$transient_name = sprintf( 'ept_%s_updated', $this->post_type );
+
+		if ( get_transient( $transient_name ) ) {
+			flush_rewrite_rules();
+			delete_transient( $transient_name );
+		}
+	}
+
 
 }
