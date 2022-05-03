@@ -29,11 +29,13 @@ class EPT_Name extends Step {
 		return [
 			'singular' => [
 				'type'        => 'text',
-				'placeholder' => __( 'Singular name (e.g. Article)', 'easy-post-types-fields' ),
+				'label'       => __( 'Singular name', 'easy-post-types-fields' ),
+				'placeholder' => __( 'e.g. Article', 'easy-post-types-fields' ),
 			],
 			'plural'   => [
 				'type'        => 'text',
-				'placeholder' => __( 'Plural name (e.g. Articles)', 'easy-post-types-fields' ),
+				'label'       => __( 'Plural name', 'easy-post-types-fields' ),
+				'placeholder' => __( 'e.g. Articles', 'easy-post-types-fields' ),
 			],
 			'slug'     => [
 				'type' => 'hidden',
