@@ -51,7 +51,7 @@ if ( isset( $_POST['_wpnonce'] ) && wp_verify_nonce( $_POST['_wpnonce'], 'save_l
 		<label>
 			<span class="label"><?php esc_html_e( 'Slug', 'easy-post-types-fields' ); ?></span>
 			<span class="input">
-				<input class="slug" type="text" required name="slug" value="<?php echo esc_attr( $data['slug'] ); ?>" />
+				<input class="slug" type="text" required name="slug" maxlength="<?php echo esc_attr( $maxlength ); ?>" value="<?php echo esc_attr( $data['slug'] ); ?>" />
 			</span>
 		</label>
 		<span>

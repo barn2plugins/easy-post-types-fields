@@ -15,7 +15,7 @@ use Barn2\Plugin\Easy_Post_Types_Fields\Util;
 defined( 'ABSPATH' ) || exit;
 
 $request_post_type    = Util::get_post_type_by_name( $request['post_type'] );
-$current_taxonomy     = get_taxonomy( "{$request['post_type']}_{$request['slug']}" );
+$current_taxonomy     = isset( $request['slug'] ) ? get_taxonomy( "{$request['post_type']}_{$request['slug']}" ) : false;
 $hierarchical_tooltip = Util::get_tooltip( __( 'Hierarchical taxonomies have a nested parent/child structure like WordPress post categories, whereas non-hierarchical taxonomies are flat like tags.', 'easy-post-types-fields' ) );
 
 $data = array_fill_keys( [ 'name', 'singular_name', 'slug', 'hierarchical', 'previous_slug' ], '' );
@@ -31,7 +31,7 @@ if ( $current_taxonomy ) {
 }
 
 if ( isset( $_POST['_wpnonce'] ) && wp_verify_nonce( $_POST['_wpnonce'], 'save_list_item_postdata' ) ) {
-	$postdata = array_intersect_key( $data, $_POST );
+	$postdata = array_intersect_key( $_POST, $data );
 	$data     = array_merge( $data, $postdata );
 }
 
@@ -53,7 +53,7 @@ if ( isset( $_POST['_wpnonce'] ) && wp_verify_nonce( $_POST['_wpnonce'], 'save_l
 	<label>
 		<span class="label"><?php esc_html_e( 'Slug', 'easy-post-types-fields' ); ?></span>
 		<span class="input">
-			<input class="slug" type="text" required name="slug" maxlength="<?php echo esc_attr( $max ); ?>" value="<?php echo esc_attr( $data['slug'] ); ?>" />
+			<input class="slug" type="text" required name="slug" maxlength="<?php echo esc_attr( $maxlength ); ?>" value="<?php echo esc_attr( $data['slug'] ); ?>" />
 		</span>
 	</label>
 	<label>

@@ -12,12 +12,9 @@ use Barn2\Plugin\Easy_Post_Types_Fields\Util;
 
 defined( 'ABSPATH' ) || exit;
 
-$request_post_type = Util::get_post_type_by_name( $request['post_type'] );
-$fields            = Util::get_post_type_custom_fields( $request_post_type );
-
-$data = array_fill_keys( [ 'name', 'slug', 'type', 'previous_slug' ], '' );
-
-$field = array_filter(
+$fields = Util::get_custom_fields( $request['post_type'] );
+$data   = array_fill_keys( [ 'name', 'slug', 'type', 'previous_slug' ], '' );
+$field  = array_filter(
 	$fields,
 	function( $f ) use ( $request ) {
 		return $request['slug'] === $f['slug'];
@@ -31,8 +28,8 @@ if ( $field ) {
 }
 
 if ( isset( $_POST['_wpnonce'] ) && wp_verify_nonce( $_POST['_wpnonce'], 'save_list_item_postdata' ) ) {
-	$postdata = array_intersect_key( $data, $_POST );
-	$data     = array_merge( $data, $_POST );
+	$postdata = array_intersect_key( $_POST, $data );
+	$data     = array_merge( $data, $postdata );
 }
 
 ?>
