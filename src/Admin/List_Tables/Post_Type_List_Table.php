@@ -437,20 +437,6 @@ class Post_Type_List_Table extends WP_List_Table {
 			);
 		}
 
-		$actions['fields'] = sprintf(
-			'<a href="%s" aria-label="%s">%s</a>',
-			Util::get_manage_page_url( $post_type, 'fields' ),
-			esc_attr( __( 'Custom Fields', 'easy-post-types-fields' ) ),
-			__( 'Custom Fields', 'easy-post-types-fields' )
-		);
-
-		$actions['taxonomies'] = sprintf(
-			'<a href="%s" aria-label="%s">%s</a>',
-			Util::get_manage_page_url( $post_type, 'taxonomies' ),
-			esc_attr( __( 'Taxonomies', 'easy-post-types-fields' ) ),
-			__( 'Taxonomies', 'easy-post-types-fields' )
-		);
-
 		$actions['manage'] = sprintf(
 			'<a href="%s" aria-label="%s">%s</a>',
 			add_query_arg( 'post_type', $post_type->name, admin_url( 'edit.php' ) ),
