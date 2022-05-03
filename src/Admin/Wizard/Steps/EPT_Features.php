@@ -20,7 +20,7 @@ class EPT_Features extends Step {
 		$this->set_id( 'ept_features' );
 		$this->set_name( esc_html__( 'Features', 'easy-post-types-fields' ) );
 		// translators: the plural name of a post type
-		$this->set_description( __( 'Choose which of the standard features you will use to store data about your %s. Later, you can also create custom fields and taxonomies for storing additional information.', 'easy-post-types-fields' ) );
+		$this->set_description( __( 'Choose which of the standard features you will use. Later, you can create custom fields and taxonomies for storing additional information.', 'easy-post-types-fields' ) );
 		$this->set_title( esc_html__( 'What type of information do you need for your %s?', 'easy-post-types-fields' ) );
 	}
 
@@ -33,9 +33,11 @@ class EPT_Features extends Step {
 
 		foreach ( Util::get_post_type_support() as $feature => $feature_label ) {
 			$fields[ $feature ] = [
-				'type'  => 'checkbox',
-				'label' => $feature_label,
-				'value' => in_array( $feature, $enabled_features, true ),
+				'type'        => 'checkbox',
+				'label'       => $feature_label,
+				'value'       => in_array( $feature, $enabled_features, true ),
+				'description' => false,
+				'border'      => false,
 			];
 		}
 
