@@ -25,6 +25,13 @@ class Taxonomy_List_Table extends WP_List_Table {
 	private $post_type;
 
 	/**
+	 * The EPT post object with the information about this post type
+	 *
+	 * @var WP_Post
+	 */
+	private $post_type_object;
+
+	/**
 	 * The taxonomies of the current post type
 	 *
 	 * @var array
@@ -38,18 +45,18 @@ class Taxonomy_List_Table extends WP_List_Table {
 			]
 		);
 
-		$this->post_type  = $post_type;
-		$post_type_object = Util::get_post_type_object( $post_type );
+		$this->post_type        = $post_type;
+		$this->post_type_object = Util::get_post_type_object( $post_type );
 
-		if ( $post_type_object ) {
-			$taxonomies = get_post_meta( $post_type_object->ID, '_ept_taxonomies', true );
+		if ( $this->post_type_object ) {
+			$taxonomies = get_post_meta( $this->post_type_object->ID, '_ept_taxonomies', true );
 
 			$this->taxonomies = $taxonomies ?: [];
 		}
 
 		$internal_slugs = array_column( $this->taxonomies, 'slug' );
 
-		if ( 'private' === $post_type_object->post_status ) {
+		if ( 'private' === $this->post_type_object->post_status ) {
 			$prefix            = "{$this->post_type->name}_";
 			$locked_taxonomies = array_map(
 				function ( $t ) {
@@ -201,7 +208,8 @@ class Taxonomy_List_Table extends WP_List_Table {
 	}
 
 	protected function _column_slug( $taxonomy, $classes, $data, $primary ) {
-		$taxonomy_slug = $this->is_custom( $taxonomy ) ? "{$this->post_type->name}_{$taxonomy['slug']}" : $taxonomy['slug'];
+		$taxonomy_slug = 'publish' === $this->post_type_object->post_status ? $taxonomy['slug'] : "{$this->post_type->name}_{$taxonomy['slug']}";
+
 		?>
 		<td class="<?php echo esc_attr( $classes ); ?> taxonomy-slug" <?php echo $data; ?>><?php echo esc_html( $taxonomy_slug ); ?></td>
 		<?php
