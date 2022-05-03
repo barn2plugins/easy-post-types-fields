@@ -54,8 +54,9 @@ Thumbs.db
 !/vendor/composer/
 !/vendor/autoload.php
 /vendor-bin/*
+dependencies/vendor/
 
 .phpdoc/
 docs/
 
-easy-post-types-fields.zip
+*.zip
