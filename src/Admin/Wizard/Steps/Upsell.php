@@ -25,7 +25,7 @@ class Upsell extends Step {
 		$this->set_description(
 			sprintf(
 				// translators: %1$s: URL to All Access Pass page %2$s: URL to the KB about the upgrading process
-				__( 'Enhance your store with these fantastic plugins from Barn2, or get them all by upgrading to an <a href="%1$s" target="_blank">All Access Pass<a/>! <a href="%2$s" target="_blank">(learn how here)</a>', 'easy-post-types-fields' ),
+				__( 'Enhance your store with these fantastic plugins from Barn2, or get them all with an <a href="%1$s" target="_blank">All Access Pass<a/>! (<a href="%2$s" target="_blank">learn how here</a>)', 'easy-post-types-fields' ),
 				Util::generate_utm_url( 'https://barn2.com/wordpress-plugins/bundles/', 'ept' ),
 				Util::generate_utm_url( 'https://barn2.com/kb/how-to-upgrade-license/', 'ept' )
 			)
