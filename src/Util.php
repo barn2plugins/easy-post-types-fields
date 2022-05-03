@@ -208,32 +208,48 @@ class Util {
 		];
 	}
 
-	public static function set_update_transient( $name, $entity = 'post_type' ) {
-		set_transient( "ept_{$entity}_{$name}_updated", true );
+	/**
+	 * Set a transient when a post type or one of its taxonomies are updated
+	 *
+	 * Every time a post type or its taxonomies are updated, the rewrite rules
+	 * need to be flushed so that the permalinks reflect the change. Each post
+	 * type object will check if a transient with its name is present after
+	 * registering the post type or its taxonomies. If it finds the transient,
+	 * it will flush the rewrite rules and delete the transient so that any
+	 * subsequent initialization of the post type doesn't need to flush the
+	 * rewrite rules, which is an expensive operation.
+	 *
+	 * @param  string $name The name of the post type being updated
+	 * @return void
+	 */
+	public static function set_update_transient( $name ) {
+		set_transient( "ept_{$name}_updated", true );
 	}
 
-	public static function maybe_flush_rewrite_rules( $name, $entity = 'post_type' ) {
-		if ( get_transient( "ept_{$entity}_{$name}_updated" ) ) {
-			flush_rewrite_rules();
-			delete_transient( "ept_{$entity}_{$name}_updated" );
-		}
-	}
-
+	/**
+	 * Return a list of custom field types
+	 *
+	 * @return string[string]
+	 */
 	public static function get_custom_field_types() {
 		return [
 			'text'   => __( 'Text', 'easy-post-types-fields' ),
 			'editor' => __( 'Visual Editor', 'easy-post-types-fields' ),
-			// 'image'  => __( 'Image', 'easy-post-types-fields' ),
 		];
 	}
 
+	/**
+	 * Return the markup of the support, documentation and additional links
+	 * in the header of the plugin page on the admin area
+	 *
+	 * @return void
+	 */
 	public static function support_links() {
-		printf(
-			'<p>%s | %s</p>',
-			// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
+		$links = [
 			Lib_Util::format_link( ept()->get_documentation_url(), __( 'Documentation', 'easy-post-types-fields' ), true ),
 			Lib_Util::format_link( ept()->get_support_url(), __( 'Support', 'easy-post-types-fields' ), true ),
-			// phpcs:enable
-		);
+		];
+
+		printf( '<p>%s</p>', implode( ' | ', $links ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 }
