@@ -199,7 +199,7 @@ class CPT_Editor implements Service, Registerable {
 				'list_table_class' => 'Custom_Field',
 				'plural'           => __( 'Custom fields', 'easy-post-types-fields' ),
 				'singular'         => __( 'Custom field', 'easy-post-types-fields' ),
-				// translators: 1: the plural name of the post type, 2: the opening tab of an anchor element, 3: the closing tag of an anchor element, 4: the singular name of the post type, 5: the plural name of the post type, 
+				// translators: 1: the plural name of the post type, 2: the opening tab of an anchor element, 3: the closing tag of an anchor element, 4: the singular name of the post type, 5: the plural name of the post type,
 				'description'      => __( 'Use custom fields to store extra data about your %1$s, such as a reference number or link. Custom fields are for data that is unique to each %4$s. If you want to use the data to organize or group your %5$s then you should create a %2$staxonomy%3$s instead.', 'easy-post-types-fields' ),
 			],
 			'taxonomies' => [
@@ -239,14 +239,17 @@ class CPT_Editor implements Service, Registerable {
 	}
 
 	public function add_manage_page() {
+		$request          = Util::get_page_request();
 		$page_title       = __( 'Post Types', 'easy-post-types-fields' );
 		$page_description = __( 'Use this page to manage your custom post types. You can add and edit post types, custom fields and taxonomies.', 'easy-post-types-fields' );
 		$plugin           = $this->plugin;
 		$breadcrumbs      = Util::get_page_breadcrumbs();
-		$request          = Util::get_page_request();
 		$content          = isset( $request['section'] ) ? 'lists' : 'post_types';
 		$section          = isset( $request['section'] ) ? $request['section'] : 'add';
-		$new_link         = add_query_arg(
+
+		// The maximum length of a post type name is 21 characters (which includes the `ept_` prefix used for a custom post type)
+		$maxlength = 17;
+		$new_link  = add_query_arg(
 			[
 				'page'   => isset( $request['section'] ) ? $request['page'] : $plugin->get_slug() . '-setup-wizard',
 				'action' => 'add',
@@ -259,6 +262,10 @@ class CPT_Editor implements Service, Registerable {
 		}
 
 		if ( isset( $request['section'] ) ) {
+			if ( ! isset( $request['post_type'] ) ) {
+				wp_die( wp_kses_post( 'The address is missing the <code>post_type</code> parameter', 'easy-post-types-fields' ) );
+			}
+
 			list( $page_description, $singular_name, $list_table ) = $this->get_page_data( $request );
 
 			$new_link = add_query_arg(
@@ -272,6 +279,8 @@ class CPT_Editor implements Service, Registerable {
 			$page_title = 'taxonomies' === $request['section'] ?
 				__( 'Manage Taxonomies', 'easy-post-types-fields' ) :
 				__( 'Manage Custom Fields', 'easy-post-types-fields' );
+
+			$maxlength = 32 - strlen( $request['post_type'] );
 		} else {
 			if ( isset( $request['post_type'] ) ) {
 				$page_title       = __( 'Edit post type', 'easy-post-types-fields' );
@@ -430,17 +439,13 @@ class CPT_Editor implements Service, Registerable {
 		$post_type_object = Util::get_post_type_object( $request['post_type'] );
 
 		if ( $post_type_object ) {
-			$taxonomies = get_post_meta( $post_type_object->ID, '_ept_taxonomies', true );
-
-			if ( ! $taxonomies ) {
-				$taxonomies = [];
-			}
+			$taxonomies = Util::get_custom_taxonomies( $request['post_type'] );
 
 			$new_taxonomy     = [
 				'name'          => $data['name'],
 				'singular_name' => $data['singular_name'],
 				'slug'          => sanitize_title( $data['slug'] ),
-				'hierarchical'  => filter_var( $data['hierarchical'], FILTER_VALIDATE_BOOLEAN ),
+				'hierarchical'  => isset( $data['hierarchical'] ) ? filter_var( $data['hierarchical'], FILTER_VALIDATE_BOOLEAN ) : false,
 				'is_custom'     => true,
 			];
 			$slug             = $data['slug'];
@@ -456,20 +461,31 @@ class CPT_Editor implements Service, Registerable {
 			}
 
 			if ( $data['previous_slug'] !== $data['slug'] ) {
-				$conflicting_taxonomies = array_filter(
-					$other_taxonomies,
-					function( $t ) use ( $slug ) {
-						return $t['slug'] === $slug;
-					}
+				$conflicting_taxonomies = [];
+
+				if ( 'private' === $post_type_object->post_status ) {
+					$conflicting_taxonomies = array_filter(
+						Util::get_builtin_taxonomies( $request['post_type'] ),
+						function( $t ) use ( $slug ) {
+							return $t['slug'] === $slug;
+						}
+					);
+				}
+
+				$conflicting_taxonomies = array_merge(
+					array_filter(
+						$other_taxonomies,
+						function( $t ) use ( $slug ) {
+							return $t['slug'] === $slug;
+						}
+					),
+					$conflicting_taxonomies
 				);
 
 				if ( ! empty( $conflicting_taxonomies ) ) {
 					$this->errors->add( 'conflicting_taxonomy', __( 'A taxonomy with the same slug is already registered to this post type. Please choose a different slug.', 'easy-post-types-fields' ) );
+					return;
 				}
-			}
-
-			if ( $this->errors->has_errors() ) {
-				return;
 			}
 
 			$new_taxonomies = array_merge( $other_taxonomies, [ $new_taxonomy ] );
@@ -526,11 +542,8 @@ class CPT_Editor implements Service, Registerable {
 
 				if ( ! empty( $conflicting_fields ) ) {
 					$this->errors->add( 'conflicting_field', __( 'A field with the same slug is already registered to this post type. Please choose a different slug.', 'easy-post-types-fields' ) );
+					return;
 				}
-			}
-
-			if ( $this->errors->has_errors() ) {
-				return;
 			}
 
 			$new_fields = array_merge( $other_fields, [ $new_field ] );

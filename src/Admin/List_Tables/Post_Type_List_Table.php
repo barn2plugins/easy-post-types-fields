@@ -108,9 +108,8 @@ class Post_Type_List_Table extends WP_List_Table {
 	}
 
 	public function get_current_view() {
-		// phpcs:disable WordPress.Security.NonceVerification.Recommended
-		return isset( $_REQUEST['view'] ) ? $_REQUEST['view'] : 'ept';
-		// phpcs:enable
+		$request = Util::get_page_request();
+		return isset( $request['view'] ) ? $request['view'] : 'ept';
 	}
 
 	public function prepare_items() {
@@ -196,14 +195,6 @@ class Post_Type_List_Table extends WP_List_Table {
 
 	protected function get_bulk_actions() {
 		return [];
-	}
-
-	public function current_action() {
-		if ( isset( $_REQUEST['delete_all'] ) || isset( $_REQUEST['delete_all2'] ) ) {
-			return 'delete_all';
-		}
-
-		return parent::current_action();
 	}
 
 	protected function get_table_classes() {

@@ -57,26 +57,8 @@ class Taxonomy_List_Table extends WP_List_Table {
 		$internal_slugs = array_column( $this->taxonomies, 'slug' );
 
 		if ( 'private' === $this->post_type_object->post_status ) {
-			$prefix            = "{$this->post_type->name}_";
-			$locked_taxonomies = array_map(
-				function ( $t ) {
-					return [
-						'name'          => $t->labels->name,
-						'singular_name' => $t->labels->singular_name,
-						'slug'          => $t->name,
-						'hierarchical'  => $t->hierarchical,
-						'is_custom'     => false,
-					];
-				},
-				array_filter(
-					get_object_taxonomies( $post_type->name, 'objects' ),
-					function( $t ) use ( $internal_slugs, $prefix ) {
-						return $t->publicly_queryable && ! in_array( str_replace( $prefix, '', $t->name ), $internal_slugs, true );
-					}
-				)
-			);
 
-			$this->taxonomies = array_merge( $this->taxonomies, $locked_taxonomies );
+			$this->taxonomies = array_merge( $this->taxonomies, Util::get_builtin_taxonomies( $this->post_type_object ) );
 		}
 
 	}
@@ -111,14 +93,6 @@ class Taxonomy_List_Table extends WP_List_Table {
 
 	protected function get_bulk_actions() {
 		return [];
-	}
-
-	public function current_action() {
-		if ( isset( $_REQUEST['delete_all'] ) || isset( $_REQUEST['delete_all2'] ) ) {
-			return 'delete_all';
-		}
-
-		return parent::current_action();
 	}
 
 	protected function get_table_classes() {
@@ -208,7 +182,7 @@ class Taxonomy_List_Table extends WP_List_Table {
 	}
 
 	protected function _column_slug( $taxonomy, $classes, $data, $primary ) {
-		$taxonomy_slug = 'publish' === $this->post_type_object->post_status ? $taxonomy['slug'] : "{$this->post_type->name}_{$taxonomy['slug']}";
+		$taxonomy_slug = 'private' === $this->post_type_object->post_status && $taxonomy['is_custom'] ? "{$this->post_type->name}_{$taxonomy['slug']}" : $taxonomy['slug'];
 
 		?>
 		<td class="<?php echo esc_attr( $classes ); ?> taxonomy-slug" <?php echo $data; ?>><?php echo esc_html( $taxonomy_slug ); ?></td>

@@ -41,12 +41,20 @@ class Util {
 		return add_query_arg( $args, admin_url( 'admin.php' ) );
 	}
 
-	public static function is_custom_post_type( $post_type ) {
-		if ( is_a( $post_type, 'WP_Post_Type' ) ) {
-			$post_type = $post_type->name;
+	public static function get_post_type_name( $post_type ) {
+		if ( is_a( $post_type, 'WP_Post' ) && 'ept_post_type' === $post_type->post_type ) {
+			return $post_type->post_name;
 		}
 
-		return 0 === strpos( $post_type, 'ept_' );
+		if ( is_a( $post_type, 'WP_Post_Type' ) ) {
+			return $post_type->name;
+		}
+
+		if ( is_string( $post_type ) && self::get_post_type_by_name( $post_type ) ) {
+			return $post_type;
+		}
+
+		return false;
 	}
 
 	public static function get_post_type_by_name( $name ) {
@@ -59,21 +67,22 @@ class Util {
 		return false;
 	}
 
+	public static function is_custom_post_type( $post_type ) {
+		$post_type = self::get_post_type_name( $post_type );
+
+		return $post_type && 0 === strpos( $post_type, 'ept_' );
+	}
+
 	public static function get_post_type_object( $post_type ) {
-		$post_type_name = $post_type;
-
-		if ( is_a( $post_type, 'WP_Post_Type' ) ) {
-			$post_type_name = $post_type->name;
-		}
-
-		$custom = self::is_custom_post_type( $post_type_name );
-		$args   = [
+		$post_type = self::get_post_type_name( $post_type );
+		$custom    = self::is_custom_post_type( $post_type );
+		$args      = [
 			'posts_per_page' => 1,
 			'post_type'      => 'ept_post_type',
-			'name'           => str_replace( 'ept_', '', $post_type_name ),
+			'name'           => str_replace( 'ept_', '', $post_type ),
 			'post_status'    => $custom ? 'publish' : 'private',
 		];
-		$query  = new WP_Query( $args );
+		$query     = new WP_Query( $args );
 
 		if ( $query->have_posts() ) {
 			return $query->post;
@@ -85,7 +94,9 @@ class Util {
 	}
 
 	public static function maybe_store_utility_post_type( $post_type ) {
-		if ( ! self::is_custom_post_type( $post_type ) ) {
+		$post_type = self::get_post_type_by_name( $post_type );
+
+		if ( $post_type ) {
 			$post_type_id = wp_insert_post(
 				[
 					'post_type'      => 'ept_post_type',
@@ -104,12 +115,48 @@ class Util {
 		return false;
 	}
 
-	public static function get_post_type_custom_fields( $post_type ) {
+	public static function get_custom_taxonomies( $post_type ) {
+		$post_type_object = self::get_post_type_object( $post_type );
+
+		if ( $post_type_object ) {
+			return array_filter( (array) get_post_meta( $post_type_object->ID, '_ept_taxonomies', true ) );
+		}
+
+		return false;
+	}
+
+	public static function get_builtin_taxonomies( $post_type ) {
+		$post_type = self::get_post_type_name( $post_type );
+
+		$custom_taxonomies = self::get_custom_taxonomies( $post_type );
+		$internal_slugs    = array_column( $custom_taxonomies, 'slug' );
+		$prefix            = "{$post_type}_";
+
+		return array_map(
+			function ( $t ) {
+				return [
+					'name'          => $t->labels->name,
+					'singular_name' => $t->labels->singular_name,
+					'slug'          => $t->name,
+					'hierarchical'  => $t->hierarchical,
+					'is_custom'     => false,
+				];
+			},
+			array_filter(
+				get_object_taxonomies( $post_type, 'objects' ),
+				function( $t ) use ( $internal_slugs, $prefix ) {
+					return $t->publicly_queryable && $t->show_ui && ! in_array( str_replace( $prefix, '', $t->name ), $internal_slugs, true );
+				}
+			)
+		);
+	}
+
+	public static function get_custom_fields( $post_type ) {
 		$post_type_object = self::get_post_type_object( $post_type );
 		$fields           = [];
 
 		if ( $post_type_object ) {
-			$fields = get_post_meta( $post_type_object->ID, '_ept_fields', true );
+			$fields = array_filter( (array) get_post_meta( $post_type_object->ID, '_ept_fields', true ) );
 		}
 
 		return $fields;
@@ -229,7 +276,7 @@ class Util {
 	/**
 	 * Return a list of custom field types
 	 *
-	 * @return string[string]
+	 * @return array
 	 */
 	public static function get_custom_field_types() {
 		return [
