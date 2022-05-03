@@ -16,7 +16,7 @@ class Completed extends Ready {
 		parent::__construct();
 		$this->set_name( esc_html__( 'Ready', 'easy-post-types-fields' ) );
 		// translators: the plural name of a post type
-		$this->set_description( __( 'Now, you can either add extra fields to your post type, or start adding new %s straight away.', 'easy-post-types-fields' ) );
+		$this->set_description( __( 'What would you like to do next?', 'easy-post-types-fields' ) );
 		// translators: the singular name of a post type
 		$this->set_title( esc_html__( 'The %s post type is ready!', 'easy-post-types-fields' ) );
 	}
@@ -25,15 +25,15 @@ class Completed extends Ready {
 		return [
 			'post_type'     => [
 				'type'  => 'text',
-				'value' => 'ept_testimonial',
+				'value' => '',
 			],
 			'name'          => [
 				'type'  => 'text',
-				'value' => 'Testimonials',
+				'value' => '',
 			],
 			'singular_name' => [
 				'type'  => 'text',
-				'value' => 'Testimonial',
+				'value' => '',
 			],
 		];
 	}
