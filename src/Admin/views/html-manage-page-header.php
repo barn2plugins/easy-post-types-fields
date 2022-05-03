@@ -33,7 +33,7 @@ defined( 'ABSPATH' ) || exit;
 	if ( $new_link ) {
 		?>
 
-		<a href="<?php echo esc_url( $new_link ); ?>" class="page-title-action"><?php esc_html_e( 'Add new', 'easy-post-types-fields' ); ?></a>
+		<a href="<?php echo esc_url( $new_link ); ?>" class="page-title-action"><?php esc_html_e( 'Add New', 'easy-post-types-fields' ); ?></a>
 
 		<?php
 	}
@@ -49,5 +49,7 @@ if ( isset( $page_description ) && $page_description ) {
 		<?php echo wp_kses_post( $page_description ); ?>
 	</p>
 
-<?php
+	<?php
 }
+
+require 'html-manage-page-breadcrumb.php';
