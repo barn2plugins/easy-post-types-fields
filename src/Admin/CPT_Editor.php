@@ -107,8 +107,6 @@ class CPT_Editor implements Service, Registerable {
 
 		add_action( 'admin_init', [ $this, 'save_post_data' ] );
 		add_action( 'admin_notices', [ $this, 'admin_notices' ] );
-
-		( new Plugin_Promo( $this->plugin ) )->register();
 	}
 
 	public function change_title_text( $title ) {
