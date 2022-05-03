@@ -39,21 +39,21 @@ if ( isset( $_POST['_wpnonce'] ) && wp_verify_nonce( $_POST['_wpnonce'], 'save_l
 
 <fieldset>
 	<label>
-		<span class="label"><?php esc_html_e( 'Plural name', 'easy-post-types-fields' ); ?></span>
+		<span class="label"><?php esc_html_e( 'Singular name', 'easy-post-types-fields' ); ?></span>
 		<span class="input">
-			<input type="text" placeholder="<?php esc_attr_e( 'e.g. Categories', 'easy-post-types-fields' ); ?>" name="name" value="<?php echo esc_attr( $data['name'] ); ?>" />
+			<input class="sluggable" type="text" required placeholder="<?php esc_attr_e( 'e.g. Category', 'easy-post-types-fields' ); ?>" name="singular_name" value="<?php echo esc_attr( $data['singular_name'] ); ?>" />
 		</span>
 	</label>
 	<label>
-		<span class="label"><?php esc_html_e( 'Singular name', 'easy-post-types-fields' ); ?></span>
+		<span class="label"><?php esc_html_e( 'Plural name', 'easy-post-types-fields' ); ?></span>
 		<span class="input">
-			<input class="sluggable" type="text" placeholder="<?php esc_attr_e( 'e.g. Category', 'easy-post-types-fields' ); ?>" name="singular_name" value="<?php echo esc_attr( $data['singular_name'] ); ?>" />
+			<input type="text" required placeholder="<?php esc_attr_e( 'e.g. Categories', 'easy-post-types-fields' ); ?>" name="name" value="<?php echo esc_attr( $data['name'] ); ?>" />
 		</span>
 	</label>
 	<label>
 		<span class="label"><?php esc_html_e( 'Slug', 'easy-post-types-fields' ); ?></span>
 		<span class="input">
-			<input class="slug" type="text" name="slug" maxlength="<?php echo esc_attr( $max ); ?>" value="<?php echo esc_attr( $data['slug'] ); ?>" />
+			<input class="slug" type="text" required name="slug" maxlength="<?php echo esc_attr( $max ); ?>" value="<?php echo esc_attr( $data['slug'] ); ?>" />
 		</span>
 	</label>
 	<label>
