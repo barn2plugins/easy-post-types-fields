@@ -60,8 +60,8 @@ const onReadyUpdated = ( ready ) => {
 	if ( 'ept_ready' === key || 'ready' === key ) {
 		const heading            = sprintf( ready.props.step.heading, ready.props.getValues().singular ),
 			  description        = sprintf( ready.props.step.description, ready.props.getValues().plural ),
-			  showSettingsButton = false;
-		ready.setState( { heading, description, showSettingsButton } );
+			  settingsButtonText = __( 'Manage post types', 'easy-post-types-fields' );
+		ready.setState( { heading, description, settingsButtonText } );
 	}
 }
 addAction( 'barn2_wizard_ready_mounted', 'ept_post_types', onReadyUpdated )
@@ -91,18 +91,18 @@ const readyPageContent = () => {
 		const listItems = [
 			{
 				after: <GridiconChevronRight />,
-				title: __('Add custom fields or taxonomies'),
-				href: `${barn2_setup_wizard.admin_url}admin.php?page=ept_post_types`,
+				title: __('Add custom fields'),
+				href: `${barn2_setup_wizard.admin_url}admin.php?page=ept_post_types&section=fields`,
 			},
 			{
 				after: <GridiconChevronRight />,
-				title: sprintf( __('Add new %s'), values.singular ),
+				title: __('Add taxonomies'),
+				href: `${barn2_setup_wizard.admin_url}admin.php?page=ept_post_types&section=taxonomies`,
+			},
+			{
+				after: <GridiconChevronRight />,
+				title: sprintf( __('Add New %s'), values.singular ),
 				href: `${barn2_setup_wizard.admin_url}post-new.php?post_type=ept_${values.slug}`,
-			},
-			{
-				after: <GridiconChevronRight />,
-				title: __('Manage your post types'),
-				href: `${barn2_setup_wizard.admin_url}admin.php?page=ept_post_types`,
 			}
 		];
 

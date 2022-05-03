@@ -20,8 +20,8 @@ import classNames from 'classnames';
 /**
  * Internal dependencies
  */
-import { SetupWizardSettings } from '../../../../../vendor/barn2/setup-wizard/resources/js/utilities';
-import { HeadingField, ImageField, ListField } from '../../../../../vendor/barn2/setup-wizard/resources/js/fields';
+import { SetupWizardSettings } from '../../../../../vendor/barn2/setup-wizard-static/resources/js/utilities';
+import { HeadingField, ImageField, ListField } from '../../../../../vendor/barn2/setup-wizard-static/resources/js/fields';
 
 class Welcome extends Component {
 	constructor( props ) {
