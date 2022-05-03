@@ -8,6 +8,7 @@
 
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin\Wizard;
 
+use Barn2\Plugin\Easy_Post_Types_Fields\Util;
 use Barn2\EPT_Lib\Plugin\Simple_Plugin;
 use Barn2\EPT_Lib\Registerable;
 use Barn2\EPT_Lib\Util as Lib_Util;
@@ -19,14 +20,13 @@ class Setup_Wizard implements Registerable {
 	private $wizard;
 
 	public function __construct( Simple_Plugin $plugin ) {
-
 		$this->plugin = $plugin;
-
+		$request      = Util::get_page_request();
 		$action_steps = [
 			'setup' => [ 'Welcome', 'EPT_Name', 'EPT_Features', 'Upsell', 'Completed' ],
 			'add'   => [ 'EPT_Name', 'EPT_Features', 'Completed' ],
 		];
-		$action       = isset( $_REQUEST['action'] ) && isset( $action_steps[ $_REQUEST['action'] ] ) ? $_REQUEST['action'] : 'setup';
+		$action       = isset( $request['action'] ) && isset( $action_steps[ $request['action'] ] ) ? $request['action'] : 'setup';
 
 		$steps = array_map(
 			function( $s ) {
@@ -40,9 +40,10 @@ class Setup_Wizard implements Registerable {
 
 		$wizard->configure(
 			[
-				'admin_url' => admin_url(),
-				'skip_url'  => admin_url( 'admin.php?page=ept_post_types' ),
-				'utm_id'    => 'ept',
+				'admin_url'   => admin_url(),
+				'skip_url'    => admin_url( 'admin.php?page=ept_post_types' ),
+				'utm_id'      => 'ept',
+				'woocommerce' => false,
 			]
 		);
 
