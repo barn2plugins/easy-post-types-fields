@@ -31,13 +31,6 @@ class Custom_Field_List_Table extends WP_List_Table {
 	 */
 	protected $fields = [];
 
-	/**
-	 * Whether the post type was registered by EPT 
-	 *
-	 * @var bool
-	 */
-	private $is_custom;
-
 	public function __construct( $post_type ) {
 		parent::__construct(
 			[
