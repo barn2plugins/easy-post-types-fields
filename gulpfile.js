@@ -39,5 +39,6 @@ module.exports = {
 	archive: barn2build.archivePlugin,
 	release: barn2build.releaseFreePlugin,
 	pluginTesting: barn2build.updatePluginTesting,
-	playground: barn2build.updatePluginPlayground
+	playground: barn2build.updatePluginPlayground,
+	wizard: barn2build.updateSetupWizard
 };

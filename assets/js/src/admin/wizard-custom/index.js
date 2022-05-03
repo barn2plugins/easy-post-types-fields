@@ -92,12 +92,12 @@ const readyPageContent = () => {
 			{
 				after: <GridiconChevronRight />,
 				title: __('Add custom fields'),
-				href: `${barn2_setup_wizard.admin_url}admin.php?page=ept_post_types&section=fields`,
+				href: `${barn2_setup_wizard.admin_url}admin.php?page=ept_post_types&post_type=ept_${values.slug}&section=fields`,
 			},
 			{
 				after: <GridiconChevronRight />,
 				title: __('Add taxonomies'),
-				href: `${barn2_setup_wizard.admin_url}admin.php?page=ept_post_types&section=taxonomies`,
+				href: `${barn2_setup_wizard.admin_url}admin.php?page=ept_post_types&post_type=ept_${values.slug}&section=taxonomies`,
 			},
 			{
 				after: <GridiconChevronRight />,

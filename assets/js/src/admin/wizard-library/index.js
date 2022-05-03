@@ -1,1 +1,1 @@
-import '../../../../../vendor/barn2/setup-wizard-static/resources/js/index-no-wc';
+import '../../../../../vendor/barn2/setup-wizard/resources/js/index-no-wc';
