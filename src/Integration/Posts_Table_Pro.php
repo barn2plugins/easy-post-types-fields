@@ -25,52 +25,21 @@ class Posts_Table_Pro implements Registerable, Service {
 	public function posts_table_shortcode_atts( $out, $pairs, $atts, $shortcode ) {
 		global $wp_post_types;
 
-		$ept_post_type = $out['post_type'];
+		$post_type = $out['post_type'];
 
-		if ( ! isset( $wp_post_types[ $out['post_type'] ] ) && isset( $wp_post_types[ "ept_{$out['post_type']}" ] ) ) {
-			$ept_post_type = "ept_{$out['post_type']}";
+		if ( ! isset( $wp_post_types[ $post_type ] ) && isset( $wp_post_types[ "ept_{$post_type}" ] ) ) {
+			$post_type = "ept_{$post_type}";
 		}
 
-		if ( isset( $wp_post_types[ $ept_post_type ] ) ) {
-			$out['post_type'] = $ept_post_type;
-			$post_type_object = Util::get_post_type_object( $ept_post_type );
+		if ( isset( $wp_post_types[ $post_type ] ) ) {
+			$out['post_type'] = $post_type;
+			$post_type_object = Util::get_post_type_object( $post_type );
 
 			if ( ! $post_type_object ) {
 				return $out;
 			}
 
-			$fields = array_filter( (array) get_post_meta( $post_type_object->ID, '_ept_fields', true ) );
-			$slugs  = $fields ? array_column( $fields, 'slug' ) : [];
-
-			$fields = array_combine(
-				$slugs,
-				$fields
-			);
-
-			$columns = explode( ',', $out['columns'] );
-			$columns = array_map(
-				function( $column ) use ( $ept_post_type, $fields, $slugs ) {
-					$prefix = strtok( $column, ':' );
-
-					if ( 'tax' === $prefix ) {
-						$column = 'tax:' . $ept_post_type . '_' . substr( $column, 4 );
-					} elseif ( 'cf' === $prefix ) {
-						$slug = strtok( ':' );
-						$label = strtok( ':' );
-
-						if ( in_array( $slug, $slugs, true ) ) {
-							$field  = $fields[ $slug ];
-							$label  = $label ? $label : $field['name'];
-							$column = rtrim( implode( ':', [ $prefix, "{$ept_post_type}_{$slug}", $label ] ), ':' );
-						}
-					}
-
-					return $column;
-				},
-				$columns
-			);
-
-			$out['columns'] = $columns;
+			$out['columns'] = $this->translate_tax_and_fields( $out['columns'], $post_type );
 
 			if ( is_null( filter_var( $out['filters'], FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE ) ) ) {
 				$filters = $out['filters'];
@@ -79,22 +48,52 @@ class Posts_Table_Pro implements Registerable, Service {
 					$filters = isset( $out['filters_custom'] ) ? $out['filters_custom'] : '';
 				}
 
-				$filters        = explode( ',', $filters );
-				$filters        = array_map(
-					function( $filter ) use ( $ept_post_type ) {
-						if ( 0 === strpos( $filter, 'tax:' ) ) {
-							$filter = 'tax:' . $ept_post_type . '_' . substr( $filter, 4 );
-						}
-
-						return $filter;
-					},
-					$filters
-				);
-				$out['filters'] = $filters;
+				$out['filters'] = $this->translate_tax_and_fields( $filters, $post_type );
 			}
 		}
 
 		return $out;
+	}
+
+	public function translate_tax_and_fields( $comma_separated_list, $post_type ) {
+		$taxonomies = Util::get_custom_taxonomies( $post_type );
+		$fields     = Util::get_custom_fields( $post_type );
+		$slugs      = $fields ? array_column( $fields, 'slug' ) : [];
+		$fields     = array_combine(
+			$slugs,
+			$fields
+		);
+		$entities   = [
+			'tax' => $taxonomies,
+			'cf'  => $fields,
+		];
+
+		return array_map(
+			function( $column ) use ( $post_type, $entities, $slugs ) {
+				$prefix = strtok( $column, ':' );
+				$slug   = str_replace( "{$post_type}_", '', strtok( ':' ) );
+				$label  = strtok( ':' );
+
+				if ( in_array( $prefix, [ 'tax', 'cf' ], true ) ) {
+					$item = array_values(
+						array_filter(
+							$entities[ $prefix ],
+							function( $i ) use ( $slug ) {
+								return $slug === $i['slug'];
+							}
+						)
+					);
+
+					if ( $item && 1 === count( $item ) ) {
+						$label  = $label ? $label : $item[0]['name'];
+						$column = rtrim( implode( ':', [ $prefix, "{$post_type}_{$slug}", $label ] ), ':' );
+					}
+				}
+
+				return $column;
+			},
+			explode( ',', $comma_separated_list )
+		);
 	}
 
 	public function get_custom_field( $meta_value, $meta_key, $post ) {
