@@ -83,7 +83,8 @@ if ( isset( $_POST['_wpnonce'] ) && wp_verify_nonce( $_POST['_wpnonce'], 'save_l
 
 	?>
 
-	<a href="<?php echo esc_url( $_SERVER['HTTP_REFERER'] ); ?>" class="button"><?php esc_html_e( 'Cancel', 'easy-post-types-fields' ); ?></a>
+	<input type="hidden" name="_first_referer" value="<?php echo esc_url( $referer ); ?>" />
+	<a href="<?php echo esc_url( $referer ); ?>" class="button"><?php esc_html_e( 'Cancel', 'easy-post-types-fields' ); ?></a>
 </form>
 
 <?php

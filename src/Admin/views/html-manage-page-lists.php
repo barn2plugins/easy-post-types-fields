@@ -22,7 +22,7 @@ if ( isset( $request['action'] ) ) {
 
 		require "html-manage-page-$section.php";
 
-		wp_nonce_field( 'save_list_item_postdata' );
+		wp_nonce_field( $nonce_action );
 		submit_button(
 			sprintf(
 				// translators: 1: 'Add' or 'Update', 2: 'custom field' or 'taxonomy'
@@ -36,7 +36,8 @@ if ( isset( $request['action'] ) ) {
 		);
 		?>
 
-		<a href="<?php echo esc_url( $_SERVER['HTTP_REFERER'] ); ?>" class="button"><?php esc_html_e( 'Cancel', 'easy-post-types-fields' ); ?></a>
+		<input type="hidden" name="_first_referer" value="<?php echo esc_url( $referer ); ?>" />
+		<a href="<?php echo esc_url( $referer ); ?>" class="button"><?php esc_html_e( 'Cancel', 'easy-post-types-fields' ); ?></a>
 	</form>
 
 	<?php

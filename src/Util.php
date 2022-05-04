@@ -5,8 +5,21 @@ use Barn2\EPT_Lib\Util as Lib_Util;
 
 use WP_Query;
 
+/**
+ * Contain all the utility methods used by the plugins
+ *
+ * @package   Barn2\easy-post-types-fields
+ * @author    Barn2 Plugins <support@barn2.com>
+ * @license   GPL-3.0
+ * @copyright Barn2 Media Ltd
+ */
 class Util {
 
+	/**
+	 * Return the relevant query arguments of the current URL
+	 *
+	 * @return array
+	 */
 	public static function get_page_request() {
 		$request = array_intersect_key(
 			$_GET, //phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -14,6 +27,36 @@ class Util {
 		);
 
 		return $request;
+	}
+
+	/**
+	 * Get the referer URL from the submitted $_POST data or from $_SERVER['HTTP_REFERER']
+	 *
+	 * @param  string $nonce_action The action to verify the nonce
+	 * @return string|bool The URL of the referer. False if none is found.
+	 */
+	public static function get_referer( $nonce_action ) {
+		$referer = false;
+
+		if ( isset( $_POST['_wpnonce'] ) && wp_verify_nonce( $_POST['_wpnonce'], $nonce_action ) ) {
+			$referer = isset( $_POST['_first_referer'] ) ? $_POST['_first_referer'] : false;
+		}
+
+		if ( ! $referer ) {
+			$referer = wp_get_referer();
+		}
+
+		$parsed_referer = wp_parse_url( $referer, PHP_URL_QUERY );
+
+		if ( $parsed_referer ) {
+			parse_str( $parsed_referer, $query_args );
+
+			if ( 'ept_post_types' === $query_args['page'] ) {
+				return $referer;
+			}
+		}
+
+		return false;
 	}
 
 	public static function get_manage_page_url( $post_type = '', $section = '', $slug = '', $action = '', $view = '' ) {

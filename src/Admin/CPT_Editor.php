@@ -246,6 +246,8 @@ class CPT_Editor implements Service, Registerable {
 		$breadcrumbs      = Util::get_page_breadcrumbs();
 		$content          = isset( $request['section'] ) ? 'lists' : 'post_types';
 		$section          = isset( $request['section'] ) ? $request['section'] : 'add';
+		$nonce_action     = 'save_list_item_postdata';
+		$referer          = Util::get_referer( $nonce_action );
 
 		// The maximum length of a post type name is 21 characters (which includes the `ept_` prefix used for a custom post type)
 		$maxlength = 17;
@@ -295,9 +297,9 @@ class CPT_Editor implements Service, Registerable {
 
 			$page_title = 'taxonomies' === $request['section'] ?
 				// translators: either 'Add' or 'Edit'
-				__( '%s taxonomy', 'easy-post-types-fields' ) :
+				__( '%s Taxonomy', 'easy-post-types-fields' ) :
 				// translators: either 'Add' or 'Edit'
-				__( '%s custom field', 'easy-post-types-fields' );
+				__( '%s Custom Field', 'easy-post-types-fields' );
 
 			$page_title       = sprintf( $page_title, $current_action );
 			$page_description = '';
