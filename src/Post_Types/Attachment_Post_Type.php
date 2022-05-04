@@ -15,6 +15,10 @@ class Attachment_Post_Type extends Default_Post_Type {
 	 * {@inheritDoc}
 	 */
 	protected function register() {
+		if ( ! function_exists( 'get_current_screen' ) ) {
+			require_once ABSPATH . '/wp-admin/includes/screen.php';
+		}
+
 		$screen = get_current_screen();
 
 		if ( $screen && 'post' === $screen->base ) {
