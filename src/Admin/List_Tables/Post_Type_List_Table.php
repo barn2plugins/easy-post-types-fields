@@ -270,15 +270,16 @@ class Post_Type_List_Table extends WP_List_Table {
 			if ( $this->is_custom( $post_type ) ) {
 				printf(
 					'<a class="row-title" href="%s" aria-label="%s">%s</a>',
-					Util::get_manage_page_url( $post_type ),
+					esc_url( Util::get_manage_page_url( $post_type ) ),
+					// translators: a post type name
 					esc_attr( sprintf( __( '%s (Edit)', 'easy-post-types-fields' ), $post_type->labels->name ) ),
 					esc_attr( $post_type->labels->name )
 				);
 			} else {
-				echo $post_type->labels->name;
+				echo $post_type->labels->name; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			}
 
-			echo $this->handle_row_actions( $post_type, 'name', $primary );
+			echo $this->handle_row_actions( $post_type, 'name', $primary ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 			?>
 		</td>
 		<?php

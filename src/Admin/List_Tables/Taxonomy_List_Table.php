@@ -165,7 +165,8 @@ class Taxonomy_List_Table extends WP_List_Table {
 
 			if ( $this->is_custom( $taxonomy ) ) {
 				printf(
-					'<a href="" class="row-title editinline" aria-label="%s">%s</a>',
+					'<a href="%s" class="row-title editinline" aria-label="%s">%s</a>',
+					esc_url( $this->get_edit_post_link( $taxonomy ) ),
 					// translators: the name of the taxonomy
 					esc_attr( sprintf( __( '%s (Edit)', 'easy-post-types-fields' ), $taxonomy['name'] ) ),
 					esc_attr( $taxonomy['name'] )
