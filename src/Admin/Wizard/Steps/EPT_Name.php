@@ -18,7 +18,7 @@ class EPT_Name extends Step {
 	public function __construct() {
 		$this->set_id( 'ept_name' );
 		$this->set_name( esc_html__( 'Name', 'easy-post-types-fields' ) );
-		$this->set_description( __( 'First, let\'s choose the name for your custom post type. This will appear as a link on the left hand side of the WordPress admin.', 'easy-post-types-fields' ) );
+		$this->set_description( __( 'First, let\'s choose the name for your post type. This will appear as a link on the left hand side of the WordPress admin.', 'easy-post-types-fields' ) );
 		$this->set_title( esc_html__( 'What sort of content do you want to create?', 'easy-post-types-fields' ) );
 	}
 

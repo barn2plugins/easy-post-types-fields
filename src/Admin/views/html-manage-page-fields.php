@@ -12,14 +12,18 @@ use Barn2\Plugin\Easy_Post_Types_Fields\Util;
 
 defined( 'ABSPATH' ) || exit;
 
-$fields = Util::get_custom_fields( $request['post_type'] );
 $data   = array_fill_keys( [ 'name', 'slug', 'type', 'previous_slug' ], '' );
-$field  = array_filter(
-	$fields,
-	function( $f ) use ( $request ) {
-		return $request['slug'] === $f['slug'];
-	}
-);
+$fields = Util::get_custom_fields( $request['post_type'] );
+$field  = [];
+
+if ( isset( $request['slug'] ) ) {
+	$field = array_filter(
+		$fields,
+		function( $f ) use ( $request ) {
+			return $request['slug'] === $f['slug'];
+		}
+	);
+}
 
 if ( $field ) {
 	$field                 = reset( $field );

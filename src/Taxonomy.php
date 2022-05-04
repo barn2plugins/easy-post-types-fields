@@ -2,7 +2,7 @@
 namespace Barn2\Plugin\Easy_Post_Types_Fields;
 
 /**
- * The class registering a new Custom Post Type.
+ * The class registering a new Custom Taxonomy.
  *
  * @package   Barn2\easy-post-types-fields
  * @author    Barn2 Plugins <support@barn2.com>
