@@ -190,8 +190,8 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center left;
-  top: calc( 50% - 3px );
-  left: calc( 100% - 48px );
+  top: calc(50% - 3px);
+  left: calc(100% - 48px);
   transform: translate(0, -50%);
 }
 .barn2-plugin-review-request + .barn2-plugins-promo {
