@@ -7,15 +7,16 @@ use WP_List_Table;
 /**
  * List Table API: WP_Posts_List_Table class
  *
- * @package WordPress
+ * @package    WordPress
  * @subpackage Administration
- * @since 3.1.0
+ * @since      3.1.0
  */
 
 /**
  * Core class used to implement displaying posts in a list table.
  */
 class Taxonomy_List_Table extends WP_List_Table {
+
 
 	/**
 	 * The post type the taxonomies are assigned to
@@ -109,7 +110,7 @@ class Taxonomy_List_Table extends WP_List_Table {
 	public function get_columns() {
 		$slug_tooltip = Util::get_tooltip(
 			sprintf(
-				// translators: a post type name followed by underscore
+			// translators: a post type name followed by underscore
 				__( 'The slug is a unique code that you can use to identify the custom taxonomy. For example, you can use it to display the data with the Posts Table Pro plugin. If you are using the slug in other ways &ndash; for example for development purposes &ndash; then you should add the prefix `%1$s` before the slug, for example `%1$scategory` instead of just `category`', 'easy-post-types-fields' ),
 				"{$this->post_type->name}_"
 			)
@@ -128,12 +129,12 @@ class Taxonomy_List_Table extends WP_List_Table {
 	protected function get_column_info() {
 		if ( isset( $this->_column_headers ) && is_array( $this->_column_headers ) ) {
 			/*
-			 * Backward compatibility for `$_column_headers` format prior to WordPress 4.3.
-			 *
-			 * In WordPress 4.3 the primary column name was added as a fourth item in the
-			 * column headers property. This ensures the primary column name is included
-			 * in plugins setting the property directly in the three item format.
-			 */
+			* Backward compatibility for `$_column_headers` format prior to WordPress 4.3.
+			*
+			* In WordPress 4.3 the primary column name was added as a fourth item in the
+			* column headers property. This ensures the primary column name is included
+			* in plugins setting the property directly in the three item format.
+			*/
 			$column_headers = [ [], [], [], $this->get_primary_column_name() ];
 			foreach ( $this->_column_headers as $key => $value ) {
 				$column_headers[ $key ] = $value;
@@ -145,7 +146,7 @@ class Taxonomy_List_Table extends WP_List_Table {
 		$columns = $this->get_columns();
 
 		$primary               = $this->get_primary_column_name();
-		$this->_column_headers = array( $columns, [], [], $primary );
+		$this->_column_headers = [ $columns, [], [], $primary ];
 
 		return $this->_column_headers;
 	}
@@ -168,23 +169,23 @@ class Taxonomy_List_Table extends WP_List_Table {
 		$data .= " data-slug=\"{$taxonomy['slug']}\"";
 		?>
 		<td class="<?php echo esc_attr( $classes ); ?> taxonomy-name" <?php echo $data; ?>>
-			<?php
+		<?php
 
-			if ( $this->is_custom( $taxonomy ) ) {
-				printf(
-					'<a href="%s" class="row-title editinline" aria-label="%s">%s</a>',
-					esc_url( $this->get_edit_post_link( $taxonomy ) ),
-					// translators: the name of the taxonomy
-					esc_attr( sprintf( __( '%s (Edit)', 'easy-post-types-fields' ), $taxonomy['name'] ) ),
-					esc_attr( $taxonomy['name'] )
-				);
-			} else {
-				echo esc_html( $taxonomy['name'] );
-			}
+		if ( $this->is_custom( $taxonomy ) ) {
+			printf(
+				'<a href="%s" class="row-title editinline" aria-label="%s">%s</a>',
+				esc_url( $this->get_edit_post_link( $taxonomy ) ),
+				// translators: the name of the taxonomy
+				esc_attr( sprintf( __( '%s (Edit)', 'easy-post-types-fields' ), $taxonomy['name'] ) ),
+				esc_attr( $taxonomy['name'] )
+			);
+		} else {
+			echo esc_html( $taxonomy['name'] );
+		}
 
 			echo $this->handle_row_actions( $taxonomy, 'name', $primary ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
-			?>
+		?>
 		</td>
 		<?php
 	}
@@ -215,7 +216,7 @@ class Taxonomy_List_Table extends WP_List_Table {
 
 		?>
 		<tr id="taxonomy-<?php echo esc_attr( $taxonomy['slug'] ); ?>" class="<?php echo esc_attr( $class ); ?>">
-			<?php $this->single_row_columns( $taxonomy ); ?>
+		<?php $this->single_row_columns( $taxonomy ); ?>
 		</tr>
 		<?php
 	}
@@ -292,18 +293,18 @@ class Taxonomy_List_Table extends WP_List_Table {
 		<table class="wp-list-table <?php echo implode( ' ', $this->get_table_classes() ); ?>">
 			<thead>
 				<tr>
-					<?php $this->print_column_headers(); ?>
+		<?php $this->print_column_headers(); ?>
 				</tr>
 			</thead>
 
 			<tbody id="the-list"
-				<?php
-				if ( $singular ) {
-					echo " data-wp-lists='list:$singular'";
-				}
-				?>
+		<?php
+		if ( $singular ) {
+			echo " data-wp-lists='list:$singular'";
+		}
+		?>
 				>
-				<?php $this->display_rows_or_placeholder(); ?>
+		<?php $this->display_rows_or_placeholder(); ?>
 			</tbody>
 		</table>
 		<?php

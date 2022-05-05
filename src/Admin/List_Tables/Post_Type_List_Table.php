@@ -2,7 +2,6 @@
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin\List_Tables;
 
 use Barn2\Plugin\Easy_Post_Types_Fields\Util;
-use Barn2\EPT_Lib\Admin\Settings_API_Helper;
 use WP_List_Table;
 use WP_Query;
 
@@ -40,20 +39,28 @@ class Post_Type_List_Table extends WP_List_Table {
 	 */
 	private $custom_post_types;
 
+	/**
+	 * Constructor
+	 */
 	public function __construct( $args = [] ) {
 		global $wp_post_types;
 
 		parent::__construct(
-			array(
+			[
 				'screen' => isset( $args['screen'] ) ? $args['screen'] : null,
-			)
+			]
 		);
 
 		$this->post_type      = 'ept_post_type';
 		$this->all_post_types = $wp_post_types;
 		unset( $this->all_post_types['ept_post_type'] );
 
-		$ept_post_types          = new WP_Query( [ 'post_type' => 'ept_post_type', 'posts_per_page' => -1 ] );
+		$ept_post_types          = new WP_Query(
+			[
+				'post_type'      => 'ept_post_type',
+				'posts_per_page' => -1
+			]
+		);
 		$ept_post_types          = $ept_post_types->posts;
 		$this->custom_post_types = array_map(
 			function( $cpt ) {
@@ -117,10 +124,10 @@ class Post_Type_List_Table extends WP_List_Table {
 		$total_items = count( $this->post_types );
 
 		$this->set_pagination_args(
-			array(
+			[
 				'total_items' => $total_items,
 				'per_page'    => $per_page,
-			)
+			]
 		);
 	}
 

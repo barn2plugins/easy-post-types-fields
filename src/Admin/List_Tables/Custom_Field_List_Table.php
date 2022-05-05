@@ -38,6 +38,15 @@ class Custom_Field_List_Table extends WP_List_Table {
 	 */
 	protected $fields = [];
 
+	/**
+	 * Constructor.
+	 *
+	 * The constructor of a custom field list table accepts the WP_Post_Type
+	 * object the custom fields refer are registered to.
+	 *
+	 * @param  WP_Post_Type $post_type
+	 * @return void
+	 */
 	public function __construct( $post_type ) {
 		parent::__construct(
 			[
@@ -54,34 +63,52 @@ class Custom_Field_List_Table extends WP_List_Table {
 		}
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function prepare_items() {
 		$per_page    = apply_filters( 'edit_ept_fields_per_page', $this->get_items_per_page( 'edit_ept_fields_per_page' ) );
 		$total_items = count( $this->fields );
 
 		$this->set_pagination_args(
-			array(
+			[
 				'total_items' => $total_items,
 				'per_page'    => $per_page,
-			)
+			]
 		);
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function has_items() {
 		return count( $this->fields );
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function no_items() {
 		esc_html_e( 'No custom fields for this post type yet', 'easy-post-types-fields' );
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	protected function get_views() {
 		return [];
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	protected function get_bulk_actions() {
 		return [];
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	protected function get_table_classes() {
 		global $mode;
 
@@ -91,6 +118,9 @@ class Custom_Field_List_Table extends WP_List_Table {
 		];
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function get_columns() {
 		$slug_tooltip = Util::get_tooltip(
 			sprintf(
@@ -109,6 +139,9 @@ class Custom_Field_List_Table extends WP_List_Table {
 		return apply_filters( 'manage_ept_taxonomies_columns', $columns );
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	protected function get_column_info() {
 		if ( isset( $this->_column_headers ) && is_array( $this->_column_headers ) ) {
 			/*
@@ -129,15 +162,21 @@ class Custom_Field_List_Table extends WP_List_Table {
 		$columns = $this->get_columns();
 
 		$primary               = $this->get_primary_column_name();
-		$this->_column_headers = array( $columns, [], [], $primary );
+		$this->_column_headers = [ $columns, [], [], $primary ];
 
 		return $this->_column_headers;
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	protected function get_sortable_columns() {
 		return [];
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function display_rows() {
 		if ( empty( $this->fields ) ) {
 			$fields       = get_post_meta( $this->id, '_ept_fields', true );
@@ -149,10 +188,19 @@ class Custom_Field_List_Table extends WP_List_Table {
 		}
 	}
 
-	protected function _column_name( $field, $classes, $data, $primary ) {
+	/**
+	 * Output the name of the field for the current row
+	 *
+	 * @param object|array $field The field in the current row
+	 * @param string $classes The classes for the cell element
+	 * @param string $data The extra attributes for the cell element
+	 * @param string $primary The name of the primary column
+	 * @return void
+	 */
+	protected function _column_name( $field, $classes, $data, $primary ) { // phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
 		$data .= " data-slug=\"{$field['slug']}\"";
 		?>
-		<td class="<?php echo esc_attr( $classes ); ?> post_type-name" <?php echo $data; ?>>
+		<td class="<?php echo esc_attr( $classes ); ?> post_type-name" <?php echo esc_attr( $data ); ?>>
 			<?php
 			printf(
 				'<a class="row-title" href="%s" aria-label="%s">%s</a>',
@@ -168,10 +216,22 @@ class Custom_Field_List_Table extends WP_List_Table {
 		<?php
 	}
 
+	/**
+	 * Output the slug of the field for the current row
+	 *
+	 * @param object|array $field The field associated with the current row
+	 * @return void
+	 */
 	protected function column_slug( $field ) {
 		echo esc_html( $field['slug'] );
 	}
 
+	/**
+	 * Output the type of field for the current row
+	 *
+	 * @param object|array $field The field associated with the current row
+	 * @return void
+	 */
 	protected function column_type( $field ) {
 		$types = Util::get_custom_field_types();
 		$type  = isset( $types[ $field['type'] ] ) ? $types[ $field['type'] ] : '';
@@ -179,23 +239,36 @@ class Custom_Field_List_Table extends WP_List_Table {
 		echo esc_html( $type );
 	}
 
-	public function column_default( $item, $column_name ) {
-	}
-
+	/**
+	 * Output a single row of the table
+	 *
+	 * @param object|array $field The field associated with the current row
+	 * @return void
+	 */
 	public function single_row( $field ) {
 		$class = '';
 
 		?>
-		<tr id="field-<?php echo $field['slug']; ?>" class="<?php echo esc_attr( $class ); ?>">
+		<tr id="field-<?php echo esc_attr( $field['slug'] ); ?>" class="<?php echo esc_attr( $class ); ?>">
 			<?php $this->single_row_columns( $field ); ?>
 		</tr>
 		<?php
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	protected function get_primary_column_name() {
 		return 'name';
 	}
 
+	/**
+	 * Add the actions for the current row in the primary column
+	 *
+	 * @param object|array $field The field associated with the current row
+	 * @param string $column_name The name of the current column
+	 * @param string $primary The name of the primary column
+	 */
 	protected function handle_row_actions( $field, $column_name, $primary ) {
 		if ( $primary !== $column_name ) {
 			return '';
@@ -225,6 +298,12 @@ class Custom_Field_List_Table extends WP_List_Table {
 		return $this->row_actions( $actions );
 	}
 
+	/**
+	 * Get the URL for the Edit row action link
+	 *
+	 * @param  object|array $field The current row item
+	 * @return string
+	 */
 	public function get_edit_post_link( $field ) {
 		parse_str( $_SERVER['QUERY_STRING'], $query_args );
 		$query_args['slug']   = $field['slug'];
@@ -233,10 +312,19 @@ class Custom_Field_List_Table extends WP_List_Table {
 		return Util::get_manage_page_url( $query_args['post_type'], $query_args['section'], $query_args['slug'], $query_args['action'] );
 	}
 
-	public function get_delete_post_link( $post_type ) {
+	/**
+	 * Get the URL for the Delete row action link
+	 *
+	 * @param  object|array $field The current row item
+	 * @return string
+	 */
+	public function get_delete_post_link( $field ) {
 		return '';
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function display() {
 		$singular = $this->_args['singular'];
 		$new_link = Util::get_manage_page_url( $this->post_type->name, 'fields', '', 'add' );
@@ -244,7 +332,7 @@ class Custom_Field_List_Table extends WP_List_Table {
 		$this->screen->render_screen_reader_content( 'heading_list' );
 
 		?>
-		<table class="wp-list-table <?php echo implode( ' ', $this->get_table_classes() ); ?>">
+		<table class="wp-list-table <?php echo esc_attr( implode( ' ', $this->get_table_classes() ) ); ?>">
 			<thead>
 				<tr>
 					<?php $this->print_column_headers(); ?>
@@ -254,7 +342,7 @@ class Custom_Field_List_Table extends WP_List_Table {
 			<tbody id="the-list"
 				<?php
 				if ( $singular ) {
-					echo " data-wp-lists='list:$singular'";
+					echo esc_attr( " data-wp-lists='list:$singular'" );
 				}
 				?>
 				>
