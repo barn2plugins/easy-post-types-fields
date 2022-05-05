@@ -20,9 +20,16 @@ class Custom_Field_List_Table extends WP_List_Table {
 	/**
 	 * The post type the fields are registered to
 	 *
-	 * @var string
+	 * @var WP_Post_Type
 	 */
 	private $post_type;
+
+	/**
+	 * The post type the fields are registered to
+	 *
+	 * @var WP_Post
+	 */
+	private $post_type_object;
 
 	/**
 	 * The fields of the current post type
@@ -38,11 +45,11 @@ class Custom_Field_List_Table extends WP_List_Table {
 			]
 		);
 
-		$this->post_type  = $post_type;
-		$post_type_object = Util::get_post_type_object( $post_type );
+		$this->post_type        = $post_type;
+		$this->post_type_object = Util::get_post_type_object( $post_type );
 
-		if ( $post_type_object ) {
-			$fields       = get_post_meta( $post_type_object->ID, '_ept_fields', true );
+		if ( $this->post_type_object ) {
+			$fields       = get_post_meta( $this->post_type_object->ID, '_ept_fields', true );
 			$this->fields = $fields ?: [];
 		}
 	}
@@ -85,9 +92,17 @@ class Custom_Field_List_Table extends WP_List_Table {
 	}
 
 	public function get_columns() {
+		$slug_tooltip = Util::get_tooltip(
+			sprintf(
+				// translators: a post type name followed by underscore
+				__( 'The slug is a unique code that you can use to identify the custom taxonomy. For example, you can use it to display the data with the Posts Table Pro plugin. If you are using the slug in other ways &ndash; for example for development purposes &ndash; then you should add the prefix `%1$s` before the slug, for example `%1$scategory` instead of just `category`', 'easy-post-types-fields' ),
+				"{$this->post_type->name}_"
+			)
+		);
+
 		$columns = [
 			'name' => _x( 'Name', 'column name', 'easy-post-types-fields' ),
-			'slug' => _x( 'Slug', 'column name', 'easy-post-types-fields' ),
+			'slug' => _x( 'Slug', 'column name', 'easy-post-types-fields' ) . ( 'publish' === $this->post_type_object->post_status ? $slug_tooltip : '' ),
 			'type' => _x( 'Type', 'column name', 'easy-post-types-fields' ),
 		];
 
