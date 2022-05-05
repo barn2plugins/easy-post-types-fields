@@ -1,4 +1,4 @@
-=== Easy Post Types and Fields ===
+=== Easy Post Types Fields ===
 
 Contributors: barn2media
 Tags: custom post type, custom field, custom taxonomy, custom post types, custom fields, taxonomy, custom taxonomies, content type, post type, custom data, meta fields

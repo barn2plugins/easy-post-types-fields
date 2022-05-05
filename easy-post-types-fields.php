@@ -1,6 +1,6 @@
 <?php
 /**
- * The main plugin file for Easy Post Types and Fields.
+ * The main plugin file for Easy Post Types Fields.
  *
  * @package   Barn2\easy-post-types-fields
  * @author    Barn2 Plugins <support@barn2.com>
@@ -8,8 +8,8 @@
  * @copyright Barn2 Media Ltd
  *
  * @wordpress-plugin
- * Plugin Name:     Easy Post Types and Fields
- * Plugin URI:      https://wordpress.org/plugins/easy-post-types-fields-fields-taxonomies/
+ * Plugin Name:     Easy Post Types Fields
+ * Plugin URI:      https://wordpress.org/plugins/easy-post-types-fields/
  * Description:     Create custom post types, fields and taxonomies.
  * Version:         0.6.1
  * Author:          Barn2 Plugins
