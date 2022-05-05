@@ -5,7 +5,7 @@ Tags: custom post type, custom field, custom taxonomy, custom post types, custom
 Requires at least: 5.0
 Tested up to: 5.9.3
 Requires PHP: 7.2
-Stable tag: 0.6.1
+Stable tag: 0.7
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Donate link: https://barn2.com
@@ -109,9 +109,19 @@ Yes, you can add HTML and shortcodes into either the plain text and Visual Edito
 
 == Screenshots ==
 
-1. Screenshot 1
-2. Screenshot 2
-3. Screenshot 3
+1. Create an unlimited number of post types and easily view and manage them centrally.
+2. Simple, user-friendly interface to create WordPress custom post types in seconds.
+3. Select which features and default fields you wish to include for each WordPress custom post type.
+4. Easily manage all the custom fields for the WordPress custom post types that you have created.
+5. Need to store extra information for your post types? Easily add as many custom fields as you like.
+6. You can also add custom taxonomies, designed for grouping and sorting your post types.
+7. Create WordPress custom taxonomies quickly and easily - just add the basic details and you’re done!
+8. Use taxonomy terms to structure and group your custom posts (just like WordPress categories).
+9. Adding posts to your new post type is just like adding a page or post in WordPress.
+10. You can also add fields and taxonomies to post types created with other plugins (e.g. products or events).
+11. Extend any post type with custom fields and taxonomies, including WooCommerce products.
+12. Recommended: Display your custom posts, fields and taxonomies using the Posts Table Pro plugin.
+13. Recommended: Restrict access to your custom posts with the Password Protected Categories plugin.
 
 == Upgrade Notice ==
 
@@ -121,7 +131,7 @@ This is the initial release
 == Changelog ==
 
 = 1.0 =
-Release date 15 April 2022
+Release date 10 May 2022
 
 * Initial release.
 
