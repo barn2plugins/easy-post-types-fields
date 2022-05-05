@@ -18,12 +18,18 @@ class Custom_Post_Type extends Abstract_Post_Type {
 	 */
 	private $args = [];
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function init() {
 		if ( $this->prepare_arguments() ) {
 			$this->activate_post_type();
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public function activate_post_type() {
 		$post_type = register_post_type(
 			$this->post_type,
@@ -37,6 +43,15 @@ class Custom_Post_Type extends Abstract_Post_Type {
 		parent::activate_post_type();
 	}
 
+	/**
+	 * Prepare the arguments for the custom post type registration
+	 *
+	 * EPT only collects the singular and plural name and the slug of the post
+	 * type. All the other arguments are defined with default values that can
+	 * be adjusted using the `ept_post_type_{$this->slug}_args` filter.
+	 *
+	 * @return array
+	 */
 	public function prepare_arguments() {
 		if ( empty( $this->args ) ) {
 			$args         = [];
@@ -85,6 +100,13 @@ class Custom_Post_Type extends Abstract_Post_Type {
 		return $this->args;
 	}
 
+	/**
+	 * Return the default labels for the post type registration
+	 *
+	 * All the labels are defined on the basis of the singular and plural names
+	 *
+	 * @return array
+	 */
 	public function default_labels() {
 		$default_labels = [
 			'name'                     => $this->name,
@@ -142,12 +164,26 @@ class Custom_Post_Type extends Abstract_Post_Type {
 		return $default_labels;
 	}
 
+	/**
+	 * Define a label using the plural name
+	 *
+	 * @param  string $label The label where the name is used
+	 * @param  boolean $to_lower Whether to make the name lower case or not
+	 * @return string
+	 */
 	public function define_label( $label, $to_lower = false ) {
 		$name = $to_lower ? strtolower( $this->name ) : $this->name;
 
 		return ucfirst( sprintf( $label, $name ) );
 	}
 
+	/**
+	 * Define a label using the singular name
+	 *
+	 * @param  string $label The label where the name is used
+	 * @param  boolean $to_lower Whether to make the name lower case or not
+	 * @return string
+	 */
 	public function define_singular_label( $label, $to_lower = false ) {
 		$singular_name = $to_lower ? strtolower( $this->singular_name ) : $this->singular_name;
 

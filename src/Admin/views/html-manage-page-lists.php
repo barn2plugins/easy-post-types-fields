@@ -1,7 +1,13 @@
 <?php
 /**
- * The HTML markup of the Custom Fields or Taxonomies pages
+ * The HTML markup of the custom field or taxonomy listings
+ *
+ * @package   Barn2\easy-post-types-fields
+ * @author    Barn2 Plugins <support@barn2.com>
+ * @license   GPL-3.0
+ * @copyright Barn2 Media Ltd
  */
+
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin;
 
 defined( 'ABSPATH' ) || exit;
@@ -25,7 +31,7 @@ if ( isset( $request['action'] ) ) {
 		wp_nonce_field( $nonce_action );
 		submit_button(
 			sprintf(
-				// translators: 1: 'Add' or 'Update', 2: 'custom field' or 'taxonomy'
+				// translators: 1: 'Add' or 'Update', 2: 'custom field' or 'taxonomy' phpcs:ignore Squiz.PHP.CommentedOutCode.Found
 				__( '%1$s %2$s', 'easy-post-types-fields' ),
 				'add' === $request['action'] ? __( 'Add', 'easy-post-types-fields' ) : __( 'Update', 'easy-post-types-fields' ),
 				'taxonomies' === $section ? __( 'taxonomy', 'easy-post-types-fields' ) : __( 'custom field', 'easy-post-types-fields' )
@@ -57,5 +63,3 @@ if ( isset( $request['action'] ) ) {
 	</form>
 	<?php
 }
-// $list_table->inline_edit();
-

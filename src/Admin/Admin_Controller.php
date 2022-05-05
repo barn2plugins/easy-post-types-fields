@@ -27,10 +27,19 @@ class Admin_Controller implements Registerable, Service {
 	 */
 	private $plugin;
 
+	/**
+	 * Constructor
+	 *
+	 * @param  Simple_Plugin $plugin The main instance of this plugin
+	 * @return void
+	 */
 	public function __construct( Simple_Plugin $plugin ) {
 		$this->plugin = $plugin;
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function get_services() {
 		$services = [
 			'cpt_editor' => new CPT_Editor( $this->plugin ),
@@ -40,6 +49,9 @@ class Admin_Controller implements Registerable, Service {
 		return $services;
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function register() {
 		$this->register_services();
 
@@ -47,6 +59,12 @@ class Admin_Controller implements Registerable, Service {
 		add_filter( 'plugin_action_links_' . $this->plugin->get_basename(), [ $this, 'add_settings_link' ] );
 	}
 
+	/**
+	 * Enqueue the stylesheet required by this plugin
+	 *
+	 * @param  string $hook The value of the page query argument
+	 * @return void
+	 */
 	public function load_scripts( $hook ) {
 		$screen = get_current_screen();
 
@@ -55,6 +73,13 @@ class Admin_Controller implements Registerable, Service {
 		}
 	}
 
+	/**
+	 * Add a link to the main page of this plugin to the list of links in the
+	 * name column of the plugins table list
+	 *
+	 * @param  array $links The list of links being filtered
+	 * @return array
+	 */
 	public function add_settings_link( $links ) {
 		$settings_url = Util::get_manage_page_url();
 

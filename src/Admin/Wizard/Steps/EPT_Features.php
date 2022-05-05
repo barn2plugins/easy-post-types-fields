@@ -1,5 +1,7 @@
 <?php
 /**
+ * The class defining the Post Type Features step of the Setup Wizard
+ *
  * @package   Barn2\easy-post-types-fields
  * @author    Barn2 Plugins <support@barn2.com>
  * @license   GPL-3.0
@@ -11,16 +13,20 @@ namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin\Wizard\Steps;
 use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Barn2\Setup_Wizard\Step;
 use Barn2\Plugin\Easy_Post_Types_Fields\Util;
 
+/**
+ * {@inheritdoc}
+ */
 class EPT_Features extends Step {
 
 	/**
-	 * Constructor.
+	 * {@inheritdoc}
 	 */
 	public function __construct() {
 		$this->set_id( 'ept_features' );
 		$this->set_name( esc_html__( 'Features', 'easy-post-types-fields' ) );
 		// translators: the plural name of a post type
 		$this->set_description( __( 'Choose which of the standard features you will use. Later, you can create custom fields and taxonomies for storing additional information.', 'easy-post-types-fields' ) );
+		// translators: the plural name of a post type
 		$this->set_title( esc_html__( 'What type of information do you need for your %s?', 'easy-post-types-fields' ) );
 	}
 
@@ -50,6 +56,10 @@ class EPT_Features extends Step {
 	 * {@inheritdoc}
 	 */
 	public function submit() {
+		if ( ! wp_verify_nonce( $_POST['nonce'], 'barn2_setup_wizard_nonce' ) ) {
+			return;
+		}
+
 		$values       = $this->get_submitted_values();
 		$supports     = array_keys(
 			array_filter(

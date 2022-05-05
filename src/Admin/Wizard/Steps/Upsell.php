@@ -1,5 +1,7 @@
 <?php
 /**
+ * The class defining the Upsell step of the Setup Wizard
+ *
  * @package   Barn2\easy-post-types-fields
  * @author    Barn2 Plugins <support@barn2.com>
  * @license   GPL-3.0
@@ -11,13 +13,16 @@ namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin\Wizard\Steps;
 use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Barn2\Setup_Wizard\Step;
 use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Barn2\Setup_Wizard\Util;
 
+/**
+ * {@inheritdoc}
+ */
 class Upsell extends Step {
 
 	// URL of the api from where upsells are pulled from.
 	const REST_URL = 'https://barn2.com/wp-json/upsell/v1/get/';
 
 	/**
-	 * Constructor.
+	 * {@inheritdoc}
 	 */
 	public function __construct() {
 		$this->set_id( 'more' );

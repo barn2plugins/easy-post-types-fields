@@ -1,5 +1,7 @@
 <?php
 /**
+ * The main Setup Wizard class
+ *
  * @package   Barn2\easy-post-types-fields
  * @author    Barn2 Plugins <support@barn2.com>
  * @license   GPL-3.0
@@ -12,14 +14,12 @@ use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Barn2\Setup_Wizard\Interfac
 use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Barn2\Setup_Wizard\Setup_Wizard;
 
 /**
- * WPS Setup wizard.
+ * {@inheritdoc}
  */
 class Wizard extends Setup_Wizard implements Restartable {
 
 	/**
-	 * On wizard restart, detect which pages should be automatically unhidden.
-	 *
-	 * @return void
+	 * {@inheritdoc}
 	 */
 	public function on_restart() {
 		check_ajax_referer( 'barn2_setup_wizard_nonce', 'nonce' );
@@ -63,10 +63,8 @@ class Wizard extends Setup_Wizard implements Restartable {
 		}
 
 		wp_enqueue_script( $slug, $this->get_non_wc_asset(), $this->get_non_wc_dependencies(), $this->get_non_wc_version(), true );
-		// wp_add_inline_script( $slug, 'const barn2_setup_wizard = ' . wp_json_encode( $this->get_js_args() ), 'before' );
 
 		wp_enqueue_style( 'b2-wc-components', $this->get_library_url() . 'resources/wc-vendor/components.css', false, $this->get_non_wc_version() );
-
 		wp_enqueue_style( $slug, $this->get_library_url() . 'build/main.css', $styling_dependencies, filemtime( $this->get_library_path() . '/build/main.css' ) );
 	}
 

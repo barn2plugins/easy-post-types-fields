@@ -1,11 +1,13 @@
 <?php
 /**
- * The HTML markup of the Manage page
+ * The HTML markup of the post type edit form
  *
- * @param Post_Type_List_Table $post_type_list_table The list table instance (a subclass of WP_List_Table)
- * @param Barn2\EPT_Lib\Plugin\Plugin $plugin The main instance of the plugin
- * @param string $new_link The link to add a new post type
+ * @package   Barn2\easy-post-types-fields
+ * @author    Barn2 Plugins <support@barn2.com>
+ * @license   GPL-3.0
+ * @copyright Barn2 Media Ltd
  */
+
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin;
 
 use Barn2\Plugin\Easy_Post_types_Fields\Util;

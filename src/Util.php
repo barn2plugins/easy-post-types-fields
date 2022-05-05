@@ -59,6 +59,16 @@ class Util {
 		return false;
 	}
 
+	/**
+	 * Get the URL of the manage page with the appropriate query arguments
+	 *
+	 * @param  string|WP_Post_Type $post_type The slug of a post type
+	 * @param  string $section The current section: either 'taxonomies' or 'fields'
+	 * @param  string $slug The slug of the taxonomy or field being edited
+	 * @param  string $action The action being performed: either 'add' or 'edit'
+	 * @param  string $view The current view: either 'ept' or 'other'
+	 * @return string
+	 */
 	public static function get_manage_page_url( $post_type = '', $section = '', $slug = '', $action = '', $view = '' ) {
 		if ( is_a( $post_type, 'WP_Post_Type' ) ) {
 			$post_type = $post_type->name;
@@ -84,6 +94,18 @@ class Util {
 		return add_query_arg( $args, admin_url( 'admin.php' ) );
 	}
 
+	/**
+	 * Get the slug of a post type
+	 *
+	 * The post type can be passed as a string, in which case the function
+	 * simply checks whether it corresponds to an actual post type and returns
+	 * it. Alternatively, a WP_Post_Type object could be passed.
+	 * Finally, a WP_Post could be passed, in which case the function checks
+	 * whether the post is of `ept_post_type` type and returns its post_name
+	 *
+	 * @param  string|WP_Post_Type|WP_Post $post_type A post type
+	 * @return string|boolean
+	 */
 	public static function get_post_type_name( $post_type ) {
 		if ( is_a( $post_type, 'WP_Post' ) && 'ept_post_type' === $post_type->post_type ) {
 			return $post_type->post_name;
@@ -100,6 +122,12 @@ class Util {
 		return false;
 	}
 
+	/**
+	 * Get a WP_Post_Type object by its name
+	 *
+	 * @param  string $name
+	 * @return WP_Post_Type|boolean
+	 */
 	public static function get_post_type_by_name( $name ) {
 		global $wp_post_types;
 
@@ -110,12 +138,25 @@ class Util {
 		return false;
 	}
 
+	/**
+	 * Determine whether a post type is custom or if it is registered by
+	 * WordPress or any other third-party plugin
+	 *
+	 * @param  string|WP_Post_Type|WP_Post $post_type The post type being checked
+	 * @return boolean
+	 */
 	public static function is_custom_post_type( $post_type ) {
 		$post_type = self::get_post_type_name( $post_type );
 
 		return $post_type && 0 === strpos( $post_type, 'ept_' );
 	}
 
+	/**
+	 * The WP_Post object associated with the post type
+	 *
+	 * @param  string|WP_Post_Type|WP_Post $post_type The post type being checked
+	 * @return WP_Post|boolean
+	 */
 	public static function get_post_type_object( $post_type ) {
 		$post_type = self::get_post_type_name( $post_type );
 		$custom    = self::is_custom_post_type( $post_type );
@@ -136,6 +177,22 @@ class Util {
 		return false;
 	}
 
+	/**
+	 * Store the post type definition as a post of `ept_post_type` type
+	 *
+	 * EPT uses the post status only to differentiate custom post types defined
+	 * by EPT from any other post types. A custom post type defined by EPT
+	 * is stored in the database with the 'publish' post_status. Any other post
+	 * types are stored with 'private' post_status.
+	 *
+	 * This function stores a new post for each post type that is registered by
+	 * WordPress or any other third-party plugin. Storing also those post types
+	 * as WP_Post objects is necessary to register custom fields and taxonomies
+	 * to those post types.
+	 *
+	 * @param  string $post_type The slug of the post type
+	 * @return WP_Post|boolean The WP_Post object or false if storing the post was not successful
+	 */
 	public static function maybe_store_utility_post_type( $post_type ) {
 		$post_type = self::get_post_type_by_name( $post_type );
 
@@ -158,6 +215,12 @@ class Util {
 		return false;
 	}
 
+	/**
+	 * Get a list of custom taxonomies registered to a post type
+	 *
+	 * @param  string|WP_Post_Type|WP_Post $post_type The post type
+	 * @return array|boolean
+	 */
 	public static function get_custom_taxonomies( $post_type ) {
 		$post_type_object = self::get_post_type_object( $post_type );
 
@@ -168,6 +231,13 @@ class Util {
 		return false;
 	}
 
+	/**
+	 * Get a list of taxonomies registered by WordPress or any other
+	 * third-party plugin
+	 *
+	 * @param  string|WP_Post_Type|WP_Post $post_type The post type
+	 * @return array|boolean
+	 */
 	public static function get_builtin_taxonomies( $post_type ) {
 		$post_type = self::get_post_type_name( $post_type );
 
@@ -194,7 +264,14 @@ class Util {
 		);
 	}
 
+	/**
+	 * Get a list of custom fields registered to a post type
+	 *
+	 * @param  string|WP_Post_Type|WP_Post $post_type The post type
+	 * @return array
+	 */
 	public static function get_custom_fields( $post_type ) {
+		$post_type        = self::get_post_type_name( $post_type );
 		$post_type_object = self::get_post_type_object( $post_type );
 		$fields           = [];
 
@@ -205,6 +282,12 @@ class Util {
 		return $fields;
 	}
 
+	/**
+	 * Get the HTML markup of the breadcrumbs of a page based on the query
+	 * arguments of the current request
+	 *
+	 * @return string
+	 */
 	public static function get_page_breadcrumbs() {
 		$request     = self::get_page_request();
 		$breadcrumbs = [
@@ -275,16 +358,35 @@ class Util {
 		return implode( ' &gt; ', $breadcrumbs );
 	}
 
+	/**
+	 * Get the HTML markup of a tooltip
+	 *
+	 * @param  string $tooltip_text The text contained in the tooltip
+	 * @return string
+	 */
 	public static function get_tooltip( $tooltip_text ) {
 		wp_enqueue_script( 'barn2-tiptip' );
 
 		return '<span class="barn2-help-tip" data-tip="' . wp_kses_post( $tooltip_text ) . '"></span>';
 	}
 
+	/**
+	 * Get the default list of features supported by a custom post type
+	 *
+	 * @return array
+	 */
 	public static function get_default_post_type_support() {
 		return [ 'title', 'editor', 'excerpt', 'author', 'thumbnail' ];
 	}
 
+	/**
+	 * Get the full list of features supported by a custom post type
+	 *
+	 * The list is returned as an associative array with the slug of the
+	 * features being the keys and their labels being the values
+	 *
+	 * @return array
+	 */
 	public static function get_post_type_support() {
 		return [
 			'title'           => __( 'Title', 'easy-post-types-fields' ),

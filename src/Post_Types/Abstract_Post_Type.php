@@ -1,14 +1,22 @@
 <?php
+/**
+ * Contain the abstract class handling a custom post type
+ *
+ * @package   Barn2\easy-post-types-fields
+ * @author    Barn2 Plugins <support@barn2.com>
+ * @license   GPL-3.0
+ * @copyright Barn2 Media Ltd
+ */
+
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Post_Types;
 
-use Barn2\Plugin\Easy_Post_Types_Fields\Util;
 use Barn2\Plugin\Easy_Post_Types_Fields\Taxonomy;
 use Barn2\Plugin\Easy_Post_Types_Fields\Field;
 
 use function Barn2\Plugin\Easy_Post_Types_Fields\ept;
 
 /**
- * The class registering a new Custom Post Type.
+ * The abstract class handling a new Custom Post Type.
  *
  * @package   Barn2\easy-post-types-fields
  * @author    Barn2 Plugins <support@barn2.com>
@@ -134,6 +142,11 @@ abstract class Abstract_Post_Type implements Post_Type_Interface {
 		add_action( 'pre_post_update', [ $this, 'save_post_data' ] );
 	}
 
+	/**
+	 * Register the taxonomies associated with the post type
+	 *
+	 * @return void
+	 */
 	protected function register_taxonomies() {
 		$taxonomies = get_post_meta( $this->id, '_ept_taxonomies', true );
 		$post_type  = $this->post_type;
@@ -160,6 +173,11 @@ abstract class Abstract_Post_Type implements Post_Type_Interface {
 		}
 	}
 
+	/**
+	 * Register the custom fields associated with the post type
+	 *
+	 * @return void
+	 */
 	protected function register_meta() {
 		$fields    = get_post_meta( $this->id, '_ept_fields', true );
 		$post_type = $this->post_type;
@@ -178,6 +196,12 @@ abstract class Abstract_Post_Type implements Post_Type_Interface {
 		}
 	}
 
+	/**
+	 * Register the custom meta box associated with the post type
+	 *
+	 * @param  WP_Post $post The post currently being edited
+	 * @return void
+	 */
 	public function register_cpt_metabox( $post = null ) {
 		if ( empty( $this->fields ) ) {
 			return;
@@ -186,6 +210,12 @@ abstract class Abstract_Post_Type implements Post_Type_Interface {
 		add_meta_box( "ept_post_type_{$this->slug}_metabox", __( 'Custom Fields', 'easy-post-types-fields' ), [ $this, 'output_meta_box' ], $this->post_type );
 	}
 
+	/**
+	 * Output the HTML markup of the custom meta box
+	 *
+	 * @param  mixed $post
+	 * @return void
+	 */
 	public function output_meta_box( $post ) {
 		do_action( "ept_post_type_{$this->slug}_metabox" );
 
@@ -200,6 +230,12 @@ abstract class Abstract_Post_Type implements Post_Type_Interface {
 		include ept()->get_admin_path( 'views/html-meta-box.php' );
 	}
 
+	/**
+	 * Store the post metadata
+	 *
+	 * @param  int|string $post_id
+	 * @return void
+	 */
 	public function save_post_data( $post_id ) {
 		$postdata = sanitize_post( $_POST, 'db' ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
@@ -221,6 +257,16 @@ abstract class Abstract_Post_Type implements Post_Type_Interface {
 		}
 	}
 
+	/**
+	 * Flush the rewrite rules
+	 *
+	 * Since flushing the rewrite rules is an expensive operation, this method
+	 * determines whether a flush is necessary based on a transient that is set
+	 * every time a post type or a taxonomy is edited and removed right after
+	 * the rewrite rules are flushed
+	 *
+	 * @return void
+	 */
 	public function maybe_flush_rewrite_rules() {
 		$transient_name = sprintf( 'ept_%s_updated', $this->post_type );
 
@@ -229,6 +275,4 @@ abstract class Abstract_Post_Type implements Post_Type_Interface {
 			delete_transient( $transient_name );
 		}
 	}
-
-
 }

@@ -21,6 +21,13 @@ class Plugin extends Simple_Plugin implements Registerable, Translatable {
 
 	private $services;
 
+	/**
+	 * Constructor
+	 *
+	 * @param  string $file The path of the main plugin file
+	 * @param  string $version The current version of the plugin
+	 * @return void
+	 */
 	public function __construct( $file = null, $version = null ) {
 		parent::__construct(
 			[
@@ -41,14 +48,10 @@ class Plugin extends Simple_Plugin implements Registerable, Translatable {
 		if ( Lib_Util::is_admin() ) {
 			$this->services['admin/controller'] = new Admin\Admin_Controller( $this );
 		}
-
-		if ( Lib_Util::is_front_end() ) {
-
-		}
 	}
 
 	/**
-	 * Registers the plugin with WordPress.
+	 * {@inheritdoc}
 	 */
 	public function register() {
 		$plugin_setup = new Admin\Plugin_Setup( $this->get_file(), $this );
@@ -58,14 +61,26 @@ class Plugin extends Simple_Plugin implements Registerable, Translatable {
 		add_action( 'init', [ $this, 'load_textdomain' ], 5 );
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function load_plugin() {
 		Lib_Util::register_services( $this->services );
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function load_textdomain() {
 		load_plugin_textdomain( 'easy-post-types-fields', false, $this->get_slug() . '/languages' );
 	}
 
+	/**
+	 * Return the local path of the `Admin` folder under the plugin root folder
+	 *
+	 * @param  string $file The subpath located in the Admin folder
+	 * @return string
+	 */
 	public function get_admin_path( $file ) {
 		return wp_normalize_path( $this->get_dir_path() . '/src/Admin/' . $file );
 	}

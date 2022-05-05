@@ -60,6 +60,14 @@ class Field {
 	 */
 	private $is_registered;
 
+	/**
+	 * Constructor
+	 *
+	 * @param array $field The field properties
+	 * @param string $post_type The slug of the post type this field is registered to
+	 * @param array $args A list of arguments for the custom field registration
+	 * @return void
+	 */
 	public function __construct( $field, $post_type, $args = [] ) {
 		$this->post_type = $post_type;
 		$this->slug      = $field['slug'];
@@ -71,6 +79,15 @@ class Field {
 		}
 	}
 
+	/**
+	 * Prepare the arguments for the custom field registration
+	 *
+	 * The list of arguments is returned by the method after filter callbacks
+	 * are invoked to alter the default definition of the arguments
+	 *
+	 * @param  array $args The list of arguments
+	 * @return array
+	 */
 	public function prepare_arguments( $args ) {
 		if ( empty( $this->args ) ) {
 			$default_args = [
@@ -91,6 +108,11 @@ class Field {
 		return $this->args;
 	}
 
+	/**
+	 * Register a custom field to a post type
+	 *
+	 * @return void
+	 */
 	public function register_field() {
 		register_post_meta(
 			$this->post_type,

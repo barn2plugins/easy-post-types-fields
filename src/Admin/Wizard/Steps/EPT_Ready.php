@@ -1,5 +1,7 @@
 <?php
 /**
+ * The class defining the Post Type Ready step of the Setup Wizard
+ *
  * @package   Barn2\easy-post-types-fields
  * @author    Barn2 Plugins <support@barn2.com>
  * @license   GPL-3.0
@@ -10,10 +12,13 @@ namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin\Wizard\Steps;
 
 use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Barn2\Setup_Wizard\Steps\Ready;
 
+/**
+ * {@inheritdoc}
+ */
 class EPT_Ready extends Ready {
 
 	/**
-	 * Constructor.
+	 * {@inheritdoc}
 	 */
 	public function __construct() {
 		$this->set_id( 'ept_ready' );

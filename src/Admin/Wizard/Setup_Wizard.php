@@ -1,5 +1,7 @@
 <?php
 /**
+ * Register the Barn2 Setup Wizard for this plugin
+ *
  * @package   Barn2\easy-post-types-fields
  * @author    Barn2 Plugins <support@barn2.com>
  * @license   GPL-3.0
@@ -13,12 +15,21 @@ use Barn2\EPT_Lib\Plugin\Simple_Plugin;
 use Barn2\EPT_Lib\Registerable;
 use Barn2\EPT_Lib\Util as Lib_Util;
 
+/**
+ * {@inheritdoc}
+ */
 class Setup_Wizard implements Registerable {
 
 	private $plugin;
 
 	private $wizard;
 
+	/**
+	 * Constructor
+	 *
+	 * @param  Simple_Plugin $plugin The main instance of this plugin
+	 * @return void
+	 */
 	public function __construct( Simple_Plugin $plugin ) {
 		$this->plugin = $plugin;
 		$request      = Util::get_page_request();
@@ -70,13 +81,10 @@ class Setup_Wizard implements Registerable {
 		);
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function register() {
 		$this->wizard->boot();
 	}
-
-	public function enqueue_additional_scripts( $hook_suffix ) {
-		// wp_enqueue_style( 'ept-setup-wizard-addons', $this->plugin->get_dir_url() . 'assets/css/admin/ept-wizard.min.css', [ $this->wizard->get_slug() ], $this->plugin->get_version() );
-		// wp_enqueue_script( 'ept-setup-wizard', $this->plugin->get_dir_url() . 'assets/js/admin/wizard.min.js', [], $this->plugin->get_version(), true );
-	}
-
 }

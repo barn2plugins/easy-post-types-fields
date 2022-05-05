@@ -27,11 +27,20 @@ class Post_Type_Factory implements Registerable, Service {
 
 	private $post_types;
 
+	/**
+	 * Constructor
+	 *
+	 * @param  Simple_Plugin $plugin The main plugin object instance
+	 * @return void
+	 */
 	public function __construct( Simple_Plugin $plugin ) {
 		$this->plugin     = $plugin;
 		$this->post_types = [];
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function register() {
 		$ept_post_types = new WP_Query(
 			[

@@ -67,6 +67,14 @@ class Taxonomy {
 	 */
 	private $is_registered;
 
+	/**
+	 * Constructor
+	 *
+	 * @param  array $taxonomy A list of taxonomy properties
+	 * @param  string $post_type The slug of the post type the taxonomy is going to be associated with
+	 * @param  array $args An optional list of arguments for the taxonomy registration
+	 * @return void
+	 */
 	public function __construct( $taxonomy, $post_type, $args = [] ) {
 		$this->post_type = $post_type;
 		$this->slug      = $taxonomy;
@@ -83,6 +91,12 @@ class Taxonomy {
 		}
 	}
 
+	/**
+	 * Prepare the arguments for the taxonomy registration
+	 *
+	 * @param  array $args The input arguments
+	 * @return array The arguments as adjusted by this method
+	 */
 	public function prepare_arguments( $args ) {
 		if ( empty( $this->args ) ) {
 			$default_args = [
@@ -113,6 +127,13 @@ class Taxonomy {
 		return $this->args;
 	}
 
+	/**
+	 * Return the default labels for the taxonomy registration
+	 *
+	 * All the labels are defined on the basis of the singular and plural names
+	 *
+	 * @return array
+	 */
 	public function default_labels() {
 		$name_field_description   = __( 'The name is how it appears on your site.', 'easy-post-types-fields' );
 		$slug_field_description   = __( 'The &#8220;slug&#8221; is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens.', 'easy-post-types-fields' );
@@ -179,18 +200,37 @@ class Taxonomy {
 		return $default_labels;
 	}
 
+	/**
+	 * Define a label using the plural name
+	 *
+	 * @param  string $label The label where the name is used
+	 * @param  boolean $to_lower Whether to make the name lower case or not
+	 * @return string
+	 */
 	public function define_label( $label, $to_lower = false ) {
 		$name = $to_lower ? strtolower( $this->name ) : $this->name;
 
 		return ucfirst( sprintf( $label, $name ) );
 	}
 
+	/**
+	 * Define a label using the singular name
+	 *
+	 * @param  string $label The label where the name is used
+	 * @param  boolean $to_lower Whether to make the name lower case or not
+	 * @return string
+	 */
 	public function define_singular_label( $label, $to_lower = false ) {
 		$singular_name = $to_lower ? strtolower( $this->singular_name ) : $this->singular_name;
 
 		return ucfirst( sprintf( $label, $singular_name ) );
 	}
 
+	/**
+	 * Register the taxonomy to its post type
+	 *
+	 * @return void
+	 */
 	public function register_taxonomy() {
 		register_taxonomy(
 			$this->taxonomy,

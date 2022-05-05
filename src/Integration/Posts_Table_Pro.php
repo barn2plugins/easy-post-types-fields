@@ -1,4 +1,12 @@
 <?php
+/**
+ * Handle the integration of the plugin with Posts Table Pro
+ *
+ * @package   Barn2\easy-post-types-fields
+ * @author    Barn2 Plugins <support@barn2.com>
+ * @license   GPL-3.0
+ * @copyright Barn2 Media Ltd
+ */
 
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Integration;
 
@@ -16,13 +24,28 @@ use Barn2\Plugin\Easy_Post_Types_Fields\Util,
  */
 class Posts_Table_Pro implements Registerable, Service {
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function register() {
-		add_filter( 'shortcode_atts_posts_table', [ $this, 'posts_table_shortcode_atts' ], 10, 4 );
-		add_filter( 'posts_table_data_custom_field', [ $this, 'get_custom_field' ], 10, 3 );
+		add_filter( 'shortcode_atts_posts_table', [ $this, 'posts_table_shortcode_atts' ] );
+		add_filter( 'posts_table_data_custom_field', [ $this, 'data_custom_field' ], 10, 3 );
 
 	}
 
-	public function posts_table_shortcode_atts( $out, $pairs, $atts, $shortcode ) {
+	/**
+	 * Filter the parameters of a Posts Table Pro shortcode
+	 *
+	 * This method goes through all the `tax:` and `cf:` slugs present in the
+	 * `columns` and `filters` parameters and appropriately prefix all the
+	 * custom fields and taxonomies that might be coming from EPT.
+	 * This way users are free use the slugs they created without having to
+	 * prefix them the way EPT does for internal reasons.
+	 *
+	 * @param  array $out
+	 * @return array
+	 */
+	public function posts_table_shortcode_atts( $out ) {
 		global $wp_post_types;
 
 		$post_type = $out['post_type'];
@@ -39,7 +62,7 @@ class Posts_Table_Pro implements Registerable, Service {
 				return $out;
 			}
 
-			$out['columns'] = $this->translate_tax_and_fields( $out['columns'], $post_type );
+			$out['columns'] = $this->prefix_taxs_and_fields( $out['columns'], $post_type );
 
 			if ( is_null( filter_var( $out['filters'], FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE ) ) ) {
 				$filters = $out['filters'];
@@ -48,14 +71,26 @@ class Posts_Table_Pro implements Registerable, Service {
 					$filters = isset( $out['filters_custom'] ) ? $out['filters_custom'] : '';
 				}
 
-				$out['filters'] = $this->translate_tax_and_fields( $filters, $post_type );
+				$out['filters'] = $this->prefix_taxs_and_fields( $filters, $post_type );
 			}
 		}
 
 		return $out;
 	}
 
-	public function translate_tax_and_fields( $comma_separated_list, $post_type ) {
+	/**
+	 * Use the appropriate prefix for the slugs of EPT entities
+	 *
+	 * This method gets a comma-separated list of slugs and checks whether the
+	 * ones related to taxonomies (tax:) or custom fields (cf:) might be
+	 * registered by EPT. If that is the case, the appropriate prefix is added.
+	 * Otherwise, the slug is returned as it originally was.
+	 *
+	 * @param  string $comma_separated_list
+	 * @param  string $post_type
+	 * @return string The comma-separated list of adjusted slugs
+	 */
+	public function prefix_taxs_and_fields( $comma_separated_list, $post_type ) {
 		$taxonomies = Util::get_custom_taxonomies( $post_type );
 		$fields     = Util::get_custom_fields( $post_type );
 		$slugs      = $fields ? array_column( $fields, 'slug' ) : [];
@@ -68,35 +103,50 @@ class Posts_Table_Pro implements Registerable, Service {
 			'cf'  => $fields,
 		];
 
-		return array_map(
-			function( $column ) use ( $post_type, $entities, $slugs ) {
-				$prefix = strtok( $column, ':' );
-				$slug   = str_replace( "{$post_type}_", '', strtok( ':' ) );
-				$label  = strtok( ':' );
+		return implode(
+			',',
+			array_map(
+				function( $column ) use ( $post_type, $entities, $slugs ) {
+					$prefix = strtok( $column, ':' );
+					$slug   = str_replace( "{$post_type}_", '', strtok( ':' ) );
+					$label  = strtok( ':' );
 
-				if ( in_array( $prefix, [ 'tax', 'cf' ], true ) ) {
-					$item = array_values(
-						array_filter(
-							$entities[ $prefix ],
-							function( $i ) use ( $slug ) {
-								return $slug === $i['slug'];
-							}
-						)
-					);
+					if ( in_array( $prefix, [ 'tax', 'cf' ], true ) ) {
+						$item = array_values(
+							array_filter(
+								$entities[ $prefix ],
+								function( $i ) use ( $slug ) {
+									return $slug === $i['slug'];
+								}
+							)
+						);
 
-					if ( $item && 1 === count( $item ) ) {
-						$label  = $label ? $label : $item[0]['name'];
-						$column = rtrim( implode( ':', [ $prefix, "{$post_type}_{$slug}", $label ] ), ':' );
+						if ( $item && 1 === count( $item ) ) {
+							$label  = $label ? $label : $item[0]['name'];
+							$column = rtrim( implode( ':', [ $prefix, "{$post_type}_{$slug}", $label ] ), ':' );
+						}
 					}
-				}
 
-				return $column;
-			},
-			explode( ',', $comma_separated_list )
+					return $column;
+				},
+				explode( ',', $comma_separated_list )
+			)
 		);
 	}
 
-	public function get_custom_field( $meta_value, $meta_key, $post ) {
+	/**
+	 * Filter the content of a custom field registered by EPT
+	 *
+	 * This method filters the data content of a custom field used in Posts
+	 * Table Pro, returning the value appropriately formatted if the field
+	 * was registered by EPT.
+	 *
+	 * @param  string $meta_value
+	 * @param  string $meta_key
+	 * @param  WP_Post $post
+	 * @return string
+	 */
+	public function data_custom_field( $meta_value, $meta_key, $post ) {
 		if ( 0 === strpos( $meta_key, $post->post_type ) ) {
 			$post_type_object = Util::get_post_type_object( $post->post_type );
 
@@ -120,6 +170,13 @@ class Posts_Table_Pro implements Registerable, Service {
 		return $meta_value;
 	}
 
+	/**
+	 * Format the value of a custom field based on its type
+	 *
+	 * @param  string $value
+	 * @param  array $field
+	 * @return string
+	 */
 	public function format_field( $value, $field ) {
 		switch ( $field['type'] ) {
 			case 'gallery':

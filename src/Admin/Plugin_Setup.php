@@ -1,5 +1,7 @@
 <?php
 /**
+ * Setup the Wizard for the current plugin instance
+ *
  * @package   Barn2\easy-post-types-fields
  * @author    Barn2 Plugins <support@barn2.com>
  * @license   GPL-3.0
@@ -12,6 +14,9 @@ use Barn2\Plugin\Easy_Post_Types_Fields\Admin\Wizard\Starter;
 use Barn2\Plugin\Easy_Post_Types_Fields\Plugin;
 use Barn2\EPT_Lib\Registerable;
 
+/**
+ * {@inheritdoc}
+ */
 class Plugin_Setup implements Registerable {
 	/**
 	 * Plugin's entry file
@@ -38,6 +43,7 @@ class Plugin_Setup implements Registerable {
 	 * Get things started
 	 *
 	 * @param string $file
+	 * @param Plugin $plugin The main plugin instance
 	 */
 	public function __construct( $file, Plugin $plugin ) {
 		$this->file    = $file;

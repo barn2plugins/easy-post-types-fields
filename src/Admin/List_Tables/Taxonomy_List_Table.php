@@ -1,23 +1,22 @@
 <?php
+/**
+ * Taxonomy list table, extending the WP_List_Table class
+ *
+ * @package   Barn2\easy-post-types-fields
+ * @author    Barn2 Plugins <support@barn2.com>
+ * @license   GPL-3.0
+ * @copyright Barn2 Media Ltd
+ */
+
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin\List_Tables;
 
 use Barn2\Plugin\Easy_Post_Types_Fields\Util;
 use WP_List_Table;
 
 /**
- * List Table API: WP_Posts_List_Table class
- *
- * @package    WordPress
- * @subpackage Administration
- * @since      3.1.0
- */
-
-/**
- * Core class used to implement displaying posts in a list table.
+ * Class used to implement displaying taxonomies in a list table.
  */
 class Taxonomy_List_Table extends WP_List_Table {
-
-
 	/**
 	 * The post type the taxonomies are assigned to
 	 *
@@ -39,6 +38,14 @@ class Taxonomy_List_Table extends WP_List_Table {
 	 */
 	protected $taxonomies = [];
 
+	/**
+	 * Constructor
+	 *
+	 * Define a list table for the taxonomies registered to a given post type
+	 *
+	 * @param  WP_Post_Type $post_type The current post type
+	 * @return void
+	 */
 	public function __construct( $post_type ) {
 		parent::__construct(
 			[
@@ -64,6 +71,9 @@ class Taxonomy_List_Table extends WP_List_Table {
 
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function prepare_items() {
 		$per_page    = apply_filters( 'edit_ept_taxonomies_per_page', $this->get_items_per_page( 'edit_ept_taxonomies_per_page' ) );
 		$total_items = count( $this->taxonomies );
@@ -76,26 +86,48 @@ class Taxonomy_List_Table extends WP_List_Table {
 		);
 	}
 
+	/**
+	 * Determine whether a taxonomy is registered by EPT (i.e. custom)
+	 * or by WordPress or a third-party plugin
+	 *
+	 * @param  array $taxonomy
+	 * @return boolean
+	 */
 	public function is_custom( $taxonomy ) {
 		return $taxonomy['is_custom'];
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function has_items() {
 		return count( $this->taxonomies );
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function no_items() {
 		esc_html_e( 'No taxonomies for this post type yet', 'easy-post-types-fields' );
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	protected function get_views() {
 		return [];
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	protected function get_bulk_actions() {
 		return [];
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	protected function get_table_classes() {
 		global $mode;
 
@@ -107,6 +139,9 @@ class Taxonomy_List_Table extends WP_List_Table {
 		];
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function get_columns() {
 		$slug_tooltip = Util::get_tooltip(
 			sprintf(
@@ -126,6 +161,9 @@ class Taxonomy_List_Table extends WP_List_Table {
 		return apply_filters( 'manage_ept_taxonomies_columns', $columns );
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	protected function get_column_info() {
 		if ( isset( $this->_column_headers ) && is_array( $this->_column_headers ) ) {
 			/*
@@ -151,10 +189,16 @@ class Taxonomy_List_Table extends WP_List_Table {
 		return $this->_column_headers;
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	protected function get_sortable_columns() {
 		return [];
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function display_rows() {
 		if ( empty( $this->taxonomies ) ) {
 			$this->taxonomies = get_post_types( [ 'public' => true ] );
@@ -165,10 +209,19 @@ class Taxonomy_List_Table extends WP_List_Table {
 		}
 	}
 
-	protected function _column_name( $taxonomy, $classes, $data, $primary ) {
+	/**
+	 * Output the name of the taxonomy for the current row
+	 *
+	 * @param array $taxonomy The taxonomy in the current row
+	 * @param string $classes The classes for the cell element
+	 * @param string $data The extra attributes for the cell element
+	 * @param string $primary The name of the primary column
+	 * @return void
+	 */
+	protected function _column_name( $taxonomy, $classes, $data, $primary ) { // phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
 		$data .= " data-slug=\"{$taxonomy['slug']}\"";
 		?>
-		<td class="<?php echo esc_attr( $classes ); ?> taxonomy-name" <?php echo $data; ?>>
+		<td class="<?php echo esc_attr( $classes ); ?> taxonomy-name" <?php echo $data; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 		<?php
 
 		if ( $this->is_custom( $taxonomy ) ) {
@@ -190,23 +243,33 @@ class Taxonomy_List_Table extends WP_List_Table {
 		<?php
 	}
 
-	protected function _column_slug( $taxonomy, $classes, $data, $primary ) {
+	/**
+	 * Output the slug of the taxonomy for the current row
+	 *
+	 * @param  array $taxonomy The taxonomy associated with the current row
+	 * @return void
+	 */
+	protected function column_slug( $taxonomy ) {
 		$taxonomy_slug = 'private' === $this->post_type_object->post_status && $taxonomy['is_custom'] ? "{$this->post_type->name}_{$taxonomy['slug']}" : $taxonomy['slug'];
-
-		?>
-		<td class="<?php echo esc_attr( $classes ); ?> taxonomy-slug" <?php echo $data; ?>><?php echo esc_html( $taxonomy_slug ); ?></td>
-		<?php
+		echo esc_html( $taxonomy_slug );
 	}
 
-	protected function _column_hierarchical( $taxonomy, $classes, $data, $primary ) {
-		?>
-		<td class="<?php echo esc_attr( $classes ); ?> taxonomy-slug" <?php echo $data; ?>><?php echo esc_html( true === $taxonomy['hierarchical'] ? __( 'Yes', 'easy-post-types-fields' ) : __( 'No', 'easy-post-types-fields' ) ); ?></td>
-		<?php
+	/**
+	 * Output 'Yes' or 'No' depending on the taxonomy being heirarchical or not
+	 *
+	 * @param  array $taxonomy The taxonomy associated with the current row
+	 * @return void
+	 */
+	protected function column_hierarchical( $taxonomy ) {
+		echo esc_html( true === $taxonomy['hierarchical'] ? __( 'Yes', 'easy-post-types-fields' ) : __( 'No', 'easy-post-types-fields' ) );
 	}
 
-	public function column_default( $item, $column_name ) {
-	}
-
+	/**
+	 * Output a single row of the table
+	 *
+	 * @param  array $taxonomy The taxonomy associated with the current row
+	 * @return void
+	 */
 	public function single_row( $taxonomy ) {
 		$class = '';
 
@@ -221,16 +284,25 @@ class Taxonomy_List_Table extends WP_List_Table {
 		<?php
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	protected function get_primary_column_name() {
 		return 'name';
 	}
 
+	/**
+	 * Add the actions for the current row in the primary column
+	 *
+	 * @param array $taxonomy The taxonomy associated with the current row
+	 * @param string $column_name The name of the current column
+	 * @param string $primary The name of the primary column
+	 */
 	protected function handle_row_actions( $taxonomy, $column_name, $primary ) {
 		if ( $primary !== $column_name ) {
 			return '';
 		}
 
-		// Restores the more descriptive, specific name for use within this method.
 		$can_edit_post_type = current_user_can( 'manage_options' );
 		$actions            = [];
 
@@ -261,16 +333,34 @@ class Taxonomy_List_Table extends WP_List_Table {
 		return $this->row_actions( $actions );
 	}
 
+	/**
+	 * Get the URL for the Edit row action link
+	 *
+	 * @param  array $taxonomy The current row item
+	 * @return string
+	 */
 	public function get_edit_post_link( $taxonomy ) {
 		parse_str( $_SERVER['QUERY_STRING'], $query_args );
 
 		return Util::get_manage_page_url( $query_args['post_type'], $query_args['section'], $taxonomy['slug'], 'edit' );
 	}
 
+	/**
+	 * Get the URL for the Delete row action link
+	 *
+	 * @param  array $taxonomy The current row item
+	 * @return string
+	 */
 	public function get_delete_post_link( $taxonomy ) {
 		return '';
 	}
 
+	/**
+	 * Get the URL for the Manage terms row action link
+	 *
+	 * @param  array $taxonomy The current row item
+	 * @return string
+	 */
 	public function get_manage_terms_link( $taxonomy ) {
 		$post_type = $this->post_type->name;
 
@@ -283,6 +373,9 @@ class Taxonomy_List_Table extends WP_List_Table {
 		);
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function display() {
 		$singular = $this->_args['singular'];
 		$new_link = Util::get_manage_page_url( $this->post_type->name, 'taxonomies', '', 'add' );
@@ -290,7 +383,7 @@ class Taxonomy_List_Table extends WP_List_Table {
 		$this->screen->render_screen_reader_content( 'heading_list' );
 
 		?>
-		<table class="wp-list-table <?php echo implode( ' ', $this->get_table_classes() ); ?>">
+		<table class="wp-list-table <?php echo esc_attr( implode( ' ', $this->get_table_classes() ) ); ?>">
 			<thead>
 				<tr>
 		<?php $this->print_column_headers(); ?>
@@ -300,7 +393,7 @@ class Taxonomy_List_Table extends WP_List_Table {
 			<tbody id="the-list"
 		<?php
 		if ( $singular ) {
-			echo " data-wp-lists='list:$singular'";
+			echo " data-wp-lists='list:$singular'"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		}
 		?>
 				>

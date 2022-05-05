@@ -1,11 +1,24 @@
 <?php
+/**
+ * The main page of the plugin.
+ *
+ * This class handles most of the functionalities featured by the plugin
+ * and is responsible for the output of the page as well as all the logic
+ * behind the data storage of all the plugin settings.
+ *
+ * @package   Barn2\easy-post-types-fields
+ * @author    Barn2 Plugins <support@barn2.com>
+ * @license   GPL-3.0
+ * @copyright Barn2 Media Ltd
+ */
+
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin;
 
-use Barn2\Plugin\Easy_Post_Types_Fields\Util,
+use Barn2\Plugin\Easy_Post_Types_Fields\Plugin,
+	Barn2\Plugin\Easy_Post_Types_Fields\Util,
 	Barn2\EPT_Lib\Plugin\Simple_Plugin,
 	Barn2\EPT_Lib\Registerable,
-	Barn2\EPT_Lib\Service,
-	Barn2\EPT_Lib\Admin\Plugin_Promo;
+	Barn2\EPT_Lib\Service;
 
 use WP_Error;
 use WP_Query;
@@ -28,7 +41,7 @@ class CPT_Editor implements Service, Registerable {
 	/**
 	 * The main plugin instance
 	 *
-	 * @var Simple_Plugin
+	 * @var Plugin
 	 */
 	private $plugin;
 
@@ -39,16 +52,25 @@ class CPT_Editor implements Service, Registerable {
 	 */
 	private $errors;
 
-	public function __construct( Simple_Plugin $plugin ) {
+	/**
+	 * Constructor
+	 *
+	 * @param  Simple_Plugin $plugin The main instance of this plugin
+	 * @return void
+	 */
+	public function __construct( Plugin $plugin ) {
 		$this->plugin = $plugin;
 		$this->errors = new WP_Error();
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function register() {
 		register_post_type(
 			'ept_post_type',
 			[
-				'labels'               => [
+				'labels'              => [
 					'name'                     => __( 'Post types', 'easy-post-types-fields' ),
 					'singular_name'            => __( 'Post type', 'easy-post-types-fields' ),
 					'add_new'                  => __( 'Add new', 'easy-post-types-fields' ),
@@ -73,35 +95,27 @@ class CPT_Editor implements Service, Registerable {
 					'item_updated'             => __( 'Post updated.', 'easy-post-types-fields' ),
 					'item_link_description'    => __( 'A link to a post type.', 'easy-post-types-fields' ),
 				],
-				'description'          => __( 'Define a custom post type', 'easy-post-types-fields' ),
-				'public'               => false,
-				'exclude_from_search'  => true,
-				'publicly_queryable'   => false,
-				'show_in_menu'         => false,
-				'show_in_nav_menus'    => false,
-				'show_in_admin_bar'    => false,
-				'show_in_rest'         => false,
-				'menu_position'        => null,
-				'menu_icon'            => '',
-				'supports'             => [ 'title' ],
-				'register_meta_box_cb' => [ $this, 'register_cpt_metabox' ],
-				'taxonomies'           => [],
-				'rewrite'              => false,
-				'query_var'            => false,
-				'can_export'           => false,
-				'delete_with_user'     => false,
+				'description'         => __( 'Define a custom post type', 'easy-post-types-fields' ),
+				'public'              => false,
+				'exclude_from_search' => true,
+				'publicly_queryable'  => false,
+				'show_in_menu'        => false,
+				'show_in_nav_menus'   => false,
+				'show_in_admin_bar'   => false,
+				'show_in_rest'        => false,
+				'menu_position'       => null,
+				'menu_icon'           => '',
+				'supports'            => [ 'title' ],
+				'taxonomies'          => [],
+				'rewrite'             => false,
+				'query_var'           => false,
+				'can_export'          => false,
+				'delete_with_user'    => false,
 			]
 		);
 
 		add_action( 'admin_enqueue_scripts', [ $this, 'load_scripts' ] );
-		add_filter( 'enter_title_here', [ $this, 'change_title_text' ] );
-		add_action( 'edit_form_after_title', [ $this, 'print_name_fields' ], 1 );
-		add_filter( 'views_edit-ept_content_type', '__return_empty_array' );
-		add_filter( 'bulk_actions-edit-ept_content_type', '__return_empty_array' );
-		add_filter( 'disable_months_dropdown', [ $this, 'disable_months_dropdown' ], 10, 2 );
-		add_filter( 'manage_edit-ept_content_type_columns', [ $this, 'manage_columns' ] );
 		add_action( 'admin_menu', [ $this, 'admin_menu' ] );
-		// add_filter( 'wp_insert_post_data', [ $this, 'save_post_fields' ], 10, 3 );
 
 		add_action( 'wp_ajax_ept_inline_delete', [ $this, 'inline_delete' ] );
 
@@ -109,46 +123,12 @@ class CPT_Editor implements Service, Registerable {
 		add_action( 'admin_notices', [ $this, 'admin_notices' ] );
 	}
 
-	public function change_title_text( $title ) {
-		$screen = get_current_screen();
-
-		if ( 'ept_post_type' === $screen->post_type ) {
-			$title = __( 'Singular name of the post type (e.g. `Project` or `Book`)', 'easy-post-types-fields' );
-		}
-
-		return $title;
-	}
-
-	public function register_cpt_metabox() {
-		add_meta_box( 'ept_content_types', __( 'Definition', 'easy-post-types-fields' ), [ $this, 'cpt_metabox_content' ], 'ept_content_types', 'normal', 'default' );
-	}
-
-	public function cpt_metabox_content( $post ) {
-		?>
-		<h1>The metabox content goes here!</h1>
-		<?php
-	}
-
-	public function print_name_fields( $post ) {
-		if ( 'ept_post_type' !== get_post_type( $post ) ) {
-			return;
-		}
-
-		$plural_name = get_post_meta( $post->ID, '_ept_plural_name', true );
-		$placeholder = __( 'Plural name of the post type (e.g. `Projects` or `Books`)', 'easy-post-types-fields' );
-
-		?>
-		<div id="ept_plural_name_wrap">
-			<label class="screen-reader-text" id="plural-name-prompt-text" for="ept_plural_name">
-				<?php
-				echo $placeholder; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-				?>
-			</label>
-			<input type="text" name="ept_plural_name" size="30" value="<?php echo esc_attr( $plural_name ); ?>" id="ept_plural_name" spellcheck="true" autocomplete="off" />
-		</div>
-		<?php
-	}
-
+	/**
+	 * Enqueue the stylesheet and script required by this page
+	 *
+	 * @param  string $hook The value of the page query argument
+	 * @return void
+	 */
 	public function load_scripts( $hook ) {
 		$screen = get_current_screen();
 
@@ -158,41 +138,28 @@ class CPT_Editor implements Service, Registerable {
 		}
 	}
 
-	public function disable_months_dropdown( $disable, $post_type ) {
-		if ( 'ept_content_type' === $post_type ) {
-			return true;
-		}
-
-		return $disable;
-	}
-
-	public function manage_columns( $column_headers ) {
-		$index = array_search( 'title', array_keys( $column_headers ), true );
-
-		$column_headers['title'] = __( 'Name', 'easy-post-types-fields' );
-		unset( $column_headers['date'] );
-
-		if ( false !== $index ) {
-			$index = count( $column_headers );
-		}
-
-		$additional_columns = [
-			'custom' => __( 'Custom', 'easy-post-types-fields' ),
-		];
-
-		return array_merge(
-			array_slice( $column_headers, 0, $index ),
-			$additional_columns,
-			array_slice( $column_headers, $index )
-		);
-	}
-
+	/**
+	 * Add the top-level menu pointing to the main Manage page
+	 *
+	 * @return void
+	 */
 	public function admin_menu() {
-		add_menu_page( 'Post Types', 'Post Types', 'manage_options', 'ept_post_types', [ $this, 'add_manage_page' ], 'dashicons-feedback', 26 );
-		add_submenu_page( 'ept_post_types', 'Manage', 'Manage', 'manage_options', 'ept_post_types', [ $this, 'add_manage_page' ] );
-		add_submenu_page( 'ept_post_types', 'Help', 'Help', 'manage_options', 'ept_post_types-help', [ $this, 'add_help_page' ] );
+		add_menu_page( 'Post Types', 'Post Types', 'manage_options', 'ept_post_types', [ $this, 'output_manage_page' ], 'dashicons-feedback', 26 );
+		add_submenu_page( 'ept_post_types', 'Manage', 'Manage', 'manage_options', 'ept_post_types', [ $this, 'output_manage_page' ] );
+		add_submenu_page( 'ept_post_types', 'Help', 'Help', 'manage_options', 'ept_post_types-help', [ $this, 'output_help_page' ] );
 	}
 
+	/**
+	 * Get the data of the two sections of the Manage page
+	 *
+	 * The array returned by this function the page description shown under the
+	 * title, the singular name of the entity relevant to the requested page
+	 * and the appropriate WP_List_Table subclass used to render the list of
+	 * entities.
+	 *
+	 * @param  array $request The list of query arguments relevant to the Manage page
+	 * @return array
+	 */
 	public function get_page_data( $request ) {
 		$sections          = [
 			'fields'     => [
@@ -238,7 +205,16 @@ class CPT_Editor implements Service, Registerable {
 		];
 	}
 
-	public function add_manage_page() {
+	/**
+	 * Output the HTML markup of the main plugin page
+	 *
+	 * After collecting all the necessary information, thie method includes
+	 * the main HTML view file, which in turn includes the appropriate subviews,
+	 * depending on the section and action being requested.
+	 *
+	 * @return void
+	 */
+	public function output_manage_page() {
 		$request          = Util::get_page_request();
 		$page_title       = __( 'Post Types', 'easy-post-types-fields' );
 		$page_description = __( 'Use this page to manage your custom post types. You can add and edit post types, custom fields and taxonomies.', 'easy-post-types-fields' );
@@ -309,12 +285,22 @@ class CPT_Editor implements Service, Registerable {
 		include $this->plugin->get_admin_path( 'views/html-manage-page.php' );
 	}
 
-	public function add_help_page() {
+	/**
+	 * Output the HTML markup of the help page
+	 *
+	 * @return void
+	 */
+	public function output_help_page() {
 		$plugin = $this->plugin;
 
 		include $this->plugin->get_admin_path( 'views/html-help-page.php' );
 	}
 
+	/**
+	 * Add all the errors in the admin notices section
+	 *
+	 * @return void
+	 */
 	public function admin_notices() {
 		if ( ! $this->errors->has_errors() ) {
 			return;
@@ -325,7 +311,7 @@ class CPT_Editor implements Service, Registerable {
 			<?php
 			foreach ( $this->errors->get_error_messages() as $error ) {
 				?>
-				<p><?php echo $error; ?></p>
+				<p><?php echo wp_kses_post( $error ); ?></p>
 				<?php
 			}
 			?>
@@ -333,7 +319,16 @@ class CPT_Editor implements Service, Registerable {
 		<?php
 	}
 
-
+	/**
+	 * Delete a custom field or a taxonomy from the database.
+	 *
+	 * This method is call via AJAX but also causes a page reload so that
+	 * the deleted entity is reflected across the whole admin area.
+	 * For example, when deleting a taxonomy, its name would still be listed
+	 * in the menu of the custom post type until a full page reload.
+	 *
+	 * @return void
+	 */
 	public function inline_delete() {
 		check_ajax_referer( 'inlinedeletenonce', '_inline_delete' );
 
@@ -363,6 +358,15 @@ class CPT_Editor implements Service, Registerable {
 		wp_send_json_error( [ 'error_message' => __( 'The post type is missing or an error occurred when completing this operation.', 'easy-post-types-fields' ) ] );
 	}
 
+	/**
+	 * Save the post data
+	 *
+	 * This method calls the appropriate method depending on the type of
+	 * entity being saved. The value of `$data_type` determines which method
+	 * should be called.
+	 *
+	 * @return void
+	 */
 	public function save_post_data() {
 		if ( ! isset( $_POST['_wpnonce'] ) || ! wp_verify_nonce( $_POST['_wpnonce'], 'save_list_item_postdata' ) ) {
 			return;
@@ -382,7 +386,7 @@ class CPT_Editor implements Service, Registerable {
 	}
 
 	/**
-	 * Save a custom post type in the database
+	 * Store a custom post type in the database
 	 *
 	 * @param  array $data The post type data being submitted
 	 * @param  array $request The current page request
@@ -429,7 +433,7 @@ class CPT_Editor implements Service, Registerable {
 		$post_type_id = wp_insert_post( $args, false, false );
 
 		if ( is_wp_error( $post_type_id ) ) {
-			$this->errors->add( $post_type_id->get_code(), $post_type_id->get_message() );
+			$this->errors->add( $post_type_id->get_error_code(), $post_type_id->get_error_message(), $post_type_id->get_error_data() );
 			return;
 		}
 
@@ -437,6 +441,22 @@ class CPT_Editor implements Service, Registerable {
 		wp_safe_redirect( Util::get_manage_page_url() );
 	}
 
+	/**
+	 * Store a custom taxonomy in the database
+	 *
+	 * Taxonomies are stored as postmeta data of the custom post type which is
+	 * stored as a `ept_post_type` type of post. The meta_key used to store
+	 * taxonomies is `_ept_taxonomies`.
+	 * This method also validates the data being submitted checking if the
+	 * database contains a different taxonomy registered to the same post type
+	 * with the same name. In case the validation fails, the method returns a
+	 * success=false type of response to the AJAX caller, with the appropriate
+	 * message explaining what happened.
+	 *
+	 * @param  array $data The post type data being submitted
+	 * @param  array $request The current page request
+	 * @return void
+	 */
 	public function save_taxonomies( $data, $request ) {
 		$post_type_object = Util::get_post_type_object( $request['post_type'] );
 
@@ -506,6 +526,22 @@ class CPT_Editor implements Service, Registerable {
 		}
 	}
 
+	/**
+	 * Store a custom field in the database
+	 *
+	 * Taxonomies are stored as postmeta data of the custom post type which is
+	 * stored as a `ept_post_type` type of post. The meta_key used to store
+	 * taxonomies is `_ept_fields`.
+	 * This method also validates the data being submitted checking if the
+	 * database contains a different field registered to the same post type
+	 * with the same name. In case the validation fails, the method returns a
+	 * success=false type of response to the AJAX caller, with the appropriate
+	 * message explaining what happened.
+	 *
+	 * @param  array $data The post type data being submitted
+	 * @param  array $request The current page request
+	 * @return void
+	 */
 	public function save_fields( $data, $request ) {
 		$post_type_object = Util::get_post_type_object( $request['post_type'] );
 

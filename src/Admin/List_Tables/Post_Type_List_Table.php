@@ -1,4 +1,13 @@
 <?php
+/**
+ * Post Type list table, extending the WP_List_Table class
+ *
+ * @package   Barn2\easy-post-types-fields
+ * @author    Barn2 Plugins <support@barn2.com>
+ * @license   GPL-3.0
+ * @copyright Barn2 Media Ltd
+ */
+
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin\List_Tables;
 
 use Barn2\Plugin\Easy_Post_Types_Fields\Util;
@@ -6,18 +15,9 @@ use WP_List_Table;
 use WP_Query;
 
 /**
- * List Table API: WP_Posts_List_Table class
- *
- * @package WordPress
- * @subpackage Administration
- * @since 3.1.0
- */
-
-/**
- * Core class used to implement displaying posts in a list table.
+ * Class used to implement displaying post typess in a list table.
  */
 class Post_Type_List_Table extends WP_List_Table {
-
 	/**
 	 * All the post types registered in WordPress
 	 *
@@ -33,41 +33,22 @@ class Post_Type_List_Table extends WP_List_Table {
 	protected $post_types;
 
 	/**
-	 * A list of post types created by this plugin
-	 *
-	 * @var array
-	 */
-	private $custom_post_types;
-
-	/**
 	 * Constructor
+	 *
+	 * @param array $args The arguments to build the list table
+	 * @return void
 	 */
 	public function __construct( $args = [] ) {
-		global $wp_post_types;
-
 		parent::__construct(
 			[
 				'screen' => isset( $args['screen'] ) ? $args['screen'] : null,
 			]
 		);
 
+		global $wp_post_types;
 		$this->post_type      = 'ept_post_type';
 		$this->all_post_types = $wp_post_types;
 		unset( $this->all_post_types['ept_post_type'] );
-
-		$ept_post_types          = new WP_Query(
-			[
-				'post_type'      => 'ept_post_type',
-				'posts_per_page' => -1
-			]
-		);
-		$ept_post_types          = $ept_post_types->posts;
-		$this->custom_post_types = array_map(
-			function( $cpt ) {
-				return "ept_$cpt->post_name";
-			},
-			$ept_post_types
-		);
 
 		$this->post_types = $this->get_filtered_post_types( $this->get_current_view() );
 
@@ -86,6 +67,12 @@ class Post_Type_List_Table extends WP_List_Table {
 		);
 	}
 
+	/**
+	 * Get an array of post types pertinent to a view passed as a parameter
+	 *
+	 * @param  string $view The current post type view
+	 * @return array
+	 */
 	public function get_filtered_post_types( $view = '' ) {
 		return array_filter(
 			$this->all_post_types,
@@ -114,11 +101,19 @@ class Post_Type_List_Table extends WP_List_Table {
 		);
 	}
 
+	/**
+	 * Return the `view` query argument of the current request
+	 *
+	 * @return string
+	 */
 	public function get_current_view() {
 		$request = Util::get_page_request();
 		return isset( $request['view'] ) ? $request['view'] : 'ept';
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function prepare_items() {
 		$per_page    = apply_filters( 'edit_ept_post_types_per_page', $this->get_items_per_page( 'edit_ept_post_types_per_page' ) );
 		$total_items = count( $this->post_types );
@@ -131,18 +126,40 @@ class Post_Type_List_Table extends WP_List_Table {
 		);
 	}
 
+	/**
+	 * Determine whether a post type is registered by EPT (i.e. custom)
+	 * or by WordPress or a third-party plugin
+	 *
+	 * @param  WP_Post_Type $post_type
+	 * @return boolean
+	 */
 	public function is_custom( $post_type ) {
-		return in_array( $post_type->name, $this->custom_post_types, true );
+		$post_type_object = Util::get_post_type_object( $post_type );
+		return 'publish' === $post_type_object->post_status;
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function has_items() {
 		return count( $this->post_types );
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function no_items() {
 		esc_html_e( 'No custom post types found', 'easy-post-types-fields' );
 	}
 
+	/**
+	 * Get the HTML markup of the manage page link with the requested view
+	 *
+	 * @param  string $view The value of the view query argument
+	 * @param  string $label The text of the view link
+	 * @param  string $class The classes of the anchor element
+	 * @return string
+	 */
 	protected function get_view_page_link( $view, $label, $class = '' ) {
 		$view = 'ept' === $view ? false : $view;
 		$url  = Util::get_manage_page_url( '', '', '', '', $view );
@@ -170,6 +187,13 @@ class Post_Type_List_Table extends WP_List_Table {
 		);
 	}
 
+	/**
+	 * Get a single link for the status links array of the list table
+	 *
+	 * @param  string $view The value of the view query argument
+	 * @param  string $label The text of the view link
+	 * @return string
+	 */
 	public function get_status_link( $view, $label ) {
 		$class           = $view === $this->get_current_view() ? 'current' : '';
 		$view_post_types = $this->get_filtered_post_types( $view );
@@ -182,6 +206,9 @@ class Post_Type_List_Table extends WP_List_Table {
 		return $this->get_view_page_link( $view, $innter_html, $class );
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	protected function get_views() {
 		$views = [
 			/* translators: %s: Number of posts. */
@@ -200,10 +227,16 @@ class Post_Type_List_Table extends WP_List_Table {
 		return $status_links;
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	protected function get_bulk_actions() {
 		return [];
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	protected function get_table_classes() {
 		global $mode;
 
@@ -215,6 +248,9 @@ class Post_Type_List_Table extends WP_List_Table {
 		];
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function get_columns() {
 		$slug_tooltip   = Util::get_tooltip( __( 'The slug is a unique code that you can use to identify the custom post type. For example, you can use it to display the data with the Posts Table Pro plugin. If you are using the slug in other ways &ndash; for example for development purposes &ndash; then you should add the prefix `ept_` before the slug, for example `ept_article` instead of just `article`', 'easy-post-types-fields' ) );
 		$action_tooltip = Util::get_tooltip( __( 'Use custom fields for storing unique data about your custom posts, and use taxonomies for organizing and grouping the custom posts.', 'easy-post-types-fields' ) );
@@ -232,6 +268,9 @@ class Post_Type_List_Table extends WP_List_Table {
 		return apply_filters( 'manage_ept_post_types_columns', $columns );
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	protected function get_column_info() {
 		if ( isset( $this->_column_headers ) && is_array( $this->_column_headers ) ) {
 			/*
@@ -257,10 +296,16 @@ class Post_Type_List_Table extends WP_List_Table {
 		return $this->_column_headers;
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	protected function get_sortable_columns() {
 		return [];
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function display_rows() {
 		if ( empty( $this->post_types ) ) {
 			$this->post_types = get_post_types( [ 'public' => true ] );
@@ -271,9 +316,18 @@ class Post_Type_List_Table extends WP_List_Table {
 		}
 	}
 
-	protected function _column_name( $post_type, $classes, $data, $primary ) {
+	/**
+	 * Output the name of the post type for the current row
+	 *
+	 * @param WP_Post_Type $post_type The post type in the current row
+	 * @param string $classes The classes for the cell element
+	 * @param string $data The extra attributes for the cell element
+	 * @param string $primary The name of the primary column
+	 * @return void
+	 */
+	protected function _column_name( $post_type, $classes, $data, $primary ) { // phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
 		?>
-		<td class="<?php echo esc_attr( $classes ); ?> post_type-name" <?php echo $data; ?>>
+		<td class="<?php echo esc_attr( $classes ); ?> post_type-name" <?php echo $data; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 			<?php
 			if ( $this->is_custom( $post_type ) ) {
 				printf(
@@ -293,7 +347,16 @@ class Post_Type_List_Table extends WP_List_Table {
 		<?php
 	}
 
-	protected function _column_actions( $post_type, $classes, $data, $primary ) {
+	/**
+	 * Output the buttons in the 'Actions' column for the current row
+	 *
+	 * @param WP_Post_Type $post_type The post type in the current row
+	 * @param string $classes The classes for the cell element
+	 * @param string $data The extra attributes for the cell element
+	 * @param string $primary The name of the primary column
+	 * @return void
+	 */
+	protected function _column_actions( $post_type, $classes, $data, $primary ) { // phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
 		$fields_link = Util::get_manage_page_url( $post_type, 'fields' );
 		$tax_link    = Util::get_manage_page_url( $post_type, 'taxonomies' );
 		$all_link    = add_query_arg( 'post_type', $post_type->name, admin_url( 'edit.php' ) );
@@ -306,6 +369,14 @@ class Post_Type_List_Table extends WP_List_Table {
 		<?php
 	}
 
+	/**
+	 * Get the number of posts of any given post type
+	 *
+	 * The count excludes auto-drafts and revisions by default
+	 *
+	 * @param  WP_Post_Type $post_type
+	 * @return int
+	 */
 	public function get_post_count( $post_type ) {
 		$post_count = (array) wp_count_posts( $post_type->name );
 		unset( $post_count['auto-draft'], $post_count['revision'] );
@@ -320,10 +391,24 @@ class Post_Type_List_Table extends WP_List_Table {
 
 	}
 
+	/**
+	 * Output the slug of the current post type
+	 *
+	 * @param WP_Post_Type $post_type The post type in the current row
+	 * @return void
+	 */
 	protected function column_slug( $post_type ) {
 		echo esc_html( str_replace( 'ept_', '', $post_type->name ) );
 	}
 
+	/**
+	 * Output the taxonomies of the current post type
+	 *
+	 * Taxonomies are presented as links to each respective edit page
+	 *
+	 * @param WP_Post_Type $post_type The post type in the current row
+	 * @return void
+	 */
 	protected function column_taxonomies( $post_type ) {
 		$post_type_object = Util::get_post_type_object( $post_type );
 
@@ -352,6 +437,14 @@ class Post_Type_List_Table extends WP_List_Table {
 		echo wp_kses_post( $taxonomies );
 	}
 
+	/**
+	 * Output the custom fields of the current post type
+	 *
+	 * Custom fields are presented as links to each respective edit page
+	 *
+	 * @param WP_Post_Type $post_type The post type in the current row
+	 * @return void
+	 */
 	protected function column_fields( $post_type ) {
 		$post_type_object = Util::get_post_type_object( $post_type );
 
@@ -380,43 +473,59 @@ class Post_Type_List_Table extends WP_List_Table {
 		echo wp_kses_post( $fields );
 	}
 
-	protected function _column_count( $post_type, $classes, $data, $primary ) {
+	/**
+	 * Output the number of posts of the current post type
+	 *
+	 * Each number is presented as a link to the list table for the current post type
+	 *
+	 * @param WP_Post_Type $post_type The post type in the current row
+	 * @return void
+	 */
+	protected function column_count( $post_type ) {
 		$count_link = sprintf(
 			'<a href="%s">%s</a>',
 			add_query_arg( 'post_type', $post_type->name, admin_url( 'edit.php' ) ),
 			$this->get_post_count( $post_type )
 		);
 
-		?>
-		<td class="<?php echo esc_attr( $classes ); ?> post_type-actions" <?php echo esc_attr( $data ); ?>>
-			<?php echo $count_link; ?>
-		</td>
-		<?php
+		echo wp_kses_post( $count_link );
 	}
 
-	public function column_default( $item, $column_name ) {
-	}
-
+	/**
+	 * Output a single row of the table
+	 *
+	 * @param WP_Post_Type $post_type The post type associated with the current row
+	 * @return void
+	 */
 	public function single_row( $post_type ) {
 		$class = '';
 
 		?>
-		<tr id="post_type-<?php echo $post_type->name; ?>" class="<?php echo esc_attr( $class ); ?>">
+		<tr id="post_type-<?php echo esc_attr( $post_type->name ); ?>" class="<?php echo esc_attr( $class ); ?>">
 			<?php $this->single_row_columns( $post_type ); ?>
 		</tr>
 		<?php
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	protected function get_primary_column_name() {
 		return 'name';
 	}
 
+	/**
+	 * Add the actions for the current row in the primary column
+	 *
+	 * @param WP_Post_Type $post_type The post type associated with the current row
+	 * @param string $column_name The name of the current column
+	 * @param string $primary The name of the primary column
+	 */
 	protected function handle_row_actions( $post_type, $column_name, $primary ) {
 		if ( $primary !== $column_name ) {
 			return '';
 		}
 
-		// Restores the more descriptive, specific name for use within this method.
 		$can_edit_post_type = current_user_can( 'manage_options' );
 		$actions            = [];
 
@@ -449,6 +558,12 @@ class Post_Type_List_Table extends WP_List_Table {
 		return $this->row_actions( $actions );
 	}
 
+	/**
+	 * Get the URL for the Edit row action link
+	 *
+	 * @param  WP_Post_Type $post_type The current row item
+	 * @return string
+	 */
 	public function get_edit_post_link( $post_type ) {
 		if ( $this->is_custom( $post_type ) ) {
 			$posts = get_posts(
@@ -470,6 +585,12 @@ class Post_Type_List_Table extends WP_List_Table {
 		return false;
 	}
 
+	/**
+	 * Get the URL for the Delete row action link
+	 *
+	 * @param  WP_Post_Type $post_type The current row item
+	 * @return string|boolean
+	 */
 	public function get_delete_post_link( $post_type ) {
 		if ( $this->is_custom( $post_type ) ) {
 			$post_type_object = Util::get_post_type_object( $post_type );
@@ -485,13 +606,16 @@ class Post_Type_List_Table extends WP_List_Table {
 		return false;
 	}
 
+	/**
+	 * {@inheritdoc}
+	 */
 	public function display() {
 		$singular = $this->_args['singular'];
 
 		$this->screen->render_screen_reader_content( 'heading_list' );
 
 		?>
-		<table class="wp-list-table <?php echo implode( ' ', $this->get_table_classes() ); ?>">
+		<table class="wp-list-table <?php echo esc_attr( implode( ' ', $this->get_table_classes() ) ); ?>">
 			<thead>
 				<tr>
 					<?php $this->print_column_headers(); ?>
@@ -501,7 +625,7 @@ class Post_Type_List_Table extends WP_List_Table {
 			<tbody id="the-list"
 				<?php
 				if ( $singular ) {
-					echo " data-wp-lists='list:$singular'";
+					echo " data-wp-lists='list:$singular'"; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 				}
 				?>
 				>

@@ -1,22 +1,22 @@
 <?php
+/**
+ * Custom fields list table, extending the WP_List_Table class
+ *
+ * @package   Barn2\easy-post-types-fields
+ * @author    Barn2 Plugins <support@barn2.com>
+ * @license   GPL-3.0
+ * @copyright Barn2 Media Ltd
+ */
+
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin\List_Tables;
 
 use Barn2\Plugin\Easy_Post_Types_Fields\Util;
 use WP_List_Table;
 
 /**
- * List Table API: WP_Posts_List_Table class
- *
- * @package WordPress
- * @subpackage Administration
- * @since 3.1.0
- */
-
-/**
- * Core class used to implement displaying posts in a list table.
+ * Class used to implement displaying custom fields in a list table.
  */
 class Custom_Field_List_Table extends WP_List_Table {
-
 	/**
 	 * The post type the fields are registered to
 	 *
@@ -191,7 +191,7 @@ class Custom_Field_List_Table extends WP_List_Table {
 	/**
 	 * Output the name of the field for the current row
 	 *
-	 * @param object|array $field The field in the current row
+	 * @param array $field The field in the current row
 	 * @param string $classes The classes for the cell element
 	 * @param string $data The extra attributes for the cell element
 	 * @param string $primary The name of the primary column
@@ -200,7 +200,7 @@ class Custom_Field_List_Table extends WP_List_Table {
 	protected function _column_name( $field, $classes, $data, $primary ) { // phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
 		$data .= " data-slug=\"{$field['slug']}\"";
 		?>
-		<td class="<?php echo esc_attr( $classes ); ?> post_type-name" <?php echo esc_attr( $data ); ?>>
+		<td class="<?php echo esc_attr( $classes ); ?> post_type-name" <?php echo $data; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 			<?php
 			printf(
 				'<a class="row-title" href="%s" aria-label="%s">%s</a>',
@@ -219,7 +219,7 @@ class Custom_Field_List_Table extends WP_List_Table {
 	/**
 	 * Output the slug of the field for the current row
 	 *
-	 * @param object|array $field The field associated with the current row
+	 * @param array $field The field associated with the current row
 	 * @return void
 	 */
 	protected function column_slug( $field ) {
@@ -229,7 +229,7 @@ class Custom_Field_List_Table extends WP_List_Table {
 	/**
 	 * Output the type of field for the current row
 	 *
-	 * @param object|array $field The field associated with the current row
+	 * @param array $field The field associated with the current row
 	 * @return void
 	 */
 	protected function column_type( $field ) {
@@ -242,7 +242,7 @@ class Custom_Field_List_Table extends WP_List_Table {
 	/**
 	 * Output a single row of the table
 	 *
-	 * @param object|array $field The field associated with the current row
+	 * @param array $field The field associated with the current row
 	 * @return void
 	 */
 	public function single_row( $field ) {
@@ -265,7 +265,7 @@ class Custom_Field_List_Table extends WP_List_Table {
 	/**
 	 * Add the actions for the current row in the primary column
 	 *
-	 * @param object|array $field The field associated with the current row
+	 * @param array $field The field associated with the current row
 	 * @param string $column_name The name of the current column
 	 * @param string $primary The name of the primary column
 	 */
@@ -274,7 +274,6 @@ class Custom_Field_List_Table extends WP_List_Table {
 			return '';
 		}
 
-		// Restores the more descriptive, specific name for use within this method.
 		$can_edit_post_type = current_user_can( 'manage_options' );
 		$actions            = [];
 
@@ -301,7 +300,7 @@ class Custom_Field_List_Table extends WP_List_Table {
 	/**
 	 * Get the URL for the Edit row action link
 	 *
-	 * @param  object|array $field The current row item
+	 * @param  array $field The current row item
 	 * @return string
 	 */
 	public function get_edit_post_link( $field ) {
@@ -315,7 +314,7 @@ class Custom_Field_List_Table extends WP_List_Table {
 	/**
 	 * Get the URL for the Delete row action link
 	 *
-	 * @param  object|array $field The current row item
+	 * @param  array $field The current row item
 	 * @return string
 	 */
 	public function get_delete_post_link( $field ) {
