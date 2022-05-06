@@ -415,6 +415,11 @@ class CPT_Editor implements Service, Registerable {
 			return;
 		}
 
+		if ( 17 < strlen( $data['slug'] ) ) {
+			$this->errors->add( 'slug_too_long', __( 'The slug of a post type must be 17 characters or less.', 'easy-post-types-fields' ) );
+			return;
+		}
+
 		if ( empty( $data['singular_name'] ) ) {
 			$this->errors->add( 'empty_singular_name', __( 'The singular name of a post type is required.', 'easy-post-types-fields' ) );
 			return;
@@ -487,6 +492,21 @@ class CPT_Editor implements Service, Registerable {
 		if ( $post_type_object ) {
 			if ( empty( $data['slug'] ) ) {
 				$this->errors->add( 'empty_slug', __( 'The slug of a taxonomy is required.', 'easy-post-types-fields' ) );
+				return;
+			}
+
+			/**
+			 * Taxonomies cannot have slugs of more than 32 characters
+			 * EPT prefixes the slug of every taxonomy with the slug of the
+			 * correspondent post type, followed by an underscore
+			 * the underscore is accounted for reducing the original maximum
+			 * length to 31
+			 */
+			$maxlength = 31 - strlen( $request['post_type'] );
+
+			if ( $maxlength < strlen( $data['slug'] ) ) {
+				// translators: the maximum number of characters of the slug
+				$this->errors->add( 'slug_too_long', sprintf( __( 'The slug of a taxonomy for this post type must be %d characters or less.', 'easy-post-types-fields' ), $maxlength ) );
 				return;
 			}
 
