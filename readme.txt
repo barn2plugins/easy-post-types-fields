@@ -22,17 +22,17 @@ There are lots of reasons why WordPress site owners need to add extra content ty
 
 * **Create extra ways of categorizing and organizing your website content (these are called ‘custom taxonomies’)**. These are like categories and tags in WordPress, but the difference is that you can have as many as you like - for any post type. For example, you might create an ‘Industries’ taxonomy in order to group your Resources by industry.
 
-Developed by leading UK-based plugin company [Barn2](https://barn2.com/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=freepluginwporg&utm_content=ept-wporg), _Easy Post Types and Fields_ is intentionally simpler and easier to use than other plugins. It has all the essential features that you need to create custom post types, custom fields, and custom taxonomies - without any unnecessary complexity.
+Developed by leading UK-based plugin company [Barn2](https://barn2.com/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=freepluginwporg&utm_content=ecpt-wporg), _Easy Post Types and Fields_ is intentionally simpler and easier to use than other plugins. It has all the essential features that you need to create custom post types, custom fields, and custom taxonomies - without any unnecessary complexity.
 
 = How to add custom post types, fields, and taxonomies to WordPress =
 Simply create any type of content using a simple and intuitive wizard. You can create brand new custom post types, or add custom fields and taxonomies to existing post types. Either way, it’s incredibly straightforward.
 
 Once you have created your custom post types, fields, and taxonomies, it’s easy to add the extra information to the WordPress CMS. Each custom post type has its own section on the left of the WordPress admin. Your custom fields and taxonomies appear on the ‘Add/Edit’ screen for each post. 
 
-View the full [plugin documentation](https://barn2.com/kb-categories/easy-custom-post-types-kb/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=freepluginwporg&utm_content=ept-wporg) in our knowledge base.  
+View the full [plugin documentation](https://barn2.com/kb-categories/easy-custom-post-types-kb/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=freepluginwporg&utm_content=ecpt-wporg) in our knowledge base.  
 
 = Can I display the custom content on the front end of my website? =
-By default, your theme will display your custom post types using the same templates as the blog. This will list custom posts in the same way as blog posts, and won’t include your custom fields or taxonomies. This may not be the best way to present your custom content, so we recommend displaying it in a table using the [Posts Table Pro](https://barn2.com/wordpress-plugins/posts-table-pro/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=freepluginwporg&utm_content=ept-wporg) plugin. 
+By default, your theme will display your custom post types using the same templates as the blog. This will list custom posts in the same way as blog posts, and won’t include your custom fields or taxonomies. This may not be the best way to present your custom content, so we recommend displaying it in a table using the [Posts Table Pro](https://barn2.com/wordpress-plugins/posts-table-pro/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=freepluginwporg&utm_content=ecpt-wporg) plugin. 
 
 Posts Table Pro is a dynamic WordPress table plugin that lists any type of content from your website in a searchable table. As well as displaying any custom post type, you can choose which columns of information to show in the table - including your custom fields and custom taxonomies. See below for screenshots. 
 
@@ -56,7 +56,7 @@ This is how it displays the information from Easy Post Types and Fields:
 
 * Custom fields:
 
- * Add custom fields to any WordPress post type - either the post types that are built into WordPress itself (pages, posts, media attachments, etc.), content types created using Easy Post Types and Fields, or any other custom post type (e.g. post types created using other plugins such as [Document Library Pro](https://barn2.com/wordpress-plugins/document-library-pro/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=freepluginwporg&utm_content=ept-wporg) and [WooCommerce Product Table](https://barn2.com/wordpress-plugins/woocommerce-product-table/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=freepluginwporg&utm_content=ept-wporg).
+ * Add custom fields to any WordPress post type - either the post types that are built into WordPress itself (pages, posts, media attachments, etc.), content types created using Easy Post Types and Fields, or any other custom post type (e.g. post types created using other plugins such as [Document Library Pro](https://barn2.com/wordpress-plugins/document-library-pro/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=freepluginwporg&utm_content=ecpt-wporg) and [WooCommerce Product Table](https://barn2.com/wordpress-plugins/woocommerce-product-table/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=freepluginwporg&utm_content=ecpt-wporg).
 
  * 2 custom field types: Plain text or WYSIWYG (Visual Editor).
 
@@ -83,7 +83,7 @@ If you need these features then we recommend using a different custom post type 
 
 = Restrict access to custom post types and make them private =
 
-Some people want to control who can access some or all of their custom posts. You can do this by using Easy Post Types and Fields with our other plugin, [WordPress Password Protected Categories](https://barn2.com/wordpress-plugins/password-protected-categories/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=freepluginwporg&utm_content=ept-wporg). This adds privacy options to your hierarchical custom taxonomies. 
+Some people want to control who can access some or all of their custom posts. You can do this by using Easy Post Types and Fields with our other plugin, [WordPress Password Protected Categories](https://barn2.com/wordpress-plugins/password-protected-categories/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=freepluginwporg&utm_content=ecpt-wporg). This adds privacy options to your hierarchical custom taxonomies. 
 
 Simply restrict each one to specific logged-in users or user roles, or to anyone with the password. All the posts/custom posts in that taxonomy will then be private and hidden from view. 
 
@@ -99,10 +99,10 @@ Simply restrict each one to specific logged-in users or user roles, or to anyone
 == Frequently Asked Questions ==
 
 = Where can I get support with using the plugin? =
-You can get support from the WordPress experts at Barn2 plugins. To request support, either use the support forum in the ‘Support’ tab above or use the [dedicated support request form](https://barn2.com/wordpress-plugins/easy-cpt-support-request/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=freepluginwporg&utm_content=ept-wporg).
+You can get support from the WordPress experts at Barn2 plugins. To request support, either use the support forum in the ‘Support’ tab above or use the [dedicated support request form](https://barn2.com/wordpress-plugins/easy-cpt-support-request/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=freepluginwporg&utm_content=ecpt-wporg).
 
 = I’m a developer. Can I display custom fields and taxonomies programmatically? =
-Absolutely. While Easy Post Types and Fields is aimed at beginners who need a simpler way to add custom content, it is also perfect for developers wanting to save time in creating a CPT. Please see the [developer documentation](https://barn2.com/kb-categories/ept-developer-documentation/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=freepluginwporg&utm_content=ept-wporg) for details on the available hooks and filters that you can use to display the custom content in template files. 
+Absolutely. While Easy Post Types and Fields is aimed at beginners who need a simpler way to add custom content, it is also perfect for developers wanting to save time in creating a CPT. Please see the [developer documentation](https://barn2.com/kb-categories/ept-developer-documentation/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=freepluginwporg&utm_content=ecpt-wporg) for details on the available hooks and filters that you can use to display the custom content in template files. 
 
 = Do the custom fields support HTML and shortcodes? =
 Yes, you can add HTML and shortcodes into either the plain text and Visual Editor custom fields.  
