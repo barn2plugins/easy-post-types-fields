@@ -132,7 +132,7 @@ class CPT_Editor implements Service, Registerable {
 	public function load_scripts( $hook ) {
 		$screen = get_current_screen();
 
-		if ( in_array( $screen->id, [ 'toplevel_page_ept_post_types', 'ept_post_type', 'post-types_page_ept_post_types-help' ], true ) ) {
+		if ( in_array( $screen->id, [ 'toplevel_page_ept_post_types', 'ept_post_type', 'post-types_page_ept_post_types-promo-display', 'post-types_page_ept_post_types-promo-protect' ], true ) ) {
 			wp_enqueue_script( 'ept-editor', plugin_dir_url( $this->plugin->get_file() ) . 'assets/js/admin/ept-editor.min.js', [ 'jquery', 'wp-i18n', 'wp-url' ], $this->plugin->get_version(), true );
 			wp_enqueue_style( 'ept-editor', plugin_dir_url( $this->plugin->get_file() ) . 'assets/css/admin/ept-editor.min.css', [], $this->plugin->get_version() );
 		}
@@ -146,7 +146,8 @@ class CPT_Editor implements Service, Registerable {
 	public function admin_menu() {
 		add_menu_page( 'Post Types', 'Post Types', 'manage_options', 'ept_post_types', [ $this, 'output_manage_page' ], 'dashicons-feedback', 26 );
 		add_submenu_page( 'ept_post_types', 'Manage', 'Manage', 'manage_options', 'ept_post_types', [ $this, 'output_manage_page' ] );
-		add_submenu_page( 'ept_post_types', 'Help', 'Help', 'manage_options', 'ept_post_types-help', [ $this, 'output_help_page' ] );
+		add_submenu_page( 'ept_post_types', 'Display', 'Display', 'manage_options', 'ept_post_types-promo-display', [ $this, 'output_promo_display_page' ] );
+		add_submenu_page( 'ept_post_types', 'Protect', 'Protect', 'manage_options', 'ept_post_types-promo-protect', [ $this, 'output_promo_protect_page' ] );
 	}
 
 	/**
@@ -286,14 +287,23 @@ class CPT_Editor implements Service, Registerable {
 	}
 
 	/**
-	 * Output the HTML markup of the help page
+	 * Output the HTML markup of the promo for Posts Table Pro
 	 *
 	 * @return void
 	 */
-	public function output_help_page() {
-		$plugin = $this->plugin;
+	public function output_promo_display_page() {
+		$image_url = $this->plugin->get_dir_url() . 'assets/images/promo-display.png';
+		include $this->plugin->get_admin_path( 'views/html-promo-display.php' );
+	}
 
-		include $this->plugin->get_admin_path( 'views/html-help-page.php' );
+	/**
+	 * Output the HTML markup of the promo for Password Protected Categories
+	 *
+	 * @return void
+	 */
+	public function output_promo_protect_page() {
+		$image_url = $this->plugin->get_dir_url() . 'assets/images/promo-protect.png';
+		include $this->plugin->get_admin_path( 'views/html-promo-protect.php' );
 	}
 
 	/**

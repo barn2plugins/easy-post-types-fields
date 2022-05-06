@@ -1,5 +1,29 @@
 body[class*="ept_post_types"] .wrap {
     flex: 1;
+
+	.barn2-settings-inner {
+
+		&.promo-page {
+
+			p {
+				width: 100%;
+				max-width: 900px;
+			}
+
+			a.promo-link {
+				display: block;
+				width: fit-content;
+				outline: none;
+				box-shadow: none;
+	
+				img.promo-image {
+					width: 100%;
+					max-width: 649px;
+				}
+			}
+	
+		}
+	}
 }
 
 body.toplevel_page_ept_post_types {
@@ -12,6 +36,7 @@ body.toplevel_page_ept_post_types {
 	}
 
 	.barn2-plugins-settings.wrap {
+		
 		ul.subsubsub li:not(:last-child)::after {
 			content: unset;
 		}
