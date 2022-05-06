@@ -36,7 +36,7 @@ class Plugin extends Simple_Plugin implements Registerable, Translatable {
 				'version'            => $version,
 				'file'               => $file,
 				'settings_path'      => 'admin.php?page=ept_post_types',
-				'documentation_path' => 'kb/easy-post-types-fields-documentation/?utm_source=settings&utm_medium=settings&utm_campaign=settingsinline&utm_content=ept-settings',
+				'documentation_path' => 'kb-categories/easy-post-types-fields-kb/?utm_source=settings&utm_medium=settings&utm_campaign=settingsinline&utm_content=ept-settings',
 			]
 		);
 

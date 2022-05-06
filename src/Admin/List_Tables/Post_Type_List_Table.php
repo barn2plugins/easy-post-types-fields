@@ -252,7 +252,7 @@ class Post_Type_List_Table extends WP_List_Table {
 	 * {@inheritdoc}
 	 */
 	public function get_columns() {
-		$slug_tooltip   = Util::get_tooltip( __( 'The slug is a unique code that you can use to identify the custom post type. For example, you can use it to display the data with the Posts Table Pro plugin. If you are using the slug in other ways &ndash; for example for development purposes &ndash; then you should add the prefix `ept_` before the slug, for example `ept_article` instead of just `article`', 'easy-post-types-fields' ) );
+		$slug_tooltip   = Util::get_tooltip( __( 'The slug is a unique code that you can use to identify the custom post type. For example, you can use it to display the data with the Posts Table Pro plugin. If you are using the slug in other ways &ndash; for example for development purposes &ndash; then you should add the prefix \'ept_\' before the slug, for example \'ept_article\' instead of just \'article\'.', 'easy-post-types-fields' ) );
 		$action_tooltip = Util::get_tooltip( __( 'Use custom fields for storing unique data about your custom posts, and use taxonomies for organizing and grouping the custom posts.', 'easy-post-types-fields' ) );
 		$count_tooltip  = Util::get_tooltip( __( 'The current number of posts for the custom post type.', 'easy-post-types-fields' ) );
 

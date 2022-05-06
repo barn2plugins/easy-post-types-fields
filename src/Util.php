@@ -51,7 +51,7 @@ class Util {
 		if ( $parsed_referer ) {
 			parse_str( $parsed_referer, $query_args );
 
-			if ( 'ept_post_types' === $query_args['page'] ) {
+			if ( isset( $query_args['page'] ) && 'ept_post_types' === $query_args['page'] ) {
 				return $referer;
 			}
 		}

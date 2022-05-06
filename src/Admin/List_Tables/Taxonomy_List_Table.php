@@ -146,7 +146,7 @@ class Taxonomy_List_Table extends WP_List_Table {
 		$slug_tooltip = Util::get_tooltip(
 			sprintf(
 			// translators: a post type name followed by underscore
-				__( 'The slug is a unique code that you can use to identify the custom taxonomy. For example, you can use it to display the data with the Posts Table Pro plugin. If you are using the slug in other ways &ndash; for example for development purposes &ndash; then you should add the prefix `%1$s` before the slug, for example `%1$scategory` instead of just `category`', 'easy-post-types-fields' ),
+				__( 'The slug is a unique code that you can use to identify the custom taxonomy. For example, you can use it to display the data with the Posts Table Pro plugin. If you are using the slug in other ways &ndash; for example for development purposes &ndash; then you should add the prefix \'%1$s\' before the slug, for example \'%1$scategory\' instead of just \'category\'.', 'easy-post-types-fields' ),
 				"{$this->post_type->name}_"
 			)
 		);
