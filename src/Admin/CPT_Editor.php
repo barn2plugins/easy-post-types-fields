@@ -332,10 +332,11 @@ class CPT_Editor implements Service, Registerable {
 	public function inline_delete() {
 		check_ajax_referer( 'inlinedeletenonce', '_inline_delete' );
 
-		$post_data        = $_POST;
-		$type             = $post_data['type'];
+		$type             = sanitize_key( $_POST['type'] );
+		$slug             = sanitize_title( $_POST['slug'] );
+		$post_type        = sanitize_title( $_POST['post_type'] );
 		$meta_key         = 'taxonomies' === $type ? '_ept_taxonomies' : '_ept_fields';
-		$post_type_object = Util::get_post_type_object( $post_data['post_type'] );
+		$post_type_object = Util::get_post_type_object( $post_type );
 
 		if ( $post_type_object ) {
 			$items = get_post_meta( $post_type_object->ID, $meta_key, true );
@@ -346,8 +347,8 @@ class CPT_Editor implements Service, Registerable {
 
 			$new_items = array_filter(
 				$items,
-				function( $item ) use ( $post_data ) {
-					return $item['slug'] !== $post_data['slug'];
+				function( $item ) use ( $slug ) {
+					return $item['slug'] !== $slug;
 				}
 			);
 
@@ -374,7 +375,16 @@ class CPT_Editor implements Service, Registerable {
 
 		$this->errors = new WP_Error();
 
-		$postdata  = $_POST;
+		$postdata = [
+			'slug'          => isset( $_POST['slug'] ) ? sanitize_title( $_POST['slug'] ) : false,
+			'name'          => isset( $_POST['name'] ) ? sanitize_text_field( $_POST['name'] ) : false,
+			'singular_name' => isset( $_POST['singular_name'] ) ? sanitize_text_field( $_POST['singular_name'] ) : false,
+			'supports'      => isset( $_POST['supports'] ) ? array_keys( $_POST['supports'] ) : [],
+			'hierarchical'  => isset( $_POST['hierarchical'] ) ? filter_var( $_POST['hierarchical'], FILTER_VALIDATE_BOOLEAN ) : false,
+			'type'          => isset( $_POST['type'] ) ? sanitize_key( $_POST['type'] ) : false,
+			'previous_slug' => isset( $_POST['previous_slug'] ) ? sanitize_title( $_POST['previous_slug'] ) : false,
+		];
+
 		$request   = Util::get_page_request();
 		$data_type = 'post_type';
 
@@ -388,7 +398,7 @@ class CPT_Editor implements Service, Registerable {
 	/**
 	 * Store a custom post type in the database
 	 *
-	 * @param  array $data The post type data being submitted
+	 * @param  array $data The post type data being submitted, appropriately sanitized
 	 * @param  array $request The current page request
 	 * @return void
 	 */
@@ -398,6 +408,21 @@ class CPT_Editor implements Service, Registerable {
 
 		if ( $post_type_object ) {
 			$post_type_id = $post_type_object->ID;
+		}
+
+		if ( empty( $data['slug'] ) ) {
+			$this->errors->add( 'empty_slug', __( 'The slug of a post type is required.', 'easy-post-types-fields' ) );
+			return;
+		}
+
+		if ( empty( $data['singular_name'] ) ) {
+			$this->errors->add( 'empty_singular_name', __( 'The singular name of a post type is required.', 'easy-post-types-fields' ) );
+			return;
+		}
+
+		if ( empty( $data['name'] ) ) {
+			$this->errors->add( 'empty_name', __( 'The plural name of a post type is required.', 'easy-post-types-fields' ) );
+			return;
 		}
 
 		$conflicts_query = new WP_Query(
@@ -414,8 +439,7 @@ class CPT_Editor implements Service, Registerable {
 			return;
 		}
 
-		$supports = isset( $data['supports'] ) ? array_keys( $data['supports'] ) : [];
-		$supports = array_merge( [ 'title' ], $supports );
+		$supports = array_merge( [ 'title' ], $data['supports'] );
 
 		$args = [
 			'ID'             => $post_type_id,
@@ -425,7 +449,7 @@ class CPT_Editor implements Service, Registerable {
 			'post_status'    => 'publish',
 			'comment_status' => 'closed',
 			'meta_input'     => [
-				'_ept_plural_name' => filter_var( $data['name'], FILTER_DEFAULT ),
+				'_ept_plural_name' => $data['name'],
 				'_ept_supports'    => $supports,
 			],
 		];
@@ -453,7 +477,7 @@ class CPT_Editor implements Service, Registerable {
 	 * success=false type of response to the AJAX caller, with the appropriate
 	 * message explaining what happened.
 	 *
-	 * @param  array $data The post type data being submitted
+	 * @param  array $data The post type data being submitted, appropriately sanitized
 	 * @param  array $request The current page request
 	 * @return void
 	 */
@@ -461,13 +485,28 @@ class CPT_Editor implements Service, Registerable {
 		$post_type_object = Util::get_post_type_object( $request['post_type'] );
 
 		if ( $post_type_object ) {
+			if ( empty( $data['slug'] ) ) {
+				$this->errors->add( 'empty_slug', __( 'The slug of a taxonomy is required.', 'easy-post-types-fields' ) );
+				return;
+			}
+
+			if ( empty( $data['singular_name'] ) ) {
+				$this->errors->add( 'empty_singular_name', __( 'The singular name of a taxonomy is required.', 'easy-post-types-fields' ) );
+				return;
+			}
+
+			if ( empty( $data['name'] ) ) {
+				$this->errors->add( 'empty_name', __( 'The plural name of a taxonomy is required.', 'easy-post-types-fields' ) );
+				return;
+			}
+
 			$taxonomies = Util::get_custom_taxonomies( $request['post_type'] );
 
 			$new_taxonomy     = [
 				'name'          => $data['name'],
 				'singular_name' => $data['singular_name'],
-				'slug'          => sanitize_title( $data['slug'] ),
-				'hierarchical'  => isset( $data['hierarchical'] ) ? filter_var( $data['hierarchical'], FILTER_VALIDATE_BOOLEAN ) : false,
+				'slug'          => $data['slug'],
+				'hierarchical'  => $data['hierarchical'],
 				'is_custom'     => true,
 			];
 			$slug             = $data['slug'];
@@ -538,7 +577,7 @@ class CPT_Editor implements Service, Registerable {
 	 * success=false type of response to the AJAX caller, with the appropriate
 	 * message explaining what happened.
 	 *
-	 * @param  array $data The post type data being submitted
+	 * @param  array $data The post type data being submitted, appropriately sanitized
 	 * @param  array $request The current page request
 	 * @return void
 	 */
@@ -546,6 +585,16 @@ class CPT_Editor implements Service, Registerable {
 		$post_type_object = Util::get_post_type_object( $request['post_type'] );
 
 		if ( $post_type_object ) {
+			if ( empty( $data['slug'] ) ) {
+				$this->errors->add( 'empty_slug', __( 'The slug of a custom field is required.', 'easy-post-types-fields' ) );
+				return;
+			}
+
+			if ( empty( $data['name'] ) ) {
+				$this->errors->add( 'empty_name', __( 'The name of a custom field is required.', 'easy-post-types-fields' ) );
+				return;
+			}
+
 			$fields = get_post_meta( $post_type_object->ID, '_ept_fields', true );
 
 			if ( ! $fields ) {
@@ -554,7 +603,7 @@ class CPT_Editor implements Service, Registerable {
 
 			$new_field    = [
 				'name'      => $data['name'],
-				'slug'      => sanitize_title( $data['slug'] ),
+				'slug'      => $data['slug'],
 				'type'      => $data['type'],
 				'is_custom' => true,
 			];

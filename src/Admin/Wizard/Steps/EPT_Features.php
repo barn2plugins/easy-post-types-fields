@@ -69,14 +69,17 @@ class EPT_Features extends Step {
 				}
 			)
 		);
+		$slug         = sanitize_title( $_POST['slug'] );
+		$singular     = sanitize_text_field( $_POST['singular'] );
+		$plural       = sanitize_text_field( $_POST['plural'] );
 		$post_type_id = wp_insert_post(
 			[
 				'post_type'      => 'ept_post_type',
-				'post_title'     => filter_var( $_POST['singular'], FILTER_DEFAULT ),
+				'post_title'     => $singular,
 				'post_status'    => 'publish',
 				'comment_status' => 'closed',
 				'meta_input'     => [
-					'_ept_plural_name' => filter_var( $_POST['plural'], FILTER_DEFAULT ),
+					'_ept_plural_name' => $plural,
 					'_ept_supports'    => $supports,
 				],
 			]
@@ -90,7 +93,7 @@ class EPT_Features extends Step {
 			$this->send_error( esc_html__( 'It is not possible to create the post type with the current configuration.', 'easy-post-types-fields' ) );
 		}
 
-		Util::set_update_transient( "ept_{$_POST['slug']}" );
+		Util::set_update_transient( "ept_{$slug}" );
 		wp_send_json_success();
 	}
 

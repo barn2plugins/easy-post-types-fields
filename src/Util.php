@@ -26,7 +26,7 @@ class Util {
 			array_flip( [ 'page', 'post_type', 'section', 'slug', 'action', 'view' ] )
 		);
 
-		return $request;
+		return self::sanitize( $request, 'sanitize_title' );
 	}
 
 	/**
@@ -39,10 +39,10 @@ class Util {
 		$referer = false;
 
 		if ( isset( $_POST['_wpnonce'] ) && wp_verify_nonce( $_POST['_wpnonce'], $nonce_action ) ) {
-			$referer = isset( $_POST['_first_referer'] ) ? $_POST['_first_referer'] : false;
+			$referer = isset( $_POST['_first_referer'] ) ? filter_var( $_POST['_first_referer'], FILTER_VALIDATE_URL, FILTER_FLAG_QUERY_REQUIRED ) : false;
 		}
 
-		if ( ! $referer ) {
+		if ( ! $referer || 0 !== strpos( $referer, self::get_manage_page_url() ) ) {
 			$referer = wp_get_referer();
 		}
 
@@ -443,5 +443,26 @@ class Util {
 		];
 
 		printf( '<p>%s</p>', implode( ' | ', $links ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	}
+
+	/**
+	 * Sanitize a string using the sanitization function
+	 *
+	 * This method works on scalar strings or on array of strings recursively
+	 *
+	 * @param  string|array $var A string or an array of strings
+	 * @param  string $sanitize_function The sanitization function. Defaults to 'sanitizie_title'
+	 * @return string|array The sanitized string or array
+	 */
+	public static function sanitize( $var, $sanitize_function = 'sanitize_title' ) {
+		foreach ( $var as &$value ) {
+			if ( is_array( $value ) ) {
+				$value = self::sanitize( $value, $sanitize_function );
+			} else {
+				$value = call_user_func( $sanitize_function, $value );
+			}
+		}
+
+		return $var;
 	}
 }
