@@ -11,4 +11,3 @@ assets/scss/ export-ignore
 webpack.config.js export-ignore
 phpdoc.dist.xml export-ignore
 phpcs.xml export-ignore
-dependencies/vendor/ export-ignore

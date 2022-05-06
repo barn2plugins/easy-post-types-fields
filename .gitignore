@@ -54,7 +54,10 @@ Thumbs.db
 !/vendor/composer/
 !/vendor/autoload.php
 /vendor-bin/*
-dependencies/vendor/
+dependencies/vendor/*
+!/dependencies/vendor/composer/
+!/dependencies/vendor/autoload.php
+!/dependencies/vendor/scoper-autoload.php
 
 .phpdoc/
 docs/
