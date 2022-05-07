@@ -16,7 +16,7 @@ defined( 'ABSPATH' ) || exit;
 
 <div class="wrap barn2-plugins-settings">
 	<div class="barn2-settings-inner promo-page">
-		<h1 class="wp-heading-inline"><?php esc_html_e( 'Protect your post types with Password Protected Categories', 'easy-post-types-fields' ); ?></h1>
+		<h1 class="wp-heading-inline"><?php esc_html_e( 'Restrict access to parts of your website with Password Protected Categories', 'easy-post-types-fields' ); ?></h1>
 		<hr class="wp-header-end">
 		<p>
 			<?php

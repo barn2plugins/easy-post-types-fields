@@ -2,20 +2,21 @@
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Post Types Fields 0.8\n"
+"Project-Id-Version: Easy Post Types and Fields 1.0.0\n"
 "Report-Msgid-Bugs-To: https://barn2.com/support-center/\n"
 "Last-Translator: Barn2 Plugins <support@barn2.com>\n"
 "Language-Team: Barn2 Plugins <support@barn2.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-05-06T00:00:00+00:00\n"
+"POT-Creation-Date: 2022-05-07T00:00:00+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: easy-post-types-fields\n"
 
 #. Plugin Name of the plugin
-msgid "Easy Post Types Fields"
+#: src/Admin/views/html-manage-page-header.php:22
+msgid "Easy Post Types and Fields"
 msgstr ""
 
 #. Plugin URI of the plugin
@@ -111,152 +112,152 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:74
+#: src/Admin/CPT_Editor.php:75
 #: src/Util.php:296
 msgid "Post types"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:75
+#: src/Admin/CPT_Editor.php:76
 msgid "Post type"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:76
+#: src/Admin/CPT_Editor.php:77
 msgid "Add new"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:77
+#: src/Admin/CPT_Editor.php:78
 msgid "Add new post type"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:78
-#: src/Admin/CPT_Editor.php:264
+#: src/Admin/CPT_Editor.php:79
+#: src/Admin/CPT_Editor.php:272
 msgid "Edit post type"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:79
+#: src/Admin/CPT_Editor.php:80
 msgid "New post type"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:80
+#: src/Admin/CPT_Editor.php:81
 msgid "View post type"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:81
+#: src/Admin/CPT_Editor.php:82
 msgid "View post types"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:82
+#: src/Admin/CPT_Editor.php:83
 msgid "Search custom post types"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:83
+#: src/Admin/CPT_Editor.php:84
 msgid "No custom post types have been created yet."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:85
+#: src/Admin/CPT_Editor.php:86
 msgid "All post types"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:86
+#: src/Admin/CPT_Editor.php:87
 msgid "Post Type Attributes"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:87
+#: src/Admin/CPT_Editor.php:88
 msgid "Filter post types list"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:88
+#: src/Admin/CPT_Editor.php:89
 msgid "Filter by date"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:89
+#: src/Admin/CPT_Editor.php:90
 msgid "Post types list navigation"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:90
+#: src/Admin/CPT_Editor.php:91
 msgid "Post types list"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:91
+#: src/Admin/CPT_Editor.php:92
 msgid "Post type published."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:92
+#: src/Admin/CPT_Editor.php:93
 msgid "Post type published privately."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:93
+#: src/Admin/CPT_Editor.php:94
 msgid "Post type reverted to draft."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:94
+#: src/Admin/CPT_Editor.php:95
 msgid "Post scheduled."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:95
+#: src/Admin/CPT_Editor.php:96
 msgid "Post updated."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:96
+#: src/Admin/CPT_Editor.php:97
 msgid "A link to a post type."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:98
+#: src/Admin/CPT_Editor.php:99
 msgid "Define a custom post type"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:167
+#: src/Admin/CPT_Editor.php:175
 #: src/Util.php:320
 msgid "Custom fields"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:168
+#: src/Admin/CPT_Editor.php:176
 msgid "Custom field"
 msgstr ""
 
 #. translators: 1: the plural name of the post type, 2: the opening tab of an anchor element, 3: the closing tag of an anchor element, 4: the singular name of the post type, 5: the plural name of the post type,
-#: src/Admin/CPT_Editor.php:170
+#: src/Admin/CPT_Editor.php:178
 msgid "Use custom fields to store extra data about your %1$s, such as a reference number or link. Custom fields are for data that is unique to each %4$s. If you want to use the data to organize or group your %5$s then you should create a %2$staxonomy%3$s instead."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:174
+#: src/Admin/CPT_Editor.php:182
 #: src/Admin/List_Tables/Post_Type_List_Table.php:367
 #: src/Util.php:320
 msgid "Taxonomies"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:175
+#: src/Admin/CPT_Editor.php:183
 msgid "Taxonomy"
 msgstr ""
 
 #. translators: the plural name of the post type
-#: src/Admin/CPT_Editor.php:177
+#: src/Admin/CPT_Editor.php:185
 msgid "Taxonomies let you organize and group your %1$s. For example, you might want to organize them by category, tag, year, author, or industry. If you need to add data that is unique to each %4$s then you should create a %2$scustom field%3$s instead."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:219
+#: src/Admin/CPT_Editor.php:227
 msgid "Post Types"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:220
+#: src/Admin/CPT_Editor.php:228
 msgid "Use this page to manage your custom post types. You can add and edit post types, custom fields and taxonomies."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:258
+#: src/Admin/CPT_Editor.php:266
 msgid "Manage Taxonomies"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:259
+#: src/Admin/CPT_Editor.php:267
 msgid "Manage Custom Fields"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:271
+#: src/Admin/CPT_Editor.php:279
 #: src/Admin/views/html-manage-page-lists.php:36
 #: src/Util.php:333
 msgid "Add"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:272
+#: src/Admin/CPT_Editor.php:280
 #: src/Admin/List_Tables/Custom_Field_List_Table.php:284
 #: src/Admin/List_Tables/Custom_Field_List_Table.php:285
 #: src/Admin/List_Tables/Post_Type_List_Table.php:536
@@ -268,60 +269,69 @@ msgid "Edit"
 msgstr ""
 
 #. translators: either 'Add' or 'Edit'
-#: src/Admin/CPT_Editor.php:276
+#: src/Admin/CPT_Editor.php:284
 msgid "%s Taxonomy"
 msgstr ""
 
 #. translators: either 'Add' or 'Edit'
-#: src/Admin/CPT_Editor.php:278
+#: src/Admin/CPT_Editor.php:286
 msgid "%s Custom Field"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:359
+#: src/Admin/CPT_Editor.php:376
 msgid "The post type is missing or an error occurred when completing this operation."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:414
+#: src/Admin/CPT_Editor.php:431
 msgid "The slug of a post type is required."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:419
+#: src/Admin/CPT_Editor.php:436
+msgid "The slug of a post type must be 17 characters or less."
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:441
 msgid "The singular name of a post type is required."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:424
+#: src/Admin/CPT_Editor.php:446
 msgid "The plural name of a post type is required."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:438
+#: src/Admin/CPT_Editor.php:460
 msgid "A post type with the same slug is already registered. Please choose a different slug."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:489
+#: src/Admin/CPT_Editor.php:511
 msgid "The slug of a taxonomy is required."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:494
+#. translators: the maximum number of characters of the slug
+#: src/Admin/CPT_Editor.php:526
+msgid "The slug of a taxonomy for this post type must be %d characters or less."
+msgstr ""
+
+#: src/Admin/CPT_Editor.php:531
 msgid "The singular name of a taxonomy is required."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:499
+#: src/Admin/CPT_Editor.php:536
 msgid "The plural name of a taxonomy is required."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:547
+#: src/Admin/CPT_Editor.php:584
 msgid "A taxonomy with the same slug is already registered to this post type. Please choose a different slug."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:589
+#: src/Admin/CPT_Editor.php:626
 msgid "The slug of a custom field is required."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:594
+#: src/Admin/CPT_Editor.php:631
 msgid "The name of a custom field is required."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:631
+#: src/Admin/CPT_Editor.php:668
 msgid "A field with the same slug is already registered to this post type. Please choose a different slug."
 msgstr ""
 
@@ -332,7 +342,7 @@ msgstr ""
 #. translators: a post type name followed by underscore
 #: src/Admin/List_Tables/Custom_Field_List_Table.php:128
 #: src/Admin/List_Tables/Taxonomy_List_Table.php:149
-msgid "The slug is a unique code that you can use to identify the custom taxonomy. For example, you can use it to display the data with the Posts Table Pro plugin. If you are using the slug in other ways &ndash; for example for development purposes &ndash; then you should add the prefix `%1$s` before the slug, for example `%1$scategory` instead of just `category`"
+msgid "The slug is a unique code that you can use to identify the custom taxonomy. For example, you can use it to display the data with the Posts Table Pro plugin. If you are using the slug in other ways &ndash; for example for development purposes &ndash; then you should add the prefix '%1$s' before the slug, for example '%1$scategory' instead of just 'category'."
 msgstr ""
 
 #: src/Admin/List_Tables/Custom_Field_List_Table.php:134
@@ -387,7 +397,7 @@ msgid "Other Post Types <span class=\"count\">(%s)</span>"
 msgstr ""
 
 #: src/Admin/List_Tables/Post_Type_List_Table.php:255
-msgid "The slug is a unique code that you can use to identify the custom post type. For example, you can use it to display the data with the Posts Table Pro plugin. If you are using the slug in other ways &ndash; for example for development purposes &ndash; then you should add the prefix `ept_` before the slug, for example `ept_article` instead of just `article`"
+msgid "The slug is a unique code that you can use to identify the custom post type. For example, you can use it to display the data with the Posts Table Pro plugin. If you are using the slug in other ways &ndash; for example for development purposes &ndash; then you should add the prefix 'ept_' before the slug, for example 'ept_article' instead of just 'article'."
 msgstr ""
 
 #: src/Admin/List_Tables/Post_Type_List_Table.php:256
@@ -460,30 +470,6 @@ msgstr ""
 msgid "Manage terms"
 msgstr ""
 
-#: src/Admin/views/html-help-page.php:19
-msgid "Get Help with Easy Post Types and Fields"
-msgstr ""
-
-#. translators: opening and closing tag of the anchor element
-#: src/Admin/views/html-help-page.php:26
-msgid "Easy Post Types and Fields is developed and supported by %1$sBarn2 Plugins%2$s."
-msgstr ""
-
-#. translators: opening and closing tag of the anchor element
-#: src/Admin/views/html-help-page.php:39
-msgid "The %1$splugin documentation%2$s is an excellent resource to help you learn how to use custom post types, fields and taxonomies."
-msgstr ""
-
-#. translators: opening and closing tag of the anchor element
-#: src/Admin/views/html-help-page.php:51
-msgid "If you need help displaying the custom post types and data on the front end of your website then we recommend the %1$sPosts Table Pro plugin%2$s."
-msgstr ""
-
-#. translators: opening and closing tag of the anchor element
-#: src/Admin/views/html-help-page.php:63
-msgid "To get help with a specific issue, you can ask in the %1$ssupport forum%2$s or %3$ssubmit a support request%4$s."
-msgstr ""
-
 #: src/Admin/views/html-manage-page-fields.php:45
 #: src/Admin/Wizard/Steps/EPT_Name.php:25
 msgid "Name"
@@ -497,10 +483,6 @@ msgstr ""
 
 #: src/Admin/views/html-manage-page-fields.php:57
 msgid "Type"
-msgstr ""
-
-#: src/Admin/views/html-manage-page-header.php:22
-msgid "Easy Post Types and Fields"
 msgstr ""
 
 #: src/Admin/views/html-manage-page-header.php:38
@@ -576,6 +558,36 @@ msgstr ""
 
 #: src/Admin/views/html-manage-page-taxonomies.php:60
 msgid "Hierarchical"
+msgstr ""
+
+#: src/Admin/views/html-promo-display.php:19
+msgid "Display your post types and fields with Posts Table Pro"
+msgstr ""
+
+#. translators: 1: the opening tag of an anchor element, 2: the closing tag of an anchor element
+#: src/Admin/views/html-promo-display.php:26
+msgid "Once you have created your post types, custom fields and taxonomies, you can use %1$sPosts Table Pro%2$s to display them in a user-friendly table."
+msgstr ""
+
+#: src/Admin/views/html-promo-display.php:34
+msgid "Posts Table Pro is a dynamic WordPress table plugin which lists any type of WordPress content in a searchable table. As well as displaying any custom post type, you can choose which columns of information to show in the table - including your custom fields and taxonomies."
+msgstr ""
+
+#: src/Admin/views/html-promo-display.php:37
+msgid "Your website visitors can use the search box, sortable columns and filter dropdowns to find exactly what they are looking for."
+msgstr ""
+
+#: src/Admin/views/html-promo-protect.php:19
+msgid "Restrict access to parts of your website with Password Protected Categories"
+msgstr ""
+
+#. translators: 1: the opening tag of an anchor element, 2: the closing tag of an anchor element
+#: src/Admin/views/html-promo-protect.php:26
+msgid "Do you need to control who can access your custom post types? You can easily do this with the %1$sPassword Protected Categories%2$s plugin."
+msgstr ""
+
+#: src/Admin/views/html-promo-protect.php:34
+msgid "Password Protected Categories lets you restrict access to any or all of your categories or taxonomies."
 msgstr ""
 
 #: src/Admin/Wizard/Steps/Completed.php:25
