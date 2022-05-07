@@ -291,7 +291,7 @@ class CPT_Editor implements Service, Registerable {
 			$new_link         = '';
 		}
 
-		include $this->plugin->get_admin_path( 'views/html-manage-page.php' );
+		require $this->plugin->get_admin_path( 'views/html-manage-page.php' );
 	}
 
 	/**
@@ -300,8 +300,12 @@ class CPT_Editor implements Service, Registerable {
 	 * @return void
 	 */
 	public function output_promo_display_page() {
-		$image_url = $this->plugin->get_dir_url() . 'assets/images/promo-display.png';
-		include $this->plugin->get_admin_path( 'views/html-promo-display.php' );
+		$page_title  = __( 'Display your post types and fields with Posts Table Pro', 'easy-post-types-fields' );
+		$image_url   = $this->plugin->get_dir_url() . 'assets/images/promo-display.png';
+		$breadcrumbs = '';
+		$new_link    = '';
+
+		require $this->plugin->get_admin_path( 'views/html-promo-display.php' );
 	}
 
 	/**
@@ -310,8 +314,12 @@ class CPT_Editor implements Service, Registerable {
 	 * @return void
 	 */
 	public function output_promo_protect_page() {
-		$image_url = $this->plugin->get_dir_url() . 'assets/images/promo-protect.png';
-		include $this->plugin->get_admin_path( 'views/html-promo-protect.php' );
+		$page_title  = __( 'Restrict access to parts of your website with Password Protected Categories', 'easy-post-types-fields' );
+		$image_url   = $this->plugin->get_dir_url() . 'assets/images/promo-protect.png';
+		$breadcrumbs = '';
+		$new_link    = '';
+
+		require $this->plugin->get_admin_path( 'views/html-promo-protect.php' );
 	}
 
 	/**

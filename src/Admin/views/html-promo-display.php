@@ -16,8 +16,11 @@ defined( 'ABSPATH' ) || exit;
 
 <div class="wrap barn2-plugins-settings">
 	<div class="barn2-settings-inner promo-page">
-		<h1 class="wp-heading-inline"><?php esc_html_e( 'Display your post types and fields with Posts Table Pro', 'easy-post-types-fields' ); ?></h1>
-		<hr class="wp-header-end">
+
+		<?php
+		require 'html-manage-page-header.php';
+		?>
+
 		<p>
 			<?php
 			echo wp_kses_post(
