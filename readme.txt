@@ -29,7 +29,7 @@ Simply create any type of content using a simple and intuitive wizard. You can c
 
 Once you have created your custom post types, fields, and taxonomies, it’s easy to add the extra information to the WordPress CMS. Each custom post type has its own section on the left of the WordPress admin. Your custom fields and taxonomies appear on the ‘Add/Edit’ screen for each post. 
 
-View the full [plugin documentation](https://barn2.com/kb-categories/easy-custom-post-types-kb/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=freepluginwporg&utm_content=ecpt-wporg) in our knowledge base.  
+View the full [plugin documentation](https://barn2.com/kb-categories/easy-post-types-fields-kb/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=freepluginwporg&utm_content=ecpt-wporg) in our knowledge base.  
 
 = Can I display the custom content on the front end of my website? =
 By default, your theme will display your custom post types using the same templates as the blog. This will list custom posts in the same way as blog posts, and won’t include your custom fields or taxonomies. This may not be the best way to present your custom content, so we recommend displaying it in a table using the [Posts Table Pro](https://barn2.com/wordpress-plugins/posts-table-pro/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=freepluginwporg&utm_content=ecpt-wporg) plugin. 
