@@ -18,7 +18,8 @@ use Barn2\Plugin\Easy_Post_Types_Fields\Plugin,
 	Barn2\Plugin\Easy_Post_Types_Fields\Util,
 	Barn2\EPT_Lib\Plugin\Simple_Plugin,
 	Barn2\EPT_Lib\Registerable,
-	Barn2\EPT_Lib\Service;
+	Barn2\EPT_Lib\Service,
+	Barn2\EPT_Lib\Util as Lib_Util;
 
 use WP_Error;
 use WP_Query;
@@ -146,8 +147,14 @@ class CPT_Editor implements Service, Registerable {
 	public function admin_menu() {
 		add_menu_page( 'Post Types', 'Post Types', 'manage_options', 'ept_post_types', [ $this, 'output_manage_page' ], 'dashicons-feedback', 26 );
 		add_submenu_page( 'ept_post_types', 'Manage', 'Manage', 'manage_options', 'ept_post_types', [ $this, 'output_manage_page' ] );
-		add_submenu_page( 'ept_post_types', 'Display', 'Display', 'manage_options', 'ept_post_types-promo-display', [ $this, 'output_promo_display_page' ] );
-		add_submenu_page( 'ept_post_types', 'Protect', 'Protect', 'manage_options', 'ept_post_types-promo-protect', [ $this, 'output_promo_protect_page' ] );
+
+		if ( ! Lib_Util::is_barn2_plugin_active( 'Barn2\Plugin\Posts_Table_Pro\ptp' ) ) {
+			add_submenu_page( 'ept_post_types', 'Display', 'Display', 'manage_options', 'ept_post_types-promo-display', [ $this, 'output_promo_display_page' ] );
+		}
+
+		if ( ! Lib_Util::is_barn2_plugin_active( 'Barn2\Plugin\Password_Protected_Categories\ppc' ) ) {
+			add_submenu_page( 'ept_post_types', 'Protect', 'Protect', 'manage_options', 'ept_post_types-promo-protect', [ $this, 'output_promo_protect_page' ] );
+		}
 	}
 
 	/**
