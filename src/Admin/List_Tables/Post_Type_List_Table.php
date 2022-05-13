@@ -115,6 +115,11 @@ class Post_Type_List_Table extends WP_List_Table {
 	 * {@inheritdoc}
 	 */
 	public function prepare_items() {
+		/**
+		 * Filter the number of items per page for the post type list table
+		 *
+		 * @param int $items_per_page The number of items per page
+		 */
 		$per_page    = apply_filters( 'edit_ept_post_types_per_page', $this->get_items_per_page( 'edit_ept_post_types_per_page' ) );
 		$total_items = count( $this->post_types );
 
@@ -265,6 +270,16 @@ class Post_Type_List_Table extends WP_List_Table {
 			'count'      => _x( 'Count', 'column name', 'easy-post-types-fields' ) . $count_tooltip,
 		];
 
+		/**
+		 * Filter the heading of each column in the post type list table
+		 *
+		 * The array passed to the filter callback is an associative array
+		 * where the keys are the name of the columns and the values are the
+		 * headings. The columns in the array are presented in the same order
+		 * they have in the table.
+		 *
+		 * @param array $columns The list of columns
+		 */
 		return apply_filters( 'manage_ept_post_types_columns', $columns );
 	}
 

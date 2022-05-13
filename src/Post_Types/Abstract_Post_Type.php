@@ -217,6 +217,9 @@ abstract class Abstract_Post_Type implements Post_Type_Interface {
 	 * @return void
 	 */
 	public function output_meta_box( $post ) {
+		/**
+		 * Fire before the content of the metabox is output
+		 */
 		do_action( "ept_post_type_{$this->slug}_metabox" );
 
 		// get the fields registered with the post type

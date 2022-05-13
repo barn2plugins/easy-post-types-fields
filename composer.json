@@ -30,7 +30,6 @@
     },
     "scripts": {
 		"no-dev": "composer update --prefer-dist --no-dev",
-        "wp-doc": "wp-documentor parse ./src --template=../barn2-lib/templates/hook-doc-template.php --output=hooks.txt",
         "install-scoper": [
 			"composer bin php-scoper config minimum-stability dev",
 			"composer bin php-scoper config prefer-stable true",

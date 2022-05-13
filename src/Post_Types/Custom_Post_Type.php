@@ -73,6 +73,13 @@ class Custom_Post_Type extends Abstract_Post_Type {
 				'has_archive'          => true,
 			];
 
+			/**
+			 * Filter the labels used to register the custom post type.
+			 *
+			 * The variable part of the hook name is the slug of the post type.
+			 *
+			 * @param array $default_labels An associative array of labels
+			 */
 			$args['labels'] = apply_filters(
 				"ept_post_type_{$this->slug}_labels",
 				$this->default_labels()
@@ -88,6 +95,13 @@ class Custom_Post_Type extends Abstract_Post_Type {
 			$this->register_taxonomies();
 			$args['taxonomies'] = $this->taxonomies;
 
+			/**
+			 * Filter the arguments to register a custom post type
+			 *
+			 * The variable part of the hook name is the slug of the post type.
+			 *
+			 * @param array $args The arguments that define the custom post type
+			 */
 			$this->args = apply_filters(
 				"ept_post_type_{$this->slug}_args",
 				wp_parse_args(
