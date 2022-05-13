@@ -25,10 +25,12 @@
         "barn2/php-standards": "dev-master",
         "bamarni/composer-bin-plugin": "^1.4",
         "barn2/setup-wizard": "^0.4.1",
-        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0"
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
+        "pronamic/wp-documentor": "^1.2"
     },
     "scripts": {
 		"no-dev": "composer update --prefer-dist --no-dev",
+        "wp-doc": "wp-documentor parse ./src --template=../barn2-lib/templates/hook-doc-template.php --output=hooks.txt",
         "install-scoper": [
 			"composer bin php-scoper config minimum-stability dev",
 			"composer bin php-scoper config prefer-stable true",

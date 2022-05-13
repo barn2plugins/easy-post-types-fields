@@ -110,13 +110,33 @@ class Taxonomy {
 				'slug' => "{$post_type_slug}-{$this->slug}",
 			];
 
+			/**
+			 * Filter the default labels of a custom taxonomy
+			 *
+			 * The variable part of the hook is the slug of the taxonomy
+			 * (which is prefixed with `$post_type`). For example, the full slug
+			 * of a `category` taxonomy registered to an `article` custom post
+			 * type will be `ept_article_category`.
+			 *
+			 * @param array $default_labels The list of default labels for this taxonomy
+			 */
 			$args['labels'] = apply_filters(
 				"ept_taxonomy_{$this->taxonomy}_labels",
 				$this->default_labels()
 			);
 
+			/**
+			 * Filter the arguments to register a custom taxonomy
+			 *
+			 * The variable part of the hook is the slug of the taxonomy
+			 * (which is prefixed with `$post_type`). For example, the full slug
+			 * of a `category` taxonomy registered to an `article` custom post
+			 * type will be `ept_article_category`.
+			 *
+			 * @param array $args The list of argumets to register this taxonomy
+			 */
 			$this->args = apply_filters(
-				"{$this->taxonomy}_taxonomy_args",
+				"ept_taxonomy_{$this->taxonomy}_args",
 				wp_parse_args(
 					$args,
 					$default_args

@@ -14,6 +14,10 @@ Easy Post Types and Fields makes it quick and easy to add custom post types, cus
 
 == Description ==
 
+*Easy Post Types and Fields* makes it quick and easy to add custom post types, custom fields, and taxonomies to your WordPress website.
+
+https://youtu.be/NOmnHxHpnU8
+
 There are lots of reasons why WordPress site owners need to add extra content types to the CMS:
 
 * **Create dedicated areas for each type of content within the WordPress admin (these are called ‘custom post types’)**. For example, if you’re adding ‘Resources’ to your site then it’s best to create a ‘Resources’ custom post type and manage the resources separately from your pages and posts.
