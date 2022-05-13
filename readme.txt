@@ -3,7 +3,7 @@
 Contributors: barn2media
 Tags: custom post type, custom field, custom taxonomy, custom post types, custom fields, taxonomy, custom taxonomies, content type, post type, custom data, meta fields
 Requires at least: 5.0
-Tested up to: 5.9.3
+Tested up to: 6.0.0
 Requires PHP: 7.2
 Stable tag: 1.0.0
 License: GNU General Public License v3.0
@@ -13,6 +13,10 @@ Donate link: https://barn2.com
 Easy Post Types and Fields makes it quick and easy to add custom post types, custom fields, and taxonomies to your WordPress website.
 
 == Description ==
+
+*Easy Post Types and Fields* makes it quick and easy to add custom post types, custom fields, and taxonomies to your WordPress website.
+
+https://youtu.be/NOmnHxHpnU8
 
 There are lots of reasons why WordPress site owners need to add extra content types to the CMS:
 
