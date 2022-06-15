@@ -151,7 +151,7 @@ class Custom_Field_List_Table extends WP_List_Table {
 		 *
 		 * @param array $columns The columns of the list table
 		 */
-		return apply_filters( 'manage_ept_taxonomies_columns', $columns );
+		return apply_filters( 'manage_ept_fields_columns', $columns );
 	}
 
 	/**
