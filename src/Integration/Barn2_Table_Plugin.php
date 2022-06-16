@@ -1,6 +1,6 @@
 <?php
 /**
- * Handle the integration of the plugin with Posts Table Pro
+ * Handle the integration with any Barn2 Table plugin
  *
  * @package   Barn2\easy-post-types-fields
  * @author    Barn2 Plugins <support@barn2.com>
@@ -15,26 +15,59 @@ use Barn2\Plugin\Easy_Post_Types_Fields\Util,
 	Barn2\EPT_Lib\Service;
 
 /**
- * CPT Factory registers all the CPT created with the plugin.
+ * Class handling the integration
  *
  * @package   Barn2\easy-post-types-fields
  * @author    Barn2 Plugins <support@barn2.com>
  * @license   GPL-3.0
  * @copyright Barn2 Media Ltd
  */
-class Posts_Table_Pro implements Registerable, Service {
+class Barn2_Table_Plugin implements Registerable, Service {
+
+	/**
+	 * A list of plugins that integrate with EPT
+	 *
+	 * @var array
+	 */
+	private $plugins;
 
 	/**
 	 * {@inheritdoc}
 	 */
 	public function register() {
-		add_filter( 'shortcode_atts_posts_table', [ $this, 'posts_table_shortcode_atts' ] );
-		add_filter( 'posts_table_data_custom_field', [ $this, 'data_custom_field' ], 10, 3 );
+		/**
+		 * Filter the list of shortcodes that use a Barn2 Table implementation
+		 *
+		 * The list is presented as an associative array where the key
+		 * is the hook prefix used by the plugin and the value is its shortcode
+		 *
+		 * @param array $shortcodes The list of shortcodes
+		 */
+		$this->plugins = apply_filters(
+			'ept_barn2_table_plugins',
+			[
+				'posts_table'   => [
+					'prefix' => 'posts_table',
+				],
+				'doc_library'   => [
+					'prefix'    => 'document_library_pro',
+					'post_type' => 'dlp_document',
+				],
+				'product_table' => [
+					'prefix'    => 'wc_product_table',
+					'post_type' => 'product',
+				],
+			]
+		);
 
+		foreach ( $this->plugins as $shortcode => $args ) {
+			add_filter( "shortcode_atts_{$shortcode}", [ $this, 'shortcode_atts' ], 10, 4 );
+			add_filter( "{$args['prefix']}_data_custom_field", [ $this, 'data_custom_field' ], 10, 3 );
+		}
 	}
 
 	/**
-	 * Filter the parameters of a Posts Table Pro shortcode
+	 * Filter the parameters of a Barn2 Table plugin shortcode
 	 *
 	 * This method goes through all the `tax:` and `cf:` slugs present in the
 	 * `columns` and `filters` parameters and appropriately prefix all the
@@ -45,10 +78,11 @@ class Posts_Table_Pro implements Registerable, Service {
 	 * @param  array $out
 	 * @return array
 	 */
-	public function posts_table_shortcode_atts( $out ) {
+	public function shortcode_atts( $out, $pairs, $atts, $shortcode ) {
 		global $wp_post_types;
 
-		$post_type = $out['post_type'];
+		$plugin_args = $this->plugins[ $shortcode ];
+		$post_type   = isset( $out['post_type'] ) ? $out['post_type'] : $plugin_args['post_type'];
 
 		if ( ! isset( $wp_post_types[ $post_type ] ) && isset( $wp_post_types[ "ept_{$post_type}" ] ) ) {
 			$post_type = "ept_{$post_type}";

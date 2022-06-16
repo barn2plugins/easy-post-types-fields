@@ -42,7 +42,7 @@ class Plugin extends Simple_Plugin implements Registerable, Translatable {
 
 		$this->services = [
 			'post_type_factory' => new Post_Type_Factory( $this ),
-			'ptp_integration'   => new Integration\Posts_Table_Pro(),
+			'ptp_integration'   => new Integration\Barn2_Table_Plugin(),
 		];
 
 		if ( Lib_Util::is_admin() ) {
