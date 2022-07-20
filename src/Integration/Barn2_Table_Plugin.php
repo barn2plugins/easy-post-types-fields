@@ -75,14 +75,17 @@ class Barn2_Table_Plugin implements Registerable, Service {
 	 * This way users are free use the slugs they created without having to
 	 * prefix them the way EPT does for internal reasons.
 	 *
-	 * @param  array $out
+	 * @param  array  $out          The arguments of the shortcodes
+	 * @param  array  $pairs        The default values for the shortcode arguments
+	 * @param  array  $atts         The parameters originally passed to the shortcode
+	 * @param  string $shortcode    The shortcode being processed
 	 * @return array
 	 */
 	public function shortcode_atts( $out, $pairs, $atts, $shortcode ) {
 		global $wp_post_types;
 
 		$plugin_args = $this->plugins[ $shortcode ];
-		$post_type   = isset( $out['post_type'] ) ? $out['post_type'] : $plugin_args['post_type'];
+		$post_type   = isset( $plugin_args['post_type'] ) ? $plugin_args['post_type'] : $out['post_type'];
 
 		if ( ! isset( $wp_post_types[ $post_type ] ) && isset( $wp_post_types[ "ept_{$post_type}" ] ) ) {
 			$post_type = "ept_{$post_type}";

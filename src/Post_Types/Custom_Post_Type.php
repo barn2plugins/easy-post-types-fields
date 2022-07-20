@@ -63,7 +63,7 @@ class Custom_Post_Type extends Abstract_Post_Type {
 				'show_in_nav_menus'    => true,
 				'show_in_admin_bar'    => false,
 				'show_in_rest'         => true,
-				'menu_position'        => 26,
+				'menu_position'        => 27,
 				'menu_icon'            => 'dashicons-list-view',
 				'supports'             => false,
 				'register_meta_box_cb' => [ $this, 'register_cpt_metabox' ],

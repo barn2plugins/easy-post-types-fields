@@ -53,12 +53,15 @@ class Review_Notice implements Registerable, Service {
 			return;
 		}
 
+		if ( 'ept_post_type' !== $post->post_type ) {
+			return;
+		}
+
 		$post_type_count = (array) wp_count_posts( 'ept_post_type' );
 		$count           = isset( $post_type_count['publish'] ) ? (int) $post_type_count['publish'] : 0;
 
 		if ( 1 === $count ) {
 			update_option( 'ept_review_notice_triggered', true, false );
-			delete_option( 'ept_review_notice_dismissed' );
 		}
 	}
 
@@ -75,7 +78,6 @@ class Review_Notice implements Registerable, Service {
 		check_ajax_referer( 'ept_dismiss_review_notice', 'nonce', true );
 
 		update_option( 'ept_review_notice_dismissed', true, false );
-		delete_option( 'ept_review_notice_triggered' );
 	}
 
 	/**
