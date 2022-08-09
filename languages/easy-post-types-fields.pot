@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Post Types and Fields 1.0.0\n"
+"Project-Id-Version: Easy Post Types and Fields 1.1.0\n"
 "Report-Msgid-Bugs-To: https://barn2.com/support-center/\n"
 "Last-Translator: Barn2 Plugins <support@barn2.com>\n"
 "Language-Team: Barn2 Plugins <support@barn2.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-05-07T00:00:00+00:00\n"
+"POT-Creation-Date: 2022-08-09T00:00:00+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: easy-post-types-fields\n"
@@ -54,9 +54,33 @@ msgstr ""
 msgid "Warning: This will overwrite your existing settings for %s. Are you sure you want to continue?"
 msgstr ""
 
-#: dependencies/src/Steps/Cross_Selling.php:66
+#: dependencies/src/Steps/Cross_Selling.php:26
+#: src/Admin/Wizard/Steps/Upsell.php:29
+msgid "More"
+msgstr ""
+
+#: dependencies/src/Steps/Cross_Selling.php:27
+#: src/Admin/Wizard/Steps/Upsell.php:38
+msgid "Extra features"
+msgstr ""
+
+#: dependencies/src/Steps/Cross_Selling.php:28
+msgid "Enhance your site with these fantastic plugins from Barn2."
+msgstr ""
+
+#: dependencies/src/Steps/Cross_Selling.php:69
 #: src/Admin/Wizard/Steps/Upsell.php:98
 msgid "Something went wrong while retrieving the list of products. Please try again later."
+msgstr ""
+
+#: dependencies/src/Steps/Ready.php:23
+#: src/Admin/Wizard/Steps/Completed.php:25
+#: src/Admin/Wizard/Steps/EPT_Ready.php:25
+msgid "Ready"
+msgstr ""
+
+#: dependencies/src/Steps/Ready.php:24
+msgid "Setup Complete"
 msgstr ""
 
 #: dependencies/src/Steps/Welcome.php:25
@@ -90,25 +114,25 @@ msgstr ""
 msgid "Please enter a license key."
 msgstr ""
 
-#: lib/Admin/Settings_API_Helper.php:459
+#: lib/Admin/Settings_API_Helper.php:464
 msgid "Size"
 msgstr ""
 
-#: lib/Admin/Settings_Util.php:56
+#: lib/Admin/Settings_Util.php:68
 #: src/Util.php:441
 msgid "Documentation"
 msgstr ""
 
-#: lib/Admin/Settings_Util.php:61
+#: lib/Admin/Settings_Util.php:73
 #: src/Util.php:442
 msgid "Support"
 msgstr ""
 
-#: lib/Util.php:30
+#: lib/Util.php:32
 msgid "Read more"
 msgstr ""
 
-#: src/Admin/Admin_Controller.php:86
+#: src/Admin/Admin_Controller.php:87
 msgid "Settings"
 msgstr ""
 
@@ -130,7 +154,7 @@ msgid "Add new post type"
 msgstr ""
 
 #: src/Admin/CPT_Editor.php:79
-#: src/Admin/CPT_Editor.php:273
+#: src/Admin/CPT_Editor.php:309
 msgid "Edit post type"
 msgstr ""
 
@@ -206,168 +230,169 @@ msgstr ""
 msgid "Define a custom post type"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:176
+#: src/Admin/CPT_Editor.php:212
 #: src/Util.php:320
 msgid "Custom fields"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:177
+#: src/Admin/CPT_Editor.php:213
 msgid "Custom field"
 msgstr ""
 
 #. translators: 1: the plural name of the post type, 2: the opening tab of an anchor element, 3: the closing tag of an anchor element, 4: the singular name of the post type, 5: the plural name of the post type,
-#: src/Admin/CPT_Editor.php:179
+#: src/Admin/CPT_Editor.php:215
 msgid "Use custom fields to store extra data about your %1$s, such as a reference number or link. Custom fields are for data that is unique to each %4$s. If you want to use the data to organize or group your %5$s then you should create a %2$staxonomy%3$s instead."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:183
-#: src/Admin/List_Tables/Post_Type_List_Table.php:367
+#: src/Admin/CPT_Editor.php:219
+#: src/Admin/List_Tables/Post_Type_List_Table.php:382
 #: src/Util.php:320
 msgid "Taxonomies"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:184
+#: src/Admin/CPT_Editor.php:220
 msgid "Taxonomy"
 msgstr ""
 
 #. translators: the plural name of the post type
-#: src/Admin/CPT_Editor.php:186
+#: src/Admin/CPT_Editor.php:222
 msgid "Taxonomies let you organize and group your %1$s. For example, you might want to organize them by category, tag, year, author, or industry. If you need to add data that is unique to each %4$s then you should create a %2$scustom field%3$s instead."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:228
+#: src/Admin/CPT_Editor.php:264
 msgid "Post Types"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:229
+#: src/Admin/CPT_Editor.php:265
 msgid "Use this page to manage your custom post types. You can add and edit post types, custom fields and taxonomies."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:267
+#: src/Admin/CPT_Editor.php:303
 msgid "Manage Taxonomies"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:268
+#: src/Admin/CPT_Editor.php:304
 msgid "Manage Custom Fields"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:280
+#. translators: 1: 'Add' or 'Update', 2: 'custom field' or 'taxonomy' phpcs:ignore Squiz.PHP.CommentedOutCode.Found
+#: src/Admin/CPT_Editor.php:316
 #: src/Admin/views/html-manage-page-lists.php:36
 #: src/Util.php:333
 msgid "Add"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:281
-#: src/Admin/List_Tables/Custom_Field_List_Table.php:284
-#: src/Admin/List_Tables/Custom_Field_List_Table.php:285
-#: src/Admin/List_Tables/Post_Type_List_Table.php:536
-#: src/Admin/List_Tables/Post_Type_List_Table.php:537
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:313
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:314
+#: src/Admin/CPT_Editor.php:317
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:299
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:300
+#: src/Admin/List_Tables/Post_Type_List_Table.php:551
+#: src/Admin/List_Tables/Post_Type_List_Table.php:552
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:328
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:329
 #: src/Util.php:333
 msgid "Edit"
 msgstr ""
 
 #. translators: either 'Add' or 'Edit'
-#: src/Admin/CPT_Editor.php:285
+#: src/Admin/CPT_Editor.php:321
 msgid "%s Taxonomy"
 msgstr ""
 
 #. translators: either 'Add' or 'Edit'
-#: src/Admin/CPT_Editor.php:287
+#: src/Admin/CPT_Editor.php:323
 msgid "%s Custom Field"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:303
+#: src/Admin/CPT_Editor.php:339
 msgid "Display your post types and fields with Posts Table Pro"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:317
+#: src/Admin/CPT_Editor.php:353
 msgid "Restrict access to parts of your website with Password Protected Categories"
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:385
+#: src/Admin/CPT_Editor.php:421
 msgid "The post type is missing or an error occurred when completing this operation."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:440
+#: src/Admin/CPT_Editor.php:476
 msgid "The slug of a post type is required."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:445
+#: src/Admin/CPT_Editor.php:481
 msgid "The slug of a post type must be 17 characters or less."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:450
+#: src/Admin/CPT_Editor.php:486
 msgid "The singular name of a post type is required."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:455
+#: src/Admin/CPT_Editor.php:491
 msgid "The plural name of a post type is required."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:469
+#: src/Admin/CPT_Editor.php:505
 msgid "A post type with the same slug is already registered. Please choose a different slug."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:520
+#: src/Admin/CPT_Editor.php:556
 msgid "The slug of a taxonomy is required."
 msgstr ""
 
 #. translators: the maximum number of characters of the slug
-#: src/Admin/CPT_Editor.php:535
+#: src/Admin/CPT_Editor.php:571
 msgid "The slug of a taxonomy for this post type must be %d characters or less."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:540
+#: src/Admin/CPT_Editor.php:576
 msgid "The singular name of a taxonomy is required."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:545
+#: src/Admin/CPT_Editor.php:581
 msgid "The plural name of a taxonomy is required."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:593
+#: src/Admin/CPT_Editor.php:629
 msgid "A taxonomy with the same slug is already registered to this post type. Please choose a different slug."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:635
+#: src/Admin/CPT_Editor.php:671
 msgid "The slug of a custom field is required."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:640
+#: src/Admin/CPT_Editor.php:676
 msgid "The name of a custom field is required."
 msgstr ""
 
-#: src/Admin/CPT_Editor.php:677
+#: src/Admin/CPT_Editor.php:713
 msgid "A field with the same slug is already registered to this post type. Please choose a different slug."
 msgstr ""
 
-#: src/Admin/List_Tables/Custom_Field_List_Table.php:92
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:97
 msgid "No custom fields for this post type yet"
 msgstr ""
 
 #. translators: a post type name followed by underscore
-#: src/Admin/List_Tables/Custom_Field_List_Table.php:128
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:149
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:133
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:154
 msgid "The slug is a unique code that you can use to identify the custom taxonomy. For example, you can use it to display the data with the Posts Table Pro plugin. If you are using the slug in other ways &ndash; for example for development purposes &ndash; then you should add the prefix '%1$s' before the slug, for example '%1$scategory' instead of just 'category'."
 msgstr ""
 
-#: src/Admin/List_Tables/Custom_Field_List_Table.php:134
-#: src/Admin/List_Tables/Post_Type_List_Table.php:260
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:156
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:139
+#: src/Admin/List_Tables/Post_Type_List_Table.php:265
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:161
 msgctxt "column name"
 msgid "Name"
 msgstr ""
 
-#: src/Admin/List_Tables/Custom_Field_List_Table.php:135
-#: src/Admin/List_Tables/Post_Type_List_Table.php:261
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:157
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:140
+#: src/Admin/List_Tables/Post_Type_List_Table.php:266
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:162
 msgctxt "column name"
 msgid "Slug"
 msgstr ""
 
-#: src/Admin/List_Tables/Custom_Field_List_Table.php:136
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:141
 msgctxt "column name"
 msgid "Type"
 msgstr ""
@@ -375,68 +400,68 @@ msgstr ""
 #. translators: a custom field name
 #. translators: a post type name
 #. translators: the name of the taxonomy
-#: src/Admin/List_Tables/Custom_Field_List_Table.php:209
-#: src/Admin/List_Tables/Post_Type_List_Table.php:337
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:232
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:224
+#: src/Admin/List_Tables/Post_Type_List_Table.php:352
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:247
 msgid "%s (Edit)"
 msgstr ""
 
-#: src/Admin/List_Tables/Custom_Field_List_Table.php:292
-#: src/Admin/List_Tables/Custom_Field_List_Table.php:293
-#: src/Admin/List_Tables/Post_Type_List_Table.php:543
-#: src/Admin/List_Tables/Post_Type_List_Table.php:545
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:321
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:322
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:307
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:308
+#: src/Admin/List_Tables/Post_Type_List_Table.php:558
+#: src/Admin/List_Tables/Post_Type_List_Table.php:560
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:336
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:337
 msgid "Delete"
 msgstr ""
 
-#: src/Admin/List_Tables/Post_Type_List_Table.php:152
+#: src/Admin/List_Tables/Post_Type_List_Table.php:157
 msgid "No custom post types found"
 msgstr ""
 
 #. translators: %s: Number of posts.
-#: src/Admin/List_Tables/Post_Type_List_Table.php:215
+#: src/Admin/List_Tables/Post_Type_List_Table.php:220
 msgid "Easy Post Types <span class=\"count\">(%s)</span>"
 msgstr ""
 
 #. translators: %s: Number of posts.
-#: src/Admin/List_Tables/Post_Type_List_Table.php:217
+#: src/Admin/List_Tables/Post_Type_List_Table.php:222
 msgid "Other Post Types <span class=\"count\">(%s)</span>"
 msgstr ""
 
-#: src/Admin/List_Tables/Post_Type_List_Table.php:255
+#: src/Admin/List_Tables/Post_Type_List_Table.php:260
 msgid "The slug is a unique code that you can use to identify the custom post type. For example, you can use it to display the data with the Posts Table Pro plugin. If you are using the slug in other ways &ndash; for example for development purposes &ndash; then you should add the prefix 'ept_' before the slug, for example 'ept_article' instead of just 'article'."
 msgstr ""
 
-#: src/Admin/List_Tables/Post_Type_List_Table.php:256
+#: src/Admin/List_Tables/Post_Type_List_Table.php:261
 msgid "Use custom fields for storing unique data about your custom posts, and use taxonomies for organizing and grouping the custom posts."
 msgstr ""
 
-#: src/Admin/List_Tables/Post_Type_List_Table.php:257
+#: src/Admin/List_Tables/Post_Type_List_Table.php:262
 msgid "The current number of posts for the custom post type."
 msgstr ""
 
-#: src/Admin/List_Tables/Post_Type_List_Table.php:262
+#: src/Admin/List_Tables/Post_Type_List_Table.php:267
 msgctxt "column name"
 msgid "Custom Fields"
 msgstr ""
 
-#: src/Admin/List_Tables/Post_Type_List_Table.php:263
+#: src/Admin/List_Tables/Post_Type_List_Table.php:268
 msgctxt "column name"
 msgid "Taxonomies"
 msgstr ""
 
-#: src/Admin/List_Tables/Post_Type_List_Table.php:264
+#: src/Admin/List_Tables/Post_Type_List_Table.php:269
 msgctxt "column name"
 msgid "Actions"
 msgstr ""
 
-#: src/Admin/List_Tables/Post_Type_List_Table.php:265
+#: src/Admin/List_Tables/Post_Type_List_Table.php:270
 msgctxt "column name"
 msgid "Count"
 msgstr ""
 
-#: src/Admin/List_Tables/Post_Type_List_Table.php:366
+#: src/Admin/List_Tables/Post_Type_List_Table.php:381
 #: src/Post_Types/Abstract_Post_Type.php:210
 msgid "Custom Fields"
 msgstr ""
@@ -444,38 +469,58 @@ msgstr ""
 #. translators: %s: Post type plural name.
 #. translators: the plural post type name
 #. translators: the plural name of a taxonomy
-#: src/Admin/List_Tables/Post_Type_List_Table.php:553
-#: src/Admin/List_Tables/Post_Type_List_Table.php:555
-#: src/Post_Types/Custom_Post_Type.php:133
-#: src/Taxonomy.php:151
+#: src/Admin/List_Tables/Post_Type_List_Table.php:568
+#: src/Admin/List_Tables/Post_Type_List_Table.php:570
+#: src/Post_Types/Custom_Post_Type.php:147
+#: src/Taxonomy.php:171
 msgid "All %s"
 msgstr ""
 
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:111
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:116
 msgid "No taxonomies for this post type yet"
 msgstr ""
 
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:153
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:158
 #: src/Admin/views/html-manage-page-taxonomies.php:19
 msgid "Hierarchical taxonomies have a nested parent/child structure like WordPress post categories, whereas non-hierarchical taxonomies are flat like tags."
 msgstr ""
 
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:158
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:163
 msgctxt "column name"
 msgid "Hierarchical"
 msgstr ""
 
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:264
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:279
 msgid "Yes"
 msgstr ""
 
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:264
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:279
 msgid "No"
 msgstr ""
 
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:329
-#: src/Admin/List_Tables/Taxonomy_List_Table.php:330
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:344
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:345
 msgid "Manage terms"
+msgstr ""
+
+#: src/Admin/Review_Notice.php:115
+msgid "Are you enjoying Easy Post Types and Fields?"
+msgstr ""
+
+#: src/Admin/Review_Notice.php:116
+msgid "Congratulations, you've just published your first custom post type! If you have time, it would be great if you could leave us a review and let us know what you think of the plugin."
+msgstr ""
+
+#: src/Admin/Review_Notice.php:119
+msgid "Add Review"
+msgstr ""
+
+#: src/Admin/Review_Notice.php:120
+msgid "Dismiss"
+msgstr ""
+
+#: src/Admin/Review_Notice.php:123
+msgid "Barn2"
 msgstr ""
 
 #: src/Admin/views/html-manage-page-fields.php:45
@@ -507,6 +552,7 @@ msgstr ""
 msgid "%1$s %2$s"
 msgstr ""
 
+#. translators: 1: 'Add' or 'Update', 2: 'custom field' or 'taxonomy' phpcs:ignore Squiz.PHP.CommentedOutCode.Found
 #: src/Admin/views/html-manage-page-lists.php:36
 msgid "Update"
 msgstr ""
@@ -530,8 +576,8 @@ msgstr ""
 #. translators: the plural post type name
 #. translators: the plural name of a taxonomy
 #: src/Admin/views/html-manage-page-lists.php:56
-#: src/Post_Types/Custom_Post_Type.php:147
-#: src/Taxonomy.php:189
+#: src/Post_Types/Custom_Post_Type.php:161
+#: src/Taxonomy.php:209
 msgid "%s list"
 msgstr ""
 
@@ -590,14 +636,10 @@ msgstr ""
 msgid "Password Protected Categories lets you restrict access to any or all of your categories or taxonomies."
 msgstr ""
 
-#: src/Admin/Wizard/Steps/Completed.php:25
-#: src/Admin/Wizard/Steps/EPT_Ready.php:25
-msgid "Ready"
-msgstr ""
-
 #. translators: the plural name of a post type
 #: src/Admin/Wizard/Steps/Completed.php:27
-msgid "What would you like to do next?"
+#: src/Admin/Wizard/Steps/EPT_Ready.php:27
+msgid "Now, you can either add extra fields to your post type, or start adding new %s straight away."
 msgstr ""
 
 #. translators: the singular name of a post type
@@ -648,22 +690,9 @@ msgstr ""
 msgid "A post type with this name is already present. Please input a different name."
 msgstr ""
 
-#. translators: the plural name of a post type
-#: src/Admin/Wizard/Steps/EPT_Ready.php:27
-msgid "Now, you can either add extra fields to your post type, or start adding new %s straight away."
-msgstr ""
-
-#: src/Admin/Wizard/Steps/Upsell.php:29
-msgid "More"
-msgstr ""
-
 #. translators: %1$s: URL to All Access Pass page %2$s: URL to the KB about the upgrading process
 #: src/Admin/Wizard/Steps/Upsell.php:33
 msgid "Enhance your store with these fantastic plugins from Barn2, or get them all with an <a href=\"%1$s\" target=\"_blank\">All Access Pass<a/>! (<a href=\"%2$s\" target=\"_blank\">learn how here</a>)"
-msgstr ""
-
-#: src/Admin/Wizard/Steps/Upsell.php:38
-msgid "Extra features"
 msgstr ""
 
 #: src/Admin/Wizard/Steps/Welcome.php:26
@@ -671,7 +700,7 @@ msgid "Welcome to Easy Post Types and Fields"
 msgstr ""
 
 #: src/Admin/Wizard/Steps/Welcome.php:27
-msgid "Use this setup wizard to quickly create a post type (e.g. Events, Members, Articles, or something else). Your post type will have its own section in the WordPress admin. If you want to add fields to existing post types, then skip the setup wizard and go to the 'Other post types' section."
+msgid "Use this setup wizard to quickly create a post type (e.g. Events, Members, Articles, or something else). Your post type will have its own section in the WordPress admin. If you want to add fields to existing post types, then skip the setup wizard and go to the Other Post Types section."
 msgstr ""
 
 #: src/Admin/Wizard/Wizard.php:28
@@ -680,205 +709,205 @@ msgstr ""
 
 #. translators: the singular post type name
 #. translators: the singular name of a taxonomy
-#: src/Post_Types/Custom_Post_Type.php:115
-#: src/Taxonomy.php:171
+#: src/Post_Types/Custom_Post_Type.php:129
+#: src/Taxonomy.php:191
 msgid "Add New %s"
 msgstr ""
 
 #. translators: the singular post type name
 #. translators: the singular name of a taxonomy
-#: src/Post_Types/Custom_Post_Type.php:117
-#: src/Taxonomy.php:165
+#: src/Post_Types/Custom_Post_Type.php:131
+#: src/Taxonomy.php:185
 msgid "Edit %s"
 msgstr ""
 
 #. translators: the singular post type name
-#: src/Post_Types/Custom_Post_Type.php:119
+#: src/Post_Types/Custom_Post_Type.php:133
 msgid "New %s"
 msgstr ""
 
 #. translators: the singular post type name
-#: src/Post_Types/Custom_Post_Type.php:121
+#: src/Post_Types/Custom_Post_Type.php:135
 msgctxt "singular"
 msgid "View %s"
 msgstr ""
 
 #. translators: the plural post type name
-#: src/Post_Types/Custom_Post_Type.php:123
+#: src/Post_Types/Custom_Post_Type.php:137
 msgctxt "plural"
 msgid "View %s"
 msgstr ""
 
 #. translators: the plural post type name
 #. translators: the plural name of a taxonomy
-#: src/Post_Types/Custom_Post_Type.php:125
-#: src/Taxonomy.php:147
+#: src/Post_Types/Custom_Post_Type.php:139
+#: src/Taxonomy.php:167
 msgid "Search %s"
 msgstr ""
 
 #. translators: the plural post type name
 #. translators: the plural name of a taxonomy
-#: src/Post_Types/Custom_Post_Type.php:127
-#: src/Taxonomy.php:181
+#: src/Post_Types/Custom_Post_Type.php:141
+#: src/Taxonomy.php:201
 msgid "No %s found."
 msgstr ""
 
 #. translators: the plural post type name
-#: src/Post_Types/Custom_Post_Type.php:129
+#: src/Post_Types/Custom_Post_Type.php:143
 msgid "No %s found in Trash."
 msgstr ""
 
 #. translators: the singular post type name
 #. translators: the singular name of a taxonomy
-#: src/Post_Types/Custom_Post_Type.php:131
-#: src/Taxonomy.php:155
+#: src/Post_Types/Custom_Post_Type.php:145
+#: src/Taxonomy.php:175
 msgid "Parent %s:"
 msgstr ""
 
 #. translators: the singular post type name
-#: src/Post_Types/Custom_Post_Type.php:135
+#: src/Post_Types/Custom_Post_Type.php:149
 msgid "%s Archives"
 msgstr ""
 
 #. translators: the singular post type name
-#: src/Post_Types/Custom_Post_Type.php:137
+#: src/Post_Types/Custom_Post_Type.php:151
 msgid "%s Attributes"
 msgstr ""
 
 #. translators: the singular post type name
-#: src/Post_Types/Custom_Post_Type.php:139
+#: src/Post_Types/Custom_Post_Type.php:153
 msgid "Insert into %s"
 msgstr ""
 
 #. translators: the singular post type name
-#: src/Post_Types/Custom_Post_Type.php:141
+#: src/Post_Types/Custom_Post_Type.php:155
 msgid "Uploaded to this %s"
 msgstr ""
 
 #. translators: the plural post type name
-#: src/Post_Types/Custom_Post_Type.php:143
+#: src/Post_Types/Custom_Post_Type.php:157
 msgid "Filter %s list"
 msgstr ""
 
 #. translators: the plural post type name
 #. translators: the plural name of a taxonomy
-#: src/Post_Types/Custom_Post_Type.php:145
-#: src/Taxonomy.php:187
+#: src/Post_Types/Custom_Post_Type.php:159
+#: src/Taxonomy.php:207
 msgid "%s list navigation"
 msgstr ""
 
 #. translators: the singular post type name
-#: src/Post_Types/Custom_Post_Type.php:149
+#: src/Post_Types/Custom_Post_Type.php:163
 msgid "%s published."
 msgstr ""
 
 #. translators: the singular post type name
-#: src/Post_Types/Custom_Post_Type.php:151
+#: src/Post_Types/Custom_Post_Type.php:165
 msgid "%s published privately."
 msgstr ""
 
 #. translators: the singular post type name
-#: src/Post_Types/Custom_Post_Type.php:153
+#: src/Post_Types/Custom_Post_Type.php:167
 msgid "%s reverted to draft."
 msgstr ""
 
 #. translators: the singular post type name
-#: src/Post_Types/Custom_Post_Type.php:155
+#: src/Post_Types/Custom_Post_Type.php:169
 msgid "%s scheduled."
 msgstr ""
 
 #. translators: the singular post type name
-#: src/Post_Types/Custom_Post_Type.php:157
+#: src/Post_Types/Custom_Post_Type.php:171
 msgid "%s updated."
 msgstr ""
 
 #. translators: the singular post type name
 #. translators: the singular name of a taxonomy
-#: src/Post_Types/Custom_Post_Type.php:159
-#: src/Taxonomy.php:195
+#: src/Post_Types/Custom_Post_Type.php:173
+#: src/Taxonomy.php:215
 msgid "%s Link"
 msgstr ""
 
 #. translators: the singular post type name
 #. translators: the singular name of a taxonomy
-#: src/Post_Types/Custom_Post_Type.php:161
-#: src/Taxonomy.php:197
+#: src/Post_Types/Custom_Post_Type.php:175
+#: src/Taxonomy.php:217
 msgid "A link to a %s."
 msgstr ""
 
-#: src/Taxonomy.php:138
+#: src/Taxonomy.php:158
 msgid "The name is how it appears on your site."
 msgstr ""
 
-#: src/Taxonomy.php:139
+#: src/Taxonomy.php:159
 msgid "The &#8220;slug&#8221; is the URL-friendly version of the name. It is usually all lowercase and contains only letters, numbers, and hyphens."
 msgstr ""
 
-#: src/Taxonomy.php:140
+#: src/Taxonomy.php:160
 msgid "Assign a parent term to create a hierarchy. The term Jazz, for example, would be the parent of Bebop and Big Band."
 msgstr ""
 
-#: src/Taxonomy.php:141
+#: src/Taxonomy.php:161
 msgid "The description is not prominent by default; however, some themes may show it."
 msgstr ""
 
 #. translators: the plural name of a taxonomy
-#: src/Taxonomy.php:149
+#: src/Taxonomy.php:169
 msgid "Popular %s"
 msgstr ""
 
 #. translators: the singular name of a taxonomy
-#: src/Taxonomy.php:153
+#: src/Taxonomy.php:173
 msgid "Parent %s"
 msgstr ""
 
 #. translators: the singular name of a taxonomy
-#: src/Taxonomy.php:167
+#: src/Taxonomy.php:187
 msgid "View %s"
 msgstr ""
 
 #. translators: the singular name of a taxonomy
-#: src/Taxonomy.php:169
+#: src/Taxonomy.php:189
 msgid "Update %s"
 msgstr ""
 
 #. translators: the singular name of a taxonomy
-#: src/Taxonomy.php:173
+#: src/Taxonomy.php:193
 msgid "New %s Name"
 msgstr ""
 
 #. translators: the plural name of a taxonomy
-#: src/Taxonomy.php:175
+#: src/Taxonomy.php:195
 msgid "Separate %s with commas"
 msgstr ""
 
 #. translators: the plural name of a taxonomy
-#: src/Taxonomy.php:177
+#: src/Taxonomy.php:197
 msgid "Add or remove %s"
 msgstr ""
 
 #. translators: the plural name of a taxonomy
-#: src/Taxonomy.php:179
+#: src/Taxonomy.php:199
 msgid "Choose from the most used %s"
 msgstr ""
 
 #. translators: the plural name of a taxonomy
-#: src/Taxonomy.php:183
+#: src/Taxonomy.php:203
 msgid "No %s"
 msgstr ""
 
 #. translators: the plural name of a taxonomy
-#: src/Taxonomy.php:185
+#: src/Taxonomy.php:205
 msgid "Filter by %s"
 msgstr ""
 
 #. translators: the plural name of a taxonomy
-#: src/Taxonomy.php:191
+#: src/Taxonomy.php:211
 msgid "Most Used"
 msgstr ""
 
 #. translators: the plural name of a taxonomy
-#: src/Taxonomy.php:193
+#: src/Taxonomy.php:213
 msgid "&larr; Go to %s"
 msgstr ""
 
@@ -932,8 +961,4 @@ msgstr ""
 
 #: assets/js/admin/ept-editor.js:40
 msgid "Are you sure you want to delete the “%1$s” %2$s?"
-msgstr ""
-
-#: assets/js/src/admin/wizard-custom/index.js:63
-msgid "Manage post types"
 msgstr ""

@@ -1,5 +1,6 @@
 const pluginData = {
 	name: 'Easy Post Types and Fields',
+	prefixes: [ 'ept_', 'edit_ept_', 'manage_ept_' ],
 	libNamespace: 'Barn2\\EPT_Lib',
 	libIncludes: [ 'Plugin/Plugin.php', 'Plugin/Simple_Plugin.php', 'Plugin/Plugin_Activation_Listener.php', '*.php', 'Admin/**', 'assets/css/**', 'assets/js/**', '!class-*.php' ],
 	requiresES6: true
@@ -33,6 +34,7 @@ module.exports = {
 	default: test,
 	build: barn2build.buildPlugin,
 	assets: barn2build.buildAssets,
+	doc: barn2build.updateDoc,
 	pot: barn2build.buildTranslation,
 	library: barn2build.updateLibrary,
 	zip: barn2build.createZipFile,
@@ -40,5 +42,6 @@ module.exports = {
 	release: barn2build.releaseFreePlugin,
 	pluginTesting: barn2build.updatePluginTesting,
 	playground: barn2build.updatePluginPlayground,
+	hooks: barn2build.hookDoc,
 	wizard: barn2build.updateSetupWizard
 };

@@ -67,6 +67,11 @@ class Custom_Field_List_Table extends WP_List_Table {
 	 * {@inheritdoc}
 	 */
 	public function prepare_items() {
+		/**
+		 * Filter the number of items per page for the custom field list table
+		 *
+		 * @param int $items_per_page The number of items per page
+		 */
 		$per_page    = apply_filters( 'edit_ept_fields_per_page', $this->get_items_per_page( 'edit_ept_fields_per_page' ) );
 		$total_items = count( $this->fields );
 
@@ -136,7 +141,17 @@ class Custom_Field_List_Table extends WP_List_Table {
 			'type' => _x( 'Type', 'column name', 'easy-post-types-fields' ),
 		];
 
-		return apply_filters( 'manage_ept_taxonomies_columns', $columns );
+		/**
+		 * Filter the heading of each column in the custom field list table
+		 *
+		 * The array passed to the filter callback is an associative array
+		 * where the keys are the name of the columns and the values are the
+		 * headings. The columns in the array are presented in the same order
+		 * they have in the table.
+		 *
+		 * @param array $columns The columns of the list table
+		 */
+		return apply_filters( 'manage_ept_fields_columns', $columns );
 	}
 
 	/**

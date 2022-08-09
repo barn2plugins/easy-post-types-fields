@@ -217,8 +217,6 @@ abstract class Abstract_Post_Type implements Post_Type_Interface {
 	 * @return void
 	 */
 	public function output_meta_box( $post ) {
-		do_action( "ept_post_type_{$this->slug}_metabox" );
-
 		// get the fields registered with the post type
 		$fields    = get_post_meta( $this->id, '_ept_fields', true );
 		$post_type = $this->post_type;
@@ -227,7 +225,25 @@ abstract class Abstract_Post_Type implements Post_Type_Interface {
 			return;
 		}
 
+		/**
+		 * Fires before the content of the metabox is output
+		 *
+		 * The variable portion of the hook is the slug of the current post type.
+		 * Custom post types are always prefixed with `ept_` while built-in and
+		 * third-party post types use their original slug.
+		 */
+		do_action( "ept_post_type_{$post_type}_before_metabox" );
+
 		include ept()->get_admin_path( 'views/html-meta-box.php' );
+
+		/**
+		 * Fires after the content of the metabox is output
+		 *
+		 * The variable portion of the hook is the slug of the current post type.
+		 * Custom post types are always prefixed with `ept_` while built-in and
+		 * third-party post types use their original slug.
+		 */
+		do_action( "ept_post_type_{$post_type}_after_metabox" );
 	}
 
 	/**

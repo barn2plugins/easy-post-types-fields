@@ -96,8 +96,22 @@ class Field {
 				'show_in_rest' => true,
 			];
 
+			/**
+			 * Filter the arguments to register a custom field
+			 *
+			 * The variable part of the hook is the slug of the field
+			 * (which is prefixed with `$post_type`). For example, the full slug
+			 * of a `link` field registered to an `article` custom post
+			 * type will be `ept_article_link`. When adding a custom
+			 * field to a post type registered by WordPress or by a third-party
+			 * plugin, the prefix is simply the slug of the post type. For
+			 * example, the full slug of a custom 'link' field registered to
+			 * the 'post' post type would be `post_link`.
+			 *
+			 * @param array $args The list of argumets to register this custom field
+			 */
 			$this->args = apply_filters(
-				"{$this->key}_meta_args",
+				"ept_field_{$this->key}_args",
 				wp_parse_args(
 					$args,
 					$default_args

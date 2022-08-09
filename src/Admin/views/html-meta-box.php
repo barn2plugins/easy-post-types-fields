@@ -27,10 +27,36 @@ defined( 'ABSPATH' ) || exit;
 				<th scope="row"><?php echo esc_html( $field['name'] ); ?></th>
 				<td>
 					<?php
+
+					/**
+					 * Fires before a field input is output in the metabox
+					 *
+					 * The variable portion of the hook is the slug of the current post type.
+					 * Custom post types are always prefixed with `ept_` while built-in and
+					 * third-party post types use their original slug.
+					 *
+					 * @param string $meta_key The key of the current custom field
+					 * @param string $meta_value The value of the current custom field
+					 */
+					do_action( "ept_post_type_{$post_type}_before_metabox_field", $meta_key, $meta_value );
+
 					switch ( $field['type'] ) {
 						case 'image':
 						case 'text':
-							$attributes = apply_filters( "ept_text_input_attributes_{$post_type}", [], $field, $post_type );
+							/**
+							 * Filter the attributes added to the text input element in the custom field metabox
+							 *
+							 * The variable part of the hook is the slug of the post_type the current
+							 * custom field is registered to. The attributes are defined as an associative
+							 * array where the keys are the name of the attributes and the values are the
+							 * values of the attributes.
+							 *
+							 * @param array $args The array of attributes
+							 * @param string $field The slug of the current field
+							 * @param string $post_type The slug of the current post type
+							 */
+
+							$attributes = apply_filters( "ept_{$post_type}_field_text_input_attributes", [], $field, $post_type );
 							array_walk(
 								$attributes,
 								function( &$v, $k ) {
@@ -47,10 +73,35 @@ defined( 'ABSPATH' ) || exit;
 							break;
 
 						case 'editor':
-							wp_editor( htmlspecialchars_decode( $meta_value ), $meta_key, apply_filters( "ept_editor_{$post_type}", [ 'textarea_rows' => 5 ], $field, $post_type ) );
+							/**
+							 * Filter the arguments passed to the `wp_editor` function
+							 * that output the WYSIWYG editor in the custom field meta box.
+							 *
+							 * The variable part of the hook is the slug of the post_type the current
+							 * custom field is registered to.
+							 *
+							 * @param array $args An associative array of arguments passed to wp_editor
+							 * @param string $field The slug of the current field
+							 * @param string $post_type The slug of the current post type
+							 */
+							$editor_args = apply_filters( "ept_{$post_type}_field_editor_args", [ 'textarea_rows' => 5 ], $field, $post_type );
+							wp_editor( htmlspecialchars_decode( $meta_value ), $meta_key, $editor_args );
 							break;
 
 					}
+
+					/**
+					 * Fires before a field input is output in the metabox
+					 *
+					 * The variable portion of the hook is the slug of the current post type.
+					 * Custom post types are always prefixed with `ept_` while built-in and
+					 * third-party post types use their original slug.
+					 *
+					 * @param string $meta_key The key of the current custom field
+					 * @param string $meta_value The value of the current custom field
+					 */
+					do_action( "ept_post_type_{$post_type}_after_metabox_field", $meta_key, $meta_value );
+
 					?>
 				</td>
 			</tr>

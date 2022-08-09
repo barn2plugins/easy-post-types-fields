@@ -122,6 +122,9 @@ class CPT_Editor implements Service, Registerable {
 
 		add_action( 'admin_init', [ $this, 'save_post_data' ] );
 		add_action( 'admin_notices', [ $this, 'admin_notices' ] );
+
+		add_filter( 'menu_order', [ $this, 'menu_order' ] );
+		add_filter( 'custom_menu_order', '__return_true' );
 	}
 
 	/**
@@ -156,6 +159,39 @@ class CPT_Editor implements Service, Registerable {
 		if ( ! Lib_Util::is_barn2_plugin_active( 'Barn2\Plugin\Password_Protected_Categories\ppc' ) ) {
 			add_submenu_page( 'ept_post_types', 'Protect', 'Protect', 'manage_options', 'ept_post_types-promo-protect', [ $this, 'output_promo_protect_page' ] );
 		}
+	}
+
+	public function menu_order( $menu_order ) {
+		$ept_menu = array_filter(
+			$menu_order,
+			function( $menu ) {
+				return 'ept_post_types' === $menu;
+			}
+		);
+
+		if ( empty( $ept_menu ) ) {
+			return $menu_order;
+		}
+
+		$ept_menu_index = array_keys( $ept_menu )[0];
+
+		$post_type_menus = array_filter(
+			$menu_order,
+			function( $menu ) {
+				return false !== strpos( $menu, '?post_type=ept_' );
+			}
+		);
+
+		$new_order = array_diff_key( $menu_order, $ept_menu, $post_type_menus );
+
+		$new_menu = array_merge(
+			array_slice( $new_order, 0, $ept_menu_index ),
+			$ept_menu,
+			$post_type_menus,
+			array_slice( $new_order, $ept_menu_index )
+		);
+
+		return $new_menu;
 	}
 
 	/**
