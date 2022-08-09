@@ -129,16 +129,16 @@ Yes, you can add HTML and shortcodes into either the plain text and Visual Edito
 
 == Upgrade Notice ==
 
-= 1.1.0 =
- * New: Added support for WooCommerce Product Table and Document Library Pro
- * Fix: Top-level menus not being ordered correctly
- * Dev: Updated compatibility up to Wordpress 6.0.1
- 
 = 1.0.0 =
 This is the initial release
 
 == Changelog ==
 
+= 1.1.0 =
+ * New: Added support for WooCommerce Product Table and Document Library Pro
+ * Fix: Top-level menus not being ordered correctly
+ * Dev: Updated compatibility up to Wordpress 6.0.1
+ 
 = 1.0.0 =
 Release date 7 May 2022
 
