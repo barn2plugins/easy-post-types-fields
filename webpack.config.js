@@ -1,8 +1,8 @@
-const config = require( '@barn2/webpack-config' );
+const config = require( '@barn2media/webpack-config' );
 const WPDependencyExtractionWebpackPlugin = require( '@wordpress/dependency-extraction-webpack-plugin' );
 
 module.exports = {
-	...config,
+    ...config,
 	plugins: [
 		...config.plugins.filter(
 			( plugin ) =>
@@ -13,5 +13,5 @@ module.exports = {
 			combineAssets: true,
 			combinedOutputFile: './assets/js/wp-dependencies.json'
 		}),
-	],
+	]
 };

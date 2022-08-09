@@ -1,17 +1,13 @@
-console.log( 'wizard-custom start');
-
 import { __, sprintf } from '@wordpress/i18n';
 import { addAction, addFilter } from '@wordpress/hooks';
 
-import GridiconChevronRight from 'gridicons/dist/chevron-right';
-import { Fill, CardBody } from '@wordpress/components';
-import { List } from '@woocommerce/components';
-
 import Welcome from './welcome';
+import EPT_Ready from './ready';
 
 const addCustomSteps = ( steps ) => {
     const customSteps = [
         { key: 'welcome', component: Welcome },
+        { key: 'ready', component: EPT_Ready },
     ];
 
     for ( const { key, component } of customSteps ) {
@@ -60,8 +56,8 @@ const onReadyUpdated = ( ready ) => {
 	if ( 'ept_ready' === key || 'ready' === key ) {
 		const heading            = sprintf( ready.props.step.heading, ready.props.getValues().singular ),
 			  description        = sprintf( ready.props.step.description, ready.props.getValues().plural ),
-			  settingsButtonText = __( 'Manage post types', 'easy-post-types-fields' );
-		ready.setState( { heading, description, settingsButtonText } );
+			  showSettingsButton = false;
+		ready.setState( { heading, description, showSettingsButton } );
 	}
 }
 addAction( 'barn2_wizard_ready_mounted', 'ept_post_types', onReadyUpdated )
@@ -82,37 +78,3 @@ const onStepUpdated = ( withForm ) => {
 }
 addAction( 'barn2_wizard_withform_mounted', 'ept_post_types', onStepUpdated );
 addAction( 'barn2_wizard_withform_updated', 'ept_post_types', onStepUpdated );
-
-
-const readyPageContent = () => {
-	return ( props ) => {
-		const values = props.getValues();
-
-		const listItems = [
-			{
-				after: <GridiconChevronRight />,
-				title: __('Add custom fields'),
-				href: `${barn2_setup_wizard.admin_url}admin.php?page=ept_post_types&post_type=ept_${values.slug}&section=fields`,
-			},
-			{
-				after: <GridiconChevronRight />,
-				title: __('Add taxonomies'),
-				href: `${barn2_setup_wizard.admin_url}admin.php?page=ept_post_types&post_type=ept_${values.slug}&section=taxonomies`,
-			},
-			{
-				after: <GridiconChevronRight />,
-				title: sprintf( __('Add New %s'), values.singular ),
-				href: `${barn2_setup_wizard.admin_url}post-new.php?post_type=ept_${values.slug}`,
-			}
-		];
-
-		return (
-			<Fill name="ReadyPageContent">
-				<CardBody>
-					<List items={listItems} />
-				</CardBody>
-			</Fill>
-		);
-	};
-}
-addFilter('barn2_setup_wizard_ready_page', 'ept_post_types', readyPageContent);

@@ -195,7 +195,7 @@ class Setup_Wizard implements Bootable
      */
     public function configure($args = [])
     {
-        $defaults = ['plugin_name' => $this->plugin->get_name(), 'plugin_slug' => $this->plugin->get_slug(), 'plugin_product_id' => $this->plugin::ITEM_ID, 'skip_url' => admin_url(), 'license_tooltip' => '', 'utm_id' => '', 'premium_url' => '', 'completed' => $this->is_completed()];
+        $defaults = ['plugin_name' => $this->plugin->get_name(), 'plugin_slug' => $this->plugin->get_slug(), 'plugin_product_id' => $this->plugin::ITEM_ID, 'skip_url' => admin_url(), 'license_tooltip' => '', 'utm_id' => '', 'premium_url' => '', 'completed' => $this->is_completed(), 'barn2_api' => 'https://barn2.com/wp-json/upsell/v1/settings'];
         $args = wp_parse_args($args, $defaults);
         $args['ajax'] = esc_url(admin_url('admin-ajax.php'));
         $args['nonce'] = wp_create_nonce('barn2_setup_wizard_nonce');
@@ -523,7 +523,7 @@ class Setup_Wizard implements Bootable
      */
     public function get_library_url()
     {
-        $url = trailingslashit(plugin_dir_url($this->plugin->get_file())) . 'dependencies/';
+        $url = trailingslashit(plugin_dir_url(__DIR__));
         if ($this->is_dev_mode()) {
             $url = trailingslashit(plugin_dir_url($this->dev_mode));
         }
@@ -539,7 +539,7 @@ class Setup_Wizard implements Bootable
      */
     public function get_library_path()
     {
-        $path = trailingslashit(plugin_dir_path($this->plugin->get_file())) . 'dependencies/';
+        $path = trailingslashit(plugin_dir_path(__DIR__));
         if ($this->is_dev_mode()) {
             $path = trailingslashit(plugin_dir_path($this->dev_mode));
         }

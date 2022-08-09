@@ -23,6 +23,9 @@ class Cross_Selling extends Step
     public function __construct()
     {
         $this->set_id('more');
+        $this->set_name(esc_html__('More', 'easy-post-types-fields'));
+        $this->set_title(esc_html__('Extra features', 'easy-post-types-fields'));
+        $this->set_description(esc_html__('Enhance your site with these fantastic plugins from Barn2.', 'easy-post-types-fields'));
     }
     /**
      * {@inheritdoc}

@@ -58,9 +58,9 @@ class Review_Notice implements Registerable, Service {
 		}
 
 		$post_type_count = (array) wp_count_posts( 'ept_post_type' );
-		$count           = isset( $post_type_count['publish'] ) ? (int) $post_type_count['publish'] : 0;
+		$count           = $post_type_count['publish'] ?? 0;
 
-		if ( 1 === $count ) {
+		if ( (int) $count > 0 ) {
 			update_option( 'ept_review_notice_triggered', true, false );
 		}
 	}
@@ -90,6 +90,10 @@ class Review_Notice implements Registerable, Service {
 			return;
 		}
 
+		if ( $pagenow === 'index.php' && $current_screen->id !== 'dashboard' ) {
+			return;
+		}
+
 		if ( $pagenow === 'admin.php' && $current_screen->parent_base !== 'ept_post_types' ) {
 			return;
 		}
@@ -98,7 +102,7 @@ class Review_Notice implements Registerable, Service {
 			return;
 		}
 
-		if ( ! get_option( 'ept_review_notice_triggered' ) || get_option( 'ept_review_notice_dismissed' ) ) {
+		if ( get_option( 'ept_review_notice_triggered' ) || get_option( 'ept_review_notice_dismissed' ) ) {
 			return;
 		}
 

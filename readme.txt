@@ -3,9 +3,9 @@
 Contributors: barn2media
 Tags: custom post type, custom field, custom taxonomy, custom post types, custom fields, taxonomy, custom taxonomies, content type, post type, custom data, meta fields
 Requires at least: 5.0
-Tested up to: 5.9.3
+Tested up to: 6.0.1
 Requires PHP: 7.2
-Stable tag: 1.0.1-b.1
+Stable tag: 1.1.0
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Donate link: https://barn2.com
@@ -129,6 +129,11 @@ Yes, you can add HTML and shortcodes into either the plain text and Visual Edito
 
 == Upgrade Notice ==
 
+= 1.1.0 =
+ * New: Added support for WooCommerce Product Table and Document Library Pro
+ * Fix: Top-level menus not being ordered correctly
+ * Dev: Updated compatibility up to Wordpress 6.0.1
+ 
 = 1.0.0 =
 This is the initial release
 

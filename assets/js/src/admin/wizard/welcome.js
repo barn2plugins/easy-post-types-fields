@@ -2,16 +2,11 @@
  * WordPress dependencies
  */
 import { __, sprintf } from '@wordpress/i18n';
-import { Button, Card, CardFooter, Popover } from '@wordpress/components';
+import { Button, Card, CardFooter, Popover, __experimentalText as Text, __experimentalHeading as Heading } from '@wordpress/components';
 import { Component } from '@wordpress/element';
 import { Icon, info } from '@wordpress/icons';
 import { isEmpty, has, map } from 'lodash';
-
-/**
- * WooCommerce dependencies
- */
-import { Text } from '@woocommerce/experimental';
-
+ 
 /**
  * External dependencies
  */
