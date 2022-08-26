@@ -189,7 +189,7 @@ class Barn2_Table_Plugin implements Registerable, Service {
 
 			if ( $post_type_object ) {
 				$field_key        = str_replace( "{$post->post_type}_", '', $meta_key );
-				$post_type_fields = get_post_meta( $post_type_object->ID, '_ept_fields', true );
+				$post_type_fields = (array) get_post_meta( $post_type_object->ID, '_ept_fields', true );
 				$field            = array_filter(
 					$post_type_fields,
 					function( $f ) use ( $field_key ) {
