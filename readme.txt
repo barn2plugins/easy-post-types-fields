@@ -5,7 +5,7 @@ Tags: custom post type, custom field, custom taxonomy, custom post types, custom
 Requires at least: 5.0
 Tested up to: 6.0.1
 Requires PHP: 7.2
-Stable tag: 1.1.0
+Stable tag: 1.1.1
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Donate link: https://barn2.com
@@ -134,6 +134,10 @@ This is the initial release
 
 == Changelog ==
 
+= 1.1.1 =
+ * Fix: Improved integration with Document Library Pro
+ * Fix: Exception being thrown for wrong parameter type
+ 
 = 1.1.0 =
  * New: Added support for WooCommerce Product Table and Document Library Pro
  * Fix: Top-level menus not being ordered correctly

@@ -11,7 +11,7 @@
  * Plugin Name:     Easy Post Types and Fields
  * Plugin URI:      https://wordpress.org/plugins/easy-post-types-fields/
  * Description:     Create custom post types, fields and taxonomies.
- * Version:         1.1.0
+ * Version:         1.1.1
  * Author:          Barn2 Plugins
  * Author URI:      https://barn2.com
  * Text Domain:     easy-post-types-fields
@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-const PLUGIN_VERSION = '1.1.0';
+const PLUGIN_VERSION = '1.1.1';
 const PLUGIN_FILE    = __FILE__;
 
 // Autoloader.

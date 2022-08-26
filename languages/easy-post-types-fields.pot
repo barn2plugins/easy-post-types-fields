@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: Easy Post Types and Fields 1.1.0\n"
+"Project-Id-Version: Easy Post Types and Fields 1.1.1\n"
 "Report-Msgid-Bugs-To: https://barn2.com/support-center/\n"
 "Last-Translator: Barn2 Plugins <support@barn2.com>\n"
 "Language-Team: Barn2 Plugins <support@barn2.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-08-09T00:00:00+00:00\n"
+"POT-Creation-Date: 2022-08-26T00:00:00+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: easy-post-types-fields\n"
@@ -275,7 +275,6 @@ msgstr ""
 msgid "Manage Custom Fields"
 msgstr ""
 
-#. translators: 1: 'Add' or 'Update', 2: 'custom field' or 'taxonomy' phpcs:ignore Squiz.PHP.CommentedOutCode.Found
 #: src/Admin/CPT_Editor.php:316
 #: src/Admin/views/html-manage-page-lists.php:36
 #: src/Util.php:333
@@ -552,7 +551,6 @@ msgstr ""
 msgid "%1$s %2$s"
 msgstr ""
 
-#. translators: 1: 'Add' or 'Update', 2: 'custom field' or 'taxonomy' phpcs:ignore Squiz.PHP.CommentedOutCode.Found
 #: src/Admin/views/html-manage-page-lists.php:36
 msgid "Update"
 msgstr ""
