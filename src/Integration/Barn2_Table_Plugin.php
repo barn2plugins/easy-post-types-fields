@@ -52,6 +52,9 @@ class Barn2_Table_Plugin implements Registerable, Service {
 				'doc_library'   => [
 					'prefix'    => 'document_library_pro',
 					'post_type' => 'dlp_document',
+					'filter'    => [
+						'hook' => 'document_library_pro_filled_args',
+					],
 				],
 				'product_table' => [
 					'prefix'    => 'wc_product_table',
@@ -61,6 +64,21 @@ class Barn2_Table_Plugin implements Registerable, Service {
 		);
 
 		foreach ( $this->plugins as $shortcode => $args ) {
+			if ( isset( $args['filter'] ) ) {
+				$filter   = $args['filter'];
+				$priority = $filter['priority'] ?? 10;
+
+				// for this filter callback, we use an anonymous function instead of a class method
+				// so that we can inject the shortcode name of the current plugin
+				add_filter(
+					$filter['hook'],
+					function( $atts ) use ( $shortcode ) {
+						return apply_filters( "shortcode_atts_{$shortcode}", $atts, [], [], $shortcode );
+					},
+					$priority
+				);
+			}
+
 			add_filter( "shortcode_atts_{$shortcode}", [ $this, 'shortcode_atts' ], 10, 4 );
 			add_filter( "{$args['prefix']}_data_custom_field", [ $this, 'data_custom_field' ], 10, 3 );
 		}
