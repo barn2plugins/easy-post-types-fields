@@ -8,6 +8,7 @@
  */
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Barn2\Setup_Wizard\Steps;
 
+use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Barn2\Setup_Wizard\Api;
 use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Barn2\Setup_Wizard\Step;
 /**
  * Handles the welcome step of the wizard for free plugins.
@@ -20,7 +21,7 @@ class Welcome_Free extends Step
     public function __construct()
     {
         $this->set_id('welcome_free');
-        $this->set_name(esc_html__('Welcome', 'easy-post-types-fields'));
+        $this->set_name(esc_html__('Welcome', 'barn2-setup-wizard'));
     }
     /**
      * {@inheritdoc}
@@ -33,11 +34,8 @@ class Welcome_Free extends Step
     /**
      * {@inheritdoc}
      */
-    public function submit()
+    public function submit($values)
     {
-        check_ajax_referer('barn2_setup_wizard_nonce', 'nonce');
-        if (!current_user_can('manage_options')) {
-            $this->send_error(__('You are not allowed to validate your license.', 'easy-post-types-fields'));
-        }
+        return Api::send_success_response();
     }
 }
