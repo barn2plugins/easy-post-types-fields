@@ -44,7 +44,6 @@ class Admin_Controller implements Registerable, Service {
 		$services = [
 			'cpt_editor'    => new CPT_Editor( $this->plugin ),
 			'review_notice' => new Review_Notice( $this->plugin ),
-			'wizard'        => new Wizard\Setup_Wizard( $this->plugin ),
 		];
 
 		return $services;

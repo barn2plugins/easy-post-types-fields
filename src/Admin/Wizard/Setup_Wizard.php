@@ -14,6 +14,7 @@ use Barn2\Plugin\Easy_Post_Types_Fields\Util;
 use Barn2\EPT_Lib\Plugin\Simple_Plugin;
 use Barn2\EPT_Lib\Registerable;
 use Barn2\EPT_Lib\Util as Lib_Util;
+use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Barn2\Setup_Wizard\Setup_Wizard as Wizard;
 
 /**
  * {@inheritdoc}
@@ -58,6 +59,7 @@ class Setup_Wizard implements Registerable {
 			]
 		);
 
+		/*
 		$script_dependencies = Lib_Util::get_script_dependencies( $this->plugin, './assets/js/admin/wizard-library.min.js' );
 		$wizard->set_non_wc_asset(
 			$plugin->get_dir_url() . 'assets/js/admin/wizard-library.min.js',
@@ -67,7 +69,7 @@ class Setup_Wizard implements Registerable {
 		$wizard->add_custom_asset(
 			$plugin->get_dir_url() . 'assets/js/admin/wizard.min.js',
 			$script_dependencies
-		);
+		);*/
 
 		$this->wizard = $wizard;
 

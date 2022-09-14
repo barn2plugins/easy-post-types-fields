@@ -40,7 +40,9 @@ class Plugin extends Simple_Plugin implements Registerable, Translatable {
 			]
 		);
 
-		$this->services = [];
+		$this->services = [
+			'wizard' => new Admin\Wizard\Setup_Wizard( $this ),
+		];
 
 		if ( Lib_Util::is_admin() ) {
 			$this->services['admin/controller'] = new Admin\Admin_Controller( $this );
