@@ -54,13 +54,21 @@ class EPT_Name extends Step {
 	 */
 	public function submit( array $values ) {
 		if ( ! $values['singular'] || ! $values['plural'] ) {
-			$this->send_error( esc_html__( 'Both fields must not be empty.', 'easy-post-types-fields' ) );
+			return Api::send_error_response(
+				[
+					'message' => esc_html__( 'Both fields must not be empty.', 'easy-post-types-fields' )
+				]
+			);
 		}
 
 		$slug = sanitize_title( $values['singular'] );
 
 		if ( strlen( $slug ) > 17 ) {
-			$this->send_error( esc_html__( 'The name of the post type cannot be longer than 17 characters.', 'easy-post-types-fields' ) );
+			return Api::send_error_response(
+				[
+					'message' => esc_html__( 'The name of the post type cannot be longer than 17 characters.', 'easy-post-types-fields' )
+				]
+			);
 		}
 
 		$posts = get_posts(
@@ -71,7 +79,11 @@ class EPT_Name extends Step {
 		);
 
 		if ( count( $posts ) ) {
-			$this->send_error( esc_html__( 'A post type with this name is already present. Please input a different name.', 'easy-post-types-fields' ) );
+			return Api::send_error_response(
+				[
+					'message' => esc_html__( 'A post type with this name is already present. Please input a different name.', 'easy-post-types-fields' )
+				]
+			);
 		}
 
 		return Api::send_success_response();

@@ -82,11 +82,19 @@ class EPT_Features extends Step {
 		);
 
 		if ( is_wp_error( $post_type_id ) ) {
-			$this->send_error( esc_html( $post_type_id->get_error_message() ) );
+			return Api::send_error_response(
+				[
+					'message' => esc_html( $post_type_id->get_error_message() ),
+				]
+			);
 		}
 
 		if ( 0 === $post_type_id ) {
-			$this->send_error( esc_html__( 'It is not possible to create the post type with the current configuration.', 'easy-post-types-fields' ) );
+			return Api::send_error_response(
+				[
+					'message' => esc_html__( 'It is not possible to create the post type with the current configuration.', 'easy-post-types-fields' )
+				]
+			);
 		}
 
 		Util::set_update_transient( "ept_{$slug}" );
