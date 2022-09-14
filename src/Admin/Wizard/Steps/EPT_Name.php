@@ -10,6 +10,7 @@
 
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin\Wizard\Steps;
 
+use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Barn2\Setup_Wizard\Api;
 use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Barn2\Setup_Wizard\Step;
 
 /**
@@ -51,9 +52,7 @@ class EPT_Name extends Step {
 	/**
 	 * {@inheritdoc}
 	 */
-	public function submit() {
-		$values = $this->get_submitted_values();
-
+	public function submit( array $values ) {
 		if ( ! $values['singular'] || ! $values['plural'] ) {
 			$this->send_error( esc_html__( 'Both fields must not be empty.', 'easy-post-types-fields' ) );
 		}
@@ -75,7 +74,7 @@ class EPT_Name extends Step {
 			$this->send_error( esc_html__( 'A post type with this name is already present. Please input a different name.', 'easy-post-types-fields' ) );
 		}
 
-		wp_send_json_success( [ 'slug' => $slug ] );
+		return Api::send_success_response();
 	}
 
 }

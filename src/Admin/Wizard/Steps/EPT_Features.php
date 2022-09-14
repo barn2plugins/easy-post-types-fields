@@ -10,6 +10,7 @@
 
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin\Wizard\Steps;
 
+use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Barn2\Setup_Wizard\Api;
 use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Barn2\Setup_Wizard\Step;
 use Barn2\Plugin\Easy_Post_Types_Fields\Util;
 
@@ -55,12 +56,7 @@ class EPT_Features extends Step {
 	/**
 	 * {@inheritdoc}
 	 */
-	public function submit() {
-		if ( ! wp_verify_nonce( $_POST['nonce'], 'barn2_setup_wizard_nonce' ) ) {
-			return;
-		}
-
-		$values       = $this->get_submitted_values();
+	public function submit( array $values ) {
 		$supports     = array_keys(
 			array_filter(
 				$values,
@@ -94,7 +90,7 @@ class EPT_Features extends Step {
 		}
 
 		Util::set_update_transient( "ept_{$slug}" );
-		wp_send_json_success();
+		return Api::send_success_response();
 	}
 
 }

@@ -16,7 +16,6 @@ use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Barn2\Setup_Wizard\Steps\Re
  * {@inheritdoc}
  */
 class EPT_Ready extends Ready {
-
 	/**
 	 * {@inheritdoc}
 	 */
@@ -28,17 +27,4 @@ class EPT_Ready extends Ready {
 		// translators: the singular name of a post type
 		$this->set_title( esc_html__( 'The %s post type is ready!', 'easy-post-types-fields' ) );
 	}
-
-	/**
-	 * {@inheritdoc}
-	 */
-	public function setup_fields() {
-		return [];
-	}
-
-	/**
-	 * {@inheritdoc}
-	 */
-	public function submit() {}
-
 }
