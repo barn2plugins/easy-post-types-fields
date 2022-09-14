@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Attribute' => $vendorDir . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
+    'Barn2\\Plugin\\Easy_Post_Types_Fields\\Dependencies\\Barn2\\Setup_Wizard\\Api' => $baseDir . '/dependencies/src/Api.php',
     'Barn2\\Plugin\\Easy_Post_Types_Fields\\Dependencies\\Barn2\\Setup_Wizard\\Interfaces\\Bootable' => $baseDir . '/dependencies/src/Interfaces/Bootable.php',
     'Barn2\\Plugin\\Easy_Post_Types_Fields\\Dependencies\\Barn2\\Setup_Wizard\\Interfaces\\Pluggable' => $baseDir . '/dependencies/src/Interfaces/Pluggable.php',
     'Barn2\\Plugin\\Easy_Post_Types_Fields\\Dependencies\\Barn2\\Setup_Wizard\\Interfaces\\Restartable' => $baseDir . '/dependencies/src/Interfaces/Restartable.php',

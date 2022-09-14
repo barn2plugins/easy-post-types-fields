@@ -70,7 +70,7 @@ final class Versions
   'thecodingmachine/safe' => 'v2.3.0@dc8df8f5047e7d3021a3f41f492dc99f8b3dc475',
   'webmozart/assert' => '1.11.0@11cb2199493b2f8a3b53e7f19068fc6aac760991',
   'wp-coding-standards/wpcs' => '2.3.0@7da1894633f168fe244afc6de00d141f27517b62',
-  'barn2/easy-post-types-fields' => 'dev-master@42572b46ff16af73f5aceaec0c1f8b9e6fe4cef1',
+  'barn2/easy-post-types-fields' => 'dev-master@06e2c71e837f01b710eac5b64abce1e4af0a75fb',
 );
 
     private function __construct()
