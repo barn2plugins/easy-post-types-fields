@@ -24,7 +24,6 @@ addFilter('barn2_setup_wizard_steps', 'ept-wizard', (steps) => {
  * and adjust the text of the steps.
  */
 window.addEventListener( 'barn2_setup_wizard_changed', (dispatchedEvent) => {
-
 	// Method used to set overrides.
 	const setStepOverride = dispatchedEvent.detail.setStepOverride
 
@@ -32,14 +31,19 @@ window.addEventListener( 'barn2_setup_wizard_changed', (dispatchedEvent) => {
 	const value = dispatchedEvent.detail.plural
 
 	if ( ! isEmpty( value ) ) {
+		const featuresStep = barn2_setup_wizard.steps.find( step => step.key === 'ept_features' )
+		const readyStep = barn2_setup_wizard.steps.find( step => step.key === 'ept_ready' )
+
 		setStepOverride( 'ept_features', {
-			pageDescription: 'hello there'
+			pageTitle: sprintf( featuresStep.heading, value ),
+			pageDescription: sprintf( featuresStep.description, value )
 		} )
+
 		setStepOverride( 'ept_ready', {
-			pageDescription: 'hello there'
+			pageTitle: sprintf( readyStep.heading, value ),
+			pageDescription: sprintf( readyStep.description, value )
 		} )
 	}
-
 }, false);
 
 /*
