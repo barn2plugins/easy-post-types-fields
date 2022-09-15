@@ -2790,10 +2790,13 @@ const SetupWizardContainer = () => {
 
   const hiddenSteps = (0,_hooks__WEBPACK_IMPORTED_MODULE_11__.useSetupWizardStore)(state => state.hiddenSteps); // Wizard values collection.
 
-  const wizardValues = (0,_hooks__WEBPACK_IMPORTED_MODULE_11__.useSetupWizardStore)(state => state.wizardValues);
+  const wizardValues = (0,_hooks__WEBPACK_IMPORTED_MODULE_11__.useSetupWizardStore)(state => state.wizardValues); // Wizard overrides.
+
+  const stepOverrides = (0,_hooks__WEBPACK_IMPORTED_MODULE_11__.useSetupWizardStore)(state => state.stepOverrides);
   const {
     showStep,
-    hideStep
+    hideStep,
+    setStepOverride
   } = (0,_hooks__WEBPACK_IMPORTED_MODULE_11__.useSetupWizardStore)(); // Grab admin notices for the wizard page.
 
   const {
@@ -2839,7 +2842,8 @@ const SetupWizardContainer = () => {
   (0,_use_it_event_listener__WEBPACK_IMPORTED_MODULE_8__["default"])('barn2_form_changed', dispatchedEvent => {
     const newData = { ...dispatchedEvent.detail,
       showStep,
-      hideStep
+      hideStep,
+      setStepOverride
     };
     _hooks__WEBPACK_IMPORTED_MODULE_11__.useSetupWizardStore.setState({
       wizardValues: dispatchedEvent.detail
@@ -2858,12 +2862,17 @@ const SetupWizardContainer = () => {
   const getSteps = () => {
     const availableSteps = [];
     (0,lodash__WEBPACK_IMPORTED_MODULE_3__.forEach)(steps, (step, index) => {
+      var _stepOverrides$step$k, _stepOverrides$step$k2, _stepOverrides$step$k3, _stepOverrides$step$k4;
+
+      const stepPageTitle = (_stepOverrides$step$k = (_stepOverrides$step$k2 = stepOverrides[step.key]) === null || _stepOverrides$step$k2 === void 0 ? void 0 : _stepOverrides$step$k2.pageTitle) !== null && _stepOverrides$step$k !== void 0 ? _stepOverrides$step$k : step.heading;
+      const stepPageDescription = (_stepOverrides$step$k3 = (_stepOverrides$step$k4 = stepOverrides[step.key]) === null || _stepOverrides$step$k4 === void 0 ? void 0 : _stepOverrides$step$k4.pageDescription) !== null && _stepOverrides$step$k3 !== void 0 ? _stepOverrides$step$k3 : step.description;
+
       if (step.key === 'welcome' || step.key === 'more') {
         availableSteps.push({
           key: step.key,
           label: step.label,
-          pageTitle: step.heading,
-          pageDescription: step.description,
+          pageTitle: stepPageTitle,
+          pageDescription: stepPageDescription,
           pageTooltip: step === null || step === void 0 ? void 0 : step.tooltip,
           component: step.key === 'welcome' ? _steps_LicenseVerificationStep__WEBPACK_IMPORTED_MODULE_14__["default"] : _steps_UpsellStep__WEBPACK_IMPORTED_MODULE_15__["default"],
           disabled: step.key === 'more' && isAccessPass
@@ -2872,8 +2881,8 @@ const SetupWizardContainer = () => {
         availableSteps.push({
           key: step.key,
           label: step.label,
-          pageTitle: step.heading,
-          pageDescription: step.description,
+          pageTitle: stepPageTitle,
+          pageDescription: stepPageDescription,
           pageTooltip: step === null || step === void 0 ? void 0 : step.tooltip,
           component: _steps_ReadyStep__WEBPACK_IMPORTED_MODULE_17__["default"]
         });
@@ -2881,15 +2890,15 @@ const SetupWizardContainer = () => {
         availableSteps.push({
           key: step.key,
           label: step.label,
-          pageTitle: step.heading,
-          pageDescription: step.description,
+          pageTitle: stepPageTitle,
+          pageDescription: stepPageDescription,
           pageTooltip: step === null || step === void 0 ? void 0 : step.tooltip,
           fields: parseFields(step.fields),
           hidden: hiddenSteps.includes(step.key)
         });
       }
     });
-    return (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_9__.applyFilters)('barn2_setup_wizard_steps', availableSteps, wizardValues, setSteps);
+    return (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_9__.applyFilters)('barn2_setup_wizard_steps', availableSteps);
   };
   /**
    * Parse fields from the steps and make them compatible
@@ -3881,6 +3890,12 @@ const useSetupWizardStore = (0,zustand__WEBPACK_IMPORTED_MODULE_3__["default"])(
     licenseIsAccessPass: false,
     hiddenSteps: (_JSON_DATA$hiddenStep = _utils__WEBPACK_IMPORTED_MODULE_2__.JSON_DATA.hiddenSteps) !== null && _JSON_DATA$hiddenStep !== void 0 ? _JSON_DATA$hiddenStep : [],
     wizardValues: {},
+    stepOverrides: {},
+    setStepOverride: (property, value) => set(state => ({
+      stepOverrides: { ...state.stepOverrides,
+        [property]: value
+      }
+    })),
     hideStep: key => set(state => {
       if (!state.hiddenSteps.includes(key)) {
         return { ...state,
