@@ -2,15 +2,17 @@
  * External dependencies
  */
 import { addFilter } from '@wordpress/hooks';
-import { __ } from '@wordpress/i18n';
+import { sprintf, __ } from '@wordpress/i18n';
  
 /**
  * Internal dependencies
  */
 import WelcomeStep from './WelcomeStep';
 
-addFilter( 'barn2_setup_wizard_steps', 'ept-wizard', ( steps, values, setSteps ) => {
-
+/**
+ * Override steps components.
+ */
+addFilter( 'barn2_setup_wizard_steps', 'ept-wizard', ( steps ) => {
 	steps[0].component = WelcomeStep
 
     return steps;
