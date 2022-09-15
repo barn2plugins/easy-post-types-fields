@@ -1,3 +1,22 @@
+/**
+ * External dependencies
+ */
+import { addFilter } from '@wordpress/hooks';
+import { __ } from '@wordpress/i18n';
+ 
+/**
+ * Internal dependencies
+ */
+import WelcomeStep from './WelcomeStep';
+
+addFilter( 'barn2_setup_wizard_steps', 'ept-wizard', ( steps, values, setSteps ) => {
+
+	steps[0].component = WelcomeStep
+
+    return steps;
+} )
+
+/*
 import { __, sprintf } from '@wordpress/i18n';
 import { addAction, addFilter } from '@wordpress/hooks';
 
@@ -78,3 +97,4 @@ const onStepUpdated = ( withForm ) => {
 }
 addAction( 'barn2_wizard_withform_mounted', 'ept_post_types', onStepUpdated );
 addAction( 'barn2_wizard_withform_updated', 'ept_post_types', onStepUpdated );
+*/
