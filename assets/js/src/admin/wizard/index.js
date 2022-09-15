@@ -3,7 +3,8 @@
  */
 import { addFilter } from '@wordpress/hooks';
 import { sprintf, __ } from '@wordpress/i18n';
- 
+import { isEmpty } from 'lodash';
+
 /**
  * Internal dependencies
  */
@@ -12,11 +13,34 @@ import WelcomeStep from './WelcomeStep';
 /**
  * Override steps components.
  */
-addFilter( 'barn2_setup_wizard_steps', 'ept-wizard', ( steps ) => {
+addFilter('barn2_setup_wizard_steps', 'ept-wizard', (steps) => {
 	steps[0].component = WelcomeStep
 
-    return steps;
-} )
+	return steps;
+});
+
+/**
+ * Listen to value changes into the setup wizard
+ * and adjust the text of the steps.
+ */
+window.addEventListener( 'barn2_setup_wizard_changed', (dispatchedEvent) => {
+
+	// Method used to set overrides.
+	const setStepOverride = dispatchedEvent.detail.setStepOverride
+
+	// Value that we're looking for.
+	const value = dispatchedEvent.detail.plural
+
+	if ( ! isEmpty( value ) ) {
+		setStepOverride( 'ept_features', {
+			pageDescription: 'hello there'
+		} )
+		setStepOverride( 'ept_ready', {
+			pageDescription: 'hello there'
+		} )
+	}
+
+}, false);
 
 /*
 import { __, sprintf } from '@wordpress/i18n';
@@ -26,19 +50,19 @@ import Welcome from './welcome';
 import EPT_Ready from './ready';
 
 const addCustomSteps = ( steps ) => {
-    const customSteps = [
-        { key: 'welcome', component: Welcome },
-        { key: 'ready', component: EPT_Ready },
-    ];
+	const customSteps = [
+		{ key: 'welcome', component: Welcome },
+		{ key: 'ready', component: EPT_Ready },
+	];
 
-    for ( const { key, component } of customSteps ) {
-        const index = steps.indexOf( steps.find( s => key === s.key ) );
-        if ( -1 !== index ) {
-            steps[ index ].container = component;
-        }
-    }
+	for ( const { key, component } of customSteps ) {
+		const index = steps.indexOf( steps.find( s => key === s.key ) );
+		if ( -1 !== index ) {
+			steps[ index ].container = component;
+		}
+	}
 
-    return steps;
+	return steps;
 }
 addFilter( 'barn2_setup_wizard_steps', 'ept_post_types', addCustomSteps );
 
