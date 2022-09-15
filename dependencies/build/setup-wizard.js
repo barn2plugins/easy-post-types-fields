@@ -2727,26 +2727,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var rooks__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! rooks */ "./node_modules/rooks/dist/esm/hooks/useGetIsMounted.js");
+/* harmony import */ var rooks__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! rooks */ "./node_modules/rooks/dist/esm/hooks/useGetIsMounted.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _barn2media_react_helpers__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @barn2media/react-helpers */ "./node_modules/@barn2media/react-helpers/build/index.esm.js");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _use_it_event_listener__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @use-it/event-listener */ "./node_modules/@use-it/event-listener/dist/event-listener.m.js");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./utils */ "./assets/js/utils.js");
-/* harmony import */ var _hooks__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./hooks */ "./assets/js/hooks.js");
-/* harmony import */ var _components_PageLoader__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/PageLoader */ "./assets/js/components/PageLoader.jsx");
-/* harmony import */ var _components_WizardErrors__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/WizardErrors */ "./assets/js/components/WizardErrors.jsx");
-/* harmony import */ var _steps_LicenseVerificationStep__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./steps/LicenseVerificationStep */ "./assets/js/steps/LicenseVerificationStep.jsx");
-/* harmony import */ var _steps_UpsellStep__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./steps/UpsellStep */ "./assets/js/steps/UpsellStep.jsx");
-/* harmony import */ var _components_WizardFooter__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/WizardFooter */ "./assets/js/components/WizardFooter.jsx");
-/* harmony import */ var _steps_ReadyStep__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./steps/ReadyStep */ "./assets/js/steps/ReadyStep.jsx");
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./utils */ "./assets/js/utils.js");
+/* harmony import */ var _hooks__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./hooks */ "./assets/js/hooks.js");
+/* harmony import */ var _components_PageLoader__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/PageLoader */ "./assets/js/components/PageLoader.jsx");
+/* harmony import */ var _components_WizardErrors__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/WizardErrors */ "./assets/js/components/WizardErrors.jsx");
+/* harmony import */ var _steps_LicenseVerificationStep__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./steps/LicenseVerificationStep */ "./assets/js/steps/LicenseVerificationStep.jsx");
+/* harmony import */ var _steps_UpsellStep__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./steps/UpsellStep */ "./assets/js/steps/UpsellStep.jsx");
+/* harmony import */ var _components_WizardFooter__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/WizardFooter */ "./assets/js/components/WizardFooter.jsx");
+/* harmony import */ var _steps_ReadyStep__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./steps/ReadyStep */ "./assets/js/steps/ReadyStep.jsx");
 
 
 /**
  * External dependencies
  */
+
 
 
 
@@ -2776,20 +2779,22 @@ const SetupWizardContainer = () => {
   var _steps$;
 
   // Determine if the component was mounted.
-  const componentMounted = (0,rooks__WEBPACK_IMPORTED_MODULE_17__.useGetIsMounted)(); // Holds the list of steps retrieved via the api.
+  const componentMounted = (0,rooks__WEBPACK_IMPORTED_MODULE_18__.useGetIsMounted)(); // Holds the list of steps retrieved via the api.
 
   const [steps, setSteps] = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)([]); // Determines if steps are being loaded from the api.
 
   const [loadingSteps, setLoadingSteps] = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(true);
   const [wizardPending, setWizardPending] = (0,react__WEBPACK_IMPORTED_MODULE_4__.useState)(false); // Check if it's access pass being used.
 
-  const isAccessPass = (0,_hooks__WEBPACK_IMPORTED_MODULE_10__.useSetupWizardStore)(state => state.licenseIsAccessPass); // List of hidden steps.
+  const isAccessPass = (0,_hooks__WEBPACK_IMPORTED_MODULE_11__.useSetupWizardStore)(state => state.licenseIsAccessPass); // List of hidden steps.
 
-  const hiddenSteps = (0,_hooks__WEBPACK_IMPORTED_MODULE_10__.useSetupWizardStore)(state => state.hiddenSteps);
+  const hiddenSteps = (0,_hooks__WEBPACK_IMPORTED_MODULE_11__.useSetupWizardStore)(state => state.hiddenSteps); // Wizard values collection.
+
+  const wizardValues = (0,_hooks__WEBPACK_IMPORTED_MODULE_11__.useSetupWizardStore)(state => state.wizardValues);
   const {
     showStep,
     hideStep
-  } = (0,_hooks__WEBPACK_IMPORTED_MODULE_10__.useSetupWizardStore)(); // Grab admin notices for the wizard page.
+  } = (0,_hooks__WEBPACK_IMPORTED_MODULE_11__.useSetupWizardStore)(); // Grab admin notices for the wizard page.
 
   const {
     setNotification
@@ -2803,7 +2808,7 @@ const SetupWizardContainer = () => {
       return;
     }
 
-    const apiURL = _utils__WEBPACK_IMPORTED_MODULE_9__.JSON_DATA.apiURL + 'steps';
+    const apiURL = _utils__WEBPACK_IMPORTED_MODULE_10__.JSON_DATA.apiURL + 'steps';
 
     try {
       var _response$data;
@@ -2822,7 +2827,7 @@ const SetupWizardContainer = () => {
 
   const handleErrorTrigger = err => {
     console.error(err);
-    const errorMessage = (0,_utils__WEBPACK_IMPORTED_MODULE_9__.getRestErrorMessage)(err, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Something went wrong. Please check the browser console.'));
+    const errorMessage = (0,_utils__WEBPACK_IMPORTED_MODULE_10__.getRestErrorMessage)(err, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Something went wrong. Please check the browser console.'));
     setNotification('error', errorMessage);
   };
   /**
@@ -2836,6 +2841,9 @@ const SetupWizardContainer = () => {
       showStep,
       hideStep
     };
+    _hooks__WEBPACK_IMPORTED_MODULE_11__.useSetupWizardStore.setState({
+      wizardValues: dispatchedEvent.detail
+    });
     return window.dispatchEvent(new CustomEvent('barn2_setup_wizard_changed', {
       detail: newData
     }));
@@ -2857,7 +2865,7 @@ const SetupWizardContainer = () => {
           pageTitle: step.heading,
           pageDescription: step.description,
           pageTooltip: step === null || step === void 0 ? void 0 : step.tooltip,
-          component: step.key === 'welcome' ? _steps_LicenseVerificationStep__WEBPACK_IMPORTED_MODULE_13__["default"] : _steps_UpsellStep__WEBPACK_IMPORTED_MODULE_14__["default"],
+          component: step.key === 'welcome' ? _steps_LicenseVerificationStep__WEBPACK_IMPORTED_MODULE_14__["default"] : _steps_UpsellStep__WEBPACK_IMPORTED_MODULE_15__["default"],
           disabled: step.key === 'more' && isAccessPass
         });
       } else if (step.key === 'ready') {
@@ -2867,7 +2875,7 @@ const SetupWizardContainer = () => {
           pageTitle: step.heading,
           pageDescription: step.description,
           pageTooltip: step === null || step === void 0 ? void 0 : step.tooltip,
-          component: _steps_ReadyStep__WEBPACK_IMPORTED_MODULE_16__["default"]
+          component: _steps_ReadyStep__WEBPACK_IMPORTED_MODULE_17__["default"]
         });
       } else {
         availableSteps.push({
@@ -2881,7 +2889,7 @@ const SetupWizardContainer = () => {
         });
       }
     });
-    return availableSteps;
+    return (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_9__.applyFilters)('barn2_setup_wizard_steps', availableSteps, wizardValues, setSteps);
   };
   /**
    * Parse fields from the steps and make them compatible
@@ -2923,7 +2931,7 @@ const SetupWizardContainer = () => {
 
 
   const handleStepLoading = async (activeStep, fields, setValue, setError, stateActions, state) => {
-    const apiURL = _utils__WEBPACK_IMPORTED_MODULE_9__.JSON_DATA.apiURL + 'steps';
+    const apiURL = _utils__WEBPACK_IMPORTED_MODULE_10__.JSON_DATA.apiURL + 'steps';
 
     try {
       var _response$data2;
@@ -2963,7 +2971,7 @@ const SetupWizardContainer = () => {
 
   const handleStepSubmission = async (values, setError, goToNextStep, stateActions, activeStep, callback) => {
     setWizardPending(true);
-    const apiURL = _utils__WEBPACK_IMPORTED_MODULE_9__.JSON_DATA.apiURL + 'steps';
+    const apiURL = _utils__WEBPACK_IMPORTED_MODULE_10__.JSON_DATA.apiURL + 'steps';
 
     try {
       var _response$data3;
@@ -2974,7 +2982,7 @@ const SetupWizardContainer = () => {
       };
       const response = await axios__WEBPACK_IMPORTED_MODULE_5___default().post(apiURL, data, {
         headers: {
-          'X-WP-Nonce': _utils__WEBPACK_IMPORTED_MODULE_9__.JSON_DATA.restNonce
+          'X-WP-Nonce': _utils__WEBPACK_IMPORTED_MODULE_10__.JSON_DATA.restNonce
         }
       });
 
@@ -2984,9 +2992,9 @@ const SetupWizardContainer = () => {
       }
     } catch (err) {
       console.error(err);
-      const errorMessage = (0,_utils__WEBPACK_IMPORTED_MODULE_9__.getRestErrorMessage)(err, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Something went wrong. Please check all fields.'));
+      const errorMessage = (0,_utils__WEBPACK_IMPORTED_MODULE_10__.getRestErrorMessage)(err, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_7__.__)('Something went wrong. Please check all fields.'));
       setNotification('error', errorMessage);
-      const fieldsErrors = (0,_utils__WEBPACK_IMPORTED_MODULE_9__.getRestFormErrors)(err);
+      const fieldsErrors = (0,_utils__WEBPACK_IMPORTED_MODULE_10__.getRestFormErrors)(err);
 
       if (!(0,lodash__WEBPACK_IMPORTED_MODULE_3__.isEmpty)(fieldsErrors)) {
         (0,lodash__WEBPACK_IMPORTED_MODULE_3__.forEach)(fieldsErrors, (_ref, index) => {
@@ -3001,9 +3009,19 @@ const SetupWizardContainer = () => {
       setWizardPending(false);
     }
   };
+  /**
+   * Returns the component for the footer of the wizard.
+   *
+   * @returns {React.ReactNode}
+   */
+
+
+  const getWizardFooter = () => {
+    return (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_9__.applyFilters)('barn2_setup_wizard_footer', (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WizardFooter__WEBPACK_IMPORTED_MODULE_16__["default"], null), wizardValues, getSteps, setSteps);
+  };
 
   if (loadingSteps) {
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_PageLoader__WEBPACK_IMPORTED_MODULE_11__["default"], null);
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_PageLoader__WEBPACK_IMPORTED_MODULE_12__["default"], null);
   }
 
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_barn2media_components__WEBPACK_IMPORTED_MODULE_1__.Wizard, {
@@ -3014,12 +3032,12 @@ const SetupWizardContainer = () => {
     onStepSubmit: handleStepSubmission,
     onFormLoad: handleStepLoading,
     onStepChange: activeStep => {
-      _hooks__WEBPACK_IMPORTED_MODULE_10__.useSetupWizardStore.setState({
+      _hooks__WEBPACK_IMPORTED_MODULE_11__.useSetupWizardStore.setState({
         wizardActiveStep: activeStep
       });
     },
-    compBeforeStepCard: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WizardErrors__WEBPACK_IMPORTED_MODULE_12__["default"], null),
-    footer: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WizardFooter__WEBPACK_IMPORTED_MODULE_15__["default"], null)
+    compBeforeStepCard: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_components_WizardErrors__WEBPACK_IMPORTED_MODULE_13__["default"], null),
+    footer: getWizardFooter()
   });
 };
 
@@ -3862,6 +3880,7 @@ const useSetupWizardStore = (0,zustand__WEBPACK_IMPORTED_MODULE_3__["default"])(
     wizardPending: '',
     licenseIsAccessPass: false,
     hiddenSteps: (_JSON_DATA$hiddenStep = _utils__WEBPACK_IMPORTED_MODULE_2__.JSON_DATA.hiddenSteps) !== null && _JSON_DATA$hiddenStep !== void 0 ? _JSON_DATA$hiddenStep : [],
+    wizardValues: {},
     hideStep: key => set(state => {
       if (!state.hiddenSteps.includes(key)) {
         return { ...state,
@@ -4037,8 +4056,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/icon/index.js");
-/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/chevron-right.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/icon/index.js");
+/* harmony import */ var _wordpress_icons__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @wordpress/icons */ "./node_modules/@wordpress/icons/build-module/library/chevron-right.js");
 /* harmony import */ var _barn2media_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @barn2media/components */ "../../../../react-components/build/index.esm.js");
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils */ "./assets/js/utils.js");
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lodash */ "lodash");
@@ -4047,6 +4066,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
 /* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _hooks__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../hooks */ "./assets/js/hooks.js");
 
 
 /**
@@ -4060,11 +4080,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 const ReadyStep = () => {
+  // Wizard values collection.
+  const wizardValues = (0,_hooks__WEBPACK_IMPORTED_MODULE_7__.useSetupWizardStore)(state => state.wizardValues);
   /**
    * List of links, filterable.
    */
-  const items = (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_6__.applyFilters)('barn2_setup_wizard_ready_links', _utils__WEBPACK_IMPORTED_MODULE_3__.JSON_DATA.ready_links);
+
+  const items = (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_6__.applyFilters)('barn2_setup_wizard_ready_links', _utils__WEBPACK_IMPORTED_MODULE_3__.JSON_DATA.ready_links, wizardValues);
   /**
    * Format the list of links for the component.
    *
@@ -4075,8 +4099,8 @@ const ReadyStep = () => {
     const formattedItems = [];
     (0,lodash__WEBPACK_IMPORTED_MODULE_4__.forEach)(items, (item, index) => {
       formattedItems.push({
-        after: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_icons__WEBPACK_IMPORTED_MODULE_7__["default"], {
-          icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_8__["default"]
+        after: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_icons__WEBPACK_IMPORTED_MODULE_8__["default"], {
+          icon: _wordpress_icons__WEBPACK_IMPORTED_MODULE_9__["default"]
         }),
         ...item
       });
@@ -4084,7 +4108,7 @@ const ReadyStep = () => {
     return formattedItems;
   };
 
-  const showSettingsButton = (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_6__.applyFilters)('barn2_setup_wizard_show_settings_button', true);
+  const showSettingsButton = (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_6__.applyFilters)('barn2_setup_wizard_show_settings_button', true, wizardValues);
   const AdditionalContent = (0,_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.withFilters)('barn2_setup_wizard_ready_page')(props => (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.Fragment, null));
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.SlotFillProvider, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(AdditionalContent, null), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_barn2media_components__WEBPACK_IMPORTED_MODULE_2__.StyledList, {
     items: getItems()
@@ -11579,7 +11603,7 @@ var _c=a({updateDataStore:updateDataStore}),actions=_c.actions,state=_c.state;va
      */var _d=useForm({defaultValues:getDefaultValues(),excludeFields:defaultExcludedFields.concat(excludeFields),onError:function(errors){return typeof onError==='function'?onError(errors):undefined;}}),form=_d.form,submit=_d.submit,setError=_d.setError,setValue=_d.setValue,use=_d.use;// Track values.
 var values=use('values');/**
      * Dispatch custom event when values of the form have changed.
-     */useDidUpdate(function(){return window.dispatchEvent(new CustomEvent('barn2_form_changed',{detail:values}));},[values]);/**
+     */useDidUpdate(function(){actions.updateDataStore(values);return window.dispatchEvent(new CustomEvent('barn2_form_changed',{detail:values}));},[values]);/**
      * On step change trigger onLoad prop.
      */(0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function(){if(typeof onLoad==='function'){onLoad(step.key,step.fields,setValue,setError,actions,state);}},[step.key]);/**
      * Retrieve the appropriate component for a given input type.
