@@ -3808,14 +3808,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _barn2media_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @barn2media/components */ "../../../../react-components/build/index.esm.js");
-/* harmony import */ var html_react_parser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! html-react-parser */ "./node_modules/html-react-parser/index.mjs");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils */ "./assets/js/utils.js");
-/* harmony import */ var _hooks__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../hooks */ "./assets/js/hooks.js");
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/hooks */ "@wordpress/hooks");
+/* harmony import */ var _wordpress_hooks__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_hooks__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var html_react_parser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! html-react-parser */ "./node_modules/html-react-parser/index.mjs");
+/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils */ "./assets/js/utils.js");
+/* harmony import */ var _hooks__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../hooks */ "./assets/js/hooks.js");
 
 
 /**
  * External dependencies
  */
+
 
 
 
@@ -3827,19 +3830,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const WizardFooter = () => {
-  const activeStep = (0,_hooks__WEBPACK_IMPORTED_MODULE_5__.useSetupWizardStore)(state => state.wizardActiveStep);
+  const activeStep = (0,_hooks__WEBPACK_IMPORTED_MODULE_6__.useSetupWizardStore)(state => state.wizardActiveStep);
 
   if (activeStep === 'ready') {
     return null;
   }
 
+  const skipLabel = (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_3__.applyFilters)('barn2_setup_wizard_skip_label', (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Skip setup wizard'));
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "barn2-footer"
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_barn2media_components__WEBPACK_IMPORTED_MODULE_2__.TextPopover, {
-    popoverContent: (0,html_react_parser__WEBPACK_IMPORTED_MODULE_3__["default"])('You can also set up the plugin on the settings page.')
+    popoverContent: (0,html_react_parser__WEBPACK_IMPORTED_MODULE_4__["default"])('You can also set up the plugin on the settings page.')
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
-    href: _utils__WEBPACK_IMPORTED_MODULE_4__.JSON_DATA.skip_url
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Skip setup wizard'))));
+    href: _utils__WEBPACK_IMPORTED_MODULE_5__.JSON_DATA.skip_url
+  }, skipLabel)));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (WizardFooter);
