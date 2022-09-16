@@ -124,3 +124,14 @@ addFilter( 'barn2_setup_wizard_ready_links', 'ept-wizard', ( links, values ) => 
 	return customLinks;
 
 } );
+
+/**
+ * Workaround required to send all data that EPT needs.
+ */
+addFilter( 'barn2_setup_wizard_step_submission_data', 'ept-wizard', ( data, stepValues, datastore, activeStep ) => {
+	const newData = {
+		...data,
+		values: { ...data.values, ...datastore }
+	}
+	return newData
+} )
