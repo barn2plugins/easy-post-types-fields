@@ -90,3 +90,6 @@ addFilter( 'barn2_setup_wizard_next_button_label', 'ept-wizard', ( label, active
 	return label;
 
 } );
+
+// Disable the popover in the footer.
+addFilter( 'barn2_setup_wizard_footer_popover', 'ept-wizard', () => '' )

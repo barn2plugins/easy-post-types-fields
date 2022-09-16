@@ -3813,6 +3813,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var html_react_parser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! html-react-parser */ "./node_modules/html-react-parser/index.mjs");
 /* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils */ "./assets/js/utils.js");
 /* harmony import */ var _hooks__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../hooks */ "./assets/js/hooks.js");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_7__);
 
 
 /**
@@ -3829,6 +3831,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 const WizardFooter = () => {
   const activeStep = (0,_hooks__WEBPACK_IMPORTED_MODULE_6__.useSetupWizardStore)(state => state.wizardActiveStep);
 
@@ -3837,13 +3840,16 @@ const WizardFooter = () => {
   }
 
   const skipLabel = (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_3__.applyFilters)('barn2_setup_wizard_skip_label', (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Skip setup wizard'));
+  const footerPopover = (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_3__.applyFilters)('barn2_setup_wizard_footer_popover', (0,html_react_parser__WEBPACK_IMPORTED_MODULE_4__["default"])('You can also set up the plugin on the settings page.'));
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "barn2-footer"
-  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_barn2media_components__WEBPACK_IMPORTED_MODULE_2__.TextPopover, {
+  }, !(0,lodash__WEBPACK_IMPORTED_MODULE_7__.isEmpty)(footerPopover) ? (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_barn2media_components__WEBPACK_IMPORTED_MODULE_2__.TextPopover, {
     popoverContent: (0,html_react_parser__WEBPACK_IMPORTED_MODULE_4__["default"])('You can also set up the plugin on the settings page.')
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
     href: _utils__WEBPACK_IMPORTED_MODULE_5__.JSON_DATA.skip_url
-  }, skipLabel)));
+  }, skipLabel)) : (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", {
+    href: _utils__WEBPACK_IMPORTED_MODULE_5__.JSON_DATA.skip_url
+  }, skipLabel));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (WizardFooter);
