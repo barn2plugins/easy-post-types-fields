@@ -93,3 +93,34 @@ addFilter( 'barn2_setup_wizard_next_button_label', 'ept-wizard', ( label, active
 
 // Disable the popover in the footer.
 addFilter( 'barn2_setup_wizard_footer_popover', 'ept-wizard', () => '' )
+
+// Disable the settings button on the last step.
+addFilter( 'barn2_setup_wizard_show_settings_button', 'ept-wizard', () => false );
+
+/**
+ * Customize the links on the ready step page.
+ */
+addFilter( 'barn2_setup_wizard_ready_links', 'ept-wizard', ( links, values ) => {
+
+	const customLinks = [
+		{
+			title: __('Add custom fields'),
+			href: `${barn2_setup_wizard.admin_url}admin.php?page=ept_post_types&post_type=ept_${values.slug}&section=fields`,
+		},
+		{
+			title: __('Add taxonomies'),
+			href: `${barn2_setup_wizard.admin_url}admin.php?page=ept_post_types&post_type=ept_${values.slug}&section=taxonomies`,
+		},
+		{
+			title: sprintf( __('Add New %s'), values.singular ),
+			href: `${barn2_setup_wizard.admin_url}post-new.php?post_type=ept_${values.slug}`,
+		},
+		{
+			title: sprintf( __('Manage Post Types'), values.singular ),
+			href: `${barn2_setup_wizard.admin_url}admin.php?page=ept_post_types`,
+		}
+	]
+
+	return customLinks;
+
+} );
