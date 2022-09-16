@@ -93,7 +93,7 @@
             "source": {
                 "type": "git",
                 "url": "git@bitbucket.org:barn2plugins/setup-wizard.git",
-                "reference": "a076fb87b74ffb2efddb8a435b0fa01b46cd5fe5"
+                "reference": "e5ff1f54e681488162e7c7c2d65f2aafc194f6dc"
             },
             "require-dev": {
                 "barn2/php-standards": "dev-master",
@@ -145,7 +145,7 @@
             "keywords": [
                 "wordpress"
             ],
-            "time": "2022-09-16T09:06:44+00:00"
+            "time": "2022-09-16T09:46:54+00:00"
         },
         {
             "name": "composer/package-versions-deprecated",

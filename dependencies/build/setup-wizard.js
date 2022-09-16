@@ -2846,7 +2846,9 @@ const SetupWizardContainer = () => {
       setStepOverride
     };
     _hooks__WEBPACK_IMPORTED_MODULE_11__.useSetupWizardStore.setState({
-      wizardValues: dispatchedEvent.detail
+      wizardValues: { ...wizardValues,
+        ...dispatchedEvent.detail
+      }
     });
     return window.dispatchEvent(new CustomEvent('barn2_setup_wizard_changed', {
       detail: newData
@@ -2987,7 +2989,8 @@ const SetupWizardContainer = () => {
 
       const data = {
         step: activeStep,
-        values: values
+        values: values,
+        datastore: wizardValues
       };
       const response = await axios__WEBPACK_IMPORTED_MODULE_5___default().post(apiURL, data, {
         headers: {
@@ -2996,6 +2999,18 @@ const SetupWizardContainer = () => {
       });
 
       if (((_response$data3 = response.data) === null || _response$data3 === void 0 ? void 0 : _response$data3.success) === true) {
+        var _response$data4;
+
+        const extraData = (_response$data4 = response.data) === null || _response$data4 === void 0 ? void 0 : _response$data4.store;
+
+        if (extraData) {
+          _hooks__WEBPACK_IMPORTED_MODULE_11__.useSetupWizardStore.setState({
+            wizardValues: { ...wizardValues,
+              ...extraData
+            }
+          });
+        }
+
         setWizardPending(false);
         goToNextStep();
       }
