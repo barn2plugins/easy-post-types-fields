@@ -35,7 +35,7 @@ final class Versions
     const VERSIONS          = array (
   'bamarni/composer-bin-plugin' => '1.8.1@e12e9769c8ee97d036f7f98abf66b96cf3862346',
   'barn2/php-standards' => 'dev-master@9c88c22bdbd38e198769004ad4e98616b7492ba5',
-  'barn2/setup-wizard' => 'dev-setup-wizard-next@4feb2183507996ee9de29fdd7f7bf4453747d9fb',
+  'barn2/setup-wizard' => 'dev-setup-wizard-next@39e31fd38e77c1589480d89ee60ff756bfcac73d',
   'composer/package-versions-deprecated' => '1.11.99.5@b4f54f74ef3453349c24a845d22392cd31e65f1d',
   'dealerdirect/phpcodesniffer-composer-installer' => 'v0.7.2@1c968e542d8843d7cd71de3c5c9c3ff3ad71a1db',
   'fidry/console' => '0.5.1@1118702f8d4643a9933fa4d2e6712654b6fadf5d',
@@ -70,7 +70,7 @@ final class Versions
   'thecodingmachine/safe' => 'v2.3.0@dc8df8f5047e7d3021a3f41f492dc99f8b3dc475',
   'webmozart/assert' => '1.11.0@11cb2199493b2f8a3b53e7f19068fc6aac760991',
   'wp-coding-standards/wpcs' => '2.3.0@7da1894633f168fe244afc6de00d141f27517b62',
-  'barn2/easy-post-types-fields' => 'dev-master@9bc5b77642847e2c6d2211e415833980a01c12b7',
+  'barn2/easy-post-types-fields' => 'dev-master@a0f6248092ccffbda8d6a654c2eaf2748019ed18',
 );
 
     private function __construct()
