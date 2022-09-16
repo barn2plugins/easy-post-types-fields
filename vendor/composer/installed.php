@@ -3,7 +3,7 @@
         'name' => 'barn2/easy-post-types-fields',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '00bbf8637bf92c5d94cc58c6177140deafd0d1d5',
+        'reference' => '44a80fa309ab7f1bfa0977fe5221401585b915f6',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -22,7 +22,7 @@
         'barn2/easy-post-types-fields' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '00bbf8637bf92c5d94cc58c6177140deafd0d1d5',
+            'reference' => '44a80fa309ab7f1bfa0977fe5221401585b915f6',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -42,7 +42,7 @@
         'barn2/setup-wizard' => array(
             'pretty_version' => 'dev-setup-wizard-next',
             'version' => 'dev-setup-wizard-next',
-            'reference' => 'e5ff1f54e681488162e7c7c2d65f2aafc194f6dc',
+            'reference' => 'be52ccf95e06919f04fb31d51749add4946ae714',
             'type' => 'library',
             'install_path' => __DIR__ . '/../barn2/setup-wizard',
             'aliases' => array(),

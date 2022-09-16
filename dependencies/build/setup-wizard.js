@@ -2987,11 +2987,11 @@ const SetupWizardContainer = () => {
     try {
       var _response$data3;
 
-      const data = {
+      const data = (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_9__.applyFilters)('barn2_setup_wizard_step_submission_data', {
         step: activeStep,
         values: values,
         datastore: wizardValues
-      };
+      }, values, wizardValues, activeStep, setError);
       const response = await axios__WEBPACK_IMPORTED_MODULE_5___default().post(apiURL, data, {
         headers: {
           'X-WP-Nonce': _utils__WEBPACK_IMPORTED_MODULE_10__.JSON_DATA.restNonce
