@@ -43,9 +43,6 @@ class EPT_Name extends Step {
 				'label'       => __( 'Plural name', 'easy-post-types-fields' ),
 				'placeholder' => __( 'e.g. Articles', 'easy-post-types-fields' ),
 			],
-			'slug'     => [
-				'type' => 'hidden',
-			],
 		];
 	}
 
@@ -86,7 +83,13 @@ class EPT_Name extends Step {
 			);
 		}
 
-		return Api::send_success_response();
+		return Api::send_success_response(
+			[
+				'store' => [
+					'slug' => $slug
+				]
+			]
+		);
 	}
 
 }
