@@ -41,14 +41,14 @@ window.addEventListener( 'barn2_setup_wizard_changed', (dispatchedEvent) => {
 
 	if ( ! isEmpty( value ) ) {
 		const featuresStep = barn2_setup_wizard.steps.find( step => step.key === 'ept_features' )
-		const readyStep = barn2_setup_wizard.steps.find( step => step.key === 'ept_ready' )
+		const readyStep = barn2_setup_wizard.steps.find( step => step.key === 'ready' )
 
 		setStepOverride( 'ept_features', {
 			pageTitle: sprintf( featuresStep.heading, value ),
 			pageDescription: sprintf( featuresStep.description, value )
 		} )
 
-		setStepOverride( 'ept_ready', {
+		setStepOverride( 'ready', {
 			pageTitle: sprintf( readyStep.heading, value ),
 			pageDescription: sprintf( readyStep.description, value )
 		} )
