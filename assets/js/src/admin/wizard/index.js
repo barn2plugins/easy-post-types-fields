@@ -16,6 +16,15 @@ import WelcomeStep from './WelcomeStep';
 addFilter('barn2_setup_wizard_steps', 'ept-wizard', (steps) => {
 	steps[0].component = WelcomeStep
 
+	const query = new URLSearchParams(location.search);
+
+	// Remove the "welcome step".
+	if ( query.has('action') ) {
+		return steps.filter( function( step ) {
+			return step.key !== 'welcome_free'
+		})
+	}
+
 	return steps;
 });
 
