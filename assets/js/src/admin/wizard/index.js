@@ -21,7 +21,7 @@ addFilter('barn2_setup_wizard_steps', 'ept-wizard', (steps) => {
 	// Remove the "welcome step".
 	if ( query.has('action') ) {
 		return steps.filter( function( step ) {
-			return step.key !== 'welcome_free'
+			return step.key !== 'welcome_free' && step.key !== 'more'
 		})
 	}
 
