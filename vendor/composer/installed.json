@@ -93,7 +93,7 @@
             "source": {
                 "type": "git",
                 "url": "git@bitbucket.org:barn2plugins/setup-wizard.git",
-                "reference": "39e31fd38e77c1589480d89ee60ff756bfcac73d"
+                "reference": "ecffdf38e1e72118d0bfa6f83866ca90e11f5a6c"
             },
             "require-dev": {
                 "barn2/php-standards": "dev-master",
@@ -102,7 +102,7 @@
                 "phpunit/phpunit": "^9.0.1",
                 "symfony/var-dumper": "^5.1"
             },
-            "time": "2022-09-16T08:26:28+00:00",
+            "time": "2022-09-16T09:02:53+00:00",
             "type": "library",
             "installation-source": "source",
             "autoload": {

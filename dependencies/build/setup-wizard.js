@@ -2776,7 +2776,7 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 const SetupWizardContainer = () => {
-  var _steps$;
+  var _getSteps$;
 
   // Determine if the component was mounted.
   const componentMounted = (0,rooks__WEBPACK_IMPORTED_MODULE_18__.useGetIsMounted)(); // Holds the list of steps retrieved via the api.
@@ -3036,7 +3036,7 @@ const SetupWizardContainer = () => {
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_barn2media_components__WEBPACK_IMPORTED_MODULE_1__.Wizard, {
     steps: getSteps(),
     isPending: wizardPending,
-    currentStep: steps ? (_steps$ = steps[0]) === null || _steps$ === void 0 ? void 0 : _steps$.key : '',
+    currentStep: steps ? (_getSteps$ = getSteps()[0]) === null || _getSteps$ === void 0 ? void 0 : _getSteps$.key : '',
     compSpinner: (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Spinner, null),
     onStepSubmit: handleStepSubmission,
     onFormLoad: handleStepLoading,
