@@ -46,6 +46,21 @@ window.addEventListener( 'barn2_setup_wizard_changed', (dispatchedEvent) => {
 	}
 }, false);
 
+/**
+ * Adjust the label of the skip link.
+ */
+addFilter( 'barn2_setup_wizard_skip_label', 'ept-wizard', ( label ) => {
+
+	const query = new URLSearchParams(location.search);
+
+	if ( query.has('action') ) {
+		return __( 'Cancel' );
+	}
+
+	return label;
+
+} )
+
 /*
 import { __, sprintf } from '@wordpress/i18n';
 import { addAction, addFilter } from '@wordpress/hooks';
