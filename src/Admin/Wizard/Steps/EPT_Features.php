@@ -57,7 +57,7 @@ class EPT_Features extends Step {
 	 * {@inheritdoc}
 	 */
 	public function submit( array $values ) {
-		$supports     = array_keys(
+		$supports = array_keys(
 			array_filter(
 				$values,
 				function( $v ) {
@@ -65,9 +65,10 @@ class EPT_Features extends Step {
 				}
 			)
 		);
-		$slug         = sanitize_title( $_POST['slug'] );
-		$singular     = sanitize_text_field( $_POST['singular'] );
-		$plural       = sanitize_text_field( $_POST['plural'] );
+
+		$slug         = sanitize_title( $values['slug'] );
+		$singular     = sanitize_text_field( $values['singular'] );
+		$plural       = sanitize_text_field( $values['plural'] );
 		$post_type_id = wp_insert_post(
 			[
 				'post_type'      => 'ept_post_type',
