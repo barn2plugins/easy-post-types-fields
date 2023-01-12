@@ -1,3 +1,12 @@
+= 1.1.2 =
+ * Fix: Run setup wizard only after the first installation 
+ * Fix: Show a link to edit and add custom post types 
+ * Dev: Updated compatibility up to Wordpress 6.1.1
+
+= 1.1.1 =
+ * Fix: Improved integration with Document Library Pro
+ * Fix: Exception being thrown for wrong parameter type
+
 = 1.1.0 =
  * New: Added support for WooCommerce Product Table and Document Library Pro
  * Fix: Top-level menus not being ordered correctly

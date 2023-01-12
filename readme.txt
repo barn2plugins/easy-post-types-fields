@@ -3,9 +3,9 @@
 Contributors: barn2media
 Tags: custom post type, custom field, custom taxonomy, custom post types, custom fields, taxonomy, custom taxonomies, content type, post type, custom data, meta fields
 Requires at least: 5.0
-Tested up to: 6.0.1
+Tested up to: 6.1.1
 Requires PHP: 7.2
-Stable tag: 1.1.1
+Stable tag: 1.1.2
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Donate link: https://barn2.com
@@ -133,6 +133,11 @@ Yes, you can add HTML and shortcodes into either the plain text and Visual Edito
 This is the initial release
 
 == Changelog ==
+
+= 1.1.2 =
+ * Fix: Run setup wizard only after the first installation 
+ * Fix: Show a link to edit and add custom post types 
+ * Dev: Updated compatibility up to Wordpress 6.1.1
 
 = 1.1.1 =
  * Fix: Improved integration with Document Library Pro
