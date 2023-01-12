@@ -59,6 +59,7 @@ class Plugin_Setup implements Registerable {
 	public function register() {
 		register_activation_hook( $this->file, [ $this, 'on_activate' ] );
 		add_action( 'admin_init', [ $this, 'after_plugin_activation' ] );
+		register_uninstall_hook( $this->file, [$this, 'on_uninstall'] ); 
 	}
 
 	/**
@@ -86,6 +87,15 @@ class Plugin_Setup implements Registerable {
 	 */
 	public function on_deactivate() {}
 
+	/** 
+	 * Delete the option responsible for checking setup wizard run 
+	 * 
+	 * @return void 
+	 */
+	public function on_uninstall() {
+		delete_option( "_{$this->plugin->get_slug()}_setup_wizard_seen" ); 
+	}
+
 	/**
 	 * Detect the transient and redirect to wizard.
 	 *
@@ -97,6 +107,7 @@ class Plugin_Setup implements Registerable {
 		}
 
 		$this->starter->delete_transient();
+		$this->starter->create_option(); 
 		$this->starter->redirect();
 	}
 }

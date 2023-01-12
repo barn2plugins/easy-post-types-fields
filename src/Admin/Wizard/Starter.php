@@ -12,7 +12,7 @@ namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin\Wizard;
 
 use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Barn2\Setup_Wizard\Starter as Setup_Wizard_Starter;
 
-/**
+/** 
  * {@inheritdoc}
  */
 class Starter extends Setup_Wizard_Starter {
@@ -21,8 +21,16 @@ class Starter extends Setup_Wizard_Starter {
 	 * {@inheritdoc}
 	 */
 	public function should_start() {
-		$setup_happened = get_option( 'easy-post-types-fields-setup-wizard_completed' ) ?: false;
-		return ! $setup_happened;
+		$wizard_seen = get_option( "_{$this->plugin->get_slug()}_setup_wizard_seen" ) ?: false;
+		return ! $wizard_seen;
 	}
 
+	/** 
+	 * Add an option so the setup wizard doesn't run after reactivating 
+	 * 
+	 * @return void
+	 */ 
+	public function create_option() {
+		add_option( "_{$this->plugin->get_slug()}_setup_wizard_seen", true );
+	}
 }
