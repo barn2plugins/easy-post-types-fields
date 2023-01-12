@@ -102,7 +102,7 @@ class CPT_Editor implements Service, Registerable {
 				'publicly_queryable'  => false,
 				'show_in_menu'        => false,
 				'show_in_nav_menus'   => false,
-				'show_in_admin_bar'   => false,
+				'show_in_admin_bar'   => true,
 				'show_in_rest'        => false,
 				'menu_position'       => null,
 				'menu_icon'           => '',

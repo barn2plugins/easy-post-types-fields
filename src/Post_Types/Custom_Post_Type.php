@@ -61,7 +61,7 @@ class Custom_Post_Type extends Abstract_Post_Type {
 				'publicly_queryable'   => true,
 				'show_in_menu'         => true,
 				'show_in_nav_menus'    => true,
-				'show_in_admin_bar'    => false,
+				'show_in_admin_bar'    => true,
 				'show_in_rest'         => true,
 				'menu_position'        => 27,
 				'menu_icon'            => 'dashicons-list-view',
