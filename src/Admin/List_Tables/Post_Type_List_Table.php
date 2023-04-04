@@ -85,10 +85,10 @@ class Post_Type_List_Table extends WP_List_Table {
 						return $pt->public || $pt->show_in_menu;
 
 					case 'common':
-						return $pt->publicly_queryable;
+						return $pt->public;
 
 					case 'other':
-						return $pt->publicly_queryable && ! $this->is_custom( $pt );
+						return $pt->public && ! $this->is_custom( $pt );
 
 					case 'all':
 						return true;

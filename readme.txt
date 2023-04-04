@@ -5,7 +5,7 @@ Tags: custom post type, custom field, custom taxonomy, custom post types, custom
 Requires at least: 5.0
 Tested up to: 6.1.1
 Requires PHP: 7.2
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Donate link: https://barn2.com
@@ -133,6 +133,9 @@ Yes, you can add HTML and shortcodes into either the plain text and Visual Edito
 This is the initial release
 
 == Changelog ==
+
+= 1.1.3 = 
+ * Fix: Page post type was not visible in Manage Post Types section
 
 = 1.1.2 =
  * Fix: Run setup wizard only after the first installation 
