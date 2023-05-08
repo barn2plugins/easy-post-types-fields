@@ -88,7 +88,7 @@ class Custom_Post_Type extends Abstract_Post_Type {
 			$supports         = get_post_meta( $this->id, '_ept_supports', true );
 			$args['supports'] = $supports ?: [ 'title', 'editor' ];
 			$args['rewrite']  = [
-				'slug'       => '/' . sanitize_title( $this->name ),
+				'slug'       => sanitize_title( $this->name ),
 				'with_front' => false,
 			];
 
