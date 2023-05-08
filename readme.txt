@@ -3,9 +3,9 @@
 Contributors: barn2media
 Tags: custom post type, custom field, custom taxonomy, custom post types, custom fields, taxonomy, custom taxonomies, content type, post type, custom data, meta fields
 Requires at least: 5.0
-Tested up to: 6.1.1
+Tested up to: 6.2
 Requires PHP: 7.2
-Stable tag: 1.1.3
+Stable tag: 1.1.4
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Donate link: https://barn2.com
@@ -133,6 +133,12 @@ Yes, you can add HTML and shortcodes into either the plain text and Visual Edito
 This is the initial release
 
 == Changelog ==
+
+= 1.1.4 = 
+ * Fix: Change the slug rewrite rule for archives  
+ * Dev: Fix PHP notice for register_uninstall_hook
+ * Dev: Update webpack configuration to 2.0.0 
+ * Dev: Tested up to WordPress 6.2 
 
 = 1.1.3 = 
  * Fix: Page post type was not visible in Manage Post Types section
