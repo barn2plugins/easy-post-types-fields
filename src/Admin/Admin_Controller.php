@@ -70,7 +70,7 @@ class Admin_Controller implements Registerable, Service {
 		$screen = get_current_screen();
 
 		if ( 'post' === $screen->base ) {
-			wp_enqueue_style( 'ept-post-editor', plugin_dir_url( $this->plugin->get_file() ) . 'assets/css/admin/ept-post-editor.min.css', [], $this->plugin->get_version() );
+			wp_enqueue_style( 'ept-post-editor', plugin_dir_url( $this->plugin->get_file() ) . 'assets/css/admin/ept-post-editor.css', [], $this->plugin->get_version() );
 		}
 	}
 

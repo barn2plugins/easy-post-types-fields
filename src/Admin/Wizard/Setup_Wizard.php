@@ -58,14 +58,14 @@ class Setup_Wizard implements Registerable {
 			]
 		);
 
-		$script_dependencies = Lib_Util::get_script_dependencies( $this->plugin, './assets/js/admin/wizard-library.min.js' );
+		$script_dependencies = Lib_Util::get_script_dependencies( $this->plugin, 'admin/wizard-library.js' );
 		$wizard->set_non_wc_asset(
-			$plugin->get_dir_url() . 'assets/js/admin/wizard-library.min.js',
+			$plugin->get_dir_url() . 'assets/js/admin/wizard-library.js',
 			$script_dependencies['dependencies'],
 			$script_dependencies['version']
 		);
 		$wizard->add_custom_asset(
-			$plugin->get_dir_url() . 'assets/js/admin/wizard.min.js',
+			$plugin->get_dir_url() . 'assets/js/admin/wizard.js',
 			$script_dependencies
 		);
 

@@ -8,7 +8,7 @@ const config = new Barn2Configuration(
 		'admin/wizard-library/index.js'
 	],
 	[
-		'admin/edp-editor.scss',
+		'admin/ept-editor.scss',
 		'admin/ept-post-editor.scss'
 	],
 	defaultConfig
