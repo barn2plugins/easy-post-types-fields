@@ -59,7 +59,7 @@ class Plugin_Setup implements Registerable {
 	public function register() {
 		register_activation_hook( $this->file, [ $this, 'on_activate' ] );
 		add_action( 'admin_init', [ $this, 'after_plugin_activation' ] );
-		register_uninstall_hook( $this->file, [$this, 'on_uninstall'] ); 
+		register_uninstall_hook( $this->file, 'on_uninstall' ); 
 	}
 
 	/**
@@ -92,7 +92,7 @@ class Plugin_Setup implements Registerable {
 	 * 
 	 * @return void 
 	 */
-	public function on_uninstall() {
+	public static function on_uninstall() {
 		delete_option( "_{$this->plugin->get_slug()}_setup_wizard_seen" ); 
 	}
 
