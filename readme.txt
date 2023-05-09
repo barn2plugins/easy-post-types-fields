@@ -5,7 +5,7 @@ Tags: custom post type, custom field, custom taxonomy, custom post types, custom
 Requires at least: 5.0
 Tested up to: 6.2
 Requires PHP: 7.2
-Stable tag: 1.1.4
+Stable tag: 1.1.5
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Donate link: https://barn2.com
@@ -134,6 +134,9 @@ This is the initial release
 
 == Changelog ==
 
+= 1.1.5 = 
+ * Fix: Fatal error when activating the plugin 
+ 
 = 1.1.4 = 
  * Fix: Change the slug rewrite rule for archives  
  * Dev: Fix PHP notice for register_uninstall_hook

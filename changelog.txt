@@ -1,3 +1,6 @@
+= 1.1.5 = 
+ * Fix: Fatal error when activating the plugin 
+
 = 1.1.4 = 
  * Fix: Change the slug rewrite rule for archives  
  * Dev: Fix PHP notice for register_uninstall_hook
