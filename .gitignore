@@ -63,3 +63,5 @@ dependencies/vendor/*
 docs/
 
 *.zip
+
+/assets/dist
