@@ -3,7 +3,7 @@
 Contributors: barn2media
 Tags: custom post type, custom field, custom taxonomy, custom post types, custom fields, taxonomy, custom taxonomies, content type, post type, custom data, meta fields
 Requires at least: 5.0
-Tested up to: 6.2
+Tested up to: 6.3
 Requires PHP: 7.2
 Stable tag: 1.1.5
 License: GNU General Public License v3.0
