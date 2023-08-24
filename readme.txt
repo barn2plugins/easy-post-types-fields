@@ -136,33 +136,5 @@ This is the initial release
 
 = 1.1.5 = 
  * Fix: Fatal error when activating the plugin 
- 
-= 1.1.4 = 
- * Fix: Change the slug rewrite rule for archives  
- * Dev: Fix PHP notice for register_uninstall_hook
- * Dev: Update webpack configuration to 2.0.0 
- * Dev: Tested up to WordPress 6.2 
-
-= 1.1.3 = 
- * Fix: Page post type was not visible in Manage Post Types section
-
-= 1.1.2 =
- * Fix: Run setup wizard only after the first installation 
- * Fix: Show a link to edit and add custom post types 
- * Dev: Updated compatibility up to Wordpress 6.1.1
-
-= 1.1.1 =
- * Fix: Improved integration with Document Library Pro
- * Fix: Exception being thrown for wrong parameter type
- 
-= 1.1.0 =
- * New: Added support for WooCommerce Product Table and Document Library Pro
- * Fix: Top-level menus not being ordered correctly
- * Dev: Updated compatibility up to Wordpress 6.0.1
- 
-= 1.0.0 =
-Release date 7 May 2022
-
-* Initial release.
 
 See changelog.txt for more details.
