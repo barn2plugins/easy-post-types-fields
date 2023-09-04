@@ -270,6 +270,9 @@ abstract class Abstract_Post_Type implements Post_Type_Interface {
 			if ( isset( $postdata[ $meta_key ] ) && '' !== $postdata[ $meta_key ] ) {
 				update_post_meta( $post_id, $meta_key, $postdata[ $meta_key ] );
 			}
+			else {
+				delete_post_meta( $post_id, $meta_key );
+			}
 		}
 	}
 
