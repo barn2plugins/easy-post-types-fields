@@ -135,6 +135,6 @@ This is the initial release
 == Changelog ==
 
 = 1.1.6 = 
- * Fix: Custom field's value con not be deleted
+ * Fix: Custom field's value can not be deleted
 
 See changelog.txt for more details.
