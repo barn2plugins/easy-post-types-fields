@@ -1,3 +1,6 @@
+= 1.1.6 =
+ * Fix: Custom field's value con not be deleted
+
 = 1.1.5 = 
  * Fix: Fatal error when activating the plugin 
 
