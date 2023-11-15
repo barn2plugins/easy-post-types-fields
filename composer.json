@@ -18,33 +18,42 @@
         },
         {
             "type": "vcs",
+            "url": "git@bitbucket.org:barn2plugins/barn2-lib.git"
+        },
+        {
+            "type": "vcs",
             "url": "git@bitbucket.org:barn2plugins/setup-wizard.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@bitbucket.org:barn2plugins/php-scoper-excludes.git"
         }
     ],
     "require-dev": {
         "barn2/php-standards": "dev-master",
         "bamarni/composer-bin-plugin": "^1.4",
-        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
         "pronamic/wp-documentor": "^1.2",
-        "humbug/php-scoper": "^0.17.5",
-        "barn2/setup-wizard": "^0.5.0"
+        "humbug/php-scoper": "0.18.0",
+        "barn2/setup-wizard": "0.5.0",
+        "barn2/barn2-lib": "^1.1",
+        "barn2/php-scoper-excludes": "^0.1.0",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2"
     },
     "scripts": {
 		"no-dev": "composer update --prefer-dist --no-dev",
         "install-scoper": [
 			"composer bin php-scoper config minimum-stability dev",
 			"composer bin php-scoper config prefer-stable true",
-			"composer bin php-scoper require --dev humbug/php-scoper"
+			"composer bin php-scoper require --dev humbug/php-scoper:0.18.0"
 		],
 		"scoper": "php-scoper add-prefix --config .scoper.inc.php --output-dir dependencies/"
     },
     "autoload": {
         "psr-4": {
-            "Barn2\\Plugin\\Easy_Post_Types_Fields\\": "src",
-            "Barn2\\EPT_Lib\\": "lib"
+            "Barn2\\Plugin\\Easy_Post_Types_Fields\\": "src"
         },
         "classmap": [
-            "dependencies/src"
+            "dependencies"
         ]
     },
     "config": {

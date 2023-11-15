@@ -23,14 +23,14 @@
   },
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/Barn2Media/easy-post-types-fields.git"
+		"url": "git+https://github.com/Barn2Plugins/easy-post-types-fields.git"
 	},
 	"author": "Barn2 Plugins <support@barn2.com>",
 	"license": "GPL-3.0",
 	"bugs": {
-		"url": "https://github.com/Barn2Media/easy-post-types-fields/issues"
+		"url": "https://github.com/Barn2Plugins/easy-post-types-fields/issues"
 	},
-	"homepage": "https://github.com/Barn2Media/easy-post-types-fields#readme",
+	"homepage": "https://github.com/Barn2Plugins/easy-post-types-fields#readme",
 	"devDependencies": {
 		"@barn2media/webpack-config": "^2.0.0",
 		"@wordpress/dependency-extraction-webpack-plugin": "^3.4.0",

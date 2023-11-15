@@ -2,10 +2,10 @@
 
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin;
 
-use Barn2\EPT_Lib\Plugin\Simple_Plugin,
-	Barn2\EPT_Lib\Registerable,
-	Barn2\EPT_Lib\Service,
-	Barn2\EPT_Lib\Service_Container,
+use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Plugin\Simple_Plugin,
+	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Registerable,
+	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service,
+	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service_Container,
 	Barn2\Plugin\Easy_Post_Types_Fields\Util;
 
 /**

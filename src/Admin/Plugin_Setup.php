@@ -12,7 +12,7 @@ namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin;
 
 use Barn2\Plugin\Easy_Post_Types_Fields\Admin\Wizard\Starter;
 use Barn2\Plugin\Easy_Post_Types_Fields\Plugin;
-use Barn2\EPT_Lib\Registerable;
+use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Registerable;
 
 /**
  * {@inheritdoc}

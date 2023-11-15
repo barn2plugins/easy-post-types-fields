@@ -10,8 +10,8 @@
 
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin\Wizard\Steps;
 
-use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Barn2\Setup_Wizard\Step;
-use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Barn2\Setup_Wizard\Util;
+use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Setup_Wizard\Step;
+use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Setup_Wizard\Util;
 
 /**
  * {@inheritdoc}

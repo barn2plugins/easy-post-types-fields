@@ -1,7 +1,7 @@
 <?php
 namespace Barn2\Plugin\Easy_Post_Types_Fields;
 
-use Barn2\EPT_Lib\Util as Lib_Util;
+use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Util as Lib_Util;
 
 use WP_Query;
 

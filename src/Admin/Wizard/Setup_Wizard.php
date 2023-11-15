@@ -11,9 +11,9 @@
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin\Wizard;
 
 use Barn2\Plugin\Easy_Post_Types_Fields\Util;
-use Barn2\EPT_Lib\Plugin\Simple_Plugin;
-use Barn2\EPT_Lib\Registerable;
-use Barn2\EPT_Lib\Util as Lib_Util;
+use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Plugin\Simple_Plugin;
+use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Registerable;
+use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Util as Lib_Util;
 
 /**
  * {@inheritdoc}

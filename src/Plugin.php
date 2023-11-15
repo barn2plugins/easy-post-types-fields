@@ -1,10 +1,10 @@
 <?php
 namespace Barn2\Plugin\Easy_Post_Types_Fields;
 
-use Barn2\EPT_Lib\Plugin\Simple_Plugin,
-	Barn2\EPT_Lib\Registerable,
-	Barn2\EPT_Lib\Translatable,
-	Barn2\EPT_Lib\Util as Lib_Util;
+use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Plugin\Simple_Plugin,
+	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Registerable,
+	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Translatable,
+	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Util as Lib_Util;
 
 /**
  * The main plugin class for Easy Post Types and Fields.

@@ -10,7 +10,7 @@
 
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin\Wizard;
 
-use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Barn2\Setup_Wizard\Starter as Setup_Wizard_Starter;
+use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Setup_Wizard\Starter as Setup_Wizard_Starter;
 
 /** 
  * {@inheritdoc}

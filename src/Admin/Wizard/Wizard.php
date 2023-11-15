@@ -10,8 +10,8 @@
 
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin\Wizard;
 
-use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Barn2\Setup_Wizard\Interfaces\Restartable;
-use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Barn2\Setup_Wizard\Setup_Wizard;
+use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Setup_Wizard\Interfaces\Restartable;
+use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Setup_Wizard\Setup_Wizard;
 
 /**
  * {@inheritdoc}
