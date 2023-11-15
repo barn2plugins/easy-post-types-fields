@@ -35,19 +35,17 @@ class Admin_Controller implements Registerable, Service {
 	 */
 	public function __construct( Simple_Plugin $plugin ) {
 		$this->plugin = $plugin;
+
+		$this->add_services();
 	}
 
 	/**
 	 * {@inheritdoc}
 	 */
-	public function get_services() {
-		$services = [
-			'cpt_editor'    => new CPT_Editor( $this->plugin ),
-			'review_notice' => new Review_Notice( $this->plugin ),
-			'wizard'        => new Wizard\Setup_Wizard( $this->plugin ),
-		];
-
-		return $services;
+	public function add_services() {
+		$this->add_service( 'cpt_editor', new CPT_Editor( $this->plugin ) );
+		$this->add_service( 'review_notice', new Review_Notice( $this->plugin ) );
+		$this->add_service( 'wizard', new Wizard\Setup_Wizard( $this->plugin ) );
 	}
 
 	/**

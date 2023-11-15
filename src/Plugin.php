@@ -40,37 +40,29 @@ class Plugin extends Simple_Plugin implements Registerable, Translatable {
 			]
 		);
 
-		$this->services = [];
+		$this->add_service( 'plugin_setup', new Admin\Plugin_Setup( $this->get_file(), $this ), true );
 
-		if ( Lib_Util::is_admin() ) {
-			$this->services['admin/controller'] = new Admin\Admin_Controller( $this );
-		}
-
-		$this->services = array_merge(
-			$this->services,
-			[
-				'post_type_factory' => new Post_Type_Factory( $this ),
-				'ptp_integration'   => new Integration\Barn2_Table_Plugin(),
-			]
-		);
 	}
 
 	/**
 	 * {@inheritdoc}
 	 */
 	public function register() {
-		$plugin_setup = new Admin\Plugin_Setup( $this->get_file(), $this );
-		$plugin_setup->register();
+		parent::register();
 
-		add_action( 'init', [ $this, 'load_plugin' ] );
+		add_action( 'plugins_loaded', [ $this, 'add_services' ] );
+
+		add_action( 'init', [ $this, 'register_services' ] );
 		add_action( 'init', [ $this, 'load_textdomain' ], 5 );
 	}
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function load_plugin() {
-		Lib_Util::register_services( $this->services );
+	public function add_services() {
+		if ( Lib_Util::is_admin() ) {
+			$this->add_service( 'admin/controller', new Admin\Admin_Controller( $this ) );
+		}
+
+		$this->add_service( 'post_type_factory', new Post_Type_Factory( $this ) );
+		$this->add_service( 'ptp_integration', new Integration\Barn2_Table_Plugin() );
 	}
 
 	/**
