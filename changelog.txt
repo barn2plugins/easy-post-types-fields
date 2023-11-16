@@ -1,3 +1,9 @@
+= 1.1.7 = 
+ * Fix: Fatal error when deleting the plugin
+ * Dev: Updated internal libraries and classes
+ * Dev: Modified the taxonomy column in different post types
+ * Dev: Tested up to WordPress 6.4
+
 = 1.1.6 =
  * Fix: Custom field's value con not be deleted
 
