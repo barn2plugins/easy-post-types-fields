@@ -32,6 +32,15 @@ class Post_Type_List_Table extends WP_List_Table {
 	 */
 	protected $post_types;
 
+
+	/**
+	 * The current post type
+	 *
+	 * @var string
+	 */
+	protected $post_type;
+
+
 	/**
 	 * Constructor
 	 *
