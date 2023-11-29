@@ -103,6 +103,14 @@ class Barn2_Table_Plugin implements Registerable, Service {
 		global $wp_post_types;
 
 		$plugin_args = $this->plugins[ $shortcode ];
+		if( ! isset( $out[ 'post_type' ] ) ) {
+			$out[ 'post_type' ] = 'post';
+		}
+
+		if( ! isset( $out[ 'filters' ] ) ) {
+			$out[ 'filters' ] = '';
+		}
+
 		$post_type   = isset( $plugin_args['post_type'] ) ? $plugin_args['post_type'] : $out['post_type'];
 
 		if ( ! isset( $wp_post_types[ $post_type ] ) && isset( $wp_post_types[ "ept_{$post_type}" ] ) ) {
