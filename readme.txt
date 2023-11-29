@@ -5,7 +5,7 @@ Tags: custom post type, custom field, custom taxonomy, custom post types, custom
 Requires at least: 6.0
 Tested up to: 6.4
 Requires PHP: 7.4
-Stable tag: 1.1.7
+Stable tag: 1.1.8
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Donate link: https://barn2.com
@@ -129,10 +129,10 @@ Yes, you can add HTML and shortcodes into either the plain text and Visual Edito
 
 == Changelog ==
 
-= 1.1.7 = 
- * Fix: Fatal error when deleting the plugin
- * Dev: Updated internal libraries and classes
- * Dev: Modified the taxonomy column in different post types
- * Dev: Tested up to WordPress 6.4
+= 1.1.8 =
+Release date 29 November 2023
+
+ * Fix: Fatal error after trying to delete the plugin
+ * Fix: Undefined variables when using the free table plugins
 
 See changelog.txt for more details.

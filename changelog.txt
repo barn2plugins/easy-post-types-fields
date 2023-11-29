@@ -1,3 +1,7 @@
+= 1.1.8 =
+ * Fix: Fatal error after trying to delete the plugin
+ * Fix: Undefined variables when using the free table plugins
+
 = 1.1.7 = 
  * Fix: Fatal error when deleting the plugin
  * Dev: Updated internal libraries and classes

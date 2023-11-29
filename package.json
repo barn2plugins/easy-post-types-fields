@@ -1,6 +1,6 @@
 {
 	"name": "easy-post-types-fields",
-	"version": "1.1.7",
+	"version": "1.1.8",
 	"description": "Easy Post Types and Fields.",
 	"main": "gulpfile.js",
 	"directories": {
