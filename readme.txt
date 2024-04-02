@@ -1,7 +1,7 @@
 === Easy Post Types and Fields ===
 
 Contributors: barn2media
-Tags: custom post type, custom field, custom taxonomy, custom post types, custom fields, taxonomy, custom taxonomies, content type, post type, custom data, meta fields
+Tags: custom post type, custom field, custom taxonomy, custom data, meta fields
 Requires at least: 6.0
 Tested up to: 6.4
 Requires PHP: 7.4
