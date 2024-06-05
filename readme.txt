@@ -2,15 +2,15 @@
 
 Contributors: barn2media
 Tags: custom post type, custom field, custom taxonomy, custom data, meta fields
-Requires at least: 6.0
-Tested up to: 6.4
+Requires at least: 6.1
+Tested up to: 6.5
 Requires PHP: 7.4
 Stable tag: 1.1.8
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Donate link: https://barn2.com
 
-Easy Post Types and Fields makes it quick and easy to add custom post types, custom fields, and taxonomies to your WordPress website.
+Easy Post Types and Fields makes it quick and easy to [add custom post types](https://barn2.com/blog/custom-wordpress-post-types/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=freepluginwporg&utm_content=ecpt-wporg), custom fields, and taxonomies to your WordPress website.
 
 == Description ==
 
