@@ -10,11 +10,11 @@ License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Donate link: https://barn2.com
 
-Easy Post Types and Fields makes it quick and easy to [add custom post types](https://barn2.com/blog/custom-wordpress-post-types/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=freepluginwporg&utm_content=ecpt-wporg), custom fields, and taxonomies to your WordPress website.
+Easy Post Types and Fields makes it quick and easy to add custom post types, custom fields, and taxonomies to your WordPress website.
 
 == Description ==
 
-*Easy Post Types and Fields* makes it quick and easy to add custom post types, custom fields, and taxonomies to your WordPress website.
+*Easy Post Types and Fields* makes it quick and easy to [add custom post types](https://barn2.com/blog/custom-wordpress-post-types/?utm_source=wporg&utm_medium=freeplugin&utm_campaign=freepluginwporg&utm_content=ecpt-wporg), custom fields, and taxonomies to your WordPress website.
 
 https://youtu.be/NOmnHxHpnU8
 
