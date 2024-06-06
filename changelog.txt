@@ -1,3 +1,10 @@
+= 1.1.9 =
+
+* Fix: Custom field values are gone when the post is quick edited
+* Dev: Upgraded to barn2-lib 2
+* Dev: Added ept prefix to sort_by shortcode attribute in barn2 table plugins
+* Dev: Redirect to setup wizard after activation in the new WordPress plugin Installation
+
 = 1.1.8 =
  * Fix: Fatal error after trying to delete the plugin
  * Fix: Undefined variables when using the free table plugins

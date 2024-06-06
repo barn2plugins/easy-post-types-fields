@@ -12,3 +12,5 @@
 /phpdoc.dist.xml export-ignore
 /phpcs.ruleset.xml export-ignore
 /.scoper.inc.php export-ignore
+/*.lock export-ignore
+/composer.json export-ignore

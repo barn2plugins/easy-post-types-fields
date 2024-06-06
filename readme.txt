@@ -3,9 +3,9 @@
 Contributors: barn2media
 Tags: custom post type, custom field, custom taxonomy, custom data, meta fields
 Requires at least: 6.1
-Tested up to: 6.5
+Tested up to: 6.5.4
 Requires PHP: 7.4
-Stable tag: 1.1.8
+Stable tag: 1.1.9
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Donate link: https://barn2.com
@@ -129,10 +129,12 @@ Yes, you can add HTML and shortcodes into either the plain text and Visual Edito
 
 == Changelog ==
 
-= 1.1.8 =
-Release date 29 November 2023
+= 1.1.9 =
+Release date 7 June 2024
 
- * Fix: Fatal error after trying to delete the plugin
- * Fix: Undefined variables when using the free table plugins
+* Fix: Custom field values are gone when the post is quick edited
+* Dev: Upgraded to barn2-lib 2
+* Dev: Added ept prefix to sort_by shortcode attribute in barn2 table plugins
+* Dev: Redirect to setup wizard after activation in the new WordPress plugin Installation
 
 See changelog.txt for more details.
