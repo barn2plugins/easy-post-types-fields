@@ -4,7 +4,7 @@ namespace Barn2\Plugin\Easy_Post_Types_Fields;
 
 use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Plugin\Simple_Plugin,
 	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Registerable,
-	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service;
+	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service\Standard_Service;
 
 use WP_Query;
 
@@ -16,7 +16,7 @@ use WP_Query;
  * @license   GPL-3.0
  * @copyright Barn2 Media Ltd
  */
-class Post_Type_Factory implements Registerable, Service {
+class Post_Type_Factory implements Registerable, Standard_Service {
 
 	/**
 	 * The main plugin instance

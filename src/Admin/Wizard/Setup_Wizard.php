@@ -13,12 +13,13 @@ namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin\Wizard;
 use Barn2\Plugin\Easy_Post_Types_Fields\Util;
 use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Plugin\Simple_Plugin;
 use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Registerable;
+use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service\Standard_Service;
 use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Util as Lib_Util;
 
 /**
  * {@inheritdoc}
  */
-class Setup_Wizard implements Registerable {
+class Setup_Wizard implements Registerable, Standard_Service {
 
 	private $plugin;
 

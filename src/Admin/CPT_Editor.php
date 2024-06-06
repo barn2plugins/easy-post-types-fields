@@ -18,7 +18,7 @@ use Barn2\Plugin\Easy_Post_Types_Fields\Plugin,
 	Barn2\Plugin\Easy_Post_Types_Fields\Util,
 	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Plugin\Simple_Plugin,
 	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Registerable,
-	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service,
+	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service\Standard_Service,
 	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Util as Lib_Util;
 
 use WP_Error;
@@ -37,7 +37,7 @@ use WP_Query;
  * @license   GPL-3.0
  * @copyright Barn2 Media Ltd
  */
-class CPT_Editor implements Service, Registerable {
+class CPT_Editor implements Standard_Service, Registerable {
 
 	/**
 	 * The main plugin instance

@@ -12,7 +12,7 @@ namespace Barn2\Plugin\Easy_Post_Types_Fields\Integration;
 
 use Barn2\Plugin\Easy_Post_Types_Fields\Util,
 	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Registerable,
-	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service;
+	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service\Standard_Service;
 
 /**
  * Class handling the integration
@@ -22,7 +22,7 @@ use Barn2\Plugin\Easy_Post_Types_Fields\Util,
  * @license   GPL-3.0
  * @copyright Barn2 Media Ltd
  */
-class Barn2_Table_Plugin implements Registerable, Service {
+class Barn2_Table_Plugin implements Registerable, Standard_Service {
 
 	/**
 	 * A list of plugins that integrate with EPT

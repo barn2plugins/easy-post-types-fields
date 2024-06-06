@@ -4,8 +4,8 @@ namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin;
 
 use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Plugin\Simple_Plugin,
 	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Registerable,
-	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service,
-	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service_Container,
+	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service\Standard_Service,
+	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service\Service_Container,
 	Barn2\Plugin\Easy_Post_Types_Fields\Util;
 
 /**
@@ -16,7 +16,7 @@ use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Plugin\Simple_Plugin,
  * @license   GPL-3.0
  * @copyright Barn2 Media Ltd
  */
-class Admin_Controller implements Registerable, Service {
+class Admin_Controller implements Registerable, Standard_Service {
 
 	use Service_Container;
 
@@ -35,8 +35,6 @@ class Admin_Controller implements Registerable, Service {
 	 */
 	public function __construct( Simple_Plugin $plugin ) {
 		$this->plugin = $plugin;
-
-		$this->add_services();
 	}
 
 	/**
@@ -53,10 +51,10 @@ class Admin_Controller implements Registerable, Service {
 	 * {@inheritdoc}
 	 */
 	public function register() {
-		$this->register_services();
-
 		add_action( 'admin_enqueue_scripts', [ $this, 'load_scripts' ] );
 		add_filter( 'plugin_action_links_' . $this->plugin->get_basename(), [ $this, 'add_settings_link' ] );
+		$this->register_services();
+		$this->start_all_services();
 	}
 
 	/**

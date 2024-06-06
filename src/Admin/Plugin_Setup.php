@@ -12,12 +12,13 @@ namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin;
 
 use Barn2\Plugin\Easy_Post_Types_Fields\Admin\Wizard\Starter;
 use Barn2\Plugin\Easy_Post_Types_Fields\Plugin;
+use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service\Standard_Service;
 use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Registerable;
 
 /**
  * {@inheritdoc}
  */
-class Plugin_Setup implements Registerable {
+class Plugin_Setup implements Registerable, Standard_Service {
 	/**
 	 * Plugin's entry file
 	 *
@@ -64,10 +65,11 @@ class Plugin_Setup implements Registerable {
 
 	/**
 	 * On plugin activation determine if the setup wizard should run.
-	 *
+	 * 
+	 * @param boolean $network_wide
 	 * @return void
 	 */
-	public function on_activate() {
+	public function on_activate( $network_wide ) {
 		// Network wide.
 		// phpcs:disable
 		$network_wide = ! empty( $_GET['networkwide'] )
@@ -83,9 +85,10 @@ class Plugin_Setup implements Registerable {
 	/**
 	 * Do nothing.
 	 *
+	 * @param boolean $network_wide
 	 * @return void
 	 */
-	public function on_deactivate() {}
+	public function on_deactivate( $network_wide ) {}
 
 	/** 
 	 * Delete the option responsible for checking setup wizard run 

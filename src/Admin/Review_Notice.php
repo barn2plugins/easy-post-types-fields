@@ -3,7 +3,7 @@
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin;
 
 use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Registerable,
-	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service;
+	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service\Standard_Service;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -15,7 +15,7 @@ defined( 'ABSPATH' ) || exit;
  * @license   GPL-3.0
  * @copyright Barn2 Media Ltd
  */
-class Review_Notice implements Registerable, Service {
+class Review_Notice implements Registerable, Standard_Service {
 
 	private $plugin;
 
