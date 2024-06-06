@@ -1,9 +1,9 @@
 <?php
 
-namespace Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib;
+namespace Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service;
 
 /**
- * An object that provides services (instances of Barn2\Lib\Service).
+ * An object that provides services (instances of Barn2\Lib\Service\Service).
  *
  * @package   Barn2\barn2-lib
  * @author    Barn2 Plugins <support@barn2.com>

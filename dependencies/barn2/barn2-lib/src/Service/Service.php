@@ -1,6 +1,6 @@
 <?php
 
-namespace Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib;
+namespace Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service;
 
 /**
  * Marker interface to denote a service.

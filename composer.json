@@ -35,7 +35,7 @@
         "pronamic/wp-documentor": "^1.2",
         "humbug/php-scoper": "0.18.0",
         "barn2/setup-wizard": "0.5.0",
-        "barn2/barn2-lib": "^1.1",
+        "barn2/barn2-lib": "^2.0",
         "barn2/php-scoper-excludes": "^0.2.0",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2"
     },

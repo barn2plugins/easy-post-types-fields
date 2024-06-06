@@ -2,7 +2,9 @@
 
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Plugin\License;
 
-use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Scheduled_Task, Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Schedulable;
+use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Schedulable;
+use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Scheduled_Task;
+use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service\Core_Service;
 /**
  * A scheduled task to periodically check the status of the plugin license.
  *
@@ -11,7 +13,7 @@ use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Scheduled_Task, Barn2\P
  * @license   GPL-3.0
  * @copyright Barn2 Media Ltd
  */
-class License_Checker extends Scheduled_Task implements Schedulable
+class License_Checker extends Scheduled_Task implements Schedulable, Core_Service
 {
     /**
      * The plugin license.
