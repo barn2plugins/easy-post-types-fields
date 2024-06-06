@@ -2,11 +2,11 @@
 
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin;
 
-use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Plugin\Simple_Plugin,
-	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Registerable,
-	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service\Standard_Service,
-	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service\Service_Container,
-	Barn2\Plugin\Easy_Post_Types_Fields\Util;
+use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Plugin\Simple_Plugin;
+use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Registerable;
+use	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service\Standard_Service;
+use	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service\Service_Container;
+use	Barn2\Plugin\Easy_Post_Types_Fields\Util;
 
 /**
  * General admin functions for Easy Post Types and Fields.

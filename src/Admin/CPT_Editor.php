@@ -14,12 +14,12 @@
 
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin;
 
-use Barn2\Plugin\Easy_Post_Types_Fields\Plugin,
-	Barn2\Plugin\Easy_Post_Types_Fields\Util,
-	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Plugin\Simple_Plugin,
-	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Registerable,
-	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service\Standard_Service,
-	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Util as Lib_Util;
+use Barn2\Plugin\Easy_Post_Types_Fields\Plugin;
+use	Barn2\Plugin\Easy_Post_Types_Fields\Util;
+use	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Plugin\Simple_Plugin;
+use	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Registerable;
+use	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service\Standard_Service;
+use	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Util as Lib_Util;
 
 use WP_Error;
 use WP_Query;

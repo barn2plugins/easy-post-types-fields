@@ -10,9 +10,9 @@
 
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Integration;
 
-use Barn2\Plugin\Easy_Post_Types_Fields\Util,
-	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Registerable,
-	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service\Standard_Service;
+use Barn2\Plugin\Easy_Post_Types_Fields\Util;
+use	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Registerable;
+use	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service\Standard_Service;
 
 /**
  * Class handling the integration

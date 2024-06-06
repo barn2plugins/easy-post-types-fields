@@ -2,10 +2,8 @@
 
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin;
 
-use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Registerable,
-	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service\Standard_Service;
-
-defined( 'ABSPATH' ) || exit;
+use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Registerable;
+use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service\Standard_Service;
 
 /**
  * Add a notice to request a review.

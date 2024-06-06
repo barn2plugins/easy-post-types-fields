@@ -2,9 +2,9 @@
 
 namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin;
 
-use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Registerable,
-    Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service\Standard_Service,
-	  Barn2\Plugin\Easy_Post_Types_Fields\Util;
+use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Registerable;
+use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service\Standard_Service;
+use Barn2\Plugin\Easy_Post_Types_Fields\Util;
 
 /**
  * Manage the custom taxonomy columns in different post types

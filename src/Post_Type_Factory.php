@@ -2,9 +2,9 @@
 
 namespace Barn2\Plugin\Easy_Post_Types_Fields;
 
-use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Plugin\Simple_Plugin,
-	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Registerable,
-	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service\Standard_Service;
+use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Plugin\Simple_Plugin;
+use	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Registerable;
+use	Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service\Standard_Service;
 
 use WP_Query;
 
