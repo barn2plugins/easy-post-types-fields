@@ -33,6 +33,13 @@ abstract class Abstract_Post_Type implements Post_Type_Interface {
 	protected $id;
 
 	/**
+	 * The slug of the post type
+	 *
+	 * @var string
+	 */
+	protected $slug;
+
+	/**
 	 * The name (generally plural) of the CPT as defined in $args['labels']['name']
 	 *
 	 * @var string
@@ -253,6 +260,11 @@ abstract class Abstract_Post_Type implements Post_Type_Interface {
 	 * @return void
 	 */
 	public function save_post_data( $post_id ) {
+
+		if ( defined( 'DOING_AJAX' ) && DOING_AJAX && isset( $_POST['action'] ) && $_POST['action'] === 'inline-save' ) {
+			return;
+		}
+		
 		$postdata = sanitize_post( $_POST, 'db' ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
 		if ( ! isset( $postdata['post_type'] ) ) {
