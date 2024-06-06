@@ -42,8 +42,8 @@ class Admin_Controller implements Registerable, Standard_Service {
 	 */
 	public function add_services() {
 		$this->add_service( 'cpt_editor', new CPT_Editor( $this->plugin ) );
-		$this->add_service( 'review_notice', new Review_Notice( $this->plugin ) );
 		$this->add_service( 'wizard', new Wizard\Setup_Wizard( $this->plugin ) );
+		$this->add_service( 'review_notice', new Review_Notice( $this->plugin ) );
 		$this->add_service( 'taxonomy_columns', new Taxonomy_Columns() );
 	}
 

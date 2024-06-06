@@ -12,13 +12,14 @@ namespace Barn2\Plugin\Easy_Post_Types_Fields\Admin;
 
 use Barn2\Plugin\Easy_Post_Types_Fields\Admin\Wizard\Starter;
 use Barn2\Plugin\Easy_Post_Types_Fields\Plugin;
+use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Plugin\Plugin_Activation_Listener;
 use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Service\Standard_Service;
 use Barn2\Plugin\Easy_Post_Types_Fields\Dependencies\Lib\Registerable;
 
 /**
  * {@inheritdoc}
  */
-class Plugin_Setup implements Registerable, Standard_Service {
+class Plugin_Setup implements Registerable, Standard_Service, Plugin_Activation_Listener {
 	/**
 	 * Plugin's entry file
 	 *
