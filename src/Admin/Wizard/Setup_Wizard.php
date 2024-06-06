@@ -82,9 +82,27 @@ class Setup_Wizard implements Registerable {
 	}
 
 	/**
+	 * Retrieve the url to the wizard's page.
+	 *
+	 * @return string
+	 */
+	public function get_wizard_url() {
+		return add_query_arg( [ 'page' => $this->plugin->get_slug() . '-setup-wizard' ], admin_url( 'admin.php' ) );
+	}
+
+	/**
 	 * {@inheritdoc}
 	 */
 	public function register() {
+		add_filter(
+			'plugin_configuration_data_' . $this->plugin->get_slug(),
+			function() {
+				$url = $this->get_wizard_url();
+				return [
+					'url' => esc_url( $url ),
+				];
+			}
+		);
 		$this->wizard->boot();
 	}
 }
