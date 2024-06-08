@@ -439,7 +439,7 @@ class Util {
 	public static function support_links() {
 		$links = [
 			Lib_Util::format_link( ept()->get_documentation_url(), __( 'Documentation', 'easy-post-types-fields' ), true ),
-			Lib_Util::format_link( ept()->get_support_url(), __( 'Support', 'easy-post-types-fields' ), true ),
+			Lib_Util::format_link( 'https://wordpress.org/support/plugin/easy-post-types-fields/', __( 'Support', 'easy-post-types-fields' ), true ),
 		];
 
 		printf( '<p>%s</p>', implode( ' | ', $links ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
