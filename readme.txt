@@ -130,7 +130,7 @@ Yes, you can add HTML and shortcodes into either the plain text and Visual Edito
 == Changelog ==
 
 = 1.1.9 =
-Release date 7 June 2024
+Release date 13 June 2024
 
 * Fix: Custom field values are gone when the post is quick edited
 * Dev: Upgraded to barn2-lib 2

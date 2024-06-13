@@ -66,11 +66,11 @@
         },
         {
             "name": "barn2/barn2-lib",
-            "version": "2.0.2",
+            "version": "2.0.3",
             "source": {
                 "type": "git",
                 "url": "git@bitbucket.org:barn2plugins/barn2-lib.git",
-                "reference": "73773bb56ff14eed04e51a98475af2fb3cceaa48"
+                "reference": "4d6e6fe530eb3c17bb7af8e5fc305e6f0a1dad9f"
             },
             "require": {
                 "wptrt/admin-notices": "^1.0"
@@ -94,7 +94,7 @@
                 }
             ],
             "description": "Barn2 Libary code",
-            "time": "2024-05-15T15:33:09+00:00"
+            "time": "2024-06-07T09:27:48+00:00"
         },
         {
             "name": "barn2/php-scoper-excludes",

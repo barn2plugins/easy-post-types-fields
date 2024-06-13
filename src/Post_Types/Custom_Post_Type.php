@@ -127,6 +127,7 @@ class Custom_Post_Type extends Abstract_Post_Type {
 			'singular_name'            => $this->singular_name,
 			// translators: the singular post type name
 			'add_new_item'             => $this->define_singular_label( __( 'Add New %s', 'easy-post-types-fields' ) ),
+			'add_new'             => $this->define_singular_label( __( 'Add New %s', 'easy-post-types-fields' ) ),
 			// translators: the singular post type name
 			'edit_item'                => $this->define_singular_label( __( 'Edit %s', 'easy-post-types-fields' ) ),
 			// translators: the singular post type name
