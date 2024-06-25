@@ -139,7 +139,9 @@ class Barn2_Table_Plugin implements Registerable, Service {
 		}
 
 		$out['sort_by'] = $this->prefix_taxs_and_fields( $out['sort_by'], $post_type );
-		$out['sort_by'] = substr( $out['sort_by'], 0, strrpos( $out['sort_by'], ':' ) );
+		if ( substr_count( $out['sort_by'], ':' ) > 1 ) {
+			$out['sort_by'] = substr( $out['sort_by'], 0, strrpos( $out['sort_by'], ':' ) );
+		}
 
 		return $out;
 	}
