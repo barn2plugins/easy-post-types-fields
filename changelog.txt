@@ -1,3 +1,7 @@
+= 1.1.10 =
+* Fix: `sort_by` parameter doesn't work when using Posts Table Pro
+* Dev: Tested up to WordPress 6.6
+
 = 1.1.9 =
 * Fix: Custom field values are gone when the post is quick edited
 * Dev: Upgraded to barn2-lib 2
