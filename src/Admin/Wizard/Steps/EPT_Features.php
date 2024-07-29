@@ -72,18 +72,35 @@ class EPT_Features extends Step {
 		$slug         = sanitize_title( $_POST['slug'] );
 		$singular     = sanitize_text_field( $_POST['singular'] );
 		$plural       = sanitize_text_field( $_POST['plural'] );
-		$post_type_id = wp_insert_post(
+
+		$post_type_args = [
+			'post_type'      => 'ept_post_type',
+			'post_title'     => $singular,
+			'post_status'    => 'publish',
+			'comment_status' => 'closed',
+			'meta_input'     => [
+				'_ept_plural_name' => $plural,
+				'_ept_supports'    => $supports,
+			],
+		];
+
+		$posts = get_posts(
 			[
-				'post_type'      => 'ept_post_type',
-				'post_title'     => $singular,
-				'post_status'    => 'publish',
-				'comment_status' => 'closed',
-				'meta_input'     => [
-					'_ept_plural_name' => $plural,
-					'_ept_supports'    => $supports,
-				],
+				'post_type' => 'ept_post_type',
+				'name'      => $slug,
+				'fields'    => 'ids'
 			]
 		);
+
+		if ( count( $posts ) > 1 ) {
+			$this->send_error( esc_html__( 'It seems like there are more than one post types with this name. Please go back to the previous step and change the name.', 'easy-post-types-fields' ) );
+		}
+		// Edit the post type that is already registered
+		if( count( $posts ) === 1 ) {
+			$post_type_args[ 'ID' ] = $posts[0];
+		}
+		
+		$post_type_id = wp_insert_post( $post_type_args );
 
 		if ( is_wp_error( $post_type_id ) ) {
 			$this->send_error( esc_html( $post_type_id->get_error_message() ) );
