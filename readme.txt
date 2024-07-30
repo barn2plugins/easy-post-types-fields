@@ -130,9 +130,10 @@ Yes, you can add HTML and shortcodes into either the plain text and Visual Edito
 == Changelog ==
 
 = 1.1.10 =
-Release date 22 July 2024
+Release date 30 July 2024
 
 * Fix: `sort_by` parameter doesn't work when using Posts Table Pro
+* Fix: Don't create a redundant post type in the wizard when steps are visited again
 * Dev: Tested up to WordPress 6.6
 
 See changelog.txt for more details.

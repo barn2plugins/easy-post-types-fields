@@ -1,5 +1,6 @@
 = 1.1.10 =
 * Fix: `sort_by` parameter doesn't work when using Posts Table Pro
+* Fix: Don't create a redundant post type in the wizard when steps are visited again
 * Dev: Tested up to WordPress 6.6
 
 = 1.1.9 =
