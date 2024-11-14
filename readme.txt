@@ -3,7 +3,7 @@
 Contributors: barn2media
 Tags: custom post type, custom field, custom taxonomy, custom data, meta fields
 Requires at least: 6.1
-Tested up to: 6.6
+Tested up to: 6.7
 Requires PHP: 7.4
 Stable tag: 1.1.10
 License: GNU General Public License v3.0
