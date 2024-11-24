@@ -5,7 +5,7 @@ Tags: custom post type, custom field, custom taxonomy, custom data, meta fields
 Requires at least: 6.1
 Tested up to: 6.7
 Requires PHP: 7.4
-Stable tag: 1.1.10
+Stable tag: 1.1.11
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Donate link: https://barn2.com
@@ -129,11 +129,10 @@ Yes, you can add HTML and shortcodes into either the plain text and Visual Edito
 
 == Changelog ==
 
-= 1.1.10 =
-Release date 30 July 2024
+= 1.1.11 =
+Release date 25 November 2024
 
-* Fix: `sort_by` parameter doesn't work when using Posts Table Pro
-* Fix: Don't create a redundant post type in the wizard when steps are visited again
-* Dev: Tested up to WordPress 6.6
+* Dev: Updated the internal libraries
+* Dev: Tested up to WordPress 6.7.1
 
 See changelog.txt for more details.

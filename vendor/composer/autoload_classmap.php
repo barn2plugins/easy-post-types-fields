@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Barn2\\Plugin\\Easy_Post_Types_Fields\\Dependencies\\Lib\\Admin\\Abstract_Plugin_Promo' => $baseDir . '/dependencies/barn2/barn2-lib/src/Admin/Abstract_Plugin_Promo.php',
+    'Barn2\\Plugin\\Easy_Post_Types_Fields\\Dependencies\\Lib\\Admin\\Notice' => $baseDir . '/dependencies/barn2/barn2-lib/src/Admin/Notice.php',
     'Barn2\\Plugin\\Easy_Post_Types_Fields\\Dependencies\\Lib\\Admin\\Notices' => $baseDir . '/dependencies/barn2/barn2-lib/src/Admin/Notices.php',
     'Barn2\\Plugin\\Easy_Post_Types_Fields\\Dependencies\\Lib\\Admin\\Plugin_Promo' => $baseDir . '/dependencies/barn2/barn2-lib/src/Admin/Plugin_Promo.php',
     'Barn2\\Plugin\\Easy_Post_Types_Fields\\Dependencies\\Lib\\Admin\\Settings_API_Helper' => $baseDir . '/dependencies/barn2/barn2-lib/src/Admin/Settings_API_Helper.php',
@@ -49,13 +50,13 @@ return array(
     'Barn2\\Plugin\\Easy_Post_Types_Fields\\Dependencies\\Lib\\Service\\Service_Container' => $baseDir . '/dependencies/barn2/barn2-lib/src/Service/Service_Container.php',
     'Barn2\\Plugin\\Easy_Post_Types_Fields\\Dependencies\\Lib\\Service\\Service_Provider' => $baseDir . '/dependencies/barn2/barn2-lib/src/Service/Service_Provider.php',
     'Barn2\\Plugin\\Easy_Post_Types_Fields\\Dependencies\\Lib\\Service\\Standard_Service' => $baseDir . '/dependencies/barn2/barn2-lib/src/Service/Standard_Service.php',
+    'Barn2\\Plugin\\Easy_Post_Types_Fields\\Dependencies\\Lib\\Service\\Updater' => $baseDir . '/dependencies/barn2/barn2-lib/src/Service/Updater.php',
     'Barn2\\Plugin\\Easy_Post_Types_Fields\\Dependencies\\Lib\\Template_Loader' => $baseDir . '/dependencies/barn2/barn2-lib/src/Template_Loader.php',
     'Barn2\\Plugin\\Easy_Post_Types_Fields\\Dependencies\\Lib\\Traits\\Plugin_Aware' => $baseDir . '/dependencies/barn2/barn2-lib/src/Traits/Plugin_Aware.php',
     'Barn2\\Plugin\\Easy_Post_Types_Fields\\Dependencies\\Lib\\Translatable' => $baseDir . '/dependencies/barn2/barn2-lib/src/Translatable.php',
     'Barn2\\Plugin\\Easy_Post_Types_Fields\\Dependencies\\Lib\\Util' => $baseDir . '/dependencies/barn2/barn2-lib/src/Util.php',
     'Barn2\\Plugin\\Easy_Post_Types_Fields\\Dependencies\\Lib\\WP_Scoped_Hooks' => $baseDir . '/dependencies/barn2/barn2-lib/src/WP_Scoped_Hooks.php',
     'Barn2\\Plugin\\Easy_Post_Types_Fields\\Dependencies\\Lib\\WooCommerce\\Admin\\Custom_Settings_Fields' => $baseDir . '/dependencies/barn2/barn2-lib/src/WooCommerce/Admin/Custom_Settings_Fields.php',
-    'Barn2\\Plugin\\Easy_Post_Types_Fields\\Dependencies\\Lib\\WooCommerce\\Admin\\Navigation' => $baseDir . '/dependencies/barn2/barn2-lib/src/WooCommerce/Admin/Navigation.php',
     'Barn2\\Plugin\\Easy_Post_Types_Fields\\Dependencies\\Lib\\WooCommerce\\Admin\\Plugin_Promo' => $baseDir . '/dependencies/barn2/barn2-lib/src/WooCommerce/Admin/Plugin_Promo.php',
     'Barn2\\Plugin\\Easy_Post_Types_Fields\\Dependencies\\Lib\\WooCommerce\\Admin\\Settings_Util' => $baseDir . '/dependencies/barn2/barn2-lib/src/WooCommerce/Admin/Settings_Util.php',
     'Barn2\\Plugin\\Easy_Post_Types_Fields\\Dependencies\\Lib\\WooCommerce\\Compatibility' => $baseDir . '/dependencies/barn2/barn2-lib/src/WooCommerce/Compatibility.php',
