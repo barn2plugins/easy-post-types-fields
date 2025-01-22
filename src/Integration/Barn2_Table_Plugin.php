@@ -126,6 +126,7 @@ class Barn2_Table_Plugin implements Registerable, Standard_Service {
 			}
 
 			$out['columns'] = $this->prefix_taxs_and_fields( $out['columns'], $post_type );
+			$out['column_type'] = $this->prefix_column_type_cf_fields( $out['column_type'], $post_type );
 
 			if ( is_null( filter_var( $out['filters'], FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE ) ) ) {
 				$filters = $out['filters'];
@@ -199,6 +200,57 @@ class Barn2_Table_Plugin implements Registerable, Standard_Service {
 				},
 				explode( ',', $comma_separated_list )
 			)
+		);
+	}
+
+	/**
+	 * Use the appropriate prefix for the slugs of EPT entities
+	 *
+	 * This method gets an array of slugs and checks whether the
+	 * ones related to custom fields (cf:) might be
+	 * registered by EPT. If that is the case, the appropriate prefix is added.
+	 * Otherwise, the slug is returned as it originally was.
+	 *
+	 * @param  array $column_type_array
+	 * @param  string $post_type
+	 * @return array $column_type_array
+	 */
+	public function prefix_column_type_cf_fields( $column_type_array, $post_type ) {
+		$fields     = Util::get_custom_fields( $post_type );
+		$slugs      = $fields ? array_column( $fields, 'slug' ) : [];
+		$fields     = array_combine(
+			$slugs,
+			$fields
+		);
+		$entities   = [
+			'cf'  => $fields,
+		];
+
+		return array_map(
+			function( $column ) use ( $post_type, $entities, $slugs ) {
+				$prefix = strtok( $column, ':' );
+				$slug   = str_replace( "{$post_type}_", '', strtok( ':' ) );
+				$label  = strtok( ':' );
+
+				if ( in_array( $prefix, [ 'tax', 'cf' ], true ) ) {
+					$item = array_values(
+						array_filter(
+							$entities[ $prefix ],
+							function( $i ) use ( $slug ) {
+								return $slug === $i['slug'];
+							}
+						)
+					);
+
+					if ( $item && 1 === count( $item ) ) {
+						$label  = $label ? $label : $item[0]['name'];
+						$column = rtrim( implode( ':', [ $prefix, "{$post_type}_{$slug}", $label !== '' ? '' : null, $label ] ), ':' );
+					}
+				}
+
+				return $column;
+			},
+			$column_type_array
 		);
 	}
 
