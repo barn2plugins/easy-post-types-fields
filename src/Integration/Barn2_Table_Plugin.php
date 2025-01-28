@@ -232,7 +232,7 @@ class Barn2_Table_Plugin implements Registerable, Standard_Service {
 				$slug   = str_replace( "{$post_type}_", '', strtok( ':' ) );
 				$label  = strtok( ':' );
 
-				if ( in_array( $prefix, [ 'tax', 'cf' ], true ) ) {
+				if ( in_array( $prefix, [ 'cf' ], true ) ) {
 					$item = array_values(
 						array_filter(
 							$entities[ $prefix ],
