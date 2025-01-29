@@ -1,3 +1,7 @@
+= 1.1.12 =
+* Dev: Updated the internal libraries
+* Fix: Added prefix for custom field columns for PTP integration
+
 = 1.1.11 =
 * Dev: Updated the internal libraries
 * Dev: Tested up to WordPress 6.7.1

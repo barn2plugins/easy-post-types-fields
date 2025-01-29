@@ -73,7 +73,7 @@ class Notice
             // Enqueue notices script to handle dismissables notices.
             \add_action('admin_enqueue_scripts', [$this, 'load_scripts']);
             // Handle AJAX requests to dismiss the notice.
-            \add_action('wp_ajax_barn2_dismiss_admin_notice', [$this, 'ajax_maybe_dismiss_notice']);
+            \add_action('wp_ajax_barn2_dismiss_notice', [$this, 'ajax_maybe_dismiss_notice']);
         }
     }
     /**
