@@ -250,7 +250,7 @@ class Barn2_Table_Plugin implements Registerable, Standard_Service {
 
 				return $column;
 			},
-			$column_type_array
+			is_array( $column_type_array ) ? $column_type_array : []
 		);
 	}
 

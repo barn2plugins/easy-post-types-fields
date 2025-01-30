@@ -130,7 +130,7 @@ Yes, you can add HTML and shortcodes into either the plain text and Visual Edito
 == Changelog ==
 
 = 1.1.12 =
-Release date 03 February 2025
+Release date 10 February 2025
 
 * Dev: Updated the internal libraries
 * Fix: Added prefix for custom field columns for PTP integration
