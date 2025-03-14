@@ -126,7 +126,10 @@ class Barn2_Table_Plugin implements Registerable, Standard_Service {
 			}
 
 			$out['columns'] = $this->prefix_taxs_and_fields( $out['columns'], $post_type );
-			$out['column_type'] = $this->prefix_column_type_cf_fields( $out['column_type'], $post_type );
+			
+			if ( isset( $out['column_type'] ) ) {
+				$out['column_type'] = $this->prefix_column_type_cf_fields( $out['column_type'], $post_type );
+			}
 
 			if ( is_null( filter_var( $out['filters'], FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE ) ) ) {
 				$filters = $out['filters'];
