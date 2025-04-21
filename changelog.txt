@@ -1,3 +1,7 @@
+= 1.1.13 =
+* Dev: Tested up to WordPress 6.8 and PHP 8.4
+* Fix: PHP warning for undefined array key column_type
+
 = 1.1.12 =
 * Dev: Updated the internal libraries
 * Fix: Added prefix for custom field columns for PTP integration
