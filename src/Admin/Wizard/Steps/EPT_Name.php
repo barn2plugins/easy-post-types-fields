@@ -54,7 +54,7 @@ class EPT_Name extends Step {
 	public function submit() {
 		$values = $this->get_submitted_values();
 
-		if ( ! $values['singular'] || ! $values['plural'] ) {
+		if ( ! isset( $values['singular'] ) || ! isset( $values['plural'] ) || ! $values['singular'] || ! $values['plural'] ) {
 			$this->send_error( esc_html__( 'Both fields must not be empty.', 'easy-post-types-fields' ) );
 		}
 
