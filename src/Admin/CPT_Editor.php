@@ -137,9 +137,12 @@ class CPT_Editor implements Standard_Service, Registerable {
 		$screen = get_current_screen();
 
 		if ( in_array( $screen->id, [ 'toplevel_page_ept_post_types', 'ept_post_type', 'post-types_page_ept_post_types-promo-display', 'post-types_page_ept_post_types-promo-protect' ], true ) ) {
-			wp_enqueue_script( 'ept-jquery-tiptip', plugin_dir_url( $this->plugin->get_file() ) . 'lib/assets/js/jquery-tiptip/jquery.tipTip.min.js', [ 'jquery' ], $this->plugin->get_version(), true );
 			wp_enqueue_script( 'ept-editor', plugin_dir_url( $this->plugin->get_file() ) . 'assets/js/admin/ept-editor.js', [ 'jquery', 'wp-i18n', 'wp-url' ], $this->plugin->get_version(), true );
 			wp_enqueue_style( 'ept-editor', plugin_dir_url( $this->plugin->get_file() ) . 'assets/css/admin/ept-editor.css', [], $this->plugin->get_version() );
+			
+			// Enqueue tooltip assets
+			wp_enqueue_script( 'barn2-tiptip', plugin_dir_url( $this->plugin->get_file() ) . 'dependencies/barn2/barn2-lib/build/js/jquery-tiptip/jquery.tipTip.js', [ 'jquery' ], $this->plugin->get_version(), true );
+			wp_enqueue_style( 'barn2-tooltip', plugin_dir_url( $this->plugin->get_file() ) . 'dependencies/barn2/barn2-lib/build/css/tooltip-styles.css', [], $this->plugin->get_version() );
 		}
 	}
 
