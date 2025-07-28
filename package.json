@@ -19,7 +19,9 @@
 		"plugin-zip": "wp-scripts plugin-zip",
 		"start": "set BARN2_BUILD_ENV=development & wp-scripts start",
 		"test:e2e": "wp-scripts test-e2e",
-		"test:unit": "wp-scripts test-unit-js"
+		"test:unit": "wp-scripts test-unit-js",
+		"translate": "potomatic",
+		"translate:dry-run": "potomatic --dry-run"
 	},
 	"repository": {
 		"type": "git",
@@ -34,7 +36,8 @@
 	"devDependencies": {
 		"@barn2plugins/webpack-config": "^2.0.0",
 		"@wordpress/dependency-extraction-webpack-plugin": "^3.4.0",
-		"little-state-machine-devtools": "^2.0.1"
+		"little-state-machine-devtools": "^2.0.1",
+		"potomatic": "^1.0.0"
 	},
 	"dependencies": {
 		"@barn2plugins/components": "^0.2.0",

@@ -14,3 +14,4 @@
 /.scoper.inc.php export-ignore
 /*.lock export-ignore
 /composer.json export-ignore
+/.env export-ignore
