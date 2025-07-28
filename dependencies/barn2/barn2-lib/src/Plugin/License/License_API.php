@@ -15,5 +15,5 @@ interface License_API
     public function activate_license($license_key, $item_id, $url);
     public function deactivate_license($license_key, $item_id, $url);
     public function check_license($license_key, $item_id, $url);
-    public function get_latest_version($license_key, $item_id, $url, $slug, $beta_testing = \false);
+    public function get_latest_version($license_key, $item_id, $url, $slug, $beta_testing = \false, $license_group = '');
 }

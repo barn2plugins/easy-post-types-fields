@@ -47,7 +47,7 @@ class Simple_Plugin implements Plugin, Registerable, Service_Provider
      */
     public function __construct(array $data)
     {
-        $this->data = \array_merge(['id' => 0, 'name' => '', 'version' => '', 'file' => null, 'is_woocommerce' => \false, 'is_edd' => \false, 'documentation_path' => '', 'settings_path' => '', 'wc_features' => []], $data);
+        $this->data = \array_merge(['id' => 0, 'license_group' => '', 'name' => '', 'version' => '', 'file' => null, 'is_woocommerce' => \false, 'is_edd' => \false, 'documentation_path' => '', 'settings_path' => '', 'wc_features' => []], $data);
         $this->data['id'] = (int) $this->data['id'];
         $this->data['documentation_path'] = \ltrim($this->data['documentation_path'], '/');
         $this->data['settings_path'] = \ltrim($this->data['settings_path'], '/');
@@ -161,6 +161,16 @@ class Simple_Plugin implements Plugin, Registerable, Service_Provider
     public final function get_id()
     {
         return $this->data['id'];
+    }
+    /**
+     * Get the license group, not used in all plugins.
+     *
+     * @since 2.4.2
+     * @return string The license group.
+     */
+    public final function get_license_group()
+    {
+        return \strtolower($this->data['license_group'] ?? '') ?: 'default';
     }
     /**
      * Get the name of this plugin.

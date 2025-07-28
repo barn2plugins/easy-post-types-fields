@@ -74,7 +74,7 @@ class Plugin_Updater implements Registerable, Core_Service
         $latest_version = $this->get_latest_version();
         if (\false !== $latest_version && isset($latest_version->new_version)) {
             $update_plugin = $this->format_version_info_for_plugin_update($latest_version);
-            if (\version_compare($this->plugin->get_version(), $latest_version->new_version, '<')) {
+            if (\version_compare($this->plugin->get_version(), $latest_version->new_version, '<') || ($latest_version->upgradeable ?? \false)) {
                 $transient_data->response[$basename] = $update_plugin;
             } else {
                 $transient_data->no_update[$basename] = $update_plugin;
@@ -174,6 +174,8 @@ class Plugin_Updater implements Registerable, Core_Service
         }
         // Make sure the plugin property is set to the plugin's name/location. See issue 1463 on Software Licensing's GitHub repo.
         $version_info->plugin = $this->plugin->get_basename();
+        // Add the slug property to activate the View details link in the plugin list.
+        $version_info->slug = $this->plugin->get_slug();
         // Add an ID for the update details.
         $version_info->id = 'barn2-plugin-' . $this->plugin->get_id();
         // Check the license before returning.
@@ -226,7 +228,7 @@ class Plugin_Updater implements Registerable, Core_Service
         $version_info = $this->get_cached_version_info();
         if (\false === $version_info) {
             // Nothing in cache, so get latest version from API.
-            $api_result = $this->license_api->get_latest_version($this->plugin->get_license()->get_license_key(), $this->plugin->get_id(), $this->plugin->get_license()->get_active_url(), $this->plugin->get_slug(), $this->is_beta_testing());
+            $api_result = $this->license_api->get_latest_version($this->plugin->get_license()->get_license_key(), $this->plugin->get_id(), $this->plugin->get_license()->get_active_url(), $this->plugin->get_slug(), $this->is_beta_testing(), $this->plugin->get_license_group());
             if ($api_result->success) {
                 $version_info = $api_result->response;
                 $this->set_cached_version_info($version_info);

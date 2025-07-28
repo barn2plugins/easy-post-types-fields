@@ -1,0 +1,1 @@
+!function(i,t,n,a){"use strict";i(n).ready((function(){i(n.body).on("click",".barn2-notice.barn2-update-complete-notice .notice-dismiss",(function(){const t=i(this).parent(),n=t.data();n.id=n.id||t.prop("id"),n.action="barn2_updater_dismiss_notice",i.ajax({url:ajaxurl,type:"POST",data:n,xhrFields:{withCredentials:!0}})}))}))}(jQuery,window,document);

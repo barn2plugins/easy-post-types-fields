@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'barn2/easy-post-types-fields',
-        'pretty_version' => '1.1.13.x-dev',
-        'version' => '1.1.13.9999999-dev',
-        'reference' => '1c8b74fa99f168107206ee41ff5bcc144fdcc69a',
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
+        'reference' => '87c14e63da8fa104b20d136fbbabf1a6271c196a',
         'type' => 'wordpress-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'barn2/easy-post-types-fields' => array(
-            'pretty_version' => '1.1.13.x-dev',
-            'version' => '1.1.13.9999999-dev',
-            'reference' => '1c8b74fa99f168107206ee41ff5bcc144fdcc69a',
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
+            'reference' => '87c14e63da8fa104b20d136fbbabf1a6271c196a',
             'type' => 'wordpress-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

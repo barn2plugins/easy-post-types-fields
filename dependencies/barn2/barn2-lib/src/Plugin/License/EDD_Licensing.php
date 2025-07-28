@@ -48,11 +48,12 @@ final class EDD_Licensing implements License_API
      * @param string $license_key The license key to activate.
      * @param int $item_id The download ID for the item to check.
      * @param string (URL) $url The URL to activate.
+     * @param string $license_group The license group this plugin belongs to
      * @return stdClass The result object (see above).
      */
-    public function activate_license($license_key, $item_id, $url)
+    public function activate_license($license_key, $item_id, $url, $license_group = '')
     {
-        $api_params = ['edd_action' => 'activate_license', 'license' => $license_key, 'item_id' => $item_id, 'url' => $url];
+        $api_params = ['edd_action' => 'activate_license', 'license' => $license_key, 'item_id' => $item_id, 'url' => $url, 'license_group' => $license_group];
         return $this->api_request($api_params);
     }
     /**
@@ -86,11 +87,12 @@ final class EDD_Licensing implements License_API
      * @param string $license_key The license key to check.
      * @param int $item_id The download ID for the item to check.
      * @param string (URL) $url The URL to check.
+     * @param string $license_group The license group this plugin belongs to
      * @return stdClass The result object (see above).
      */
-    public function check_license($license_key, $item_id, $url)
+    public function check_license($license_key, $item_id, $url, $license_group = '')
     {
-        $api_params = ['edd_action' => 'check_license', 'license' => $license_key, 'item_id' => $item_id, 'url' => $url];
+        $api_params = ['edd_action' => 'check_license', 'license' => $license_key, 'item_id' => $item_id, 'license_group' => $license_group, 'url' => $url];
         return $this->api_request($api_params);
     }
     /**
@@ -109,9 +111,9 @@ final class EDD_Licensing implements License_API
      * @param boolean $beta_testing Whether to check for beta versions.
      * @return stdClass The result object (see above).
      */
-    public function get_latest_version($license_key, $item_id, $url, $slug, $beta_testing = \false)
+    public function get_latest_version($license_key, $item_id, $url, $slug, $beta_testing = \false, $license_group = '')
     {
-        $api_params = ['edd_action' => 'get_version', 'license' => $license_key, 'item_id' => $item_id, 'url' => $url, 'slug' => $slug, 'beta' => $beta_testing];
+        $api_params = ['edd_action' => 'get_version', 'license' => $license_key, 'item_id' => $item_id, 'license_group' => $license_group, 'url' => $url, 'slug' => $slug, 'beta' => $beta_testing];
         $result = $this->api_request($api_params);
         if ($result->success && \is_object($result->response)) {
             foreach ($result->response as $prop => $data) {

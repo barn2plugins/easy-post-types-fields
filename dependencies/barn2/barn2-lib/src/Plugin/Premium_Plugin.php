@@ -39,7 +39,7 @@ class Premium_Plugin extends Simple_Plugin implements Licensed_Plugin
     {
         parent::__construct(\array_merge(['license_setting_path' => '', 'legacy_db_prefix' => ''], $data));
         $this->data['license_setting_path'] = \ltrim($this->data['license_setting_path'], '/');
-        $this->add_service('license', new Plugin_License($this->get_id(), EDD_Licensing::instance(), $this->get_legacy_db_prefix()));
+        $this->add_service('license', new Plugin_License($this->get_id(), EDD_Licensing::instance(), $this->get_legacy_db_prefix(), $this->get_license_group()));
         $this->add_service('plugin_updater', new Plugin_Updater($this, EDD_Licensing::instance()));
         $this->add_service('license_checker', new License_Checker($this->get_file(), $this->get_license()));
         $this->add_service('license_setting', new License_Key_Setting($this->get_license(), $this->is_woocommerce(), $this->is_edd()));

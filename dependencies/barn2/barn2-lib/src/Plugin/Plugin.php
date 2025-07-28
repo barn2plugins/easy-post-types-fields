@@ -116,4 +116,10 @@ interface Plugin
      * @return Requirements
      */
     public function requirements();
+    /**
+     * Get the license group for this plugin.
+     *
+     * @return string The license group.
+     */
+    public function get_license_group();
 }
