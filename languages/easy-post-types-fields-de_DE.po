@@ -1,0 +1,1142 @@
+# Copyright (C) 2022 Barn2 Plugins
+# This file is distributed under the GNU General Public License v3.0.
+msgid ""
+msgstr ""
+"Project-Id-Version: Easy Post Types and Fields 1.1.1\n"
+"Report-Msgid-Bugs-To: https://barn2.com/support-center/\n"
+"Last-Translator: Barn2 Plugins <support@barn2.com>\n"
+"Language-Team: Barn2 Plugins <support@barn2.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2022-08-26T00:00:00+00:00\n"
+"PO-Revision-Date: 2025-07-28 16:20+0000\n"
+"X-Generator: WP-CLI 2.6.0\n"
+"X-Domain: easy-post-types-fields\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: de-DE\n"
+
+#: src/Admin/views/html-manage-page-header.php:22
+#. Plugin Name of the plugin
+msgid "Easy Post Types and Fields"
+msgstr "Einfache Beitragstypen und Felder"
+
+#. Plugin URI of the plugin
+msgid "https://wordpress.org/plugins/easy-post-types-fields/"
+msgstr "https://wordpress.org/plugins/easy-post-types-fields/"
+
+#. Description of the plugin
+msgid "Create custom post types, fields and taxonomies."
+msgstr "Erstellen Sie benutzerdefinierte Beitragstypen, Felder und Taxonomien."
+
+#. Author of the plugin
+msgid "Barn2 Plugins"
+msgstr "Barn2 Plugins"
+
+#. Author URI of the plugin
+msgid "https://barn2.com"
+msgstr "https://barn2.com"
+
+#: dependencies/src/Setup_Wizard.php:483
+msgid "%s setup wizard"
+msgstr "%s Einrichtungsassistent"
+
+#: dependencies/src/Setup_Wizard.php:617
+#: dependencies/src/Setup_Wizard.php:625
+#: dependencies/src/Setup_Wizard.php:660
+msgid "Setup wizard"
+msgstr "Einrichtungsassistent"
+
+#: dependencies/src/Setup_Wizard.php:620
+msgid ""
+"If you need to access the setup wizard again, please click on the button "
+"below."
+msgstr ""
+"Wenn Sie erneut auf den Einrichtungsassistenten zugreifen möchten, klicken "
+"Sie bitte auf die Schaltfläche unten."
+
+#: dependencies/src/Setup_Wizard.php:639
+#: dependencies/src/Setup_Wizard.php:672
+msgid ""
+"Warning: This will overwrite your existing settings for %s. Are you sure "
+"you want to continue?"
+msgstr ""
+"Warnung: Dies wird Ihre vorhandenen Einstellungen für %s überschreiben. "
+"Sind Sie sicher, dass Sie fortfahren möchten?"
+
+#: dependencies/src/Steps/Cross_Selling.php:26
+#: src/Admin/Wizard/Steps/Upsell.php:29
+msgid "More"
+msgstr "Mehr"
+
+#: dependencies/src/Steps/Cross_Selling.php:27
+#: src/Admin/Wizard/Steps/Upsell.php:38
+msgid "Extra features"
+msgstr "Zusätzliche Funktionen"
+
+#: dependencies/src/Steps/Cross_Selling.php:28
+msgid "Enhance your site with these fantastic plugins from Barn2."
+msgstr "Verbessern Sie Ihre Website mit diesen fantastischen Plugins von Barn2."
+
+#: dependencies/src/Steps/Cross_Selling.php:69
+#: src/Admin/Wizard/Steps/Upsell.php:98
+msgid ""
+"Something went wrong while retrieving the list of products. Please try "
+"again later."
+msgstr ""
+"Beim Abrufen der Produktliste ist ein Fehler aufgetreten. Bitte versuchen "
+"Sie es später noch einmal."
+
+#: dependencies/src/Steps/Ready.php:23
+#: src/Admin/Wizard/Steps/Completed.php:25
+#: src/Admin/Wizard/Steps/EPT_Ready.php:25
+msgid "Ready"
+msgstr "Bereit"
+
+#: dependencies/src/Steps/Ready.php:24
+msgid "Setup Complete"
+msgstr "Einrichtung abgeschlossen"
+
+#: dependencies/src/Steps/Welcome.php:25
+#: dependencies/src/Steps/Welcome_Free.php:23
+#: src/Admin/Wizard/Steps/Welcome.php:25
+msgid "Welcome"
+msgstr "Willkommen"
+
+#: dependencies/src/Steps/Welcome.php:33
+msgid "License key"
+msgstr "Lizenzschlüssel"
+
+#: dependencies/src/Steps/Welcome.php:33
+msgid "Enter your license key to start using the plugin."
+msgstr "Geben Sie Ihren Lizenzschlüssel ein, um das Plugin zu verwenden."
+
+#: dependencies/src/Steps/Welcome.php:33
+msgid "The licence key is contained in your order confirmation email."
+msgstr "Der Lizenzschlüssel ist in Ihrer Bestellbestätigungs-E-Mail enthalten."
+
+#: dependencies/src/Steps/Welcome.php:53
+msgid "You are not allowed to retrieve license details."
+msgstr "Sie dürfen die Lizenzdetails nicht abrufen."
+
+#: dependencies/src/Steps/Welcome.php:65
+#: dependencies/src/Steps/Welcome_Free.php:40
+msgid "You are not allowed to validate your license."
+msgstr "Sie dürfen Ihre Lizenz nicht validieren."
+
+#: dependencies/src/Steps/Welcome.php:69
+msgid "Please enter a license key."
+msgstr "Bitte geben Sie einen Lizenzschlüssel ein."
+
+#: lib/Admin/Settings_API_Helper.php:464
+msgid "Size"
+msgstr "Größe"
+
+#: lib/Admin/Settings_Util.php:68
+#: src/Util.php:441
+msgid "Documentation"
+msgstr "Dokumentation"
+
+#: lib/Admin/Settings_Util.php:73
+#: src/Util.php:442
+msgid "Support"
+msgstr "Unterstützung"
+
+#: lib/Util.php:32
+msgid "Read more"
+msgstr "Mehr erfahren"
+
+#: src/Admin/Admin_Controller.php:87
+msgid "Settings"
+msgstr "Einstellungen"
+
+#: src/Admin/CPT_Editor.php:75
+#: src/Util.php:296
+msgid "Post types"
+msgstr "Beitragsarten"
+
+#: src/Admin/CPT_Editor.php:76
+msgid "Post type"
+msgstr "Beitragsart"
+
+#: src/Admin/CPT_Editor.php:77
+msgid "Add new"
+msgstr "Neu hinzufügen"
+
+#: src/Admin/CPT_Editor.php:78
+msgid "Add new post type"
+msgstr "Neue Beitragsart hinzufügen"
+
+#: src/Admin/CPT_Editor.php:79
+#: src/Admin/CPT_Editor.php:309
+msgid "Edit post type"
+msgstr "Beitragsart bearbeiten"
+
+#: src/Admin/CPT_Editor.php:80
+msgid "New post type"
+msgstr "Neue Beitragsart"
+
+#: src/Admin/CPT_Editor.php:81
+msgid "View post type"
+msgstr "Beitragsart anzeigen"
+
+#: src/Admin/CPT_Editor.php:82
+msgid "View post types"
+msgstr "Beitragsarten anzeigen"
+
+#: src/Admin/CPT_Editor.php:83
+msgid "Search custom post types"
+msgstr "Benutzerdefinierte Beitragsarten suchen"
+
+#: src/Admin/CPT_Editor.php:84
+msgid "No custom post types have been created yet."
+msgstr "Es wurden noch keine benutzerdefinierten Beitragsarten erstellt."
+
+#: src/Admin/CPT_Editor.php:86
+msgid "All post types"
+msgstr "Alle Beitragsarten"
+
+#: src/Admin/CPT_Editor.php:87
+msgid "Post Type Attributes"
+msgstr "Beitragsartattribute"
+
+#: src/Admin/CPT_Editor.php:88
+msgid "Filter post types list"
+msgstr "Beitragsartenliste filtern"
+
+#: src/Admin/CPT_Editor.php:89
+msgid "Filter by date"
+msgstr "Nach Datum filtern"
+
+#: src/Admin/CPT_Editor.php:90
+msgid "Post types list navigation"
+msgstr "Navigation der Beitragstypenliste"
+
+#: src/Admin/CPT_Editor.php:91
+msgid "Post types list"
+msgstr "Beitragstypenliste"
+
+#: src/Admin/CPT_Editor.php:92
+msgid "Post type published."
+msgstr "Beitragstyp veröffentlicht."
+
+#: src/Admin/CPT_Editor.php:93
+msgid "Post type published privately."
+msgstr "Beitragstyp privat veröffentlicht."
+
+#: src/Admin/CPT_Editor.php:94
+msgid "Post type reverted to draft."
+msgstr "Beitragstyp auf Entwurf zurückgesetzt."
+
+#: src/Admin/CPT_Editor.php:95
+msgid "Post scheduled."
+msgstr "Beitrag geplant."
+
+#: src/Admin/CPT_Editor.php:96
+msgid "Post updated."
+msgstr "Beitrag aktualisiert."
+
+#: src/Admin/CPT_Editor.php:97
+msgid "A link to a post type."
+msgstr "Ein Link zu einem Beitragstyp."
+
+#: src/Admin/CPT_Editor.php:99
+msgid "Define a custom post type"
+msgstr "Einen benutzerdefinierten Beitragstyp definieren"
+
+#: src/Admin/CPT_Editor.php:212
+#: src/Util.php:320
+msgid "Custom fields"
+msgstr "Benutzerdefinierte Felder"
+
+#: src/Admin/CPT_Editor.php:213
+msgid "Custom field"
+msgstr "Benutzerdefiniertes Feld"
+
+#: src/Admin/CPT_Editor.php:215
+#. translators: 1: the plural name of the post type, 2: the opening tab of an anchor element, 3: the closing tag of an anchor element, 4: the singular name of the post type, 5: the plural name of the post type,
+msgid ""
+"Use custom fields to store extra data about your %1$s, such as a reference "
+"number or link. Custom fields are for data that is unique to each %4$s. If "
+"you want to use the data to organize or group your %5$s then you should "
+"create a %2$staxonomy%3$s instead."
+msgstr ""
+"Verwenden Sie benutzerdefinierte Felder, um zusätzliche Daten zu Ihrem %1$s "
+"zu speichern, wie z. B. eine Referenznummer oder einen Link. "
+"Benutzerdefinierte Felder sind für Daten gedacht, die für jeden %4$s "
+"einzigartig sind. Wenn Sie die Daten verwenden möchten, um Ihre %5$s zu "
+"organisieren oder zu gruppieren, sollten Sie stattdessen eine "
+"%2$staxonomie%3$s erstellen."
+
+#: src/Admin/CPT_Editor.php:219
+#: src/Admin/List_Tables/Post_Type_List_Table.php:382
+#: src/Util.php:320
+msgid "Taxonomies"
+msgstr "Taxonomien"
+
+#: src/Admin/CPT_Editor.php:220
+msgid "Taxonomy"
+msgstr "Taxonomie"
+
+#: src/Admin/CPT_Editor.php:222
+#. translators: the plural name of the post type
+msgid ""
+"Taxonomies let you organize and group your %1$s. For example, you might "
+"want to organize them by category, tag, year, author, or industry. If you "
+"need to add data that is unique to each %4$s then you should create a "
+"%2$scustom field%3$s instead."
+msgstr ""
+"Taxonomien ermöglichen es Ihnen, Ihre %1$s zu organisieren und zu "
+"gruppieren. Beispielsweise möchten Sie sie möglicherweise nach Kategorie, "
+"Schlagwort, Jahr, Autor oder Branche organisieren. Wenn Sie Daten "
+"hinzufügen müssen, die für jeden %4$s einzigartig sind, sollten Sie "
+"stattdessen ein %2$sbbenutzerdefiniertes Feld%3$s erstellen."
+
+#: src/Admin/CPT_Editor.php:264
+msgid "Post Types"
+msgstr "Beitragstypen"
+
+#: src/Admin/CPT_Editor.php:265
+msgid ""
+"Use this page to manage your custom post types. You can add and edit post "
+"types, custom fields and taxonomies."
+msgstr ""
+"Verwenden Sie diese Seite, um Ihre benutzerdefinierten Beitragstypen zu "
+"verwalten. Sie können Beitragstypen, benutzerdefinierte Felder und "
+"Taxonomien hinzufügen und bearbeiten."
+
+#: src/Admin/CPT_Editor.php:303
+msgid "Manage Taxonomies"
+msgstr "Taxonomien verwalten"
+
+#: src/Admin/CPT_Editor.php:304
+msgid "Manage Custom Fields"
+msgstr "Benutzerdefinierte Felder verwalten"
+
+#: src/Admin/CPT_Editor.php:316
+#: src/Admin/views/html-manage-page-lists.php:36
+#: src/Util.php:333
+msgid "Add"
+msgstr "Hinzufügen"
+
+#: src/Admin/CPT_Editor.php:317
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:299
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:300
+#: src/Admin/List_Tables/Post_Type_List_Table.php:551
+#: src/Admin/List_Tables/Post_Type_List_Table.php:552
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:328
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:329
+#: src/Util.php:333
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: src/Admin/CPT_Editor.php:321
+#. translators: either 'Add' or 'Edit'
+msgid "%s Taxonomy"
+msgstr "%s Taxonomie"
+
+#: src/Admin/CPT_Editor.php:323
+#. translators: either 'Add' or 'Edit'
+msgid "%s Custom Field"
+msgstr "%s Benutzerdefiniertes Feld"
+
+#: src/Admin/CPT_Editor.php:339
+msgid "Display your post types and fields with Posts Table Pro"
+msgstr "Zeigen Sie Ihre Beitragstypen und Felder mit Posts Table Pro an"
+
+#: src/Admin/CPT_Editor.php:353
+msgid "Restrict access to parts of your website with Password Protected Categories"
+msgstr ""
+"Zugriff auf Teile Ihrer Website mit passwortgeschützten Kategorien "
+"einschränken"
+
+#: src/Admin/CPT_Editor.php:421
+msgid ""
+"The post type is missing or an error occurred when completing this "
+"operation."
+msgstr ""
+"Der Beitragstyp fehlt oder es ist ein Fehler bei der Durchführung dieser "
+"Operation aufgetreten."
+
+#: src/Admin/CPT_Editor.php:476
+msgid "The slug of a post type is required."
+msgstr "Der Slug eines Beitragstyps ist erforderlich."
+
+#: src/Admin/CPT_Editor.php:481
+msgid "The slug of a post type must be 17 characters or less."
+msgstr "Der Slug eines Beitragstyps muss 17 Zeichen oder weniger sein."
+
+#: src/Admin/CPT_Editor.php:486
+msgid "The singular name of a post type is required."
+msgstr "Der Singularname eines Beitragstyps ist erforderlich."
+
+#: src/Admin/CPT_Editor.php:491
+msgid "The plural name of a post type is required."
+msgstr "Der Pluralname eines Beitragstyps ist erforderlich."
+
+#: src/Admin/CPT_Editor.php:505
+msgid ""
+"A post type with the same slug is already registered. Please choose a "
+"different slug."
+msgstr ""
+"Ein Beitragstyp mit dem gleichen Slug ist bereits registriert. Bitte wählen "
+"Sie einen anderen Slug."
+
+#: src/Admin/CPT_Editor.php:556
+msgid "The slug of a taxonomy is required."
+msgstr "Der Slug einer Taxonomie ist erforderlich."
+
+#: src/Admin/CPT_Editor.php:571
+#. translators: the maximum number of characters of the slug
+msgid "The slug of a taxonomy for this post type must be %d characters or less."
+msgstr ""
+"Der Slug einer Taxonomie für diesen Beitragstyp muss %d Zeichen oder "
+"weniger sein."
+
+#: src/Admin/CPT_Editor.php:576
+msgid "The singular name of a taxonomy is required."
+msgstr "Der Singularname einer Taxonomie ist erforderlich."
+
+#: src/Admin/CPT_Editor.php:581
+msgid "The plural name of a taxonomy is required."
+msgstr "Der Pluralname einer Taxonomie ist erforderlich."
+
+#: src/Admin/CPT_Editor.php:629
+msgid ""
+"A taxonomy with the same slug is already registered to this post type. "
+"Please choose a different slug."
+msgstr ""
+"Eine Taxonomie mit dem gleichen Slug ist bereits diesem Beitragstyp "
+"zugeordnet. Bitte wählen Sie einen anderen Slug."
+
+#: src/Admin/CPT_Editor.php:671
+msgid "The slug of a custom field is required."
+msgstr "Der Slug eines benutzerdefinierten Feldes ist erforderlich."
+
+#: src/Admin/CPT_Editor.php:676
+msgid "The name of a custom field is required."
+msgstr "Der Name eines benutzerdefinierten Feldes ist erforderlich."
+
+#: src/Admin/CPT_Editor.php:713
+msgid ""
+"A field with the same slug is already registered to this post type. Please "
+"choose a different slug."
+msgstr ""
+"Ein Feld mit dem gleichen Slug ist bereits diesem Beitragstyp zugeordnet. "
+"Bitte wählen Sie einen anderen Slug."
+
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:97
+msgid "No custom fields for this post type yet"
+msgstr "Für diesen Beitragstyp sind noch keine benutzerdefinierten Felder vorhanden"
+
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:133
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:154
+#. translators: a post type name followed by underscore
+msgid ""
+"The slug is a unique code that you can use to identify the custom taxonomy. "
+"For example, you can use it to display the data with the Posts Table Pro "
+"plugin. If you are using the slug in other ways &ndash; for example for "
+"development purposes &ndash; then you should add the prefix '%1$s' before "
+"the slug, for example '%1$scategory' instead of just 'category'."
+msgstr ""
+"Der Slug ist ein eindeutiger Code, den Sie verwenden können, um die "
+"benutzerdefinierte Taxonomie zu identifizieren. Zum Beispiel können Sie ihn "
+"verwenden, um die Daten mit dem Plugin Posts Table Pro anzuzeigen. Wenn Sie "
+"den Slug auf andere Weise verwenden &ndash; zum Beispiel für "
+"Entwicklungszwecke &ndash; sollten Sie das Präfix '%1$s' vor dem Slug "
+"hinzufügen, zum Beispiel '%1$scategory' anstelle von nur 'category'."
+
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:224
+#: src/Admin/List_Tables/Post_Type_List_Table.php:352
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:247
+#. translators: a custom field name
+#. translators: a post type name
+#. translators: the name of the taxonomy
+msgid "%s (Edit)"
+msgstr "%s (Bearbeiten)"
+
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:307
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:308
+#: src/Admin/List_Tables/Post_Type_List_Table.php:558
+#: src/Admin/List_Tables/Post_Type_List_Table.php:560
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:336
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:337
+msgid "Delete"
+msgstr "Löschen"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:157
+msgid "No custom post types found"
+msgstr "Keine benutzerdefinierten Beitragstypen gefunden"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:220
+#. translators: %s: Number of posts.
+msgid "Easy Post Types <span class=\"count\">(%s)</span>"
+msgstr "Einfache Beitragstypen <span class=\"count\">(%s)</span>"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:222
+#. translators: %s: Number of posts.
+msgid "Other Post Types <span class=\"count\">(%s)</span>"
+msgstr "Andere Beitragstypen <span class=\"count\">(%s)</span>"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:260
+msgid ""
+"The slug is a unique code that you can use to identify the custom post "
+"type. For example, you can use it to display the data with the Posts Table "
+"Pro plugin. If you are using the slug in other ways &ndash; for example for "
+"development purposes &ndash; then you should add the prefix 'ept_' before "
+"the slug, for example 'ept_article' instead of just 'article'."
+msgstr ""
+"Der Slug ist ein eindeutiger Code, den Sie verwenden können, um den "
+"benutzerdefinierten Beitragstyp zu identifizieren. Zum Beispiel können Sie "
+"ihn verwenden, um die Daten mit dem Plugin Posts Table Pro anzuzeigen. Wenn "
+"Sie den Slug auf andere Weise verwenden &ndash; zum Beispiel für "
+"Entwicklungszwecke &ndash; sollten Sie das Präfix 'ept_' vor dem Slug "
+"hinzufügen, zum Beispiel 'ept_article' anstelle von nur 'article'."
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:261
+msgid ""
+"Use custom fields for storing unique data about your custom posts, and use "
+"taxonomies for organizing and grouping the custom posts."
+msgstr ""
+"Verwenden Sie benutzerdefinierte Felder, um einzigartige Daten über Ihre "
+"benutzerdefinierten Beiträge zu speichern, und verwenden Sie Taxonomien, um "
+"die benutzerdefinierten Beiträge zu organisieren und zu gruppieren."
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:262
+msgid "The current number of posts for the custom post type."
+msgstr "Die aktuelle Anzahl der Beiträge für den benutzerdefinierten Beitragstyp."
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:381
+#: src/Post_Types/Abstract_Post_Type.php:210
+msgid "Custom Fields"
+msgstr "Benutzerdefinierte Felder"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:568
+#: src/Admin/List_Tables/Post_Type_List_Table.php:570
+#: src/Post_Types/Custom_Post_Type.php:147
+#: src/Taxonomy.php:171
+#. translators: %s: Post type plural name.
+#. translators: the plural post type name
+#. translators: the plural name of a taxonomy
+msgid "All %s"
+msgstr "Alle %s"
+
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:116
+msgid "No taxonomies for this post type yet"
+msgstr "Für diesen Beitragstyp sind noch keine Taxonomien vorhanden"
+
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:158
+#: src/Admin/views/html-manage-page-taxonomies.php:19
+msgid ""
+"Hierarchical taxonomies have a nested parent/child structure like WordPress "
+"post categories, whereas non-hierarchical taxonomies are flat like tags."
+msgstr ""
+"Hierarchische Taxonomien haben eine verschachtelte Eltern/Kind-Struktur wie "
+"WordPress-Beitrag Kategorien, während nicht-hierarchische Taxonomien flach "
+"wie Tags sind."
+
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:279
+msgid "Yes"
+msgstr "Ja"
+
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:279
+msgid "No"
+msgstr "Nein"
+
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:344
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:345
+msgid "Manage terms"
+msgstr "Begriffe verwalten"
+
+#: src/Admin/Review_Notice.php:115
+msgid "Are you enjoying Easy Post Types and Fields?"
+msgstr "Genießen Sie Easy Post Types und Fields?"
+
+#: src/Admin/Review_Notice.php:116
+msgid ""
+"Congratulations, you've just published your first custom post type! If you "
+"have time, it would be great if you could leave us a review and let us know "
+"what you think of the plugin."
+msgstr ""
+"Herzlichen Glückwunsch, Sie haben gerade Ihren ersten benutzerdefinierten "
+"Beitragstyp veröffentlicht! Wenn Sie Zeit haben, wäre es großartig, wenn "
+"Sie uns eine Bewertung hinterlassen könnten und uns wissen lassen, was Sie "
+"von dem Plugin halten."
+
+#: src/Admin/Review_Notice.php:119
+msgid "Add Review"
+msgstr "Bewertung hinzufügen"
+
+#: src/Admin/Review_Notice.php:120
+msgid "Dismiss"
+msgstr "Schließen"
+
+#: src/Admin/Review_Notice.php:123
+msgid "Barn2"
+msgstr "Scheune2"
+
+#: src/Admin/views/html-manage-page-fields.php:45
+#: src/Admin/Wizard/Steps/EPT_Name.php:25
+msgid "Name"
+msgstr "Name"
+
+#: src/Admin/views/html-manage-page-fields.php:51
+#: src/Admin/views/html-manage-page-post_type.php:54
+#: src/Admin/views/html-manage-page-taxonomies.php:54
+msgid "Slug"
+msgstr "Slug"
+
+#: src/Admin/views/html-manage-page-fields.php:57
+msgid "Type"
+msgstr "Typ"
+
+#: src/Admin/views/html-manage-page-header.php:38
+msgid "Add New"
+msgstr "Neu hinzufügen"
+
+#: src/Admin/views/html-manage-page-lists.php:22
+#. translators: either `Taxonomy` or `Custom field`
+msgid "%s editor"
+msgstr "%s-Editor"
+
+#: src/Admin/views/html-manage-page-lists.php:35
+#. translators: 1: 'Add' or 'Update', 2: 'custom field' or 'taxonomy' phpcs:ignore Squiz.PHP.CommentedOutCode.Found
+msgid "%1$s %2$s"
+msgstr "%1$s %2$s"
+
+#: src/Admin/views/html-manage-page-lists.php:36
+msgid "Update"
+msgstr "Aktualisieren"
+
+#: src/Admin/views/html-manage-page-lists.php:37
+#: assets/js/admin/ept-editor.js:38
+msgid "taxonomy"
+msgstr "Taxonomie"
+
+#: src/Admin/views/html-manage-page-lists.php:37
+#: assets/js/admin/ept-editor.js:38
+msgid "custom field"
+msgstr "benutzerdefiniertes Feld"
+
+#: src/Admin/views/html-manage-page-lists.php:46
+#: src/Admin/views/html-manage-page-post_type.php:89
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: src/Admin/views/html-manage-page-lists.php:56
+#: src/Post_Types/Custom_Post_Type.php:161
+#: src/Taxonomy.php:209
+#. translators: either `Taxonomy` or `Custom field`
+#. translators: the plural post type name
+#. translators: the plural name of a taxonomy
+msgid "%s list"
+msgstr "%s Liste"
+
+#: src/Admin/views/html-manage-page-post_type.php:42
+#: src/Admin/views/html-manage-page-taxonomies.php:42
+#: src/Admin/Wizard/Steps/EPT_Name.php:37
+msgid "Singular name"
+msgstr "Singulärer Name"
+
+#: src/Admin/views/html-manage-page-post_type.php:48
+#: src/Admin/views/html-manage-page-taxonomies.php:48
+#: src/Admin/Wizard/Steps/EPT_Name.php:42
+msgid "Plural name"
+msgstr "Pluralname"
+
+#: src/Admin/views/html-manage-page-post_type.php:60
+#: src/Admin/Wizard/Steps/EPT_Features.php:26
+msgid "Features"
+msgstr "Funktionen"
+
+#: src/Admin/views/html-manage-page-post_type.php:80
+msgid "Update post type"
+msgstr "Beitragsart aktualisieren"
+
+#: src/Admin/views/html-manage-page-taxonomies.php:44
+msgid "e.g. Category"
+msgstr "z.B. Kategorie"
+
+#: src/Admin/views/html-manage-page-taxonomies.php:50
+msgid "e.g. Categories"
+msgstr "z.B. Kategorien"
+
+#: src/Admin/views/html-manage-page-taxonomies.php:60
+msgid "Hierarchical"
+msgstr "Hierarchisch"
+
+#: src/Admin/views/html-promo-display.php:29
+#. translators: 1: the opening tag of an anchor element, 2: the closing tag of an anchor element
+msgid ""
+"Once you have created your post types, custom fields and taxonomies, you "
+"can use %1$sPosts Table Pro%2$s to display them in a user-friendly table."
+msgstr ""
+"Sobald Sie Ihre Beitragstypen, benutzerdefinierten Felder und Taxonomien "
+"erstellt haben, können Sie %1$sPosts Table Pro%2$s verwenden, um sie in "
+"einer benutzerfreundlichen Tabelle anzuzeigen."
+
+#: src/Admin/views/html-promo-display.php:37
+msgid ""
+"Posts Table Pro is a dynamic WordPress table plugin which lists any type of "
+"WordPress content in a searchable table. As well as displaying any custom "
+"post type, you can choose which columns of information to show in the table "
+"- including your custom fields and taxonomies."
+msgstr ""
+"Posts Table Pro ist ein dynamisches WordPress-Tabellen-Plugin, das jede Art "
+"von WordPress-Inhalt in einer durchsuchbaren Tabelle auflistet. Neben der "
+"Anzeige von benutzerdefinierten Beitragstypen können Sie auswählen, welche "
+"Informationsspalten in der Tabelle angezeigt werden sollen - einschließlich "
+"Ihrer benutzerdefinierten Felder und Taxonomien."
+
+#: src/Admin/views/html-promo-display.php:40
+msgid ""
+"Your website visitors can use the search box, sortable columns and filter "
+"dropdowns to find exactly what they are looking for."
+msgstr ""
+"Ihre Webseitenbesucher können das Suchfeld, die sortierbaren Spalten und "
+"die Filterdropdowns nutzen, um genau das zu finden, wonach sie suchen."
+
+#: src/Admin/views/html-promo-protect.php:29
+#. translators: 1: the opening tag of an anchor element, 2: the closing tag of an anchor element
+msgid ""
+"Do you need to control who can access your custom post types? You can "
+"easily do this with the %1$sPassword Protected Categories%2$s plugin."
+msgstr ""
+"Müssen Sie kontrollieren, wer auf Ihre benutzerdefinierten Beitragstypen "
+"zugreifen kann? Das können Sie ganz einfach mit dem %1$sPasswortgeschützte "
+"Kategorien%2$s-Plugin tun."
+
+#: src/Admin/views/html-promo-protect.php:37
+msgid ""
+"Password Protected Categories lets you restrict access to any or all of "
+"your categories or taxonomies."
+msgstr ""
+"Passwortgeschützte Kategorien ermöglicht es Ihnen, den Zugriff auf einige "
+"oder alle Ihrer Kategorien oder Taxonomien einzuschränken."
+
+#: src/Admin/Wizard/Steps/Completed.php:27
+#: src/Admin/Wizard/Steps/EPT_Ready.php:27
+#. translators: the plural name of a post type
+msgid ""
+"Now, you can either add extra fields to your post type, or start adding new "
+"%s straight away."
+msgstr ""
+"Jetzt können Sie entweder zusätzliche Felder zu Ihrem Beitragstyp "
+"hinzufügen oder sofort neue %s hinzufügen."
+
+#: src/Admin/Wizard/Steps/Completed.php:29
+#: src/Admin/Wizard/Steps/EPT_Ready.php:29
+#. translators: the singular name of a post type
+msgid "The %s post type is ready!"
+msgstr "Der %s Beitragstyp ist bereit!"
+
+#: src/Admin/Wizard/Steps/EPT_Features.php:28
+#. translators: the plural name of a post type
+msgid ""
+"Choose which of the standard features you will use. Later, you can create "
+"custom fields and taxonomies for storing additional information."
+msgstr ""
+"Wählen Sie, welche der Standardfunktionen Sie verwenden möchten. Später "
+"können Sie benutzerdefinierte Felder und Taxonomien erstellen, um "
+"zusätzliche Informationen zu speichern."
+
+#: src/Admin/Wizard/Steps/EPT_Features.php:30
+#. translators: the plural name of a post type
+msgid "What type of information do you need for your %s?"
+msgstr "Welche Art von Informationen benötigen Sie für Ihre %s?"
+
+#: src/Admin/Wizard/Steps/EPT_Features.php:93
+msgid "It is not possible to create the post type with the current configuration."
+msgstr ""
+"Es ist nicht möglich, den Beitragstyp mit der aktuellen Konfiguration zu "
+"erstellen."
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:26
+msgid ""
+"First, let's choose the name for your post type. This will appear as a link "
+"on the left hand side of the WordPress admin."
+msgstr ""
+"Zuerst wählen wir den Namen für Ihren Beitragstyp. Dieser wird als Link auf "
+"der linken Seite des WordPress-Admin-Bereichs angezeigt."
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:27
+msgid "What sort of content do you want to create?"
+msgstr "Welche Art von Inhalt möchten Sie erstellen?"
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:38
+msgid "e.g. Article"
+msgstr "z.B. Artikel"
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:43
+msgid "e.g. Articles"
+msgstr "z.B. Artikel"
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:58
+msgid "Both fields must not be empty."
+msgstr "Beide Felder dürfen nicht leer sein."
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:64
+msgid "The name of the post type cannot be longer than 17 characters."
+msgstr "Der Name des Beitragstyps darf nicht länger als 17 Zeichen sein."
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:75
+msgid ""
+"A post type with this name is already present. Please input a different "
+"name."
+msgstr ""
+"Ein Beitragstyp mit diesem Namen ist bereits vorhanden. Bitte geben Sie "
+"einen anderen Namen ein."
+
+#: src/Admin/Wizard/Steps/Upsell.php:33
+#. translators: %1$s: URL to All Access Pass page %2$s: URL to the KB about the upgrading process
+msgid ""
+"Enhance your store with these fantastic plugins from Barn2, or get them all "
+"with an <a href=\"%1$s\" target=\"_blank\">All Access Pass<a/>! (<a "
+"href=\"%2$s\" target=\"_blank\">learn how here</a>)"
+msgstr ""
+"Verbessern Sie Ihren Shop mit diesen fantastischen Plugins von Barn2 oder "
+"erhalten Sie sie alle mit einem <a href=\"%1$s\" target=\"_blank\">All "
+"Access Pass<a/>! (<a href=\"%2$s\" target=\"_blank\">hier erfahren Sie "
+"mehr</a>)"
+
+#: src/Admin/Wizard/Steps/Welcome.php:26
+msgid "Welcome to Easy Post Types and Fields"
+msgstr "Willkommen bei Easy Post Types und Fields"
+
+#: src/Admin/Wizard/Steps/Welcome.php:27
+msgid ""
+"Use this setup wizard to quickly create a post type (e.g. Events, Members, "
+"Articles, or something else). Your post type will have its own section in "
+"the WordPress admin. If you want to add fields to existing post types, then "
+"skip the setup wizard and go to the Other Post Types section."
+msgstr ""
+"Verwenden Sie diesen Einrichtungsassistenten, um schnell einen Beitragstyp "
+"(z.B. Veranstaltungen, Mitglieder, Artikel oder etwas anderes) zu "
+"erstellen. Ihr Beitragstyp hat seinen eigenen Abschnitt im "
+"WordPress-Admin-Bereich. Wenn Sie Felder zu vorhandenen Beitragstypen "
+"hinzufügen möchten, überspringen Sie den Einrichtungsassistenten und gehen "
+"Sie zum Abschnitt Andere Beitragstypen."
+
+#: src/Admin/Wizard/Wizard.php:28
+msgid "You are not authorized."
+msgstr "Sie sind nicht autorisiert."
+
+#: src/Post_Types/Custom_Post_Type.php:129
+#: src/Taxonomy.php:191
+#. translators: the singular post type name
+#. translators: the singular name of a taxonomy
+msgid "Add New %s"
+msgstr "Neues %s hinzufügen"
+
+#: src/Post_Types/Custom_Post_Type.php:131
+#: src/Taxonomy.php:185
+#. translators: the singular post type name
+#. translators: the singular name of a taxonomy
+msgid "Edit %s"
+msgstr "%s bearbeiten"
+
+#: src/Post_Types/Custom_Post_Type.php:133
+#. translators: the singular post type name
+msgid "New %s"
+msgstr "Neues %s"
+
+#: src/Post_Types/Custom_Post_Type.php:139
+#: src/Taxonomy.php:167
+#. translators: the plural post type name
+#. translators: the plural name of a taxonomy
+msgid "Search %s"
+msgstr "Suche %s"
+
+#: src/Post_Types/Custom_Post_Type.php:141
+#: src/Taxonomy.php:201
+#. translators: the plural post type name
+#. translators: the plural name of a taxonomy
+msgid "No %s found."
+msgstr "Keine %s gefunden."
+
+#: src/Post_Types/Custom_Post_Type.php:143
+#. translators: the plural post type name
+msgid "No %s found in Trash."
+msgstr "Keine %s im Papierkorb gefunden."
+
+#: src/Post_Types/Custom_Post_Type.php:145
+#: src/Taxonomy.php:175
+#. translators: the singular post type name
+#. translators: the singular name of a taxonomy
+msgid "Parent %s:"
+msgstr "Übergeordnetes %s:"
+
+#: src/Post_Types/Custom_Post_Type.php:149
+#. translators: the singular post type name
+msgid "%s Archives"
+msgstr "%s Archive"
+
+#: src/Post_Types/Custom_Post_Type.php:151
+#. translators: the singular post type name
+msgid "%s Attributes"
+msgstr "%s Attribute"
+
+#: src/Post_Types/Custom_Post_Type.php:153
+#. translators: the singular post type name
+msgid "Insert into %s"
+msgstr "%s einfügen"
+
+#: src/Post_Types/Custom_Post_Type.php:155
+#. translators: the singular post type name
+msgid "Uploaded to this %s"
+msgstr "Hochgeladen zu diesem %s"
+
+#: src/Post_Types/Custom_Post_Type.php:157
+#. translators: the plural post type name
+msgid "Filter %s list"
+msgstr "%s Liste filtern"
+
+#: src/Post_Types/Custom_Post_Type.php:159
+#: src/Taxonomy.php:207
+#. translators: the plural post type name
+#. translators: the plural name of a taxonomy
+msgid "%s list navigation"
+msgstr "%s Listen-Navigation"
+
+#: src/Post_Types/Custom_Post_Type.php:163
+#. translators: the singular post type name
+msgid "%s published."
+msgstr "%s veröffentlicht."
+
+#: src/Post_Types/Custom_Post_Type.php:165
+#. translators: the singular post type name
+msgid "%s published privately."
+msgstr "%s privat veröffentlicht."
+
+#: src/Post_Types/Custom_Post_Type.php:167
+#. translators: the singular post type name
+msgid "%s reverted to draft."
+msgstr "%s auf Entwurf zurückgesetzt."
+
+#: src/Post_Types/Custom_Post_Type.php:169
+#. translators: the singular post type name
+msgid "%s scheduled."
+msgstr "%s geplant."
+
+#: src/Post_Types/Custom_Post_Type.php:171
+#. translators: the singular post type name
+msgid "%s updated."
+msgstr "%s aktualisiert."
+
+#: src/Post_Types/Custom_Post_Type.php:173
+#: src/Taxonomy.php:215
+#. translators: the singular post type name
+#. translators: the singular name of a taxonomy
+msgid "%s Link"
+msgstr "%s Link"
+
+#: src/Post_Types/Custom_Post_Type.php:175
+#: src/Taxonomy.php:217
+#. translators: the singular post type name
+#. translators: the singular name of a taxonomy
+msgid "A link to a %s."
+msgstr "Ein Link zu einem %s."
+
+#: src/Taxonomy.php:158
+msgid "The name is how it appears on your site."
+msgstr "Der Name ist, wie er auf Ihrer Seite erscheint."
+
+#: src/Taxonomy.php:159
+msgid ""
+"The &#8220;slug&#8221; is the URL-friendly version of the name. It is "
+"usually all lowercase and contains only letters, numbers, and hyphens."
+msgstr ""
+"Der &#8220;Slug&#8221; ist die URL-freundliche Version des Namens. Er ist "
+"normalerweise alles in Kleinbuchstaben und enthält nur Buchstaben, Zahlen "
+"und Bindestriche."
+
+#: src/Taxonomy.php:160
+msgid ""
+"Assign a parent term to create a hierarchy. The term Jazz, for example, "
+"would be the parent of Bebop and Big Band."
+msgstr ""
+"Weisen Sie einen übergeordneten Begriff zu, um eine Hierarchie zu "
+"erstellen. Der Begriff Jazz wäre zum Beispiel der übergeordnete Begriff von "
+"Bebop und Big Band."
+
+#: src/Taxonomy.php:161
+msgid ""
+"The description is not prominent by default; however, some themes may show "
+"it."
+msgstr ""
+"Die Beschreibung ist standardmäßig nicht prominent; einige Themes zeigen "
+"sie jedoch möglicherweise an."
+
+#: src/Taxonomy.php:169
+#. translators: the plural name of a taxonomy
+msgid "Popular %s"
+msgstr "Beliebte %s"
+
+#: src/Taxonomy.php:173
+#. translators: the singular name of a taxonomy
+msgid "Parent %s"
+msgstr "Eltern-%s"
+
+#: src/Taxonomy.php:187
+#. translators: the singular name of a taxonomy
+msgid "View %s"
+msgstr "%s anzeigen"
+
+#: src/Taxonomy.php:189
+#. translators: the singular name of a taxonomy
+msgid "Update %s"
+msgstr "%s aktualisieren"
+
+#: src/Taxonomy.php:193
+#. translators: the singular name of a taxonomy
+msgid "New %s Name"
+msgstr "Neuer %s-Name"
+
+#: src/Taxonomy.php:195
+#. translators: the plural name of a taxonomy
+msgid "Separate %s with commas"
+msgstr "%s mit Kommas trennen"
+
+#: src/Taxonomy.php:197
+#. translators: the plural name of a taxonomy
+msgid "Add or remove %s"
+msgstr "%s hinzufügen oder entfernen"
+
+#: src/Taxonomy.php:199
+#. translators: the plural name of a taxonomy
+msgid "Choose from the most used %s"
+msgstr "Wählen Sie aus den meistgenutzten %s"
+
+#: src/Taxonomy.php:203
+#. translators: the plural name of a taxonomy
+msgid "No %s"
+msgstr "Keine %s"
+
+#: src/Taxonomy.php:205
+#. translators: the plural name of a taxonomy
+msgid "Filter by %s"
+msgstr "Nach %s filtern"
+
+#: src/Taxonomy.php:211
+#. translators: the plural name of a taxonomy
+msgid "Most Used"
+msgstr "Am häufigsten verwendet"
+
+#: src/Taxonomy.php:213
+#. translators: the plural name of a taxonomy
+msgid "&larr; Go to %s"
+msgstr "&larr; Gehe zu %s"
+
+#: src/Util.php:392
+msgid "Title"
+msgstr "Titel"
+
+#: src/Util.php:393
+msgid "Content"
+msgstr "Inhalt"
+
+#: src/Util.php:394
+msgid "Excerpt"
+msgstr "Zusammenfassung"
+
+#: src/Util.php:395
+msgid "Author"
+msgstr "Autor"
+
+#: src/Util.php:396
+msgid "Featured image"
+msgstr "Beitragsbild"
+
+#: src/Util.php:397
+msgid "Comments"
+msgstr "Kommentare"
+
+#: src/Util.php:398
+msgid "Page attributes"
+msgstr "Seitenattribute"
+
+#: src/Util.php:399
+msgid "Revisions"
+msgstr "Revisionen"
+
+#: src/Util.php:428
+msgid "Text"
+msgstr "Text"
+
+#: src/Util.php:429
+msgid "Visual Editor"
+msgstr "Visueller Editor"
+
+#: assets/js/admin/ept-editor.js:20
+msgid "Are you sure you want to delete the %1$s post type?"
+msgstr "Sind Sie sicher, dass Sie den %1$s Beitragstyp löschen möchten?"
+
+#: assets/js/admin/ept-editor.js:25
+msgid ""
+"The database contains at least one post of this post type. By deleting this "
+"post type, WordPress will not be able to access those posts any longer. Are "
+"you sure you want to continue?"
+msgstr ""
+"Die Datenbank enthält mindestens einen Beitrag dieses Beitragstyps. Wenn "
+"Sie diesen Beitragstyp löschen, kann WordPress nicht mehr auf diese "
+"Beiträge zugreifen. Sind Sie sicher, dass Sie fortfahren möchten?"
+
+#: assets/js/admin/ept-editor.js:40
+msgid "Are you sure you want to delete the “%1$s” %2$s?"
+msgstr "Sind Sie sicher, dass Sie die “%1$s” %2$s löschen möchten?"
+
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:139
+#: src/Admin/List_Tables/Post_Type_List_Table.php:265
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:161
+msgctxt "column name"
+msgid "Name"
+msgstr "Name"
+
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:140
+#: src/Admin/List_Tables/Post_Type_List_Table.php:266
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:162
+msgctxt "column name"
+msgid "Slug"
+msgstr "Slug"
+
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:141
+msgctxt "column name"
+msgid "Type"
+msgstr "Typ"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:267
+msgctxt "column name"
+msgid "Custom Fields"
+msgstr "Benutzerdefinierte Felder"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:268
+msgctxt "column name"
+msgid "Taxonomies"
+msgstr "Taxonomien"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:269
+msgctxt "column name"
+msgid "Actions"
+msgstr "Aktionen"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:270
+msgctxt "column name"
+msgid "Count"
+msgstr "Anzahl"
+
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:163
+msgctxt "column name"
+msgid "Hierarchical"
+msgstr "Hierarchisch"
+
+#: src/Post_Types/Custom_Post_Type.php:135
+#. translators: the singular post type name
+msgctxt "singular"
+msgid "View %s"
+msgstr "Anzeigen %s"
+
+#: src/Post_Types/Custom_Post_Type.php:137
+#. translators: the plural post type name
+msgctxt "plural"
+msgid "View %s"
+msgstr "Anzeigen %s"

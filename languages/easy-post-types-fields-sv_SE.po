@@ -1,0 +1,1120 @@
+# Copyright (C) 2022 Barn2 Plugins
+# This file is distributed under the GNU General Public License v3.0.
+msgid ""
+msgstr ""
+"Project-Id-Version: Easy Post Types and Fields 1.1.1\n"
+"Report-Msgid-Bugs-To: https://barn2.com/support-center/\n"
+"Last-Translator: Barn2 Plugins <support@barn2.com>\n"
+"Language-Team: Barn2 Plugins <support@barn2.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2022-08-26T00:00:00+00:00\n"
+"PO-Revision-Date: 2025-07-28 16:27+0000\n"
+"X-Generator: WP-CLI 2.6.0\n"
+"X-Domain: easy-post-types-fields\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: sv-SE\n"
+
+#: src/Admin/views/html-manage-page-header.php:22
+#. Plugin Name of the plugin
+msgid "Easy Post Types and Fields"
+msgstr "Enkla inläggstyper och fält"
+
+#. Plugin URI of the plugin
+msgid "https://wordpress.org/plugins/easy-post-types-fields/"
+msgstr "https://wordpress.org/plugins/easy-post-types-fields/"
+
+#. Description of the plugin
+msgid "Create custom post types, fields and taxonomies."
+msgstr "Skapa anpassade inläggstyper, fält och taxonomier."
+
+#. Author of the plugin
+msgid "Barn2 Plugins"
+msgstr "Barn2 Plugins"
+
+#. Author URI of the plugin
+msgid "https://barn2.com"
+msgstr "https://barn2.com"
+
+#: dependencies/src/Setup_Wizard.php:483
+msgid "%s setup wizard"
+msgstr "%s installationsguide"
+
+#: dependencies/src/Setup_Wizard.php:617
+#: dependencies/src/Setup_Wizard.php:625
+#: dependencies/src/Setup_Wizard.php:660
+msgid "Setup wizard"
+msgstr "Installationsguide"
+
+#: dependencies/src/Setup_Wizard.php:620
+msgid ""
+"If you need to access the setup wizard again, please click on the button "
+"below."
+msgstr ""
+"Om du behöver få tillgång till installationsguiden igen, vänligen klicka på "
+"knappen nedan."
+
+#: dependencies/src/Setup_Wizard.php:639
+#: dependencies/src/Setup_Wizard.php:672
+msgid ""
+"Warning: This will overwrite your existing settings for %s. Are you sure "
+"you want to continue?"
+msgstr ""
+"Varning: Detta kommer att skriva över dina befintliga inställningar för %s. "
+"Är du säker på att du vill fortsätta?"
+
+#: dependencies/src/Steps/Cross_Selling.php:26
+#: src/Admin/Wizard/Steps/Upsell.php:29
+msgid "More"
+msgstr "Mer"
+
+#: dependencies/src/Steps/Cross_Selling.php:27
+#: src/Admin/Wizard/Steps/Upsell.php:38
+msgid "Extra features"
+msgstr "Extra funktioner"
+
+#: dependencies/src/Steps/Cross_Selling.php:28
+msgid "Enhance your site with these fantastic plugins from Barn2."
+msgstr "Förbättra din webbplats med dessa fantastiska plugins från Barn2."
+
+#: dependencies/src/Steps/Cross_Selling.php:69
+#: src/Admin/Wizard/Steps/Upsell.php:98
+msgid ""
+"Something went wrong while retrieving the list of products. Please try "
+"again later."
+msgstr ""
+"Något gick fel när listan över produkter skulle hämtas. Vänligen försök "
+"igen senare."
+
+#: dependencies/src/Steps/Ready.php:23
+#: src/Admin/Wizard/Steps/Completed.php:25
+#: src/Admin/Wizard/Steps/EPT_Ready.php:25
+msgid "Ready"
+msgstr "Klar"
+
+#: dependencies/src/Steps/Ready.php:24
+msgid "Setup Complete"
+msgstr "Installation slutförd"
+
+#: dependencies/src/Steps/Welcome.php:25
+#: dependencies/src/Steps/Welcome_Free.php:23
+#: src/Admin/Wizard/Steps/Welcome.php:25
+msgid "Welcome"
+msgstr "Välkommen"
+
+#: dependencies/src/Steps/Welcome.php:33
+msgid "License key"
+msgstr "Licensnyckel"
+
+#: dependencies/src/Steps/Welcome.php:33
+msgid "Enter your license key to start using the plugin."
+msgstr "Ange din licensnyckel för att börja använda pluginet."
+
+#: dependencies/src/Steps/Welcome.php:33
+msgid "The licence key is contained in your order confirmation email."
+msgstr "Licensnyckeln finns i din orderbekräftelse via e-post."
+
+#: dependencies/src/Steps/Welcome.php:53
+msgid "You are not allowed to retrieve license details."
+msgstr "Du har inte behörighet att hämta licensuppgifter."
+
+#: dependencies/src/Steps/Welcome.php:65
+#: dependencies/src/Steps/Welcome_Free.php:40
+msgid "You are not allowed to validate your license."
+msgstr "Du får inte validera din licens."
+
+#: dependencies/src/Steps/Welcome.php:69
+msgid "Please enter a license key."
+msgstr "Vänligen ange en licensnyckel."
+
+#: lib/Admin/Settings_API_Helper.php:464
+msgid "Size"
+msgstr "Storlek"
+
+#: lib/Admin/Settings_Util.php:68
+#: src/Util.php:441
+msgid "Documentation"
+msgstr "Dokumentation"
+
+#: lib/Admin/Settings_Util.php:73
+#: src/Util.php:442
+msgid "Support"
+msgstr "Support"
+
+#: lib/Util.php:32
+msgid "Read more"
+msgstr "Läs mer"
+
+#: src/Admin/Admin_Controller.php:87
+msgid "Settings"
+msgstr "Inställningar"
+
+#: src/Admin/CPT_Editor.php:75
+#: src/Util.php:296
+msgid "Post types"
+msgstr "Inläggstyper"
+
+#: src/Admin/CPT_Editor.php:76
+msgid "Post type"
+msgstr "Inläggstyp"
+
+#: src/Admin/CPT_Editor.php:77
+msgid "Add new"
+msgstr "Lägg till ny"
+
+#: src/Admin/CPT_Editor.php:78
+msgid "Add new post type"
+msgstr "Lägg till ny inläggstyp"
+
+#: src/Admin/CPT_Editor.php:79
+#: src/Admin/CPT_Editor.php:309
+msgid "Edit post type"
+msgstr "Redigera inläggstyp"
+
+#: src/Admin/CPT_Editor.php:80
+msgid "New post type"
+msgstr "Ny inläggstyp"
+
+#: src/Admin/CPT_Editor.php:81
+msgid "View post type"
+msgstr "Visa inläggstyp"
+
+#: src/Admin/CPT_Editor.php:82
+msgid "View post types"
+msgstr "Visa inläggstyper"
+
+#: src/Admin/CPT_Editor.php:83
+msgid "Search custom post types"
+msgstr "Sök anpassade inläggstyper"
+
+#: src/Admin/CPT_Editor.php:84
+msgid "No custom post types have been created yet."
+msgstr "Inga anpassade inläggstyper har skapats än."
+
+#: src/Admin/CPT_Editor.php:86
+msgid "All post types"
+msgstr "Alla inläggstyper"
+
+#: src/Admin/CPT_Editor.php:87
+msgid "Post Type Attributes"
+msgstr "Inläggstypattribut"
+
+#: src/Admin/CPT_Editor.php:88
+msgid "Filter post types list"
+msgstr "Filtrera inläggstyplista"
+
+#: src/Admin/CPT_Editor.php:89
+msgid "Filter by date"
+msgstr "Filtrera efter datum"
+
+#: src/Admin/CPT_Editor.php:90
+msgid "Post types list navigation"
+msgstr "Navigering i inläggstypernas lista"
+
+#: src/Admin/CPT_Editor.php:91
+msgid "Post types list"
+msgstr "Inläggstyper lista"
+
+#: src/Admin/CPT_Editor.php:92
+msgid "Post type published."
+msgstr "Inläggstyp publicerad."
+
+#: src/Admin/CPT_Editor.php:93
+msgid "Post type published privately."
+msgstr "Inläggstyp publicerad privat."
+
+#: src/Admin/CPT_Editor.php:94
+msgid "Post type reverted to draft."
+msgstr "Inläggstyp återställd till utkast."
+
+#: src/Admin/CPT_Editor.php:95
+msgid "Post scheduled."
+msgstr "Inlägg schemalagt."
+
+#: src/Admin/CPT_Editor.php:96
+msgid "Post updated."
+msgstr "Inlägg uppdaterat."
+
+#: src/Admin/CPT_Editor.php:97
+msgid "A link to a post type."
+msgstr "En länk till en inläggstyp."
+
+#: src/Admin/CPT_Editor.php:99
+msgid "Define a custom post type"
+msgstr "Definiera en anpassad inläggstyp"
+
+#: src/Admin/CPT_Editor.php:212
+#: src/Util.php:320
+msgid "Custom fields"
+msgstr "Anpassade fält"
+
+#: src/Admin/CPT_Editor.php:213
+msgid "Custom field"
+msgstr "Anpassat fält"
+
+#: src/Admin/CPT_Editor.php:215
+#. translators: 1: the plural name of the post type, 2: the opening tab of an anchor element, 3: the closing tag of an anchor element, 4: the singular name of the post type, 5: the plural name of the post type,
+msgid ""
+"Use custom fields to store extra data about your %1$s, such as a reference "
+"number or link. Custom fields are for data that is unique to each %4$s. If "
+"you want to use the data to organize or group your %5$s then you should "
+"create a %2$staxonomy%3$s instead."
+msgstr ""
+"Använd anpassade fält för att lagra extra data om din %1$s, såsom ett "
+"referensnummer eller länk. Anpassade fält är för data som är unika för "
+"varje %4$s. Om du vill använda datan för att organisera eller gruppera dina "
+"%5$s bör du istället skapa en %2$staxonomi%3$s."
+
+#: src/Admin/CPT_Editor.php:219
+#: src/Admin/List_Tables/Post_Type_List_Table.php:382
+#: src/Util.php:320
+msgid "Taxonomies"
+msgstr "Taxonomier"
+
+#: src/Admin/CPT_Editor.php:220
+msgid "Taxonomy"
+msgstr "Taxonomi"
+
+#: src/Admin/CPT_Editor.php:222
+#. translators: the plural name of the post type
+msgid ""
+"Taxonomies let you organize and group your %1$s. For example, you might "
+"want to organize them by category, tag, year, author, or industry. If you "
+"need to add data that is unique to each %4$s then you should create a "
+"%2$scustom field%3$s instead."
+msgstr ""
+"Taxonomier låter dig organisera och gruppera dina %1$s. Till exempel kan du "
+"vilja organisera dem efter kategori, tagg, år, författare eller bransch. Om "
+"du behöver lägga till data som är unika för varje %4$s bör du istället "
+"skapa ett %2$sanpassat fält%3$s."
+
+#: src/Admin/CPT_Editor.php:264
+msgid "Post Types"
+msgstr "Inläggstyper"
+
+#: src/Admin/CPT_Editor.php:265
+msgid ""
+"Use this page to manage your custom post types. You can add and edit post "
+"types, custom fields and taxonomies."
+msgstr ""
+"Använd denna sida för att hantera dina anpassade inläggstyper. Du kan lägga "
+"till och redigera inläggstyper, anpassade fält och taxonomier."
+
+#: src/Admin/CPT_Editor.php:303
+msgid "Manage Taxonomies"
+msgstr "Hantera taxonomier"
+
+#: src/Admin/CPT_Editor.php:304
+msgid "Manage Custom Fields"
+msgstr "Hantera anpassade fält"
+
+#: src/Admin/CPT_Editor.php:316
+#: src/Admin/views/html-manage-page-lists.php:36
+#: src/Util.php:333
+msgid "Add"
+msgstr "Lägg till"
+
+#: src/Admin/CPT_Editor.php:317
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:299
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:300
+#: src/Admin/List_Tables/Post_Type_List_Table.php:551
+#: src/Admin/List_Tables/Post_Type_List_Table.php:552
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:328
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:329
+#: src/Util.php:333
+msgid "Edit"
+msgstr "Redigera"
+
+#: src/Admin/CPT_Editor.php:321
+#. translators: either 'Add' or 'Edit'
+msgid "%s Taxonomy"
+msgstr "%s Taxonomi"
+
+#: src/Admin/CPT_Editor.php:323
+#. translators: either 'Add' or 'Edit'
+msgid "%s Custom Field"
+msgstr "%s Anpassat fält"
+
+#: src/Admin/CPT_Editor.php:339
+msgid "Display your post types and fields with Posts Table Pro"
+msgstr "Visa dina inläggstyper och fält med Posts Table Pro"
+
+#: src/Admin/CPT_Editor.php:353
+msgid "Restrict access to parts of your website with Password Protected Categories"
+msgstr ""
+"Begränsa åtkomst till delar av din webbplats med Lösenordsskyddade "
+"kategorier"
+
+#: src/Admin/CPT_Editor.php:421
+msgid ""
+"The post type is missing or an error occurred when completing this "
+"operation."
+msgstr "Inläggstypen saknas eller ett fel inträffade när operationen slutfördes."
+
+#: src/Admin/CPT_Editor.php:476
+msgid "The slug of a post type is required."
+msgstr "Sluggen för en inläggstyp krävs."
+
+#: src/Admin/CPT_Editor.php:481
+msgid "The slug of a post type must be 17 characters or less."
+msgstr "Sluggen för en inläggstyp måste vara 17 tecken eller färre."
+
+#: src/Admin/CPT_Editor.php:486
+msgid "The singular name of a post type is required."
+msgstr "Det singulara namnet på en inläggstyp krävs."
+
+#: src/Admin/CPT_Editor.php:491
+msgid "The plural name of a post type is required."
+msgstr "Det pluralformade namnet på en inläggstyp krävs."
+
+#: src/Admin/CPT_Editor.php:505
+msgid ""
+"A post type with the same slug is already registered. Please choose a "
+"different slug."
+msgstr ""
+"En inläggstyp med samma slug är redan registrerad. Vänligen välj en annan "
+"slug."
+
+#: src/Admin/CPT_Editor.php:556
+msgid "The slug of a taxonomy is required."
+msgstr "Sluggen för en taxonomi krävs."
+
+#: src/Admin/CPT_Editor.php:571
+#. translators: the maximum number of characters of the slug
+msgid "The slug of a taxonomy for this post type must be %d characters or less."
+msgstr ""
+"Sluggen för en taxonomi för denna inläggstyp måste vara %d tecken eller "
+"färre."
+
+#: src/Admin/CPT_Editor.php:576
+msgid "The singular name of a taxonomy is required."
+msgstr "Det singulara namnet på en taxonomi krävs."
+
+#: src/Admin/CPT_Editor.php:581
+msgid "The plural name of a taxonomy is required."
+msgstr "Det pluralformade namnet på en taxonomi krävs."
+
+#: src/Admin/CPT_Editor.php:629
+msgid ""
+"A taxonomy with the same slug is already registered to this post type. "
+"Please choose a different slug."
+msgstr ""
+"En taxonomi med samma slug är redan registrerad för denna inläggstyp. "
+"Vänligen välj en annan slug."
+
+#: src/Admin/CPT_Editor.php:671
+msgid "The slug of a custom field is required."
+msgstr "Sluggen för ett anpassat fält krävs."
+
+#: src/Admin/CPT_Editor.php:676
+msgid "The name of a custom field is required."
+msgstr "Namnet på ett anpassat fält krävs."
+
+#: src/Admin/CPT_Editor.php:713
+msgid ""
+"A field with the same slug is already registered to this post type. Please "
+"choose a different slug."
+msgstr ""
+"Ett fält med samma slug är redan registrerat för denna inläggstyp. Vänligen "
+"välj en annan slug."
+
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:97
+msgid "No custom fields for this post type yet"
+msgstr "Inga anpassade fält för den här inläggstypen ännu"
+
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:133
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:154
+#. translators: a post type name followed by underscore
+msgid ""
+"The slug is a unique code that you can use to identify the custom taxonomy. "
+"For example, you can use it to display the data with the Posts Table Pro "
+"plugin. If you are using the slug in other ways &ndash; for example for "
+"development purposes &ndash; then you should add the prefix '%1$s' before "
+"the slug, for example '%1$scategory' instead of just 'category'."
+msgstr ""
+"Sluggen är en unik kod som du kan använda för att identifiera den anpassade "
+"taksonomin. Till exempel kan du använda den för att visa data med Posts "
+"Table Pro-pluginet. Om du använder sluggen på andra sätt &ndash; till "
+"exempel för utvecklingsändamål &ndash; bör du lägga till prefixet '%1$s' "
+"före sluggen, till exempel '%1$scategory' istället för bara 'category'."
+
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:224
+#: src/Admin/List_Tables/Post_Type_List_Table.php:352
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:247
+#. translators: a custom field name
+#. translators: a post type name
+#. translators: the name of the taxonomy
+msgid "%s (Edit)"
+msgstr "%s (Redigera)"
+
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:307
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:308
+#: src/Admin/List_Tables/Post_Type_List_Table.php:558
+#: src/Admin/List_Tables/Post_Type_List_Table.php:560
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:336
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:337
+msgid "Delete"
+msgstr "Ta bort"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:157
+msgid "No custom post types found"
+msgstr "Inga anpassade inläggstyper hittades"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:220
+#. translators: %s: Number of posts.
+msgid "Easy Post Types <span class=\"count\">(%s)</span>"
+msgstr "Enkla inläggstyper <span class=\"count\">(%s)</span>"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:222
+#. translators: %s: Number of posts.
+msgid "Other Post Types <span class=\"count\">(%s)</span>"
+msgstr "Andra inläggstyper <span class=\"count\">(%s)</span>"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:260
+msgid ""
+"The slug is a unique code that you can use to identify the custom post "
+"type. For example, you can use it to display the data with the Posts Table "
+"Pro plugin. If you are using the slug in other ways &ndash; for example for "
+"development purposes &ndash; then you should add the prefix 'ept_' before "
+"the slug, for example 'ept_article' instead of just 'article'."
+msgstr ""
+"Sluggen är en unik kod som du kan använda för att identifiera den anpassade "
+"inläggstypen. Till exempel kan du använda den för att visa data med Posts "
+"Table Pro-pluginet. Om du använder sluggen på andra sätt &ndash; till "
+"exempel för utvecklingsändamål &ndash; bör du lägga till prefixet 'ept_' "
+"före sluggen, till exempel 'ept_article' istället för bara 'article'."
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:261
+msgid ""
+"Use custom fields for storing unique data about your custom posts, and use "
+"taxonomies for organizing and grouping the custom posts."
+msgstr ""
+"Använd anpassade fält för att lagra unik data om dina anpassade inlägg, och "
+"använd taksonomier för att organisera och gruppera de anpassade inläggen."
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:262
+msgid "The current number of posts for the custom post type."
+msgstr "Det aktuella antalet inlägg för den anpassade inläggstypen."
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:381
+#: src/Post_Types/Abstract_Post_Type.php:210
+msgid "Custom Fields"
+msgstr "Anpassade fält"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:568
+#: src/Admin/List_Tables/Post_Type_List_Table.php:570
+#: src/Post_Types/Custom_Post_Type.php:147
+#: src/Taxonomy.php:171
+#. translators: %s: Post type plural name.
+#. translators: the plural post type name
+#. translators: the plural name of a taxonomy
+msgid "All %s"
+msgstr "Alla %s"
+
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:116
+msgid "No taxonomies for this post type yet"
+msgstr "Inga taksonomier för den här inläggstypen ännu"
+
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:158
+#: src/Admin/views/html-manage-page-taxonomies.php:19
+msgid ""
+"Hierarchical taxonomies have a nested parent/child structure like WordPress "
+"post categories, whereas non-hierarchical taxonomies are flat like tags."
+msgstr ""
+"Hierarkiska taksonomier har en nästlad förälder/barn-struktur som WordPress "
+"inläggskategorier, medan icke-hierarkiska taksonomier är platta som taggar."
+
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:279
+msgid "Yes"
+msgstr "Ja"
+
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:279
+msgid "No"
+msgstr "Nej"
+
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:344
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:345
+msgid "Manage terms"
+msgstr "Hantera termer"
+
+#: src/Admin/Review_Notice.php:115
+msgid "Are you enjoying Easy Post Types and Fields?"
+msgstr "Tycker du om Easy Post Types och Fields?"
+
+#: src/Admin/Review_Notice.php:116
+msgid ""
+"Congratulations, you've just published your first custom post type! If you "
+"have time, it would be great if you could leave us a review and let us know "
+"what you think of the plugin."
+msgstr ""
+"Grattis, du har precis publicerat din första anpassade inläggstyp! Om du "
+"har tid skulle det vara bra om du kunde lämna en recension och låta oss "
+"veta vad du tycker om pluginet."
+
+#: src/Admin/Review_Notice.php:119
+msgid "Add Review"
+msgstr "Lägg till recension"
+
+#: src/Admin/Review_Notice.php:120
+msgid "Dismiss"
+msgstr "Avvisa"
+
+#: src/Admin/Review_Notice.php:123
+msgid "Barn2"
+msgstr "Barn2"
+
+#: src/Admin/views/html-manage-page-fields.php:45
+#: src/Admin/Wizard/Steps/EPT_Name.php:25
+msgid "Name"
+msgstr "Namn"
+
+#: src/Admin/views/html-manage-page-fields.php:51
+#: src/Admin/views/html-manage-page-post_type.php:54
+#: src/Admin/views/html-manage-page-taxonomies.php:54
+msgid "Slug"
+msgstr "Slug"
+
+#: src/Admin/views/html-manage-page-fields.php:57
+msgid "Type"
+msgstr "Typ"
+
+#: src/Admin/views/html-manage-page-header.php:38
+msgid "Add New"
+msgstr "Lägg till ny"
+
+#: src/Admin/views/html-manage-page-lists.php:22
+#. translators: either `Taxonomy` or `Custom field`
+msgid "%s editor"
+msgstr "%s redigerare"
+
+#: src/Admin/views/html-manage-page-lists.php:35
+#. translators: 1: 'Add' or 'Update', 2: 'custom field' or 'taxonomy' phpcs:ignore Squiz.PHP.CommentedOutCode.Found
+msgid "%1$s %2$s"
+msgstr "%1$s %2$s"
+
+#: src/Admin/views/html-manage-page-lists.php:36
+msgid "Update"
+msgstr "Uppdatera"
+
+#: src/Admin/views/html-manage-page-lists.php:37
+#: assets/js/admin/ept-editor.js:38
+msgid "taxonomy"
+msgstr "taksonomi"
+
+#: src/Admin/views/html-manage-page-lists.php:37
+#: assets/js/admin/ept-editor.js:38
+msgid "custom field"
+msgstr "anpassat fält"
+
+#: src/Admin/views/html-manage-page-lists.php:46
+#: src/Admin/views/html-manage-page-post_type.php:89
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: src/Admin/views/html-manage-page-lists.php:56
+#: src/Post_Types/Custom_Post_Type.php:161
+#: src/Taxonomy.php:209
+#. translators: either `Taxonomy` or `Custom field`
+#. translators: the plural post type name
+#. translators: the plural name of a taxonomy
+msgid "%s list"
+msgstr "%s lista"
+
+#: src/Admin/views/html-manage-page-post_type.php:42
+#: src/Admin/views/html-manage-page-taxonomies.php:42
+#: src/Admin/Wizard/Steps/EPT_Name.php:37
+msgid "Singular name"
+msgstr "Singulär namn"
+
+#: src/Admin/views/html-manage-page-post_type.php:48
+#: src/Admin/views/html-manage-page-taxonomies.php:48
+#: src/Admin/Wizard/Steps/EPT_Name.php:42
+msgid "Plural name"
+msgstr "Plural namn"
+
+#: src/Admin/views/html-manage-page-post_type.php:60
+#: src/Admin/Wizard/Steps/EPT_Features.php:26
+msgid "Features"
+msgstr "Funktioner"
+
+#: src/Admin/views/html-manage-page-post_type.php:80
+msgid "Update post type"
+msgstr "Uppdatera inläggstyp"
+
+#: src/Admin/views/html-manage-page-taxonomies.php:44
+msgid "e.g. Category"
+msgstr "t.ex. Kategori"
+
+#: src/Admin/views/html-manage-page-taxonomies.php:50
+msgid "e.g. Categories"
+msgstr "t.ex. Kategorier"
+
+#: src/Admin/views/html-manage-page-taxonomies.php:60
+msgid "Hierarchical"
+msgstr "Hierarkisk"
+
+#: src/Admin/views/html-promo-display.php:29
+#. translators: 1: the opening tag of an anchor element, 2: the closing tag of an anchor element
+msgid ""
+"Once you have created your post types, custom fields and taxonomies, you "
+"can use %1$sPosts Table Pro%2$s to display them in a user-friendly table."
+msgstr ""
+"När du har skapat dina inläggstyper, anpassade fält och taxonomier kan du "
+"använda %1$sPosts Table Pro%2$s för att visa dem i en användarvänlig tabell."
+
+#: src/Admin/views/html-promo-display.php:37
+msgid ""
+"Posts Table Pro is a dynamic WordPress table plugin which lists any type of "
+"WordPress content in a searchable table. As well as displaying any custom "
+"post type, you can choose which columns of information to show in the table "
+"- including your custom fields and taxonomies."
+msgstr ""
+"Posts Table Pro är ett dynamiskt WordPress-tabellplugin som listar alla "
+"typer av WordPress-innehåll i en sökbar tabell. Förutom att visa vilken "
+"anpassad inläggstyp som helst kan du välja vilka informationskolumner som "
+"ska visas i tabellen - inklusive dina anpassade fält och taxonomier."
+
+#: src/Admin/views/html-promo-display.php:40
+msgid ""
+"Your website visitors can use the search box, sortable columns and filter "
+"dropdowns to find exactly what they are looking for."
+msgstr ""
+"Dina webbplatsbesökare kan använda sökrutan, sorteringsbara kolumner och "
+"filterrullgardiner för att hitta exakt vad de letar efter."
+
+#: src/Admin/views/html-promo-protect.php:29
+#. translators: 1: the opening tag of an anchor element, 2: the closing tag of an anchor element
+msgid ""
+"Do you need to control who can access your custom post types? You can "
+"easily do this with the %1$sPassword Protected Categories%2$s plugin."
+msgstr ""
+"Behöver du kontrollera vem som kan få åtkomst till dina anpassade "
+"inläggstyper? Du kan enkelt göra detta med %1$sPassword Protected "
+"Categories%2$s-pluginet."
+
+#: src/Admin/views/html-promo-protect.php:37
+msgid ""
+"Password Protected Categories lets you restrict access to any or all of "
+"your categories or taxonomies."
+msgstr ""
+"Password Protected Categories låter dig begränsa åtkomsten till några eller "
+"alla av dina kategorier eller taxonomier."
+
+#: src/Admin/Wizard/Steps/Completed.php:27
+#: src/Admin/Wizard/Steps/EPT_Ready.php:27
+#. translators: the plural name of a post type
+msgid ""
+"Now, you can either add extra fields to your post type, or start adding new "
+"%s straight away."
+msgstr ""
+"Nu kan du antingen lägga till extra fält till din inläggstyp eller börja "
+"lägga till nya %s direkt."
+
+#: src/Admin/Wizard/Steps/Completed.php:29
+#: src/Admin/Wizard/Steps/EPT_Ready.php:29
+#. translators: the singular name of a post type
+msgid "The %s post type is ready!"
+msgstr "Inläggstypen %s är redo!"
+
+#: src/Admin/Wizard/Steps/EPT_Features.php:28
+#. translators: the plural name of a post type
+msgid ""
+"Choose which of the standard features you will use. Later, you can create "
+"custom fields and taxonomies for storing additional information."
+msgstr ""
+"Välj vilka av de standardfunktioner du vill använda. Senare kan du skapa "
+"anpassade fält och taxonomier för att lagra ytterligare information."
+
+#: src/Admin/Wizard/Steps/EPT_Features.php:30
+#. translators: the plural name of a post type
+msgid "What type of information do you need for your %s?"
+msgstr "Vilken typ av information behöver du för din %s?"
+
+#: src/Admin/Wizard/Steps/EPT_Features.php:93
+msgid "It is not possible to create the post type with the current configuration."
+msgstr "Det är inte möjligt att skapa inläggstypen med den aktuella konfigurationen."
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:26
+msgid ""
+"First, let's choose the name for your post type. This will appear as a link "
+"on the left hand side of the WordPress admin."
+msgstr ""
+"Först, låt oss välja namnet på din inläggstyp. Detta kommer att visas som "
+"en länk på vänster sida av WordPress-adminpanelen."
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:27
+msgid "What sort of content do you want to create?"
+msgstr "Vilken typ av innehåll vill du skapa?"
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:38
+msgid "e.g. Article"
+msgstr "t.ex. Artikel"
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:43
+msgid "e.g. Articles"
+msgstr "t.ex. Artiklar"
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:58
+msgid "Both fields must not be empty."
+msgstr "Båda fälten får inte vara tomma."
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:64
+msgid "The name of the post type cannot be longer than 17 characters."
+msgstr "Namnet på inläggstypen kan inte vara längre än 17 tecken."
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:75
+msgid ""
+"A post type with this name is already present. Please input a different "
+"name."
+msgstr "En inläggstyp med detta namn finns redan. Vänligen ange ett annat namn."
+
+#: src/Admin/Wizard/Steps/Upsell.php:33
+#. translators: %1$s: URL to All Access Pass page %2$s: URL to the KB about the upgrading process
+msgid ""
+"Enhance your store with these fantastic plugins from Barn2, or get them all "
+"with an <a href=\"%1$s\" target=\"_blank\">All Access Pass<a/>! (<a "
+"href=\"%2$s\" target=\"_blank\">learn how here</a>)"
+msgstr ""
+"Förbättra din butik med dessa fantastiska plugins från Barn2, eller få dem "
+"alla med ett <a href=\"%1$s\" target=\"_blank\">All Access Pass<a/>! (<a "
+"href=\"%2$s\" target=\"_blank\">lär dig hur här</a>)"
+
+#: src/Admin/Wizard/Steps/Welcome.php:26
+msgid "Welcome to Easy Post Types and Fields"
+msgstr "Välkommen till Easy Post Types and Fields"
+
+#: src/Admin/Wizard/Steps/Welcome.php:27
+msgid ""
+"Use this setup wizard to quickly create a post type (e.g. Events, Members, "
+"Articles, or something else). Your post type will have its own section in "
+"the WordPress admin. If you want to add fields to existing post types, then "
+"skip the setup wizard and go to the Other Post Types section."
+msgstr ""
+"Använd denna installationsguide för att snabbt skapa en inläggstyp (t.ex. "
+"Evenemang, Medlemmar, Artiklar eller något annat). Din inläggstyp kommer "
+"att ha sin egen sektion i WordPress-adminpanelen. Om du vill lägga till "
+"fält till befintliga inläggstyper, hoppa över installationsguiden och gå "
+"till sektionen Andra inläggstyper."
+
+#: src/Admin/Wizard/Wizard.php:28
+msgid "You are not authorized."
+msgstr "Du är inte auktoriserad."
+
+#: src/Post_Types/Custom_Post_Type.php:129
+#: src/Taxonomy.php:191
+#. translators: the singular post type name
+#. translators: the singular name of a taxonomy
+msgid "Add New %s"
+msgstr "Lägg till ny %s"
+
+#: src/Post_Types/Custom_Post_Type.php:131
+#: src/Taxonomy.php:185
+#. translators: the singular post type name
+#. translators: the singular name of a taxonomy
+msgid "Edit %s"
+msgstr "Redigera %s"
+
+#: src/Post_Types/Custom_Post_Type.php:133
+#. translators: the singular post type name
+msgid "New %s"
+msgstr "Ny %s"
+
+#: src/Post_Types/Custom_Post_Type.php:139
+#: src/Taxonomy.php:167
+#. translators: the plural post type name
+#. translators: the plural name of a taxonomy
+msgid "Search %s"
+msgstr "Sök %s"
+
+#: src/Post_Types/Custom_Post_Type.php:141
+#: src/Taxonomy.php:201
+#. translators: the plural post type name
+#. translators: the plural name of a taxonomy
+msgid "No %s found."
+msgstr "Inga %s hittades."
+
+#: src/Post_Types/Custom_Post_Type.php:143
+#. translators: the plural post type name
+msgid "No %s found in Trash."
+msgstr "Inga %s hittades i papperskorgen."
+
+#: src/Post_Types/Custom_Post_Type.php:145
+#: src/Taxonomy.php:175
+#. translators: the singular post type name
+#. translators: the singular name of a taxonomy
+msgid "Parent %s:"
+msgstr "Förälder %s:"
+
+#: src/Post_Types/Custom_Post_Type.php:149
+#. translators: the singular post type name
+msgid "%s Archives"
+msgstr "%s Arkiv"
+
+#: src/Post_Types/Custom_Post_Type.php:151
+#. translators: the singular post type name
+msgid "%s Attributes"
+msgstr "%s Attribut"
+
+#: src/Post_Types/Custom_Post_Type.php:153
+#. translators: the singular post type name
+msgid "Insert into %s"
+msgstr "Infoga i %s"
+
+#: src/Post_Types/Custom_Post_Type.php:155
+#. translators: the singular post type name
+msgid "Uploaded to this %s"
+msgstr "Uppladdad till denna %s"
+
+#: src/Post_Types/Custom_Post_Type.php:157
+#. translators: the plural post type name
+msgid "Filter %s list"
+msgstr "Filtrera %s lista"
+
+#: src/Post_Types/Custom_Post_Type.php:159
+#: src/Taxonomy.php:207
+#. translators: the plural post type name
+#. translators: the plural name of a taxonomy
+msgid "%s list navigation"
+msgstr "%s lista navigering"
+
+#: src/Post_Types/Custom_Post_Type.php:163
+#. translators: the singular post type name
+msgid "%s published."
+msgstr "%s publicerad."
+
+#: src/Post_Types/Custom_Post_Type.php:165
+#. translators: the singular post type name
+msgid "%s published privately."
+msgstr "%s publicerad privat."
+
+#: src/Post_Types/Custom_Post_Type.php:167
+#. translators: the singular post type name
+msgid "%s reverted to draft."
+msgstr "%s återställd till utkast."
+
+#: src/Post_Types/Custom_Post_Type.php:169
+#. translators: the singular post type name
+msgid "%s scheduled."
+msgstr "%s schemalagd."
+
+#: src/Post_Types/Custom_Post_Type.php:171
+#. translators: the singular post type name
+msgid "%s updated."
+msgstr "%s uppdaterad."
+
+#: src/Post_Types/Custom_Post_Type.php:173
+#: src/Taxonomy.php:215
+#. translators: the singular post type name
+#. translators: the singular name of a taxonomy
+msgid "%s Link"
+msgstr "%s Länk"
+
+#: src/Post_Types/Custom_Post_Type.php:175
+#: src/Taxonomy.php:217
+#. translators: the singular post type name
+#. translators: the singular name of a taxonomy
+msgid "A link to a %s."
+msgstr "En länk till en %s."
+
+#: src/Taxonomy.php:158
+msgid "The name is how it appears on your site."
+msgstr "Namnet är hur det visas på din webbplats."
+
+#: src/Taxonomy.php:159
+msgid ""
+"The &#8220;slug&#8221; is the URL-friendly version of the name. It is "
+"usually all lowercase and contains only letters, numbers, and hyphens."
+msgstr ""
+"”Slug” är den URL-vänliga versionen av namnet. Den är vanligtvis helt i små "
+"bokstäver och innehåller endast bokstäver, siffror och bindestreck."
+
+#: src/Taxonomy.php:160
+msgid ""
+"Assign a parent term to create a hierarchy. The term Jazz, for example, "
+"would be the parent of Bebop and Big Band."
+msgstr ""
+"Tilldela en överordnad term för att skapa en hierarki. Termen Jazz, till "
+"exempel, skulle vara förälder till Bebop och Big Band."
+
+#: src/Taxonomy.php:161
+msgid ""
+"The description is not prominent by default; however, some themes may show "
+"it."
+msgstr ""
+"Beskrivningen är inte framträdande som standard; dock kan vissa teman visa "
+"den."
+
+#: src/Taxonomy.php:169
+#. translators: the plural name of a taxonomy
+msgid "Popular %s"
+msgstr "Populära %s"
+
+#: src/Taxonomy.php:173
+#. translators: the singular name of a taxonomy
+msgid "Parent %s"
+msgstr "Förälder %s"
+
+#: src/Taxonomy.php:187
+#. translators: the singular name of a taxonomy
+msgid "View %s"
+msgstr "Visa %s"
+
+#: src/Taxonomy.php:189
+#. translators: the singular name of a taxonomy
+msgid "Update %s"
+msgstr "Uppdatera %s"
+
+#: src/Taxonomy.php:193
+#. translators: the singular name of a taxonomy
+msgid "New %s Name"
+msgstr "Nytt %s Namn"
+
+#: src/Taxonomy.php:195
+#. translators: the plural name of a taxonomy
+msgid "Separate %s with commas"
+msgstr "Separera %s med kommatecken"
+
+#: src/Taxonomy.php:197
+#. translators: the plural name of a taxonomy
+msgid "Add or remove %s"
+msgstr "Lägg till eller ta bort %s"
+
+#: src/Taxonomy.php:199
+#. translators: the plural name of a taxonomy
+msgid "Choose from the most used %s"
+msgstr "Välj bland de mest använda %s"
+
+#: src/Taxonomy.php:203
+#. translators: the plural name of a taxonomy
+msgid "No %s"
+msgstr "Inga %s"
+
+#: src/Taxonomy.php:205
+#. translators: the plural name of a taxonomy
+msgid "Filter by %s"
+msgstr "Filtrera efter %s"
+
+#: src/Taxonomy.php:211
+#. translators: the plural name of a taxonomy
+msgid "Most Used"
+msgstr "Mest Använda"
+
+#: src/Taxonomy.php:213
+#. translators: the plural name of a taxonomy
+msgid "&larr; Go to %s"
+msgstr "&larr; Gå till %s"
+
+#: src/Util.php:392
+msgid "Title"
+msgstr "Titel"
+
+#: src/Util.php:393
+msgid "Content"
+msgstr "Innehåll"
+
+#: src/Util.php:394
+msgid "Excerpt"
+msgstr "Utdrag"
+
+#: src/Util.php:395
+msgid "Author"
+msgstr "Författare"
+
+#: src/Util.php:396
+msgid "Featured image"
+msgstr "Utvald bild"
+
+#: src/Util.php:397
+msgid "Comments"
+msgstr "Kommentarer"
+
+#: src/Util.php:398
+msgid "Page attributes"
+msgstr "Sidattribut"
+
+#: src/Util.php:399
+msgid "Revisions"
+msgstr "Revisioner"
+
+#: src/Util.php:428
+msgid "Text"
+msgstr "Text"
+
+#: src/Util.php:429
+msgid "Visual Editor"
+msgstr "Visuell redigerare"
+
+#: assets/js/admin/ept-editor.js:20
+msgid "Are you sure you want to delete the %1$s post type?"
+msgstr "Är du säker på att du vill ta bort %1$s inläggstyp?"
+
+#: assets/js/admin/ept-editor.js:25
+msgid ""
+"The database contains at least one post of this post type. By deleting this "
+"post type, WordPress will not be able to access those posts any longer. Are "
+"you sure you want to continue?"
+msgstr ""
+"Databasen innehåller minst ett inlägg av denna inläggstyp. Genom att ta "
+"bort denna inläggstyp kommer WordPress inte längre att kunna få tillgång "
+"till dessa inlägg. Är du säker på att du vill fortsätta?"
+
+#: assets/js/admin/ept-editor.js:40
+msgid "Are you sure you want to delete the “%1$s” %2$s?"
+msgstr "Är du säker på att du vill ta bort “%1$s” %2$s?"
+
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:139
+#: src/Admin/List_Tables/Post_Type_List_Table.php:265
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:161
+msgctxt "column name"
+msgid "Name"
+msgstr "Namn"
+
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:140
+#: src/Admin/List_Tables/Post_Type_List_Table.php:266
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:162
+msgctxt "column name"
+msgid "Slug"
+msgstr "Slug"
+
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:141
+msgctxt "column name"
+msgid "Type"
+msgstr "Typ"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:267
+msgctxt "column name"
+msgid "Custom Fields"
+msgstr "Anpassade fält"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:268
+msgctxt "column name"
+msgid "Taxonomies"
+msgstr "Skatter"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:269
+msgctxt "column name"
+msgid "Actions"
+msgstr "Åtgärder"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:270
+msgctxt "column name"
+msgid "Count"
+msgstr "Antal"
+
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:163
+msgctxt "column name"
+msgid "Hierarchical"
+msgstr "Hierarkisk"
+
+#: src/Post_Types/Custom_Post_Type.php:135
+#. translators: the singular post type name
+msgctxt "singular"
+msgid "View %s"
+msgstr "Visa %s"
+
+#: src/Post_Types/Custom_Post_Type.php:137
+#. translators: the plural post type name
+msgctxt "plural"
+msgid "View %s"
+msgstr "Visa %s"

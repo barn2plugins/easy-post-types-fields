@@ -1,0 +1,1067 @@
+# Copyright (C) 2022 Barn2 Plugins
+# This file is distributed under the GNU General Public License v3.0.
+msgid ""
+msgstr ""
+"Project-Id-Version: Easy Post Types and Fields 1.1.1\n"
+"Report-Msgid-Bugs-To: https://barn2.com/support-center/\n"
+"Last-Translator: Barn2 Plugins <support@barn2.com>\n"
+"Language-Team: Barn2 Plugins <support@barn2.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2022-08-26T00:00:00+00:00\n"
+"PO-Revision-Date: 2025-07-28 16:24+0000\n"
+"X-Generator: WP-CLI 2.6.0\n"
+"X-Domain: easy-post-types-fields\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: ja\n"
+
+#: src/Admin/views/html-manage-page-header.php:22
+#. Plugin Name of the plugin
+msgid "Easy Post Types and Fields"
+msgstr "簡単な投稿タイプとフィールド"
+
+#. Plugin URI of the plugin
+msgid "https://wordpress.org/plugins/easy-post-types-fields/"
+msgstr "https://wordpress.org/plugins/easy-post-types-fields/"
+
+#. Description of the plugin
+msgid "Create custom post types, fields and taxonomies."
+msgstr "カスタム投稿タイプ、フィールド、タクソノミーを作成します。"
+
+#. Author of the plugin
+msgid "Barn2 Plugins"
+msgstr "Barn2 Plugins"
+
+#. Author URI of the plugin
+msgid "https://barn2.com"
+msgstr "https://barn2.com"
+
+#: dependencies/src/Setup_Wizard.php:483
+msgid "%s setup wizard"
+msgstr "%s セットアップウィザード"
+
+#: dependencies/src/Setup_Wizard.php:617
+#: dependencies/src/Setup_Wizard.php:625
+#: dependencies/src/Setup_Wizard.php:660
+msgid "Setup wizard"
+msgstr "セットアップウィザード"
+
+#: dependencies/src/Setup_Wizard.php:620
+msgid ""
+"If you need to access the setup wizard again, please click on the button "
+"below."
+msgstr "セットアップウィザードに再度アクセスする必要がある場合は、下のボタンをクリックしてください。"
+
+#: dependencies/src/Setup_Wizard.php:639
+#: dependencies/src/Setup_Wizard.php:672
+msgid ""
+"Warning: This will overwrite your existing settings for %s. Are you sure "
+"you want to continue?"
+msgstr "警告: これにより%sの既存の設定が上書きされます。続行してもよろしいですか？"
+
+#: dependencies/src/Steps/Cross_Selling.php:26
+#: src/Admin/Wizard/Steps/Upsell.php:29
+msgid "More"
+msgstr "もっと見る"
+
+#: dependencies/src/Steps/Cross_Selling.php:27
+#: src/Admin/Wizard/Steps/Upsell.php:38
+msgid "Extra features"
+msgstr "追加機能"
+
+#: dependencies/src/Steps/Cross_Selling.php:28
+msgid "Enhance your site with these fantastic plugins from Barn2."
+msgstr "Barn2のこれらの素晴らしいプラグインでサイトを強化しましょう。"
+
+#: dependencies/src/Steps/Cross_Selling.php:69
+#: src/Admin/Wizard/Steps/Upsell.php:98
+msgid ""
+"Something went wrong while retrieving the list of products. Please try "
+"again later."
+msgstr "製品のリストを取得中に問題が発生しました。後で再試行してください。"
+
+#: dependencies/src/Steps/Ready.php:23
+#: src/Admin/Wizard/Steps/Completed.php:25
+#: src/Admin/Wizard/Steps/EPT_Ready.php:25
+msgid "Ready"
+msgstr "準備完了"
+
+#: dependencies/src/Steps/Ready.php:24
+msgid "Setup Complete"
+msgstr "セットアップ完了"
+
+#: dependencies/src/Steps/Welcome.php:25
+#: dependencies/src/Steps/Welcome_Free.php:23
+#: src/Admin/Wizard/Steps/Welcome.php:25
+msgid "Welcome"
+msgstr "ようこそ"
+
+#: dependencies/src/Steps/Welcome.php:33
+msgid "License key"
+msgstr "ライセンスキー"
+
+#: dependencies/src/Steps/Welcome.php:33
+msgid "Enter your license key to start using the plugin."
+msgstr "プラグインを使用するには、ライセンスキーを入力してください。"
+
+#: dependencies/src/Steps/Welcome.php:33
+msgid "The licence key is contained in your order confirmation email."
+msgstr "ライセンスキーは、注文確認メールに含まれています。"
+
+#: dependencies/src/Steps/Welcome.php:53
+msgid "You are not allowed to retrieve license details."
+msgstr "ライセンスの詳細を取得することは許可されていません。"
+
+#: dependencies/src/Steps/Welcome.php:65
+#: dependencies/src/Steps/Welcome_Free.php:40
+msgid "You are not allowed to validate your license."
+msgstr "ライセンスを検証することは許可されていません。"
+
+#: dependencies/src/Steps/Welcome.php:69
+msgid "Please enter a license key."
+msgstr "ライセンスキーを入力してください。"
+
+#: lib/Admin/Settings_API_Helper.php:464
+msgid "Size"
+msgstr "サイズ"
+
+#: lib/Admin/Settings_Util.php:68
+#: src/Util.php:441
+msgid "Documentation"
+msgstr "ドキュメント"
+
+#: lib/Admin/Settings_Util.php:73
+#: src/Util.php:442
+msgid "Support"
+msgstr "サポート"
+
+#: lib/Util.php:32
+msgid "Read more"
+msgstr "続きを読む"
+
+#: src/Admin/Admin_Controller.php:87
+msgid "Settings"
+msgstr "設定"
+
+#: src/Admin/CPT_Editor.php:75
+#: src/Util.php:296
+msgid "Post types"
+msgstr "投稿タイプ"
+
+#: src/Admin/CPT_Editor.php:76
+msgid "Post type"
+msgstr "投稿タイプ"
+
+#: src/Admin/CPT_Editor.php:77
+msgid "Add new"
+msgstr "新規追加"
+
+#: src/Admin/CPT_Editor.php:78
+msgid "Add new post type"
+msgstr "新しい投稿タイプを追加"
+
+#: src/Admin/CPT_Editor.php:79
+#: src/Admin/CPT_Editor.php:309
+msgid "Edit post type"
+msgstr "投稿タイプを編集"
+
+#: src/Admin/CPT_Editor.php:80
+msgid "New post type"
+msgstr "新しい投稿タイプ"
+
+#: src/Admin/CPT_Editor.php:81
+msgid "View post type"
+msgstr "投稿タイプを表示"
+
+#: src/Admin/CPT_Editor.php:82
+msgid "View post types"
+msgstr "投稿タイプを表示"
+
+#: src/Admin/CPT_Editor.php:83
+msgid "Search custom post types"
+msgstr "カスタム投稿タイプを検索"
+
+#: src/Admin/CPT_Editor.php:84
+msgid "No custom post types have been created yet."
+msgstr "まだカスタム投稿タイプは作成されていません。"
+
+#: src/Admin/CPT_Editor.php:86
+msgid "All post types"
+msgstr "すべての投稿タイプ"
+
+#: src/Admin/CPT_Editor.php:87
+msgid "Post Type Attributes"
+msgstr "投稿タイプ属性"
+
+#: src/Admin/CPT_Editor.php:88
+msgid "Filter post types list"
+msgstr "投稿タイプリストをフィルタリング"
+
+#: src/Admin/CPT_Editor.php:89
+msgid "Filter by date"
+msgstr "日付でフィルタ"
+
+#: src/Admin/CPT_Editor.php:90
+msgid "Post types list navigation"
+msgstr "投稿タイプリストナビゲーション"
+
+#: src/Admin/CPT_Editor.php:91
+msgid "Post types list"
+msgstr "投稿タイプリスト"
+
+#: src/Admin/CPT_Editor.php:92
+msgid "Post type published."
+msgstr "投稿タイプが公開されました。"
+
+#: src/Admin/CPT_Editor.php:93
+msgid "Post type published privately."
+msgstr "投稿タイプが非公開で公開されました。"
+
+#: src/Admin/CPT_Editor.php:94
+msgid "Post type reverted to draft."
+msgstr "投稿タイプが下書きに戻されました。"
+
+#: src/Admin/CPT_Editor.php:95
+msgid "Post scheduled."
+msgstr "投稿がスケジュールされました。"
+
+#: src/Admin/CPT_Editor.php:96
+msgid "Post updated."
+msgstr "投稿が更新されました。"
+
+#: src/Admin/CPT_Editor.php:97
+msgid "A link to a post type."
+msgstr "投稿タイプへのリンク。"
+
+#: src/Admin/CPT_Editor.php:99
+msgid "Define a custom post type"
+msgstr "カスタム投稿タイプを定義する"
+
+#: src/Admin/CPT_Editor.php:212
+#: src/Util.php:320
+msgid "Custom fields"
+msgstr "カスタムフィールド"
+
+#: src/Admin/CPT_Editor.php:213
+msgid "Custom field"
+msgstr "カスタムフィールド"
+
+#: src/Admin/CPT_Editor.php:215
+#. translators: 1: the plural name of the post type, 2: the opening tab of an anchor element, 3: the closing tag of an anchor element, 4: the singular name of the post type, 5: the plural name of the post type,
+msgid ""
+"Use custom fields to store extra data about your %1$s, such as a reference "
+"number or link. Custom fields are for data that is unique to each %4$s. If "
+"you want to use the data to organize or group your %5$s then you should "
+"create a %2$staxonomy%3$s instead."
+msgstr ""
+"カスタムフィールドを使用して、あなたの%1$sに関する追加データ（例：参照番号やリンク）を保存します。カスタムフィールドは各%4$"
+"sに固有のデータ用です。%5$sを整理またはグループ化するためにデータを使用したい場合は、%2$staxonomy%3$sを作成するべきです。"
+
+#: src/Admin/CPT_Editor.php:219
+#: src/Admin/List_Tables/Post_Type_List_Table.php:382
+#: src/Util.php:320
+msgid "Taxonomies"
+msgstr "タクソノミー"
+
+#: src/Admin/CPT_Editor.php:220
+msgid "Taxonomy"
+msgstr "タクソノミー"
+
+#: src/Admin/CPT_Editor.php:222
+#. translators: the plural name of the post type
+msgid ""
+"Taxonomies let you organize and group your %1$s. For example, you might "
+"want to organize them by category, tag, year, author, or industry. If you "
+"need to add data that is unique to each %4$s then you should create a "
+"%2$scustom field%3$s instead."
+msgstr ""
+"タクソノミーを使用すると、%1$sを整理およびグループ化できます。例えば、カテゴリー、タグ、年、著者、または業界で整理したいかもしれません。各%4$"
+"sに固有のデータを追加する必要がある場合は、%2$scustom field%3$sを作成するべきです。"
+
+#: src/Admin/CPT_Editor.php:264
+msgid "Post Types"
+msgstr "投稿タイプ"
+
+#: src/Admin/CPT_Editor.php:265
+msgid ""
+"Use this page to manage your custom post types. You can add and edit post "
+"types, custom fields and taxonomies."
+msgstr "このページを使用してカスタム投稿タイプを管理します。投稿タイプ、カスタムフィールド、およびタクソノミーを追加および編集できます。"
+
+#: src/Admin/CPT_Editor.php:303
+msgid "Manage Taxonomies"
+msgstr "タクソノミーの管理"
+
+#: src/Admin/CPT_Editor.php:304
+msgid "Manage Custom Fields"
+msgstr "カスタムフィールドの管理"
+
+#: src/Admin/CPT_Editor.php:316
+#: src/Admin/views/html-manage-page-lists.php:36
+#: src/Util.php:333
+msgid "Add"
+msgstr "追加"
+
+#: src/Admin/CPT_Editor.php:317
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:299
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:300
+#: src/Admin/List_Tables/Post_Type_List_Table.php:551
+#: src/Admin/List_Tables/Post_Type_List_Table.php:552
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:328
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:329
+#: src/Util.php:333
+msgid "Edit"
+msgstr "編集"
+
+#: src/Admin/CPT_Editor.php:321
+#. translators: either 'Add' or 'Edit'
+msgid "%s Taxonomy"
+msgstr "%s タクソノミー"
+
+#: src/Admin/CPT_Editor.php:323
+#. translators: either 'Add' or 'Edit'
+msgid "%s Custom Field"
+msgstr "%s カスタムフィールド"
+
+#: src/Admin/CPT_Editor.php:339
+msgid "Display your post types and fields with Posts Table Pro"
+msgstr "Posts Table Proを使用して、投稿タイプとフィールドを表示"
+
+#: src/Admin/CPT_Editor.php:353
+msgid "Restrict access to parts of your website with Password Protected Categories"
+msgstr "パスワード保護されたカテゴリでウェブサイトの一部へのアクセスを制限"
+
+#: src/Admin/CPT_Editor.php:421
+msgid ""
+"The post type is missing or an error occurred when completing this "
+"operation."
+msgstr "投稿タイプが欠落しているか、この操作を完了する際にエラーが発生しました。"
+
+#: src/Admin/CPT_Editor.php:476
+msgid "The slug of a post type is required."
+msgstr "投稿タイプのスラッグは必須です。"
+
+#: src/Admin/CPT_Editor.php:481
+msgid "The slug of a post type must be 17 characters or less."
+msgstr "投稿タイプのスラッグは17文字以内でなければなりません。"
+
+#: src/Admin/CPT_Editor.php:486
+msgid "The singular name of a post type is required."
+msgstr "投稿タイプの単数名は必須です。"
+
+#: src/Admin/CPT_Editor.php:491
+msgid "The plural name of a post type is required."
+msgstr "投稿タイプの複数名は必須です。"
+
+#: src/Admin/CPT_Editor.php:505
+msgid ""
+"A post type with the same slug is already registered. Please choose a "
+"different slug."
+msgstr "同じスラッグの投稿タイプがすでに登録されています。別のスラッグを選択してください。"
+
+#: src/Admin/CPT_Editor.php:556
+msgid "The slug of a taxonomy is required."
+msgstr "タクソノミーのスラッグは必須です。"
+
+#: src/Admin/CPT_Editor.php:571
+#. translators: the maximum number of characters of the slug
+msgid "The slug of a taxonomy for this post type must be %d characters or less."
+msgstr "この投稿タイプのタクソノミーのスラッグは%d文字以内でなければなりません。"
+
+#: src/Admin/CPT_Editor.php:576
+msgid "The singular name of a taxonomy is required."
+msgstr "タクソノミーの単数名は必須です。"
+
+#: src/Admin/CPT_Editor.php:581
+msgid "The plural name of a taxonomy is required."
+msgstr "タクソノミーの複数名は必須です。"
+
+#: src/Admin/CPT_Editor.php:629
+msgid ""
+"A taxonomy with the same slug is already registered to this post type. "
+"Please choose a different slug."
+msgstr "同じスラッグのタクソノミーがこの投稿タイプにすでに登録されています。別のスラッグを選択してください。"
+
+#: src/Admin/CPT_Editor.php:671
+msgid "The slug of a custom field is required."
+msgstr "カスタムフィールドのスラッグは必須です。"
+
+#: src/Admin/CPT_Editor.php:676
+msgid "The name of a custom field is required."
+msgstr "カスタムフィールドの名前は必須です。"
+
+#: src/Admin/CPT_Editor.php:713
+msgid ""
+"A field with the same slug is already registered to this post type. Please "
+"choose a different slug."
+msgstr "同じスラッグのフィールドがこの投稿タイプにすでに登録されています。別のスラッグを選択してください。"
+
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:97
+msgid "No custom fields for this post type yet"
+msgstr "この投稿タイプにカスタムフィールドはまだありません"
+
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:133
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:154
+#. translators: a post type name followed by underscore
+msgid ""
+"The slug is a unique code that you can use to identify the custom taxonomy. "
+"For example, you can use it to display the data with the Posts Table Pro "
+"plugin. If you are using the slug in other ways &ndash; for example for "
+"development purposes &ndash; then you should add the prefix '%1$s' before "
+"the slug, for example '%1$scategory' instead of just 'category'."
+msgstr ""
+"スラッグは、カスタムタクソノミーを識別するために使用できるユニークなコードです。例えば、Posts Table "
+"Proプラグインを使用してデータを表示するために使用できます。スラッグを他の方法で使用する場合（例えば、開発目的など）、スラッグの前にプレフィックス'%"
+"1$s'を追加する必要があります。例えば、'%1$scategory'のように、単に'category'ではなくなります。"
+
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:224
+#: src/Admin/List_Tables/Post_Type_List_Table.php:352
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:247
+#. translators: a custom field name
+#. translators: a post type name
+#. translators: the name of the taxonomy
+msgid "%s (Edit)"
+msgstr "%s（編集）"
+
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:307
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:308
+#: src/Admin/List_Tables/Post_Type_List_Table.php:558
+#: src/Admin/List_Tables/Post_Type_List_Table.php:560
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:336
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:337
+msgid "Delete"
+msgstr "削除"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:157
+msgid "No custom post types found"
+msgstr "カスタム投稿タイプが見つかりません"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:220
+#. translators: %s: Number of posts.
+msgid "Easy Post Types <span class=\"count\">(%s)</span>"
+msgstr "イージーポストタイプ <span class=\"count\">(%s)</span>"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:222
+#. translators: %s: Number of posts.
+msgid "Other Post Types <span class=\"count\">(%s)</span>"
+msgstr "他の投稿タイプ <span class=\"count\">(%s)</span>"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:260
+msgid ""
+"The slug is a unique code that you can use to identify the custom post "
+"type. For example, you can use it to display the data with the Posts Table "
+"Pro plugin. If you are using the slug in other ways &ndash; for example for "
+"development purposes &ndash; then you should add the prefix 'ept_' before "
+"the slug, for example 'ept_article' instead of just 'article'."
+msgstr ""
+"スラッグは、カスタム投稿タイプを識別するために使用できるユニークなコードです。例えば、Posts Table "
+"Proプラグインを使用してデータを表示するために使用できます。スラッグを他の方法で使用する場合（例えば、開発目的など）、スラッグの前にプレフィックス'"
+"ept_'を追加する必要があります。例えば、'ept_article'のように、単に'article'ではなくなります。"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:261
+msgid ""
+"Use custom fields for storing unique data about your custom posts, and use "
+"taxonomies for organizing and grouping the custom posts."
+msgstr "カスタム投稿に関するユニークなデータを保存するためにカスタムフィールドを使用し、カスタム投稿を整理およびグループ化するためにタクソノミーを使用します。"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:262
+msgid "The current number of posts for the custom post type."
+msgstr "カスタム投稿タイプの現在の投稿数。"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:381
+#: src/Post_Types/Abstract_Post_Type.php:210
+msgid "Custom Fields"
+msgstr "カスタムフィールド"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:568
+#: src/Admin/List_Tables/Post_Type_List_Table.php:570
+#: src/Post_Types/Custom_Post_Type.php:147
+#: src/Taxonomy.php:171
+#. translators: %s: Post type plural name.
+#. translators: the plural post type name
+#. translators: the plural name of a taxonomy
+msgid "All %s"
+msgstr "すべての %s"
+
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:116
+msgid "No taxonomies for this post type yet"
+msgstr "この投稿タイプにタクソノミーはまだありません"
+
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:158
+#: src/Admin/views/html-manage-page-taxonomies.php:19
+msgid ""
+"Hierarchical taxonomies have a nested parent/child structure like WordPress "
+"post categories, whereas non-hierarchical taxonomies are flat like tags."
+msgstr "階層的タクソノミーは、WordPressの投稿カテゴリーのように親/子のネスト構造を持っていますが、非階層的タクソノミーはタグのようにフラットです。"
+
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:279
+msgid "Yes"
+msgstr "はい"
+
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:279
+msgid "No"
+msgstr "いいえ"
+
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:344
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:345
+msgid "Manage terms"
+msgstr "用語を管理"
+
+#: src/Admin/Review_Notice.php:115
+msgid "Are you enjoying Easy Post Types and Fields?"
+msgstr "Easy Post TypesとFieldsを楽しんでいますか？"
+
+#: src/Admin/Review_Notice.php:116
+msgid ""
+"Congratulations, you've just published your first custom post type! If you "
+"have time, it would be great if you could leave us a review and let us know "
+"what you think of the plugin."
+msgstr ""
+"おめでとうございます！あなたは初めてのカスタム投稿タイプを公開しました！時間があれば、レビューを残していただき、プラグインについての感想をお聞かせいただ"
+"けると嬉しいです。"
+
+#: src/Admin/Review_Notice.php:119
+msgid "Add Review"
+msgstr "レビューを追加"
+
+#: src/Admin/Review_Notice.php:120
+msgid "Dismiss"
+msgstr "閉じる"
+
+#: src/Admin/Review_Notice.php:123
+msgid "Barn2"
+msgstr "Barn2"
+
+#: src/Admin/views/html-manage-page-fields.php:45
+#: src/Admin/Wizard/Steps/EPT_Name.php:25
+msgid "Name"
+msgstr "名前"
+
+#: src/Admin/views/html-manage-page-fields.php:51
+#: src/Admin/views/html-manage-page-post_type.php:54
+#: src/Admin/views/html-manage-page-taxonomies.php:54
+msgid "Slug"
+msgstr "スラッグ"
+
+#: src/Admin/views/html-manage-page-fields.php:57
+msgid "Type"
+msgstr "タイプ"
+
+#: src/Admin/views/html-manage-page-header.php:38
+msgid "Add New"
+msgstr "新規追加"
+
+#: src/Admin/views/html-manage-page-lists.php:22
+#. translators: either `Taxonomy` or `Custom field`
+msgid "%s editor"
+msgstr "%s エディタ"
+
+#: src/Admin/views/html-manage-page-lists.php:35
+#. translators: 1: 'Add' or 'Update', 2: 'custom field' or 'taxonomy' phpcs:ignore Squiz.PHP.CommentedOutCode.Found
+msgid "%1$s %2$s"
+msgstr "%1$s %2$s"
+
+#: src/Admin/views/html-manage-page-lists.php:36
+msgid "Update"
+msgstr "更新"
+
+#: src/Admin/views/html-manage-page-lists.php:37
+#: assets/js/admin/ept-editor.js:38
+msgid "taxonomy"
+msgstr "タクソノミー"
+
+#: src/Admin/views/html-manage-page-lists.php:37
+#: assets/js/admin/ept-editor.js:38
+msgid "custom field"
+msgstr "カスタムフィールド"
+
+#: src/Admin/views/html-manage-page-lists.php:46
+#: src/Admin/views/html-manage-page-post_type.php:89
+msgid "Cancel"
+msgstr "キャンセル"
+
+#: src/Admin/views/html-manage-page-lists.php:56
+#: src/Post_Types/Custom_Post_Type.php:161
+#: src/Taxonomy.php:209
+#. translators: either `Taxonomy` or `Custom field`
+#. translators: the plural post type name
+#. translators: the plural name of a taxonomy
+msgid "%s list"
+msgstr "%s リスト"
+
+#: src/Admin/views/html-manage-page-post_type.php:42
+#: src/Admin/views/html-manage-page-taxonomies.php:42
+#: src/Admin/Wizard/Steps/EPT_Name.php:37
+msgid "Singular name"
+msgstr "単数名"
+
+#: src/Admin/views/html-manage-page-post_type.php:48
+#: src/Admin/views/html-manage-page-taxonomies.php:48
+#: src/Admin/Wizard/Steps/EPT_Name.php:42
+msgid "Plural name"
+msgstr "複数名"
+
+#: src/Admin/views/html-manage-page-post_type.php:60
+#: src/Admin/Wizard/Steps/EPT_Features.php:26
+msgid "Features"
+msgstr "機能"
+
+#: src/Admin/views/html-manage-page-post_type.php:80
+msgid "Update post type"
+msgstr "投稿タイプを更新"
+
+#: src/Admin/views/html-manage-page-taxonomies.php:44
+msgid "e.g. Category"
+msgstr "例: カテゴリー"
+
+#: src/Admin/views/html-manage-page-taxonomies.php:50
+msgid "e.g. Categories"
+msgstr "例: カテゴリー"
+
+#: src/Admin/views/html-manage-page-taxonomies.php:60
+msgid "Hierarchical"
+msgstr "階層型"
+
+#: src/Admin/views/html-promo-display.php:29
+#. translators: 1: the opening tag of an anchor element, 2: the closing tag of an anchor element
+msgid ""
+"Once you have created your post types, custom fields and taxonomies, you "
+"can use %1$sPosts Table Pro%2$s to display them in a user-friendly table."
+msgstr ""
+"投稿タイプ、カスタムフィールド、タクソノミーを作成したら、%1$sPosts Table "
+"Pro%2$sを使用して、それらをユーザーフレンドリーなテーブルで表示できます。"
+
+#: src/Admin/views/html-promo-display.php:37
+msgid ""
+"Posts Table Pro is a dynamic WordPress table plugin which lists any type of "
+"WordPress content in a searchable table. As well as displaying any custom "
+"post type, you can choose which columns of information to show in the table "
+"- including your custom fields and taxonomies."
+msgstr ""
+"Posts Table "
+"Proは、検索可能なテーブルであらゆる種類のWordPressコンテンツを一覧表示する動的なWordPressテーブルプラグインです。カスタム投稿タイプ"
+"を表示するだけでなく、テーブルに表示する情報の列を選択できます - カスタムフィールドやタクソノミーを含めて。"
+
+#: src/Admin/views/html-promo-display.php:40
+msgid ""
+"Your website visitors can use the search box, sortable columns and filter "
+"dropdowns to find exactly what they are looking for."
+msgstr "ウェブサイトの訪問者は、検索ボックス、ソート可能な列、フィルタードロップダウンを使用して、探しているものを正確に見つけることができます。"
+
+#: src/Admin/views/html-promo-protect.php:29
+#. translators: 1: the opening tag of an anchor element, 2: the closing tag of an anchor element
+msgid ""
+"Do you need to control who can access your custom post types? You can "
+"easily do this with the %1$sPassword Protected Categories%2$s plugin."
+msgstr ""
+"カスタム投稿タイプへのアクセスを制御する必要がありますか？ %1$sPassword Protected "
+"Categories%2$sプラグインを使用すれば、これを簡単に行えます。"
+
+#: src/Admin/views/html-promo-protect.php:37
+msgid ""
+"Password Protected Categories lets you restrict access to any or all of "
+"your categories or taxonomies."
+msgstr "Password Protected Categoriesを使用すると、カテゴリやタクソノミーへのアクセスを制限できます。"
+
+#: src/Admin/Wizard/Steps/Completed.php:27
+#: src/Admin/Wizard/Steps/EPT_Ready.php:27
+#. translators: the plural name of a post type
+msgid ""
+"Now, you can either add extra fields to your post type, or start adding new "
+"%s straight away."
+msgstr "今、投稿タイプに追加フィールドを追加するか、新しい%sをすぐに追加することができます。"
+
+#: src/Admin/Wizard/Steps/Completed.php:29
+#: src/Admin/Wizard/Steps/EPT_Ready.php:29
+#. translators: the singular name of a post type
+msgid "The %s post type is ready!"
+msgstr "%s投稿タイプが準備完了です！"
+
+#: src/Admin/Wizard/Steps/EPT_Features.php:28
+#. translators: the plural name of a post type
+msgid ""
+"Choose which of the standard features you will use. Later, you can create "
+"custom fields and taxonomies for storing additional information."
+msgstr "標準機能のうちどれを使用するかを選択してください。後で、追加情報を保存するためのカスタムフィールドやタクソノミーを作成できます。"
+
+#: src/Admin/Wizard/Steps/EPT_Features.php:30
+#. translators: the plural name of a post type
+msgid "What type of information do you need for your %s?"
+msgstr "あなたの%sにどのような情報が必要ですか？"
+
+#: src/Admin/Wizard/Steps/EPT_Features.php:93
+msgid "It is not possible to create the post type with the current configuration."
+msgstr "現在の構成では、投稿タイプを作成することはできません。"
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:26
+msgid ""
+"First, let's choose the name for your post type. This will appear as a link "
+"on the left hand side of the WordPress admin."
+msgstr "まず、投稿タイプの名前を選びましょう。これがWordPress管理画面の左側にリンクとして表示されます。"
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:27
+msgid "What sort of content do you want to create?"
+msgstr "どのようなコンテンツを作成したいですか？"
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:38
+msgid "e.g. Article"
+msgstr "例：記事"
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:43
+msgid "e.g. Articles"
+msgstr "例：記事（複数形）"
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:58
+msgid "Both fields must not be empty."
+msgstr "両方のフィールドは空にしてはいけません。"
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:64
+msgid "The name of the post type cannot be longer than 17 characters."
+msgstr "投稿タイプの名前は17文字を超えてはいけません。"
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:75
+msgid ""
+"A post type with this name is already present. Please input a different "
+"name."
+msgstr "この名前の投稿タイプはすでに存在します。別の名前を入力してください。"
+
+#: src/Admin/Wizard/Steps/Upsell.php:33
+#. translators: %1$s: URL to All Access Pass page %2$s: URL to the KB about the upgrading process
+msgid ""
+"Enhance your store with these fantastic plugins from Barn2, or get them all "
+"with an <a href=\"%1$s\" target=\"_blank\">All Access Pass<a/>! (<a "
+"href=\"%2$s\" target=\"_blank\">learn how here</a>)"
+msgstr ""
+"Barn2のこれらの素晴らしいプラグインでストアを強化するか、<a href=\"%1$s\" target=\"_blank\">All "
+"Access Pass<a/>ですべてを入手してください！ (<a href=\"%2$s\" target=\"_blank\">ここで学ぶ</a>)"
+
+#: src/Admin/Wizard/Steps/Welcome.php:26
+msgid "Welcome to Easy Post Types and Fields"
+msgstr "Easy Post Types and Fieldsへようこそ"
+
+#: src/Admin/Wizard/Steps/Welcome.php:27
+msgid ""
+"Use this setup wizard to quickly create a post type (e.g. Events, Members, "
+"Articles, or something else). Your post type will have its own section in "
+"the WordPress admin. If you want to add fields to existing post types, then "
+"skip the setup wizard and go to the Other Post Types section."
+msgstr ""
+"このセットアップウィザードを使用して、投稿タイプ（例：イベント、メンバー、記事、またはその他）を迅速に作成します。投稿タイプはWordPress管理画面"
+"に独自のセクションを持ちます。既存の投稿タイプにフィールドを追加する場合は、セットアップウィザードをスキップして、他の投稿タイプのセクションに進んでくだ"
+"さい。"
+
+#: src/Admin/Wizard/Wizard.php:28
+msgid "You are not authorized."
+msgstr "あなたは権限がありません。"
+
+#: src/Post_Types/Custom_Post_Type.php:129
+#: src/Taxonomy.php:191
+#. translators: the singular post type name
+#. translators: the singular name of a taxonomy
+msgid "Add New %s"
+msgstr "新しい %s を追加"
+
+#: src/Post_Types/Custom_Post_Type.php:131
+#: src/Taxonomy.php:185
+#. translators: the singular post type name
+#. translators: the singular name of a taxonomy
+msgid "Edit %s"
+msgstr "%s を編集"
+
+#: src/Post_Types/Custom_Post_Type.php:133
+#. translators: the singular post type name
+msgid "New %s"
+msgstr "新しい %s"
+
+#: src/Post_Types/Custom_Post_Type.php:139
+#: src/Taxonomy.php:167
+#. translators: the plural post type name
+#. translators: the plural name of a taxonomy
+msgid "Search %s"
+msgstr "%s を検索"
+
+#: src/Post_Types/Custom_Post_Type.php:141
+#: src/Taxonomy.php:201
+#. translators: the plural post type name
+#. translators: the plural name of a taxonomy
+msgid "No %s found."
+msgstr "%s が見つかりませんでした。"
+
+#: src/Post_Types/Custom_Post_Type.php:143
+#. translators: the plural post type name
+msgid "No %s found in Trash."
+msgstr "ゴミ箱に%sは見つかりませんでした。"
+
+#: src/Post_Types/Custom_Post_Type.php:145
+#: src/Taxonomy.php:175
+#. translators: the singular post type name
+#. translators: the singular name of a taxonomy
+msgid "Parent %s:"
+msgstr "親 %s:"
+
+#: src/Post_Types/Custom_Post_Type.php:149
+#. translators: the singular post type name
+msgid "%s Archives"
+msgstr "%s アーカイブ"
+
+#: src/Post_Types/Custom_Post_Type.php:151
+#. translators: the singular post type name
+msgid "%s Attributes"
+msgstr "%s 属性"
+
+#: src/Post_Types/Custom_Post_Type.php:153
+#. translators: the singular post type name
+msgid "Insert into %s"
+msgstr "%s に挿入"
+
+#: src/Post_Types/Custom_Post_Type.php:155
+#. translators: the singular post type name
+msgid "Uploaded to this %s"
+msgstr "この %s にアップロードしました"
+
+#: src/Post_Types/Custom_Post_Type.php:157
+#. translators: the plural post type name
+msgid "Filter %s list"
+msgstr "%s リストをフィルター"
+
+#: src/Post_Types/Custom_Post_Type.php:159
+#: src/Taxonomy.php:207
+#. translators: the plural post type name
+#. translators: the plural name of a taxonomy
+msgid "%s list navigation"
+msgstr "%s リストナビゲーション"
+
+#: src/Post_Types/Custom_Post_Type.php:163
+#. translators: the singular post type name
+msgid "%s published."
+msgstr "%s が公開されました。"
+
+#: src/Post_Types/Custom_Post_Type.php:165
+#. translators: the singular post type name
+msgid "%s published privately."
+msgstr "%s が非公開で公開されました。"
+
+#: src/Post_Types/Custom_Post_Type.php:167
+#. translators: the singular post type name
+msgid "%s reverted to draft."
+msgstr "%s が下書きに戻されました。"
+
+#: src/Post_Types/Custom_Post_Type.php:169
+#. translators: the singular post type name
+msgid "%s scheduled."
+msgstr "%s がスケジュールされました。"
+
+#: src/Post_Types/Custom_Post_Type.php:171
+#. translators: the singular post type name
+msgid "%s updated."
+msgstr "%s が更新されました。"
+
+#: src/Post_Types/Custom_Post_Type.php:173
+#: src/Taxonomy.php:215
+#. translators: the singular post type name
+#. translators: the singular name of a taxonomy
+msgid "%s Link"
+msgstr "%s リンク"
+
+#: src/Post_Types/Custom_Post_Type.php:175
+#: src/Taxonomy.php:217
+#. translators: the singular post type name
+#. translators: the singular name of a taxonomy
+msgid "A link to a %s."
+msgstr "%sへのリンク。"
+
+#: src/Taxonomy.php:158
+msgid "The name is how it appears on your site."
+msgstr "名前はサイト上に表示される方法です。"
+
+#: src/Taxonomy.php:159
+msgid ""
+"The &#8220;slug&#8221; is the URL-friendly version of the name. It is "
+"usually all lowercase and contains only letters, numbers, and hyphens."
+msgstr "“スラッグ”は名前のURLフレンドリーなバージョンです。通常はすべて小文字で、文字、数字、ハイフンのみを含みます。"
+
+#: src/Taxonomy.php:160
+msgid ""
+"Assign a parent term to create a hierarchy. The term Jazz, for example, "
+"would be the parent of Bebop and Big Band."
+msgstr "階層を作成するために親の用語を割り当てます。たとえば、ジャズという用語は、ビバップやビッグバンドの親になります。"
+
+#: src/Taxonomy.php:161
+msgid ""
+"The description is not prominent by default; however, some themes may show "
+"it."
+msgstr "説明はデフォルトでは目立ちませんが、一部のテーマでは表示されることがあります。"
+
+#: src/Taxonomy.php:169
+#. translators: the plural name of a taxonomy
+msgid "Popular %s"
+msgstr "人気のある%s"
+
+#: src/Taxonomy.php:173
+#. translators: the singular name of a taxonomy
+msgid "Parent %s"
+msgstr "親%s"
+
+#: src/Taxonomy.php:187
+#. translators: the singular name of a taxonomy
+msgid "View %s"
+msgstr "%sを表示"
+
+#: src/Taxonomy.php:189
+#. translators: the singular name of a taxonomy
+msgid "Update %s"
+msgstr "%sを更新"
+
+#: src/Taxonomy.php:193
+#. translators: the singular name of a taxonomy
+msgid "New %s Name"
+msgstr "新しい%s名"
+
+#: src/Taxonomy.php:195
+#. translators: the plural name of a taxonomy
+msgid "Separate %s with commas"
+msgstr "カンマで%sを区切る"
+
+#: src/Taxonomy.php:197
+#. translators: the plural name of a taxonomy
+msgid "Add or remove %s"
+msgstr "%sを追加または削除"
+
+#: src/Taxonomy.php:199
+#. translators: the plural name of a taxonomy
+msgid "Choose from the most used %s"
+msgstr "%sの中で最も使用されているものから選択"
+
+#: src/Taxonomy.php:203
+#. translators: the plural name of a taxonomy
+msgid "No %s"
+msgstr "%sはありません"
+
+#: src/Taxonomy.php:205
+#. translators: the plural name of a taxonomy
+msgid "Filter by %s"
+msgstr "%sでフィルタ"
+
+#: src/Taxonomy.php:211
+#. translators: the plural name of a taxonomy
+msgid "Most Used"
+msgstr "最も使用された"
+
+#: src/Taxonomy.php:213
+#. translators: the plural name of a taxonomy
+msgid "&larr; Go to %s"
+msgstr "&larr; %sに戻る"
+
+#: src/Util.php:392
+msgid "Title"
+msgstr "タイトル"
+
+#: src/Util.php:393
+msgid "Content"
+msgstr "コンテンツ"
+
+#: src/Util.php:394
+msgid "Excerpt"
+msgstr "抜粋"
+
+#: src/Util.php:395
+msgid "Author"
+msgstr "著者"
+
+#: src/Util.php:396
+msgid "Featured image"
+msgstr "フィーチャー画像"
+
+#: src/Util.php:397
+msgid "Comments"
+msgstr "コメント"
+
+#: src/Util.php:398
+msgid "Page attributes"
+msgstr "ページ属性"
+
+#: src/Util.php:399
+msgid "Revisions"
+msgstr "リビジョン"
+
+#: src/Util.php:428
+msgid "Text"
+msgstr "テキスト"
+
+#: src/Util.php:429
+msgid "Visual Editor"
+msgstr "ビジュアルエディター"
+
+#: assets/js/admin/ept-editor.js:20
+msgid "Are you sure you want to delete the %1$s post type?"
+msgstr "本当に %1$s 投稿タイプを削除してもよろしいですか？"
+
+#: assets/js/admin/ept-editor.js:25
+msgid ""
+"The database contains at least one post of this post type. By deleting this "
+"post type, WordPress will not be able to access those posts any longer. Are "
+"you sure you want to continue?"
+msgstr ""
+"データベースにはこの投稿タイプの投稿が少なくとも1件含まれています。この投稿タイプを削除すると、WordPress "
+"はそれらの投稿にアクセスできなくなります。本当に続行してもよろしいですか？"
+
+#: assets/js/admin/ept-editor.js:40
+msgid "Are you sure you want to delete the “%1$s” %2$s?"
+msgstr "本当に “%1$s” %2$s を削除してもよろしいですか？"
+
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:139
+#: src/Admin/List_Tables/Post_Type_List_Table.php:265
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:161
+msgctxt "column name"
+msgid "Name"
+msgstr "名前"
+
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:140
+#: src/Admin/List_Tables/Post_Type_List_Table.php:266
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:162
+msgctxt "column name"
+msgid "Slug"
+msgstr "スラッグ"
+
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:141
+msgctxt "column name"
+msgid "Type"
+msgstr "タイプ"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:267
+msgctxt "column name"
+msgid "Custom Fields"
+msgstr "カスタムフィールド"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:268
+msgctxt "column name"
+msgid "Taxonomies"
+msgstr "タクソノミー"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:269
+msgctxt "column name"
+msgid "Actions"
+msgstr "アクション"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:270
+msgctxt "column name"
+msgid "Count"
+msgstr "カウント"
+
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:163
+msgctxt "column name"
+msgid "Hierarchical"
+msgstr "階層型"
+
+#: src/Post_Types/Custom_Post_Type.php:135
+#. translators: the singular post type name
+msgctxt "singular"
+msgid "View %s"
+msgstr "%sを表示"
+
+#: src/Post_Types/Custom_Post_Type.php:137
+#. translators: the plural post type name
+msgctxt "plural"
+msgid "View %s"
+msgstr "%sを表示"

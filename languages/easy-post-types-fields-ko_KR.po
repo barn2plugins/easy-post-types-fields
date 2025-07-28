@@ -1,0 +1,1068 @@
+# Copyright (C) 2022 Barn2 Plugins
+# This file is distributed under the GNU General Public License v3.0.
+msgid ""
+msgstr ""
+"Project-Id-Version: Easy Post Types and Fields 1.1.1\n"
+"Report-Msgid-Bugs-To: https://barn2.com/support-center/\n"
+"Last-Translator: Barn2 Plugins <support@barn2.com>\n"
+"Language-Team: Barn2 Plugins <support@barn2.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2022-08-26T00:00:00+00:00\n"
+"PO-Revision-Date: 2025-07-28 16:26+0000\n"
+"X-Generator: WP-CLI 2.6.0\n"
+"X-Domain: easy-post-types-fields\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language: ko-KR\n"
+
+#: src/Admin/views/html-manage-page-header.php:22
+#. Plugin Name of the plugin
+msgid "Easy Post Types and Fields"
+msgstr "쉬운 포스트 유형 및 필드"
+
+#. Plugin URI of the plugin
+msgid "https://wordpress.org/plugins/easy-post-types-fields/"
+msgstr "https://wordpress.org/plugins/easy-post-types-fields/"
+
+#. Description of the plugin
+msgid "Create custom post types, fields and taxonomies."
+msgstr "맞춤형 포스트 유형, 필드 및 분류를 생성합니다."
+
+#. Author of the plugin
+msgid "Barn2 Plugins"
+msgstr "Barn2 플러그인"
+
+#. Author URI of the plugin
+msgid "https://barn2.com"
+msgstr "https://barn2.com"
+
+#: dependencies/src/Setup_Wizard.php:483
+msgid "%s setup wizard"
+msgstr "%s 설정 마법사"
+
+#: dependencies/src/Setup_Wizard.php:617
+#: dependencies/src/Setup_Wizard.php:625
+#: dependencies/src/Setup_Wizard.php:660
+msgid "Setup wizard"
+msgstr "설정 마법사"
+
+#: dependencies/src/Setup_Wizard.php:620
+msgid ""
+"If you need to access the setup wizard again, please click on the button "
+"below."
+msgstr "설정 마법사에 다시 접근해야 하는 경우 아래 버튼을 클릭하세요."
+
+#: dependencies/src/Setup_Wizard.php:639
+#: dependencies/src/Setup_Wizard.php:672
+msgid ""
+"Warning: This will overwrite your existing settings for %s. Are you sure "
+"you want to continue?"
+msgstr "경고: 이 작업은 %s에 대한 기존 설정을 덮어씁니다. 계속하시겠습니까?"
+
+#: dependencies/src/Steps/Cross_Selling.php:26
+#: src/Admin/Wizard/Steps/Upsell.php:29
+msgid "More"
+msgstr "더보기"
+
+#: dependencies/src/Steps/Cross_Selling.php:27
+#: src/Admin/Wizard/Steps/Upsell.php:38
+msgid "Extra features"
+msgstr "추가 기능"
+
+#: dependencies/src/Steps/Cross_Selling.php:28
+msgid "Enhance your site with these fantastic plugins from Barn2."
+msgstr "Barn2의 이 환상적인 플러그인으로 귀하의 사이트를 강화하세요."
+
+#: dependencies/src/Steps/Cross_Selling.php:69
+#: src/Admin/Wizard/Steps/Upsell.php:98
+msgid ""
+"Something went wrong while retrieving the list of products. Please try "
+"again later."
+msgstr "제품 목록을 검색하는 동안 문제가 발생했습니다. 나중에 다시 시도하십시오."
+
+#: dependencies/src/Steps/Ready.php:23
+#: src/Admin/Wizard/Steps/Completed.php:25
+#: src/Admin/Wizard/Steps/EPT_Ready.php:25
+msgid "Ready"
+msgstr "준비 완료"
+
+#: dependencies/src/Steps/Ready.php:24
+msgid "Setup Complete"
+msgstr "설정 완료"
+
+#: dependencies/src/Steps/Welcome.php:25
+#: dependencies/src/Steps/Welcome_Free.php:23
+#: src/Admin/Wizard/Steps/Welcome.php:25
+msgid "Welcome"
+msgstr "환영합니다"
+
+#: dependencies/src/Steps/Welcome.php:33
+msgid "License key"
+msgstr "라이센스 키"
+
+#: dependencies/src/Steps/Welcome.php:33
+msgid "Enter your license key to start using the plugin."
+msgstr "플러그인을 사용하기 시작하려면 라이센스 키를 입력하세요."
+
+#: dependencies/src/Steps/Welcome.php:33
+msgid "The licence key is contained in your order confirmation email."
+msgstr "라이센스 키는 주문 확인 이메일에 포함되어 있습니다."
+
+#: dependencies/src/Steps/Welcome.php:53
+msgid "You are not allowed to retrieve license details."
+msgstr "라이센스 세부정보를 검색할 수 없습니다."
+
+#: dependencies/src/Steps/Welcome.php:65
+#: dependencies/src/Steps/Welcome_Free.php:40
+msgid "You are not allowed to validate your license."
+msgstr "라이센스를 확인할 수 없습니다."
+
+#: dependencies/src/Steps/Welcome.php:69
+msgid "Please enter a license key."
+msgstr "라이센스 키를 입력하십시오."
+
+#: lib/Admin/Settings_API_Helper.php:464
+msgid "Size"
+msgstr "크기"
+
+#: lib/Admin/Settings_Util.php:68
+#: src/Util.php:441
+msgid "Documentation"
+msgstr "문서"
+
+#: lib/Admin/Settings_Util.php:73
+#: src/Util.php:442
+msgid "Support"
+msgstr "지원"
+
+#: lib/Util.php:32
+msgid "Read more"
+msgstr "자세히 보기"
+
+#: src/Admin/Admin_Controller.php:87
+msgid "Settings"
+msgstr "설정"
+
+#: src/Admin/CPT_Editor.php:75
+#: src/Util.php:296
+msgid "Post types"
+msgstr "게시물 유형"
+
+#: src/Admin/CPT_Editor.php:76
+msgid "Post type"
+msgstr "게시물 유형"
+
+#: src/Admin/CPT_Editor.php:77
+msgid "Add new"
+msgstr "새로 추가"
+
+#: src/Admin/CPT_Editor.php:78
+msgid "Add new post type"
+msgstr "새 게시물 유형 추가"
+
+#: src/Admin/CPT_Editor.php:79
+#: src/Admin/CPT_Editor.php:309
+msgid "Edit post type"
+msgstr "게시물 유형 편집"
+
+#: src/Admin/CPT_Editor.php:80
+msgid "New post type"
+msgstr "새 게시물 유형"
+
+#: src/Admin/CPT_Editor.php:81
+msgid "View post type"
+msgstr "게시물 유형 보기"
+
+#: src/Admin/CPT_Editor.php:82
+msgid "View post types"
+msgstr "게시물 유형 보기"
+
+#: src/Admin/CPT_Editor.php:83
+msgid "Search custom post types"
+msgstr "사용자 정의 게시물 유형 검색"
+
+#: src/Admin/CPT_Editor.php:84
+msgid "No custom post types have been created yet."
+msgstr "아직 생성된 사용자 정의 게시물 유형이 없습니다."
+
+#: src/Admin/CPT_Editor.php:86
+msgid "All post types"
+msgstr "모든 게시물 유형"
+
+#: src/Admin/CPT_Editor.php:87
+msgid "Post Type Attributes"
+msgstr "게시물 유형 속성"
+
+#: src/Admin/CPT_Editor.php:88
+msgid "Filter post types list"
+msgstr "게시물 유형 목록 필터링"
+
+#: src/Admin/CPT_Editor.php:89
+msgid "Filter by date"
+msgstr "날짜로 필터링"
+
+#: src/Admin/CPT_Editor.php:90
+msgid "Post types list navigation"
+msgstr "게시물 유형 목록 탐색"
+
+#: src/Admin/CPT_Editor.php:91
+msgid "Post types list"
+msgstr "게시물 유형 목록"
+
+#: src/Admin/CPT_Editor.php:92
+msgid "Post type published."
+msgstr "게시물 유형이 게시되었습니다."
+
+#: src/Admin/CPT_Editor.php:93
+msgid "Post type published privately."
+msgstr "게시물 유형이 비공식적으로 게시되었습니다."
+
+#: src/Admin/CPT_Editor.php:94
+msgid "Post type reverted to draft."
+msgstr "게시물 유형이 초안으로 되돌려졌습니다."
+
+#: src/Admin/CPT_Editor.php:95
+msgid "Post scheduled."
+msgstr "게시물이 예약되었습니다."
+
+#: src/Admin/CPT_Editor.php:96
+msgid "Post updated."
+msgstr "게시물이 업데이트되었습니다."
+
+#: src/Admin/CPT_Editor.php:97
+msgid "A link to a post type."
+msgstr "게시물 유형에 대한 링크입니다."
+
+#: src/Admin/CPT_Editor.php:99
+msgid "Define a custom post type"
+msgstr "사용자 정의 게시물 유형 정의"
+
+#: src/Admin/CPT_Editor.php:212
+#: src/Util.php:320
+msgid "Custom fields"
+msgstr "사용자 정의 필드"
+
+#: src/Admin/CPT_Editor.php:213
+msgid "Custom field"
+msgstr "사용자 정의 필드"
+
+#: src/Admin/CPT_Editor.php:215
+#. translators: 1: the plural name of the post type, 2: the opening tab of an anchor element, 3: the closing tag of an anchor element, 4: the singular name of the post type, 5: the plural name of the post type,
+msgid ""
+"Use custom fields to store extra data about your %1$s, such as a reference "
+"number or link. Custom fields are for data that is unique to each %4$s. If "
+"you want to use the data to organize or group your %5$s then you should "
+"create a %2$staxonomy%3$s instead."
+msgstr ""
+"사용자 정의 필드를 사용하여 %1$s에 대한 참조 번호나 링크와 같은 추가 데이터를 저장하십시오. 사용자 정의 필드는 각 %4$s에 "
+"고유한 데이터용입니다. %5$s를 정리하거나 그룹화하는 데 데이터를 사용하려면 대신 %2$staxonomy%3$s를 생성해야 합니다."
+
+#: src/Admin/CPT_Editor.php:219
+#: src/Admin/List_Tables/Post_Type_List_Table.php:382
+#: src/Util.php:320
+msgid "Taxonomies"
+msgstr "분류"
+
+#: src/Admin/CPT_Editor.php:220
+msgid "Taxonomy"
+msgstr "분류"
+
+#: src/Admin/CPT_Editor.php:222
+#. translators: the plural name of the post type
+msgid ""
+"Taxonomies let you organize and group your %1$s. For example, you might "
+"want to organize them by category, tag, year, author, or industry. If you "
+"need to add data that is unique to each %4$s then you should create a "
+"%2$scustom field%3$s instead."
+msgstr ""
+"분류를 사용하면 %1$s를 정리하고 그룹화할 수 있습니다. 예를 들어, 카테고리, 태그, 연도, 작성자 또는 산업별로 정리할 수 "
+"있습니다. 각 %4$s에 고유한 데이터를 추가해야 하는 경우 대신 %2$scustom field%3$s를 생성해야 합니다."
+
+#: src/Admin/CPT_Editor.php:264
+msgid "Post Types"
+msgstr "게시물 유형"
+
+#: src/Admin/CPT_Editor.php:265
+msgid ""
+"Use this page to manage your custom post types. You can add and edit post "
+"types, custom fields and taxonomies."
+msgstr "이 페이지를 사용하여 사용자 정의 게시물 유형을 관리하십시오. 게시물 유형, 사용자 정의 필드 및 분류를 추가하고 편집할 수 있습니다."
+
+#: src/Admin/CPT_Editor.php:303
+msgid "Manage Taxonomies"
+msgstr "분류 관리"
+
+#: src/Admin/CPT_Editor.php:304
+msgid "Manage Custom Fields"
+msgstr "사용자 정의 필드 관리"
+
+#: src/Admin/CPT_Editor.php:316
+#: src/Admin/views/html-manage-page-lists.php:36
+#: src/Util.php:333
+msgid "Add"
+msgstr "추가"
+
+#: src/Admin/CPT_Editor.php:317
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:299
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:300
+#: src/Admin/List_Tables/Post_Type_List_Table.php:551
+#: src/Admin/List_Tables/Post_Type_List_Table.php:552
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:328
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:329
+#: src/Util.php:333
+msgid "Edit"
+msgstr "편집"
+
+#: src/Admin/CPT_Editor.php:321
+#. translators: either 'Add' or 'Edit'
+msgid "%s Taxonomy"
+msgstr "%s 분류"
+
+#: src/Admin/CPT_Editor.php:323
+#. translators: either 'Add' or 'Edit'
+msgid "%s Custom Field"
+msgstr "%s 사용자 정의 필드"
+
+#: src/Admin/CPT_Editor.php:339
+msgid "Display your post types and fields with Posts Table Pro"
+msgstr "Posts Table Pro로 게시물 유형 및 필드를 표시하세요"
+
+#: src/Admin/CPT_Editor.php:353
+msgid "Restrict access to parts of your website with Password Protected Categories"
+msgstr "비밀번호 보호 카테고리로 웹사이트의 일부에 대한 접근을 제한하세요"
+
+#: src/Admin/CPT_Editor.php:421
+msgid ""
+"The post type is missing or an error occurred when completing this "
+"operation."
+msgstr "게시물 유형이 누락되었거나 이 작업을 완료하는 동안 오류가 발생했습니다."
+
+#: src/Admin/CPT_Editor.php:476
+msgid "The slug of a post type is required."
+msgstr "게시물 유형의 슬러그가 필요합니다."
+
+#: src/Admin/CPT_Editor.php:481
+msgid "The slug of a post type must be 17 characters or less."
+msgstr "게시물 유형의 슬러그는 17자 이하이어야 합니다."
+
+#: src/Admin/CPT_Editor.php:486
+msgid "The singular name of a post type is required."
+msgstr "게시물 유형의 단수 이름이 필요합니다."
+
+#: src/Admin/CPT_Editor.php:491
+msgid "The plural name of a post type is required."
+msgstr "게시물 유형의 복수 이름이 필요합니다."
+
+#: src/Admin/CPT_Editor.php:505
+msgid ""
+"A post type with the same slug is already registered. Please choose a "
+"different slug."
+msgstr "같은 슬러그를 가진 게시물 유형이 이미 등록되어 있습니다. 다른 슬러그를 선택하세요."
+
+#: src/Admin/CPT_Editor.php:556
+msgid "The slug of a taxonomy is required."
+msgstr "분류의 슬러그가 필요합니다."
+
+#: src/Admin/CPT_Editor.php:571
+#. translators: the maximum number of characters of the slug
+msgid "The slug of a taxonomy for this post type must be %d characters or less."
+msgstr "이 게시물 유형의 분류 슬러그는 %d자 이하이어야 합니다."
+
+#: src/Admin/CPT_Editor.php:576
+msgid "The singular name of a taxonomy is required."
+msgstr "분류의 단수 이름이 필요합니다."
+
+#: src/Admin/CPT_Editor.php:581
+msgid "The plural name of a taxonomy is required."
+msgstr "분류의 복수 이름이 필요합니다."
+
+#: src/Admin/CPT_Editor.php:629
+msgid ""
+"A taxonomy with the same slug is already registered to this post type. "
+"Please choose a different slug."
+msgstr "같은 슬러그를 가진 분류가 이미 이 게시물 유형에 등록되어 있습니다. 다른 슬러그를 선택하세요."
+
+#: src/Admin/CPT_Editor.php:671
+msgid "The slug of a custom field is required."
+msgstr "사용자 정의 필드의 슬러그가 필요합니다."
+
+#: src/Admin/CPT_Editor.php:676
+msgid "The name of a custom field is required."
+msgstr "사용자 정의 필드의 이름이 필요합니다."
+
+#: src/Admin/CPT_Editor.php:713
+msgid ""
+"A field with the same slug is already registered to this post type. Please "
+"choose a different slug."
+msgstr "같은 슬러그를 가진 필드가 이미 이 게시물 유형에 등록되어 있습니다. 다른 슬러그를 선택하세요."
+
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:97
+msgid "No custom fields for this post type yet"
+msgstr "이 포스트 유형에 대한 사용자 정의 필드가 아직 없습니다"
+
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:133
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:154
+#. translators: a post type name followed by underscore
+msgid ""
+"The slug is a unique code that you can use to identify the custom taxonomy. "
+"For example, you can use it to display the data with the Posts Table Pro "
+"plugin. If you are using the slug in other ways &ndash; for example for "
+"development purposes &ndash; then you should add the prefix '%1$s' before "
+"the slug, for example '%1$scategory' instead of just 'category'."
+msgstr ""
+"슬러그는 사용자 정의 분류를 식별하는 데 사용할 수 있는 고유한 코드입니다. 예를 들어, Posts Table Pro 플러그인을 "
+"사용하여 데이터를 표시하는 데 사용할 수 있습니다. 슬러그를 다른 방식으로 사용하는 경우 &ndash; 예를 들어 개발 목적으로 "
+"&ndash; 슬러그 앞에 접두사 '%1$s'를 추가해야 합니다. 예를 들어 '%1$scategory' 대신 'category'를 "
+"사용해야 합니다."
+
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:224
+#: src/Admin/List_Tables/Post_Type_List_Table.php:352
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:247
+#. translators: a custom field name
+#. translators: a post type name
+#. translators: the name of the taxonomy
+msgid "%s (Edit)"
+msgstr "%s (편집)"
+
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:307
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:308
+#: src/Admin/List_Tables/Post_Type_List_Table.php:558
+#: src/Admin/List_Tables/Post_Type_List_Table.php:560
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:336
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:337
+msgid "Delete"
+msgstr "삭제"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:157
+msgid "No custom post types found"
+msgstr "사용자 정의 포스트 유형이 발견되지 않았습니다"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:220
+#. translators: %s: Number of posts.
+msgid "Easy Post Types <span class=\"count\">(%s)</span>"
+msgstr "쉬운 포스트 유형 <span class=\"count\">(%s)</span>"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:222
+#. translators: %s: Number of posts.
+msgid "Other Post Types <span class=\"count\">(%s)</span>"
+msgstr "다른 포스트 유형 <span class=\"count\">(%s)</span>"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:260
+msgid ""
+"The slug is a unique code that you can use to identify the custom post "
+"type. For example, you can use it to display the data with the Posts Table "
+"Pro plugin. If you are using the slug in other ways &ndash; for example for "
+"development purposes &ndash; then you should add the prefix 'ept_' before "
+"the slug, for example 'ept_article' instead of just 'article'."
+msgstr ""
+"슬러그는 사용자 정의 포스트 유형을 식별하는 데 사용할 수 있는 고유한 코드입니다. 예를 들어, Posts Table Pro 플러그인을 "
+"사용하여 데이터를 표시하는 데 사용할 수 있습니다. 슬러그를 다른 방식으로 사용하는 경우 &ndash; 예를 들어 개발 목적으로 "
+"&ndash; 슬러그 앞에 접두사 'ept_'를 추가해야 합니다. 예를 들어 'ept_article' 대신 'article'을 사용해야 "
+"합니다."
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:261
+msgid ""
+"Use custom fields for storing unique data about your custom posts, and use "
+"taxonomies for organizing and grouping the custom posts."
+msgstr ""
+"사용자 정의 포스트에 대한 고유한 데이터를 저장하기 위해 사용자 정의 필드를 사용하고, 사용자 정의 포스트를 조직하고 그룹화하기 위해 "
+"분류를 사용하세요."
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:262
+msgid "The current number of posts for the custom post type."
+msgstr "사용자 정의 포스트 유형에 대한 현재 포스트 수입니다."
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:381
+#: src/Post_Types/Abstract_Post_Type.php:210
+msgid "Custom Fields"
+msgstr "사용자 정의 필드"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:568
+#: src/Admin/List_Tables/Post_Type_List_Table.php:570
+#: src/Post_Types/Custom_Post_Type.php:147
+#: src/Taxonomy.php:171
+#. translators: %s: Post type plural name.
+#. translators: the plural post type name
+#. translators: the plural name of a taxonomy
+msgid "All %s"
+msgstr "모든 %s"
+
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:116
+msgid "No taxonomies for this post type yet"
+msgstr "이 포스트 유형에 대한 분류가 아직 없습니다"
+
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:158
+#: src/Admin/views/html-manage-page-taxonomies.php:19
+msgid ""
+"Hierarchical taxonomies have a nested parent/child structure like WordPress "
+"post categories, whereas non-hierarchical taxonomies are flat like tags."
+msgstr "계층적 분류는 WordPress 포스트 카테고리와 같은 중첩된 부모/자식 구조를 가지며, 비계층적 분류는 태그처럼 평면적입니다."
+
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:279
+msgid "Yes"
+msgstr "예"
+
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:279
+msgid "No"
+msgstr "아니요"
+
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:344
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:345
+msgid "Manage terms"
+msgstr "용어 관리"
+
+#: src/Admin/Review_Notice.php:115
+msgid "Are you enjoying Easy Post Types and Fields?"
+msgstr "Easy Post Types와 Fields를 즐기고 계신가요?"
+
+#: src/Admin/Review_Notice.php:116
+msgid ""
+"Congratulations, you've just published your first custom post type! If you "
+"have time, it would be great if you could leave us a review and let us know "
+"what you think of the plugin."
+msgstr ""
+"축하합니다. 첫 번째 사용자 정의 포스트 유형을 방금 게시했습니다! 시간이 된다면 리뷰를 남겨주시고 플러그인에 대한 의견을 알려주시면 "
+"좋겠습니다."
+
+#: src/Admin/Review_Notice.php:119
+msgid "Add Review"
+msgstr "리뷰 추가"
+
+#: src/Admin/Review_Notice.php:120
+msgid "Dismiss"
+msgstr "무시"
+
+#: src/Admin/Review_Notice.php:123
+msgid "Barn2"
+msgstr "Barn2"
+
+#: src/Admin/views/html-manage-page-fields.php:45
+#: src/Admin/Wizard/Steps/EPT_Name.php:25
+msgid "Name"
+msgstr "이름"
+
+#: src/Admin/views/html-manage-page-fields.php:51
+#: src/Admin/views/html-manage-page-post_type.php:54
+#: src/Admin/views/html-manage-page-taxonomies.php:54
+msgid "Slug"
+msgstr "슬러그"
+
+#: src/Admin/views/html-manage-page-fields.php:57
+msgid "Type"
+msgstr "유형"
+
+#: src/Admin/views/html-manage-page-header.php:38
+msgid "Add New"
+msgstr "새로 추가"
+
+#: src/Admin/views/html-manage-page-lists.php:22
+#. translators: either `Taxonomy` or `Custom field`
+msgid "%s editor"
+msgstr "%s 편집기"
+
+#: src/Admin/views/html-manage-page-lists.php:35
+#. translators: 1: 'Add' or 'Update', 2: 'custom field' or 'taxonomy' phpcs:ignore Squiz.PHP.CommentedOutCode.Found
+msgid "%1$s %2$s"
+msgstr "%1$s %2$s"
+
+#: src/Admin/views/html-manage-page-lists.php:36
+msgid "Update"
+msgstr "업데이트"
+
+#: src/Admin/views/html-manage-page-lists.php:37
+#: assets/js/admin/ept-editor.js:38
+msgid "taxonomy"
+msgstr "분류"
+
+#: src/Admin/views/html-manage-page-lists.php:37
+#: assets/js/admin/ept-editor.js:38
+msgid "custom field"
+msgstr "사용자 정의 필드"
+
+#: src/Admin/views/html-manage-page-lists.php:46
+#: src/Admin/views/html-manage-page-post_type.php:89
+msgid "Cancel"
+msgstr "취소"
+
+#: src/Admin/views/html-manage-page-lists.php:56
+#: src/Post_Types/Custom_Post_Type.php:161
+#: src/Taxonomy.php:209
+#. translators: either `Taxonomy` or `Custom field`
+#. translators: the plural post type name
+#. translators: the plural name of a taxonomy
+msgid "%s list"
+msgstr "%s 목록"
+
+#: src/Admin/views/html-manage-page-post_type.php:42
+#: src/Admin/views/html-manage-page-taxonomies.php:42
+#: src/Admin/Wizard/Steps/EPT_Name.php:37
+msgid "Singular name"
+msgstr "단수 이름"
+
+#: src/Admin/views/html-manage-page-post_type.php:48
+#: src/Admin/views/html-manage-page-taxonomies.php:48
+#: src/Admin/Wizard/Steps/EPT_Name.php:42
+msgid "Plural name"
+msgstr "복수 이름"
+
+#: src/Admin/views/html-manage-page-post_type.php:60
+#: src/Admin/Wizard/Steps/EPT_Features.php:26
+msgid "Features"
+msgstr "기능"
+
+#: src/Admin/views/html-manage-page-post_type.php:80
+msgid "Update post type"
+msgstr "게시물 유형 업데이트"
+
+#: src/Admin/views/html-manage-page-taxonomies.php:44
+msgid "e.g. Category"
+msgstr "예: 카테고리"
+
+#: src/Admin/views/html-manage-page-taxonomies.php:50
+msgid "e.g. Categories"
+msgstr "예: 카테고리들"
+
+#: src/Admin/views/html-manage-page-taxonomies.php:60
+msgid "Hierarchical"
+msgstr "계층적"
+
+#: src/Admin/views/html-promo-display.php:29
+#. translators: 1: the opening tag of an anchor element, 2: the closing tag of an anchor element
+msgid ""
+"Once you have created your post types, custom fields and taxonomies, you "
+"can use %1$sPosts Table Pro%2$s to display them in a user-friendly table."
+msgstr ""
+"게시물 유형, 사용자 정의 필드 및 분류를 생성한 후, %1$sPosts Table Pro%2$s를 사용하여 사용자 친화적인 테이블에 "
+"표시할 수 있습니다."
+
+#: src/Admin/views/html-promo-display.php:37
+msgid ""
+"Posts Table Pro is a dynamic WordPress table plugin which lists any type of "
+"WordPress content in a searchable table. As well as displaying any custom "
+"post type, you can choose which columns of information to show in the table "
+"- including your custom fields and taxonomies."
+msgstr ""
+"Posts Table Pro는 검색 가능한 테이블에 모든 유형의 WordPress 콘텐츠를 나열하는 동적 WordPress 테이블 "
+"플러그인입니다. 사용자 정의 게시물 유형을 표시할 수 있을 뿐만 아니라, 테이블에 표시할 정보의 열을 선택할 수 있습니다 - 사용자 "
+"정의 필드 및 분류를 포함하여."
+
+#: src/Admin/views/html-promo-display.php:40
+msgid ""
+"Your website visitors can use the search box, sortable columns and filter "
+"dropdowns to find exactly what they are looking for."
+msgstr "웹사이트 방문자는 검색 상자, 정렬 가능한 열 및 필터 드롭다운을 사용하여 원하는 내용을 정확히 찾을 수 있습니다."
+
+#: src/Admin/views/html-promo-protect.php:29
+#. translators: 1: the opening tag of an anchor element, 2: the closing tag of an anchor element
+msgid ""
+"Do you need to control who can access your custom post types? You can "
+"easily do this with the %1$sPassword Protected Categories%2$s plugin."
+msgstr "사용자 정의 게시물 유형에 대한 접근을 제어해야 합니까? %1$s비밀번호 보호 카테고리%2$s 플러그인을 사용하면 쉽게 할 수 있습니다."
+
+#: src/Admin/views/html-promo-protect.php:37
+msgid ""
+"Password Protected Categories lets you restrict access to any or all of "
+"your categories or taxonomies."
+msgstr "비밀번호 보호 카테고리를 사용하면 모든 카테고리 또는 분류에 대한 접근을 제한할 수 있습니다."
+
+#: src/Admin/Wizard/Steps/Completed.php:27
+#: src/Admin/Wizard/Steps/EPT_Ready.php:27
+#. translators: the plural name of a post type
+msgid ""
+"Now, you can either add extra fields to your post type, or start adding new "
+"%s straight away."
+msgstr "이제 게시물 유형에 추가 필드를 추가하거나 새 %s를 즉시 추가할 수 있습니다."
+
+#: src/Admin/Wizard/Steps/Completed.php:29
+#: src/Admin/Wizard/Steps/EPT_Ready.php:29
+#. translators: the singular name of a post type
+msgid "The %s post type is ready!"
+msgstr "%s 게시물 유형이 준비되었습니다!"
+
+#: src/Admin/Wizard/Steps/EPT_Features.php:28
+#. translators: the plural name of a post type
+msgid ""
+"Choose which of the standard features you will use. Later, you can create "
+"custom fields and taxonomies for storing additional information."
+msgstr "사용할 표준 기능을 선택하십시오. 나중에 추가 정보를 저장할 수 있는 사용자 정의 필드와 분류를 생성할 수 있습니다."
+
+#: src/Admin/Wizard/Steps/EPT_Features.php:30
+#. translators: the plural name of a post type
+msgid "What type of information do you need for your %s?"
+msgstr "당신의 %s에 어떤 종류의 정보가 필요합니까?"
+
+#: src/Admin/Wizard/Steps/EPT_Features.php:93
+msgid "It is not possible to create the post type with the current configuration."
+msgstr "현재 구성으로는 게시물 유형을 생성할 수 없습니다."
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:26
+msgid ""
+"First, let's choose the name for your post type. This will appear as a link "
+"on the left hand side of the WordPress admin."
+msgstr "먼저 게시물 유형의 이름을 선택합시다. 이 이름은 WordPress 관리의 왼쪽에 링크로 표시됩니다."
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:27
+msgid "What sort of content do you want to create?"
+msgstr "어떤 종류의 콘텐츠를 만들고 싶습니까?"
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:38
+msgid "e.g. Article"
+msgstr "예: 기사"
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:43
+msgid "e.g. Articles"
+msgstr "예: 기사들"
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:58
+msgid "Both fields must not be empty."
+msgstr "두 필드는 비어 있을 수 없습니다."
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:64
+msgid "The name of the post type cannot be longer than 17 characters."
+msgstr "게시물 유형의 이름은 17자를 초과할 수 없습니다."
+
+#: src/Admin/Wizard/Steps/EPT_Name.php:75
+msgid ""
+"A post type with this name is already present. Please input a different "
+"name."
+msgstr "이 이름의 게시물 유형이 이미 존재합니다. 다른 이름을 입력해 주세요."
+
+#: src/Admin/Wizard/Steps/Upsell.php:33
+#. translators: %1$s: URL to All Access Pass page %2$s: URL to the KB about the upgrading process
+msgid ""
+"Enhance your store with these fantastic plugins from Barn2, or get them all "
+"with an <a href=\"%1$s\" target=\"_blank\">All Access Pass<a/>! (<a "
+"href=\"%2$s\" target=\"_blank\">learn how here</a>)"
+msgstr ""
+"Barn2의 환상적인 플러그인으로 상점을 강화하거나 <a href=\"%1$s\" target=\"_blank\">모든 접근 "
+"패스<a/>를 통해 모두 얻으세요! (<a href=\"%2$s\" target=\"_blank\">여기서 방법을 배우세요</a>)"
+
+#: src/Admin/Wizard/Steps/Welcome.php:26
+msgid "Welcome to Easy Post Types and Fields"
+msgstr "Easy Post Types and Fields에 오신 것을 환영합니다"
+
+#: src/Admin/Wizard/Steps/Welcome.php:27
+msgid ""
+"Use this setup wizard to quickly create a post type (e.g. Events, Members, "
+"Articles, or something else). Your post type will have its own section in "
+"the WordPress admin. If you want to add fields to existing post types, then "
+"skip the setup wizard and go to the Other Post Types section."
+msgstr ""
+"이 설정 마법사를 사용하여 게시물 유형(예: 이벤트, 회원, 기사 또는 기타)을 빠르게 생성하세요. 게시물 유형은 WordPress "
+"관리의 자체 섹션을 갖게 됩니다. 기존 게시물 유형에 필드를 추가하려면 설정 마법사를 건너뛰고 다른 게시물 유형 섹션으로 이동하세요."
+
+#: src/Admin/Wizard/Wizard.php:28
+msgid "You are not authorized."
+msgstr "권한이 없습니다."
+
+#: src/Post_Types/Custom_Post_Type.php:129
+#: src/Taxonomy.php:191
+#. translators: the singular post type name
+#. translators: the singular name of a taxonomy
+msgid "Add New %s"
+msgstr "새로운 %s 추가"
+
+#: src/Post_Types/Custom_Post_Type.php:131
+#: src/Taxonomy.php:185
+#. translators: the singular post type name
+#. translators: the singular name of a taxonomy
+msgid "Edit %s"
+msgstr "%s 편집"
+
+#: src/Post_Types/Custom_Post_Type.php:133
+#. translators: the singular post type name
+msgid "New %s"
+msgstr "새로운 %s"
+
+#: src/Post_Types/Custom_Post_Type.php:139
+#: src/Taxonomy.php:167
+#. translators: the plural post type name
+#. translators: the plural name of a taxonomy
+msgid "Search %s"
+msgstr "%s 검색"
+
+#: src/Post_Types/Custom_Post_Type.php:141
+#: src/Taxonomy.php:201
+#. translators: the plural post type name
+#. translators: the plural name of a taxonomy
+msgid "No %s found."
+msgstr "%s을(를) 찾을 수 없습니다."
+
+#: src/Post_Types/Custom_Post_Type.php:143
+#. translators: the plural post type name
+msgid "No %s found in Trash."
+msgstr "휴지통에서 %s을(를) 찾을 수 없습니다."
+
+#: src/Post_Types/Custom_Post_Type.php:145
+#: src/Taxonomy.php:175
+#. translators: the singular post type name
+#. translators: the singular name of a taxonomy
+msgid "Parent %s:"
+msgstr "부모 %s:"
+
+#: src/Post_Types/Custom_Post_Type.php:149
+#. translators: the singular post type name
+msgid "%s Archives"
+msgstr "%s 아카이브"
+
+#: src/Post_Types/Custom_Post_Type.php:151
+#. translators: the singular post type name
+msgid "%s Attributes"
+msgstr "%s 속성"
+
+#: src/Post_Types/Custom_Post_Type.php:153
+#. translators: the singular post type name
+msgid "Insert into %s"
+msgstr "%s에 삽입"
+
+#: src/Post_Types/Custom_Post_Type.php:155
+#. translators: the singular post type name
+msgid "Uploaded to this %s"
+msgstr "이 %s에 업로드됨"
+
+#: src/Post_Types/Custom_Post_Type.php:157
+#. translators: the plural post type name
+msgid "Filter %s list"
+msgstr "%s 목록 필터"
+
+#: src/Post_Types/Custom_Post_Type.php:159
+#: src/Taxonomy.php:207
+#. translators: the plural post type name
+#. translators: the plural name of a taxonomy
+msgid "%s list navigation"
+msgstr "%s 목록 탐색"
+
+#: src/Post_Types/Custom_Post_Type.php:163
+#. translators: the singular post type name
+msgid "%s published."
+msgstr "%s이(가) 게시되었습니다."
+
+#: src/Post_Types/Custom_Post_Type.php:165
+#. translators: the singular post type name
+msgid "%s published privately."
+msgstr "%s이(가) 비공개로 게시되었습니다."
+
+#: src/Post_Types/Custom_Post_Type.php:167
+#. translators: the singular post type name
+msgid "%s reverted to draft."
+msgstr "%s이(가) 초안으로 되돌려졌습니다."
+
+#: src/Post_Types/Custom_Post_Type.php:169
+#. translators: the singular post type name
+msgid "%s scheduled."
+msgstr "%s이(가) 예약되었습니다."
+
+#: src/Post_Types/Custom_Post_Type.php:171
+#. translators: the singular post type name
+msgid "%s updated."
+msgstr "%s이(가) 업데이트되었습니다."
+
+#: src/Post_Types/Custom_Post_Type.php:173
+#: src/Taxonomy.php:215
+#. translators: the singular post type name
+#. translators: the singular name of a taxonomy
+msgid "%s Link"
+msgstr "%s 링크"
+
+#: src/Post_Types/Custom_Post_Type.php:175
+#: src/Taxonomy.php:217
+#. translators: the singular post type name
+#. translators: the singular name of a taxonomy
+msgid "A link to a %s."
+msgstr "%s에 대한 링크입니다."
+
+#: src/Taxonomy.php:158
+msgid "The name is how it appears on your site."
+msgstr "이름은 사이트에 표시되는 방식입니다."
+
+#: src/Taxonomy.php:159
+msgid ""
+"The &#8220;slug&#8221; is the URL-friendly version of the name. It is "
+"usually all lowercase and contains only letters, numbers, and hyphens."
+msgstr "“슬러그”는 이름의 URL 친화적인 버전입니다. 일반적으로 모든 글자가 소문자이며, 문자, 숫자 및 하이픈만 포함됩니다."
+
+#: src/Taxonomy.php:160
+msgid ""
+"Assign a parent term to create a hierarchy. The term Jazz, for example, "
+"would be the parent of Bebop and Big Band."
+msgstr "계층 구조를 만들기 위해 부모 용어를 할당합니다. 예를 들어, Jazz는 Bebop과 Big Band의 부모가 될 것입니다."
+
+#: src/Taxonomy.php:161
+msgid ""
+"The description is not prominent by default; however, some themes may show "
+"it."
+msgstr "설명은 기본적으로 두드러지지 않지만, 일부 테마에서는 이를 표시할 수 있습니다."
+
+#: src/Taxonomy.php:169
+#. translators: the plural name of a taxonomy
+msgid "Popular %s"
+msgstr "인기 있는 %s"
+
+#: src/Taxonomy.php:173
+#. translators: the singular name of a taxonomy
+msgid "Parent %s"
+msgstr "부모 %s"
+
+#: src/Taxonomy.php:187
+#. translators: the singular name of a taxonomy
+msgid "View %s"
+msgstr "보기 %s"
+
+#: src/Taxonomy.php:189
+#. translators: the singular name of a taxonomy
+msgid "Update %s"
+msgstr "업데이트 %s"
+
+#: src/Taxonomy.php:193
+#. translators: the singular name of a taxonomy
+msgid "New %s Name"
+msgstr "새 %s 이름"
+
+#: src/Taxonomy.php:195
+#. translators: the plural name of a taxonomy
+msgid "Separate %s with commas"
+msgstr "쉼표로 %s를 구분하십시오"
+
+#: src/Taxonomy.php:197
+#. translators: the plural name of a taxonomy
+msgid "Add or remove %s"
+msgstr "%s 추가 또는 제거"
+
+#: src/Taxonomy.php:199
+#. translators: the plural name of a taxonomy
+msgid "Choose from the most used %s"
+msgstr "가장 많이 사용된 %s에서 선택하십시오"
+
+#: src/Taxonomy.php:203
+#. translators: the plural name of a taxonomy
+msgid "No %s"
+msgstr "%s 없음"
+
+#: src/Taxonomy.php:205
+#. translators: the plural name of a taxonomy
+msgid "Filter by %s"
+msgstr "%s로 필터링"
+
+#: src/Taxonomy.php:211
+#. translators: the plural name of a taxonomy
+msgid "Most Used"
+msgstr "가장 많이 사용됨"
+
+#: src/Taxonomy.php:213
+#. translators: the plural name of a taxonomy
+msgid "&larr; Go to %s"
+msgstr "&larr; %s로 이동"
+
+#: src/Util.php:392
+msgid "Title"
+msgstr "제목"
+
+#: src/Util.php:393
+msgid "Content"
+msgstr "내용"
+
+#: src/Util.php:394
+msgid "Excerpt"
+msgstr "발췌"
+
+#: src/Util.php:395
+msgid "Author"
+msgstr "작성자"
+
+#: src/Util.php:396
+msgid "Featured image"
+msgstr "특집 이미지"
+
+#: src/Util.php:397
+msgid "Comments"
+msgstr "댓글"
+
+#: src/Util.php:398
+msgid "Page attributes"
+msgstr "페이지 속성"
+
+#: src/Util.php:399
+msgid "Revisions"
+msgstr "수정"
+
+#: src/Util.php:428
+msgid "Text"
+msgstr "텍스트"
+
+#: src/Util.php:429
+msgid "Visual Editor"
+msgstr "비주얼 편집기"
+
+#: assets/js/admin/ept-editor.js:20
+msgid "Are you sure you want to delete the %1$s post type?"
+msgstr "%1$s 게시물 유형을 삭제하시겠습니까?"
+
+#: assets/js/admin/ept-editor.js:25
+msgid ""
+"The database contains at least one post of this post type. By deleting this "
+"post type, WordPress will not be able to access those posts any longer. Are "
+"you sure you want to continue?"
+msgstr ""
+"데이터베이스에는 이 게시물 유형의 게시물이 최소한 하나 포함되어 있습니다. 이 게시물 유형을 삭제하면 WordPress는 더 이상 해당 "
+"게시물에 접근할 수 없습니다. 계속하시겠습니까?"
+
+#: assets/js/admin/ept-editor.js:40
+msgid "Are you sure you want to delete the “%1$s” %2$s?"
+msgstr "“%1$s” %2$s를 삭제하시겠습니까?"
+
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:139
+#: src/Admin/List_Tables/Post_Type_List_Table.php:265
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:161
+msgctxt "column name"
+msgid "Name"
+msgstr "이름"
+
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:140
+#: src/Admin/List_Tables/Post_Type_List_Table.php:266
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:162
+msgctxt "column name"
+msgid "Slug"
+msgstr "슬러그"
+
+#: src/Admin/List_Tables/Custom_Field_List_Table.php:141
+msgctxt "column name"
+msgid "Type"
+msgstr "유형"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:267
+msgctxt "column name"
+msgid "Custom Fields"
+msgstr "사용자 정의 필드"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:268
+msgctxt "column name"
+msgid "Taxonomies"
+msgstr "분류법"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:269
+msgctxt "column name"
+msgid "Actions"
+msgstr "작업"
+
+#: src/Admin/List_Tables/Post_Type_List_Table.php:270
+msgctxt "column name"
+msgid "Count"
+msgstr "개수"
+
+#: src/Admin/List_Tables/Taxonomy_List_Table.php:163
+msgctxt "column name"
+msgid "Hierarchical"
+msgstr "계층형"
+
+#: src/Post_Types/Custom_Post_Type.php:135
+#. translators: the singular post type name
+msgctxt "singular"
+msgid "View %s"
+msgstr "보기 %s"
+
+#: src/Post_Types/Custom_Post_Type.php:137
+#. translators: the plural post type name
+msgctxt "plural"
+msgid "View %s"
+msgstr "보기 %s"
