@@ -1,3 +1,8 @@
+= 1.1.14 =
+* Dev: Added translation files for most used languages in WordPress
+* Fix: The tooltip content was not showing
+* New: Added the link to custom fields/taxonomies in the setup wizard
+
 = 1.1.13 =
 * Dev: Tested up to WordPress 6.8 and PHP 8.4
 * Fix: PHP warning for undefined array key column_type

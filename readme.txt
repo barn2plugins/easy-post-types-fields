@@ -5,7 +5,7 @@ Tags: custom post type, custom field, custom taxonomy, custom data, meta fields
 Requires at least: 6.1
 Tested up to: 6.8
 Requires PHP: 7.4
-Stable tag: 1.1.13
+Stable tag: 1.1.14
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Donate link: https://barn2.com
@@ -129,10 +129,11 @@ Yes, you can add HTML and shortcodes into either the plain text and Visual Edito
 
 == Changelog ==
 
-= 1.1.13 =
-Release date 23 April 2025
+= 1.1.14 =
+Release date 29 July 2025
 
-* Dev: Tested up to WordPress 6.8 and PHP 8.4
-* Fix: PHP warning for undefined array key `column_type`
+* Dev: Added translation files for most used languages in WordPress
+* Fix: The tooltip content was not showing
+* New: Added the link to custom fields/taxonomies in the setup wizard
 
 See changelog.txt for more details.
