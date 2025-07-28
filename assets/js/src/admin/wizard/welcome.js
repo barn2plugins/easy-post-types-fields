@@ -201,7 +201,9 @@ class Welcome extends Component {
 									isPrimary
 									isBusy={ loading }
 									disabled={ loading }
-									onClick={ () => {} }
+									onClick={ () => {
+										window.location.href = 'admin.php?page=ept_post_types&view=other';
+									} }
 								>
 									{ __( 'Add custom fields/taxonomies' ) }
 								</Button>
