@@ -101,7 +101,7 @@ class Barn2_Table_Plugin implements Registerable, Standard_Service {
 	 */
 	public function shortcode_atts( $out, $pairs, $atts, $shortcode ) {
 		global $wp_post_types;
-
+		
 		$plugin_args = $this->plugins[ $shortcode ];
 		if( ! isset( $out[ 'post_type' ] ) ) {
 			$out[ 'post_type' ] = 'post';
@@ -179,10 +179,10 @@ class Barn2_Table_Plugin implements Registerable, Standard_Service {
 			',',
 			array_map(
 				function( $column ) use ( $post_type, $entities, $slugs ) {
-					$prefix = strtok( $column, ':' );
+					$prefix = trim( strtok( $column, ':' ) );
 					$slug   = str_replace( "{$post_type}_", '', strtok( ':' ) );
 					$label  = strtok( ':' );
-
+					
 					if ( in_array( $prefix, [ 'tax', 'cf' ], true ) ) {
 						$item = array_values(
 							array_filter(
