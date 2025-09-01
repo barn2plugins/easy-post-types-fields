@@ -64,6 +64,15 @@ class Wizard extends Setup_Wizard implements Restartable {
 
 		wp_enqueue_style( "setup-wizard", plugin_dir_url( __DIR__ ) . '../../assets/css/admin/wizard.css', false, $this->get_non_wc_version() );
 		wp_enqueue_style( $slug, $this->get_library_url() . 'build/main.css', $styling_dependencies, filemtime( $this->get_library_path() . '/build/main.css' ) );
+		
+		// Add custom popover styles
+		$custom_css = '
+			.components-popover__fallback-container .components-popover__content {
+				width: fit-content;
+				padding: 16px;
+			}
+		';
+		wp_add_inline_style( $slug, $custom_css );
 	}
 
 }
