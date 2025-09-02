@@ -38,11 +38,15 @@ class Util
     }
     public static function barn2_url($relative_path)
     {
-        return \esc_url(\trailingslashit(self::BARN2_URL) . \ltrim($relative_path, '/'));
+        $url = self::BARN2_URL;
+        $url = \apply_filters('barn2_website_url', $url, $relative_path);
+        return \esc_url(\trailingslashit($url) . \ltrim($relative_path, '/'));
     }
     public static function barn2_api_url($relative_path)
     {
-        return \esc_url(\trailingslashit(self::BARN2_API_URL) . \ltrim($relative_path, '/'));
+        $url = self::BARN2_API_URL;
+        $url = \apply_filters('barn2_api_url', $url, $relative_path);
+        return \esc_url(\trailingslashit($url) . \ltrim($relative_path, '/'));
     }
     public static function format_barn2_link_open($relative_path, $new_tab = \false)
     {
@@ -64,7 +68,9 @@ class Util
      */
     public static function store_url($relative_path)
     {
-        return self::EDD_STORE_URL . '/' . \ltrim($relative_path, ' /');
+        $url = self::EDD_STORE_URL;
+        $url = \apply_filters('barn2_edd_store_url', $url, $relative_path);
+        return $url . '/' . \ltrim($relative_path, ' /');
     }
     public static function format_store_link($relative_path, $link_text, $new_tab = \true)
     {

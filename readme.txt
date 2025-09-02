@@ -130,7 +130,7 @@ Yes, you can add HTML and shortcodes into either the plain text and Visual Edito
 == Changelog ==
 
 = 1.1.14 =
-Release date 29 July 2025
+Release date 2 September 2025
 
 * Dev: Added translation files for most used languages in WordPress
 * Fix: The tooltip content was not showing

@@ -286,7 +286,9 @@ class Simple_Plugin implements Plugin, Registerable, Service_Provider
      */
     public function get_documentation_url()
     {
-        return \esc_url(Util::KNOWLEDGE_BASE_URL . '/' . $this->data['documentation_path']);
+        $url = Util::KNOWLEDGE_BASE_URL;
+        $url = \apply_filters('barn2_kb_url', $url);
+        return \esc_url($url . '/' . $this->data['documentation_path']);
     }
     /**
      * Get the support URL for this plugin.
