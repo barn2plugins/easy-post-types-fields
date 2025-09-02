@@ -118,7 +118,6 @@ class Review_Notice implements Registerable, Standard_Service {
 					<a class="ept-dismiss-notice"><?php esc_html_e( 'Dismiss', 'easy-post-types-fields' ); ?></a>
 				</div>
 
-				<span class="ept-review-notice-meta"><?php esc_html_e( 'Barn2', 'easy-post-types-fields' ); ?></span>
 			</div>
 
 			<div class="ept-review-notice-right">
